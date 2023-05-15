@@ -1,4 +1,10 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+
+const linariaConfig = require('./next-linaria.config');
+
+const nextConfig = {
+    ...linariaConfig
+}
 
 module.exports = nextConfig
