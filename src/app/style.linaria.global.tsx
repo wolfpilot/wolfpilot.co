@@ -1,14 +1,14 @@
 // app/style.linaria.global.tsx
-import { css } from '@linaria/core';
+import { css } from "@linaria/core"
 
 export const globals = css`
   :global() {
     :root() {
       --max-width: 1100px;
       --border-radius: 12px;
-      --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-        'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-        'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+      --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+        "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+        "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
       --foreground-rgb: 0, 0, 0;
       --background-start-rgb: 214, 219, 220;
@@ -51,7 +51,10 @@ export const globals = css`
         --background-start-rgb: 0, 0, 0;
         --background-end-rgb: 0, 0, 0;
 
-        --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
+        --primary-glow: radial-gradient(
+          rgba(1, 65, 255, 0.4),
+          rgba(1, 65, 255, 0)
+        );
         --secondary-glow: linear-gradient(
           to bottom right,
           rgba(1, 65, 255, 0),
@@ -111,4 +114,4 @@ export const globals = css`
       }
     }
   }
-`;
+`
