@@ -1,6 +1,8 @@
 import Image from "next/image"
 import styles from "./page.module.css"
 
+import Button from "./components/Button"
+
 export default function Home() {
   return (
     <main className={styles.main}>
@@ -38,6 +40,8 @@ export default function Home() {
           priority
         />
       </div>
+
+      <Button label="test" bgColor="red" />
 
       <div className={styles.grid}>
         <a

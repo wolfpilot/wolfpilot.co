@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier ./src/**/*.{ts,tsx} --write",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006 --ci",
+    "build-storybook": "storybook build"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
@@ -29,9 +31,18 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "7.0.11",
+    "@storybook/addon-interactions": "7.0.11",
+    "@storybook/addon-links": "7.0.11",
+    "@storybook/blocks": "7.0.11",
+    "@storybook/nextjs": "7.0.11",
+    "@storybook/react": "7.0.11",
+    "@storybook/testing-library": "0.0.14-next.2",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
-    "prettier": "2.8.8"
+    "prettier": "2.8.8",
+    "storybook": "7.0.11"
   }
 }
