@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "dev": "next dev",
+    "dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev\" \"yarn ts --watch\"",
     "build": "next build",
     "start": "next start",
-    "format": "prettier ./src/**/*.{ts,tsx} --write",
     "lint": "next lint",
+    "format": "prettier ./src/**/*.{ts,tsx} --write",
+    "ts": "tsc --noEmit --incremental --preserveWatchOutput --pretty",
+    "ts:watch": "yarn ts --watch",
     "storybook": "storybook dev -p 6006 --ci",
     "build-storybook": "storybook build"
   },
@@ -38,6 +40,7 @@
     "@storybook/nextjs": "7.0.11",
     "@storybook/react": "7.0.11",
     "@storybook/testing-library": "0.0.14-next.2",
+    "concurrently": "^8.0.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
