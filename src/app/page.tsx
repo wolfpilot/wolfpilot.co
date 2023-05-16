@@ -4,9 +4,7 @@ import styled from "styled-components"
 
 import { mq } from "@/styles/utils/mediaQueries"
 
-export default function Home() {
-  return <Main>Praise the sun! \[T]/</Main>
-}
+const Home = () => <Main>Praise the sun! \[T]/</Main>
 
 const Main = styled.main`
   color: red;
@@ -15,3 +13,5 @@ const Main = styled.main`
     color: blue;
   `}
 `
+
+export default Home
