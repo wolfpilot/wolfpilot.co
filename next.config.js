@@ -1,4 +1,15 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
 
-module.exports = nextConfig
+const linariaConfig = require("./next-linaria.config")
+
+const nextConfig = {
+  ...linariaConfig,
+  experimental: {
+    mdxRs: true,
+  },
+}
+
+const withMDX = require("@next/mdx")()
+
+module.exports = withMDX(nextConfig)
