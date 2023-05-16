@@ -5,6 +5,11 @@ const linariaConfig = require("./next-linaria.config")
 
 const nextConfig = {
   ...linariaConfig,
+  experimental: {
+    mdxRs: true,
+  },
 }
 
-module.exports = nextConfig
+const withMDX = require("@next/mdx")()
+
+module.exports = withMDX(nextConfig)
