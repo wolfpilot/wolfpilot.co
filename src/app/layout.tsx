@@ -1,6 +1,7 @@
 "use client"
 
 import StyledComponentsRegistry from "@/lib/registry"
+import GlobalStyle from "@/styles/global"
 
 export const metadata = {
   title: "Create Next App",
@@ -15,7 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <StyledComponentsRegistry>
+          <GlobalStyle />
+          {children}
+        </StyledComponentsRegistry>
       </body>
     </html>
   )

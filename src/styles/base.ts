@@ -1,0 +1,136 @@
+import { css } from "styled-components"
+
+import { mq } from "@/styles/utils/mediaQueries"
+import {
+  MAX_CONTENT_WIDTH,
+  BORDER_RADIUS_SML,
+  BORDER_RADIUS_LRG,
+  columns,
+  gutter,
+} from "@/styles/layout"
+import { colors } from "@/styles/colors"
+import { fonts, textStyles, weights } from "@/styles/typography"
+
+export const base = css`
+  @font-face {
+    font-family: "Chillax";
+    font-weight: ${weights.normal};
+    font-display: block;
+    src: url("/fonts/chillax-regular.woff2") format("woff2"),
+      url("/fonts/chillax-regular.woff") format("woff");
+  }
+
+  :root {
+    // Layout
+    --max-content-width: ${MAX_CONTENT_WIDTH};
+    --border-radius-sml: ${BORDER_RADIUS_SML};
+    --border-radius-lrg: ${BORDER_RADIUS_LRG};
+
+    /**
+     * @NOTE: IE 11 doesn't support vars, so just use the equivalent vw values
+     * 1 col in a 3 col grid = 33.33vw
+     * 1 col in a 6 col grid = 16.66vw
+     * 1 col in a 12 col grid = 8.33vw
+     */
+    /* Set the default nr. of columns, gutter, etc. */
+    --base-columns: ${columns.XS};
+    --base-gutter: ${gutter.XS};
+
+    /**
+      * To calculate the column size:
+      * - Take the total width of the screen
+      * - Subtract the gaps
+      * - Divide the result by the number of columns
+      */
+    --base-column-size: calc(
+      (100vw - ((var(--base-columns) + 1) * var(--base-gutter))) /
+        var(--base-columns)
+    );
+
+    ${mq.from.S`
+      --base-columns: ${columns.S};
+      --base-gutter: ${gutter.S};
+    `}
+
+    ${mq.from.M`
+      --base-columns: ${columns.M};
+      --base-gutter: ${gutter.M};
+    `}
+
+    ${mq.from.L`
+      --base-columns: ${columns.L};
+      --base-gutter: ${gutter.L};
+    `}
+
+    ${mq.from.XL`
+      --base-columns: ${columns.XL};
+      --base-gutter: ${gutter.XL};
+    `}
+      
+    // Typography
+    --font-primary: ${fonts.primary};
+
+    // Colors
+    --c-black: ${colors.black};
+    --c-white: ${colors.white};
+    --c-neutral1: ${colors.neutral1};
+    --c-neutral2: ${colors.neutral2};
+    --c-neutral3: ${colors.neutral3};
+    --c-neutral4: ${colors.neutral4};
+    --c-neutral5: ${colors.neutral5};
+    --c-pageColor: ${colors.pageColor};
+    --c-accent1: ${colors.accent1};
+    --c-accent2: ${colors.accent2};
+    --c-text-highlight: ${colors.textHighlight};
+  }
+
+  /* Custom text highlighting */
+  ::selection {
+    background-color: var(--c-text-highlight);
+    color: var(--c-black);
+  }
+
+  html,
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    ${textStyles.body};
+    font-family: var(--font-primary);
+    color: var(--c-black);
+    background: var(--c-pageColor);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  q,
+  caption {
+    margin-top: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  picture {
+    line-height: 0;
+  }
+
+  img {
+    max-width: 100%;
+    margin-bottom: 0;
+  }
+`
