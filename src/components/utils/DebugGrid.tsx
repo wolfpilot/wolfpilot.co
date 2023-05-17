@@ -1,23 +1,44 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import styled from "styled-components"
 
 // Utils
 import { useWindowSize } from "@/utils/hooks/useWindowSize"
-import { useAppState } from "@/utils/context/AppContext"
+import { useAppState, useAppDispatch } from "@/utils/context/AppContext"
 
 // Styles
 import { zIndexes } from "@/styles/zIndexes"
 
 const DebugGrid: React.FC = () => {
   const appState = useAppState()
-  const showDebugGrid = appState.showDebugGrid
+  const appDispatch = useAppDispatch()
 
+  const showDebugGrid = appState.showDebugGrid
   const [columnsNr, setColumnsNr] = useState<number>(0)
 
   const { width, height } = useWindowSize()
+  const debugGridParam = useSearchParams().get("debugGrid")
 
+  /**
+   * Update the App ctx if debugGrid param is found
+   */
+  useEffect(() => {
+    if (debugGridParam === null) return
+
+    // Parse string for value and mixed case typing
+    const newDebugGridParam = /true/i.test(debugGridParam)
+
+    appDispatch({
+      type: "updateShowDebugGrid",
+      payload: newDebugGridParam,
+    })
+  }, [appDispatch, debugGridParam])
+
+  /**
+   * Update the number of columns from the DOM
+   */
   useEffect(() => {
     const baseColumnsStr = getComputedStyle(
       document.documentElement
