@@ -5,11 +5,15 @@ import styled from "styled-components"
 
 // Utils
 import { useWindowSize } from "@/utils/hooks/useWindowSize"
+import { useAppState } from "@/utils/context/AppContext"
 
 // Styles
 import { zIndexes } from "@/styles/zIndexes"
 
 const DebugGrid: React.FC = () => {
+  const appState = useAppState()
+  const showDebugGrid = appState.showDebugGrid
+
   const [columnsNr, setColumnsNr] = useState<number>(0)
 
   const { width, height } = useWindowSize()
@@ -23,7 +27,14 @@ const DebugGrid: React.FC = () => {
     setColumnsNr(baseColumnsNr)
   }, [width, height])
 
-  if (!width || !height || !columnsNr) return null
+  if (
+    // Check if it's enabled in the App State
+    !showDebugGrid ||
+    // Check if all necessary params are available
+    !(width || height || columnsNr)
+  ) {
+    return null
+  }
 
   return (
     <Wrapper>
@@ -47,6 +58,7 @@ const Wrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  pointer-events: none;
 `
 Wrapper.displayName = "Wrapper"
 

@@ -1,7 +1,7 @@
 "use client"
 
-// Config
-import { config as appConfig } from "@/config/app.config"
+// Utils
+import { AppProvider } from "@/utils/context/AppContext"
 
 // Styles
 import GlobalStyle from "@/styles/global"
@@ -20,8 +20,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body>
       <StyledComponentsRegistry>
         <GlobalStyle />
-        {appConfig.showGridOverlay && <DebugGrid />}
-        {children}
+
+        <AppProvider>
+          <DebugGrid />
+          {children}
+        </AppProvider>
       </StyledComponentsRegistry>
     </body>
   </html>
