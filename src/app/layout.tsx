@@ -1,7 +1,14 @@
 "use client"
 
-import StyledComponentsRegistry from "@/lib/registry"
+// Utils
+import { AppProvider } from "@/utils/context/AppContext"
+
+// Styles
 import GlobalStyle from "@/styles/global"
+
+// Components
+import StyledComponentsRegistry from "@/lib/registry"
+import DebugGrid from "@/components/utils/DebugGrid"
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +20,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body>
       <StyledComponentsRegistry>
         <GlobalStyle />
-        {children}
+
+        <AppProvider>
+          <DebugGrid />
+          {children}
+        </AppProvider>
       </StyledComponentsRegistry>
     </body>
   </html>

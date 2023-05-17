@@ -82,6 +82,9 @@ export const base = css`
     --c-accent1: ${colors.accent1};
     --c-accent2: ${colors.accent2};
     --c-text-highlight: ${colors.textHighlight};
+    --c-gridBgColor: ${colors.gridBgColor};
+    --c-gridColumnBgColor: ${colors.gridColumnBgColor};
+    --c-gridTextColor: ${colors.gridTextColor};
   }
 
   /* Custom text highlighting */
