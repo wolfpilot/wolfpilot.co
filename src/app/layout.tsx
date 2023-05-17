@@ -1,7 +1,14 @@
 "use client"
 
-import StyledComponentsRegistry from "@/lib/registry"
+// Config
+import { config as appConfig } from "@/config/app.config"
+
+// Styles
 import GlobalStyle from "@/styles/global"
+
+// Components
+import StyledComponentsRegistry from "@/lib/registry"
+import DebugGrid from "@/components/utils/DebugGrid"
 
 export const metadata = {
   title: "Create Next App",
@@ -13,6 +20,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body>
       <StyledComponentsRegistry>
         <GlobalStyle />
+        {appConfig.showGridOverlay && <DebugGrid />}
         {children}
       </StyledComponentsRegistry>
     </body>
