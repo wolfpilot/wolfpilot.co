@@ -16,5 +16,5 @@ export const colors = {
   textHighlight: "#14FF6460",
   gridBgColor: "#6470790d",
   gridColumnBgColor: "#0085FF10",
-  gridTextColor: "#000000",
+  gridTextColor: "#151515",
 }

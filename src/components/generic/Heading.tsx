@@ -1,0 +1,39 @@
+import styled from "styled-components"
+
+export type HeadingTypes = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+
+export interface IProps {
+  level: HeadingTypes
+  className?: string
+  children?: React.ReactNode
+}
+
+const Heading: React.FC<IProps> = ({ className, children, level }) => {
+  /**
+   * Infer the correct heading tag automatically
+   * ex: level h2 => <H2>...</H2>
+   */
+  const Tag = level
+
+  return (
+    <Wrapper className={className}>
+      <Tag>{children}</Tag>
+    </Wrapper>
+  )
+}
+
+const Wrapper = styled.div`
+  margin-bottom: var(--base-gutter);
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: 0;
+  }
+`
+Wrapper.displayName = "Wrapper"
+
+export default Heading
