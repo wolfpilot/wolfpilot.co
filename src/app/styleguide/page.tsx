@@ -1,6 +1,10 @@
 "use client"
 
+import Image from "next/image"
 import styled from "styled-components"
+
+// Assets
+import LogoSVG from "public/images/svg/logo.svg"
 
 // Styles
 import { colors } from "@/styles/colors"
@@ -15,6 +19,11 @@ const StyleguidePage: React.FC = () => {
     <Main>
       <Container>
         <Header>
+          <Image
+            src={LogoSVG}
+            width={302}
+            alt={"Logo of a hand-painted wolf with aviator goggles on"}
+          />
           <Title>Styleguide</Title>
         </Header>
 
@@ -82,13 +91,14 @@ Main.displayName = "Main"
 
 const Header = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 25vh;
   margin-bottom: var(--base-gutter);
   border-radius: var(--border-radius-sml);
-  background-color: var(--c-black);
-  color: var(--c-white);
+  background-color: var(--c-neutral4);
+  color: var(--c-black);
 `
 Header.displayName = "Header"
 
