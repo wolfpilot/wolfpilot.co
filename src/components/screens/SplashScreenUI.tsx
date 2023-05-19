@@ -1,11 +1,18 @@
 "use client"
 
+import { useState, useEffect } from "react"
+
 import styled, { css, keyframes } from "styled-components"
 
 // Assets
 import LogoLetter from "@/components/logo/LogoLetter"
 import LogoShading from "@/components/logo/LogoShading"
 import LogoTriangle from "@/components/logo/LogoTriangle"
+
+// Utils
+import { Coords, useMousePosition } from "@/utils/hooks/useMousePosition"
+import { getWindowSize } from "@/utils/hooks/useWindowSize"
+import { delay } from "@/utils/helper"
 
 // Styles
 import { ease, animFadeIn, animFadeOut, animOilSpill } from "@/styles/animation"
@@ -16,17 +23,138 @@ const DRAW_ANIM_DURATION = 900
 const PAINT_ANIM_DURATION = 600
 const STAGGER_ANIM_DELAY = 100
 
-const SplashScreenUI: React.FC = () => (
-  <Wrapper>
-    <Backdrop />
+const DEFAULT_PERSPECTIVE_VAL = 500
+const MAX_ROTATION_DEG = 30
+const MAX_TRIANGLE_DISTANCE_PX = 50
+const MAX_SHADING_DISTANCE_PX = 50
+const MAX_LOGO_DISTANCE_PX = 150
 
-    <LogoWrapper>
-      <StyledLogoTriangle />
-      <StyledLogoShading />
-      <StyledLogoLetter />
-    </LogoWrapper>
-  </Wrapper>
-)
+export interface Props {
+  onLoaded: () => void
+}
+
+export interface TransformValues {
+  rotation: number
+  rotationXVal: number
+  rotationYVal: number
+  distance: number
+}
+
+// Utils
+
+const SplashScreenUI: React.FC<Props> = ({ onLoaded }) => {
+  const [logoRotation, setLogoRotation] = useState<number>(0)
+  const [logoRotationX, setLogoRotationX] = useState<number>(0)
+  const [logoRotationY, setLogoRotationY] = useState<number>(0)
+
+  const [triangleDistance, setTriangleDistance] = useState<number>(0)
+  const [shadingDistance, setShadingDistance] = useState<number>(0)
+  const [logoDistance, setLogoDistance] = useState<number>(0)
+
+  const mouseCoords = useMousePosition()
+
+  // console.log("mouseCoords", mouseCoords)
+
+  const handleMouseMove = (coords: Coords) => {
+    if (!coords.x || !coords.y) return
+
+    // transform: perspective(500px) rotate3d(1, 1, 1, 15deg) translate3d(0, 0, 100px);
+
+    // Get coords from the middle of the screen
+
+    // *: Explain. We need to map the mouse position to a range from 0 (center of the screen) to a limit
+    // *: (say, 15 degrees) which would be at the end of the screen.
+
+    // !: initially from top left, so we need to add half a screen height + width
+    // !: and calculate left/ right from there
+    const windowSize = getWindowSize()
+
+    if (!windowSize.width || !windowSize.height) return
+
+    const screenMidX = windowSize.width / 2
+    const screenMidY = windowSize.height / 2
+
+    const deltaX = coords.x - screenMidX
+    const deltaY = coords.y - screenMidY
+
+    // Calculate what % the mouse has moved from the center of the screen compared the edges
+    const percentageX = Number((deltaX / screenMidX).toFixed(2))
+    const percentageY = Number((deltaY / screenMidY).toFixed(2))
+
+    const newLogoRotationX = Math.abs(MAX_ROTATION_DEG * percentageX)
+
+    // Calculate an average of the X and Y rotations
+    const newLogoRotation =
+      deltaX > 0 ? newLogoRotationX : newLogoRotationX * -1
+
+    setLogoRotationX(percentageX)
+    setLogoRotationY(percentageY)
+    setLogoRotation(newLogoRotation)
+
+    const newLogoDistanceX = Math.abs(MAX_LOGO_DISTANCE_PX * percentageX)
+    const newLogoDistanceY = Math.abs(MAX_LOGO_DISTANCE_PX * percentageY)
+
+    // Calculate an average of the X and Y rotations
+    const newLogoDistance = Number(
+      ((newLogoDistanceX + newLogoDistanceY) / 2).toFixed(2)
+    )
+
+    setLogoDistance(newLogoDistance)
+
+    const newShadingDistanceX = Math.abs(MAX_SHADING_DISTANCE_PX * percentageX)
+    const newShadingDistanceY = Math.abs(MAX_SHADING_DISTANCE_PX * percentageY)
+
+    // Calculate an average of the X and Y rotations
+    const newShadingDistance = Number(
+      ((newShadingDistanceX + newShadingDistanceY) / 2).toFixed(2)
+    )
+
+    setShadingDistance(newShadingDistance)
+  }
+
+  // !: on finish anim
+  useEffect(() => {
+    const getUsers = async () => {
+      await delay(400000)
+
+      onLoaded()
+    }
+
+    getUsers() // run it, run it
+  }, [])
+
+  useEffect(() => {
+    handleMouseMove(mouseCoords)
+  }, [mouseCoords])
+
+  return (
+    <Wrapper>
+      <Backdrop />
+
+      <LogoWrapper
+        // !: move this to a generateCSS function?
+        style={{
+          transform: `
+            perspective(500px)
+            rotate3d(${logoRotationX}, ${logoRotationY}, 1, ${logoRotation}deg)
+            translate3d(0, 0, ${shadingDistance}px)
+            `,
+        }}
+      >
+        <StyledLogoTriangle />
+        <StyledLogoShading />
+
+        {/* Add another wrapper here, think Framer Motion */}
+        {/* style={{
+          transform: `
+          perspective(500px) translate3d(0, 0, ${logoDistance}px)
+          `
+        }} */}
+        <StyledLogoLetter />
+      </LogoWrapper>
+    </Wrapper>
+  )
+}
 
 /**
  * * A short note on the animations:
