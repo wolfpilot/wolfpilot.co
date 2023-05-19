@@ -16,6 +16,9 @@ const DRAW_ANIM_DURATION = 900
 const PAINT_ANIM_DURATION = 600
 const STAGGER_ANIM_DELAY = 100
 
+const TOTAL_ANIM_DURATION =
+  INITIAL_ANIM_DELAY + 3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION
+
 const SplashScreenUI: React.FC = () => (
   <Wrapper>
     <Backdrop />
@@ -51,15 +54,52 @@ const SplashScreenUI: React.FC = () => (
  */
 
 // Keyframes
+const animShiftLogo = keyframes`
+  0% {
+    transform: perspective(500px) rotate3d(0, 0, 0, 0deg);
+  }
+
+  50% {
+    transform: perspective(500px) rotate3d(1, 0, 0, 15deg);
+  }
+
+  65% {
+    transform: perspective(500px) rotate3d(1, 1, 0, -5deg);
+  }
+
+  85% {
+    transform: perspective(500px) rotate3d(1, 1, 0, 5deg);
+  }
+
+  100% {
+    transform: perspective(500px) rotate3d(0, 0, 0, 0deg);
+  }
+`
+
 const animPaintBackdrop = keyframes`
   0% {
     opacity: 0;
     transform: scale(1.15);
   }
 
-  100% {
+  50% {
     opacity: 1;
     transform: scale(1);
+  }
+
+  65% {
+    opacity: 0.75;
+    transform: scale(1.25);
+  }
+
+  85% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(20);
   }
 `
 
@@ -78,6 +118,16 @@ const animDrawLines = keyframes`
     stroke: var(--c-black);
     stroke-dasharray: 1;
     stroke-dashoffset: 0;
+  }
+`
+
+const animPushOut3D = keyframes`
+  0% {
+    transform: perspective(500px) translate3d(0, 0, 50px);
+  }
+
+  100% {
+    transform: perspective(500px) translate3d(0, 0, 0);
   }
 `
 
@@ -102,6 +152,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  animation: ${animFadeOut} ${PAINT_ANIM_DURATION}ms ${ease.cubic}
+    ${INITIAL_ANIM_DELAY + TOTAL_ANIM_DURATION + PAINT_ANIM_DURATION}ms both;
 `
 
 const Backdrop = styled.div`
@@ -112,16 +165,25 @@ const Backdrop = styled.div`
   border-radius: 50%;
   background-color: var(--c-neutral4);
 
-  animation: ${animPaintBackdrop} ${PAINT_ANIM_DURATION}ms ${ease.cubic}
+  animation: ${animPaintBackdrop} ${TOTAL_ANIM_DURATION}ms ${ease.cubic}
     ${INITIAL_ANIM_DELAY}ms both;
 `
 
 const LogoWrapper = styled.div`
   position: relative;
+
+  animation: ${animShiftLogo} ${TOTAL_ANIM_DURATION}ms ${ease.cubic}
+    ${INITIAL_ANIM_DELAY}ms both;
 `
 
 const StyledLogoTriangle = styled(LogoTriangle)`
   ${sharedLogoStyles};
+
+  animation-name: ${animPushOut3D};
+  animation-timing-function: ${ease.cubic};
+  animation-duration: ${PAINT_ANIM_DURATION}ms;
+  animation-delay: ${INITIAL_ANIM_DELAY + 3.5 * DRAW_ANIM_DURATION}ms;
+  animation-fill-mode: both;
 
   g {
     // Contour
@@ -149,11 +211,7 @@ const StyledLogoTriangle = styled(LogoTriangle)`
         animation-name: ${animFadeIn}, ${animOilSpill};
         animation-timing-function: ${ease.cubic};
         animation-duration: ${PAINT_ANIM_DURATION}ms;
-
-        &:nth-of-type(1),
-        &:nth-of-type(2) {
-          animation-delay: ${INITIAL_ANIM_DELAY + 3.5 * DRAW_ANIM_DURATION}ms;
-        }
+        animation-delay: ${INITIAL_ANIM_DELAY + 3.5 * DRAW_ANIM_DURATION}ms;
       }
     }
   }
@@ -169,14 +227,22 @@ const StyledLogoShading = styled(LogoShading)`
   right: 0;
   bottom: 0;
 
+  animation-name: ${animPushOut3D};
+  animation-duration: ${PAINT_ANIM_DURATION}ms;
+  animation-timing-function: ${ease.cubic};
+  animation-fill-mode: both;
+  animation-delay: ${INITIAL_ANIM_DELAY +
+  2.5 * DRAW_ANIM_DURATION +
+  4 * STAGGER_ANIM_DELAY}ms;
+
   // Fill
   path {
     opacity: 0;
-    animation-timing-function: ${ease.cubic};
-    animation-fill-mode: both;
 
     animation-name: ${animFadeIn}, ${animOilSpill};
     animation-duration: ${PAINT_ANIM_DURATION}ms;
+    animation-timing-function: ${ease.cubic};
+    animation-fill-mode: both;
 
     &:nth-of-type(1) {
       animation-delay: ${INITIAL_ANIM_DELAY + 2.5 * DRAW_ANIM_DURATION}ms;
@@ -217,6 +283,12 @@ const StyledLogoLetter = styled(LogoLetter)`
   left: 0;
   right: 0;
   bottom: 0;
+
+  animation-name: ${animPushOut3D};
+  animation-timing-function: ${ease.elastic};
+  animation-duration: ${PAINT_ANIM_DURATION}ms;
+  animation-delay: ${INITIAL_ANIM_DELAY + 2 * DRAW_ANIM_DURATION}ms;
+  animation-fill-mode: both;
 
   path {
     // Contour

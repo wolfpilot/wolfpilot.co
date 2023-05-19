@@ -4,7 +4,7 @@
 import { delay } from "@/utils/helper"
 
 const Home = async () => {
-  await delay(4000)
+  await delay(5000)
 
   return <main>Praise the sun! \[T]/</main>
 }
