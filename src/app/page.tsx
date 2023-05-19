@@ -1,17 +1,12 @@
 "use client"
 
-import styled from "styled-components"
+// Utils
+import { delay } from "@/utils/helper"
 
-import { mq } from "@/styles/utils/mediaQueries"
+const Home = async () => {
+  await delay(4000)
 
-const Home = () => <Main>Praise the sun! \[T]/</Main>
-
-const Main = styled.main`
-  color: red;
-
-  ${mq.from.M`
-    color: blue;
-  `}
-`
+  return <main>Praise the sun! \[T]/</main>
+}
 
 export default Home
