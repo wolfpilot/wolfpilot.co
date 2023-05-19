@@ -14,7 +14,6 @@ export const weights = {
 
 export const textStyles = {
   body: css`
-    font-family: ${fonts.primary};
     font-size: 16px;
     line-height: 1.5;
   `,
