@@ -12,13 +12,11 @@ import { mq } from "@/styles/utils/mediaQueries"
 import { ease, animFadeIn, animFadeOut, animOilSpill } from "@/styles/animation"
 
 // Setup
-const INITIAL_ANIM_DELAY = 0
 const DRAW_ANIM_DURATION = 900
 const PAINT_ANIM_DURATION = 600
 const STAGGER_ANIM_DELAY = 100
 
-const TOTAL_ANIM_DURATION =
-  INITIAL_ANIM_DELAY + 3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION
+const TOTAL_ANIM_DURATION = 3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION
 
 const SplashScreenUI: React.FC = () => (
   <Wrapper>
@@ -163,7 +161,7 @@ const Wrapper = styled.div`
   align-items: center;
 
   animation: ${animFadeOut} ${PAINT_ANIM_DURATION}ms ${ease.cubic}
-    ${INITIAL_ANIM_DELAY + TOTAL_ANIM_DURATION}ms both;
+    ${TOTAL_ANIM_DURATION}ms both;
 `
 
 const Backdrop = styled.div`
@@ -174,8 +172,7 @@ const Backdrop = styled.div`
   border-radius: 50%;
   background-color: var(--c-neutral4);
 
-  animation: ${animPaintBackdrop} ${TOTAL_ANIM_DURATION}ms ${ease.cubic}
-    ${INITIAL_ANIM_DELAY}ms both;
+  animation: ${animPaintBackdrop} ${TOTAL_ANIM_DURATION}ms ${ease.cubic} both;
 
   ${mq.from.S`
     width: 40vw;
@@ -191,8 +188,7 @@ const Backdrop = styled.div`
 const LogoWrapper = styled.div`
   position: relative;
 
-  animation: ${animShiftLogo} ${TOTAL_ANIM_DURATION}ms ${ease.cubic}
-    ${INITIAL_ANIM_DELAY}ms both;
+  animation: ${animShiftLogo} ${TOTAL_ANIM_DURATION}ms ${ease.cubic} both;
 `
 
 const StyledLogoTriangle = styled(LogoTriangle)`
@@ -201,7 +197,7 @@ const StyledLogoTriangle = styled(LogoTriangle)`
   animation-name: ${animPushOut3D};
   animation-timing-function: ${ease.cubic};
   animation-duration: ${PAINT_ANIM_DURATION}ms;
-  animation-delay: ${INITIAL_ANIM_DELAY + 3.5 * DRAW_ANIM_DURATION}ms;
+  animation-delay: ${3.5 * DRAW_ANIM_DURATION}ms;
   animation-fill-mode: both;
 
   g {
@@ -213,13 +209,12 @@ const StyledLogoTriangle = styled(LogoTriangle)`
         animation-duration: ${DRAW_ANIM_DURATION}ms, ${DRAW_ANIM_DURATION}ms;
 
         &:nth-of-type(1) {
-          animation-delay: ${INITIAL_ANIM_DELAY + PAINT_ANIM_DURATION}ms,
-            ${INITIAL_ANIM_DELAY + 3 * DRAW_ANIM_DURATION}ms;
+          animation-delay: ${PAINT_ANIM_DURATION}ms, ${3 * DRAW_ANIM_DURATION}ms;
         }
 
         &:nth-of-type(2) {
-          animation-delay: ${INITIAL_ANIM_DELAY + 0.5 * PAINT_ANIM_DURATION}ms,
-            ${INITIAL_ANIM_DELAY + 3 * DRAW_ANIM_DURATION}ms;
+          animation-delay: ${0.5 * PAINT_ANIM_DURATION}ms,
+            ${3 * DRAW_ANIM_DURATION}ms;
         }
       }
     }
@@ -230,7 +225,7 @@ const StyledLogoTriangle = styled(LogoTriangle)`
         animation-name: ${animFadeIn}, ${animOilSpill};
         animation-timing-function: ${ease.cubic};
         animation-duration: ${PAINT_ANIM_DURATION}ms;
-        animation-delay: ${INITIAL_ANIM_DELAY + 3.5 * DRAW_ANIM_DURATION}ms;
+        animation-delay: ${3.5 * DRAW_ANIM_DURATION}ms;
       }
     }
   }
@@ -250,9 +245,7 @@ const StyledLogoShading = styled(LogoShading)`
   animation-duration: ${PAINT_ANIM_DURATION}ms;
   animation-timing-function: ${ease.cubic};
   animation-fill-mode: both;
-  animation-delay: ${INITIAL_ANIM_DELAY +
-  2.5 * DRAW_ANIM_DURATION +
-  4 * STAGGER_ANIM_DELAY}ms;
+  animation-delay: ${2.5 * DRAW_ANIM_DURATION + 4 * STAGGER_ANIM_DELAY}ms;
 
   // Fill
   path {
@@ -264,31 +257,23 @@ const StyledLogoShading = styled(LogoShading)`
     animation-fill-mode: both;
 
     &:nth-of-type(1) {
-      animation-delay: ${INITIAL_ANIM_DELAY + 2.5 * DRAW_ANIM_DURATION}ms;
+      animation-delay: ${2.5 * DRAW_ANIM_DURATION}ms;
     }
 
     &:nth-of-type(2) {
-      animation-delay: ${INITIAL_ANIM_DELAY +
-      2.5 * DRAW_ANIM_DURATION +
-      STAGGER_ANIM_DELAY}ms;
+      animation-delay: ${2.5 * DRAW_ANIM_DURATION + STAGGER_ANIM_DELAY}ms;
     }
 
     &:nth-of-type(3) {
-      animation-delay: ${INITIAL_ANIM_DELAY +
-      2.5 * DRAW_ANIM_DURATION +
-      2 * STAGGER_ANIM_DELAY}ms;
+      animation-delay: ${2.5 * DRAW_ANIM_DURATION + 2 * STAGGER_ANIM_DELAY}ms;
     }
 
     &:nth-of-type(4) {
-      animation-delay: ${INITIAL_ANIM_DELAY +
-      2.5 * DRAW_ANIM_DURATION +
-      3 * STAGGER_ANIM_DELAY}ms;
+      animation-delay: ${2.5 * DRAW_ANIM_DURATION + 3 * STAGGER_ANIM_DELAY}ms;
     }
 
     &:nth-of-type(5) {
-      animation-delay: ${INITIAL_ANIM_DELAY +
-      2.5 * DRAW_ANIM_DURATION +
-      4 * STAGGER_ANIM_DELAY}ms;
+      animation-delay: ${2.5 * DRAW_ANIM_DURATION + 4 * STAGGER_ANIM_DELAY}ms;
     }
   }
 `
@@ -306,7 +291,7 @@ const StyledLogoLetter = styled(LogoLetter)`
   animation-name: ${animPushOut3D};
   animation-timing-function: ${ease.elastic};
   animation-duration: ${PAINT_ANIM_DURATION}ms;
-  animation-delay: ${INITIAL_ANIM_DELAY + 2 * DRAW_ANIM_DURATION}ms;
+  animation-delay: ${2 * DRAW_ANIM_DURATION}ms;
   animation-fill-mode: both;
 
   path {
@@ -315,8 +300,8 @@ const StyledLogoLetter = styled(LogoLetter)`
       animation-name: ${animDrawLines}, ${animFadeOut};
       animation-timing-function: linear, ${ease.cubic};
       animation-duration: ${DRAW_ANIM_DURATION}ms, ${DRAW_ANIM_DURATION}ms;
-      animation-delay: ${INITIAL_ANIM_DELAY + 1.5 * PAINT_ANIM_DURATION}ms,
-        ${INITIAL_ANIM_DELAY + 2 * DRAW_ANIM_DURATION}ms;
+      animation-delay: ${1.5 * PAINT_ANIM_DURATION}ms,
+        ${2 * DRAW_ANIM_DURATION}ms;
     }
 
     // Fill
@@ -324,7 +309,7 @@ const StyledLogoLetter = styled(LogoLetter)`
       animation-name: ${animFadeIn};
       animation-timing-function: ${ease.cubic};
       animation-duration: ${PAINT_ANIM_DURATION}ms;
-      animation-delay: ${INITIAL_ANIM_DELAY + 2 * DRAW_ANIM_DURATION}ms;
+      animation-delay: ${2 * DRAW_ANIM_DURATION}ms;
     }
   }
 `
