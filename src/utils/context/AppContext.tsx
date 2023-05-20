@@ -4,38 +4,25 @@ import { createContext, useContext, useReducer } from "react"
 import { config as appConfig } from "@/config/app.config"
 
 export interface State {
-  isInitialized: boolean
   showDebugGrid: boolean
 }
 
 // Actions
-export type updateIsInitialized = {
-  type: "updateIsInitialized"
-  payload: boolean
-}
-
 export type updateShowDebugGrid = {
   type: "updateShowDebugGrid"
   payload: boolean
 }
 
-export type Action = updateIsInitialized | updateShowDebugGrid
+export type Action = updateShowDebugGrid
 
 export type Dispatch = (action: Action) => void
 
 export const initialState: State = {
-  isInitialized: appConfig.isInitialized,
   showDebugGrid: appConfig.showGridOverlay,
 }
 
 export const appReducer = (state: State, action: Action) => {
   switch (action.type) {
-    case "updateIsInitialized": {
-      return {
-        ...state,
-        isInitialized: action.payload,
-      }
-    }
     case "updateShowDebugGrid": {
       return {
         ...state,

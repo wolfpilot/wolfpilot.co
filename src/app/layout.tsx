@@ -2,6 +2,7 @@
 
 // Utils
 import { AppProvider } from "@/utils/context/AppContext"
+import { PageProvider } from "@/utils/context/PageContext"
 
 // Styles
 import GlobalStyle from "@/styles/global"
@@ -9,6 +10,7 @@ import GlobalStyle from "@/styles/global"
 // Components
 import StyledComponentsRegistry from "@/lib/registry"
 import DebugGrid from "@/components/utils/DebugGrid"
+import PageWrapper from "@/components/page/PageWrapper"
 
 export const metadata = {
   title: "Create Next App",
@@ -23,7 +25,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 
         <AppProvider>
           <DebugGrid />
-          {children}
+
+          <PageProvider>
+            <PageWrapper>{children}</PageWrapper>
+          </PageProvider>
         </AppProvider>
       </StyledComponentsRegistry>
     </body>

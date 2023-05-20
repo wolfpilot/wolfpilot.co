@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import styled, { css, keyframes } from "styled-components"
 
 // Assets
@@ -7,8 +8,13 @@ import LogoLetter from "@/components/logo/LogoLetter"
 import LogoShading from "@/components/logo/LogoShading"
 import LogoTriangle from "@/components/logo/LogoTriangle"
 
+// Utils
+import { usePageDispatch } from "@/utils/context/PageContext"
+import { delay } from "@/utils/helper"
+
 // Styles
 import { mq } from "@/styles/utils/mediaQueries"
+import { zIndexes } from "@/styles/zIndexes"
 import { ease, animFadeIn, animFadeOut, animOilSpill } from "@/styles/animation"
 
 // Setup
@@ -16,19 +22,37 @@ const DRAW_ANIM_DURATION = 900
 const PAINT_ANIM_DURATION = 600
 const STAGGER_ANIM_DELAY = 100
 
-const TOTAL_ANIM_DURATION = 3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION
+export const TOTAL_ANIM_DURATION =
+  3.5 * DRAW_ANIM_DURATION + 2 * PAINT_ANIM_DURATION
 
-const SplashScreenUI: React.FC = () => (
-  <Wrapper>
-    <Backdrop />
+const SplashScreenUI: React.FC = () => {
+  const pageDispatch = usePageDispatch()
 
-    <LogoWrapper>
-      <StyledLogoTriangle />
-      <StyledLogoShading />
-      <StyledLogoLetter />
-    </LogoWrapper>
-  </Wrapper>
-)
+  useEffect(() => {
+    const onAnimEnd = async () => {
+      await delay(TOTAL_ANIM_DURATION)
+
+      pageDispatch({
+        type: "updateHasSplashScreenPlayed",
+        payload: true,
+      })
+    }
+
+    onAnimEnd()
+  }, [pageDispatch])
+
+  return (
+    <Wrapper>
+      <Backdrop />
+
+      <LogoWrapper>
+        <StyledLogoTriangle />
+        <StyledLogoShading />
+        <StyledLogoLetter />
+      </LogoWrapper>
+    </Wrapper>
+  )
+}
 
 /**
  * * A short note on the animations:
@@ -151,6 +175,7 @@ const sharedLogoStyles = css`
 // Main styles
 const Wrapper = styled.div`
   position: fixed;
+  z-index: ${zIndexes.splashScreenUI};
   top: 0;
   right: 0;
   bottom: 0;
@@ -159,9 +184,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--c-pageColor);
 
   animation: ${animFadeOut} ${PAINT_ANIM_DURATION}ms ${ease.cubic}
-    ${TOTAL_ANIM_DURATION}ms both;
+    ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}ms both;
 `
 
 const Backdrop = styled.div`
@@ -172,7 +198,8 @@ const Backdrop = styled.div`
   border-radius: 50%;
   background-color: var(--c-neutral4);
 
-  animation: ${animPaintBackdrop} ${TOTAL_ANIM_DURATION}ms ${ease.cubic} both;
+  animation: ${animPaintBackdrop}
+    ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}ms ${ease.cubic} both;
 
   ${mq.from.S`
     width: 40vw;
@@ -188,7 +215,8 @@ const Backdrop = styled.div`
 const LogoWrapper = styled.div`
   position: relative;
 
-  animation: ${animShiftLogo} ${TOTAL_ANIM_DURATION}ms ${ease.cubic} both;
+  animation: ${animShiftLogo}
+    ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}ms ${ease.cubic} both;
 `
 
 const StyledLogoTriangle = styled(LogoTriangle)`

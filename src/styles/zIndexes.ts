@@ -4,4 +4,5 @@
 
 export const zIndexes = {
   gridOverlay: 9999,
+  splashScreenUI: 999,
 }
