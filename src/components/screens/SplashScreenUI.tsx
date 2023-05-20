@@ -8,6 +8,7 @@ import LogoShading from "@/components/logo/LogoShading"
 import LogoTriangle from "@/components/logo/LogoTriangle"
 
 // Styles
+import { mq } from "@/styles/utils/mediaQueries"
 import { ease, animFadeIn, animFadeOut, animOilSpill } from "@/styles/animation"
 
 // Setup
@@ -133,8 +134,16 @@ const animPushOut3D = keyframes`
 
 // Shared styles
 const sharedLogoStyles = css`
-  width: 25vw;
+  width: 75vw;
   height: auto;
+
+  ${mq.from.S`
+    width: 50vw;
+  `}
+
+  ${mq.from.L`
+    width: 25vw;
+  `}
 
   path {
     animation-fill-mode: both;
@@ -154,19 +163,29 @@ const Wrapper = styled.div`
   align-items: center;
 
   animation: ${animFadeOut} ${PAINT_ANIM_DURATION}ms ${ease.cubic}
-    ${INITIAL_ANIM_DELAY + TOTAL_ANIM_DURATION + PAINT_ANIM_DURATION}ms both;
+    ${INITIAL_ANIM_DELAY + TOTAL_ANIM_DURATION}ms both;
 `
 
 const Backdrop = styled.div`
   position: absolute;
   z-index: -1;
-  width: 20vw;
-  height: 20vw;
+  width: 60vw;
+  height: 60vw;
   border-radius: 50%;
   background-color: var(--c-neutral4);
 
   animation: ${animPaintBackdrop} ${TOTAL_ANIM_DURATION}ms ${ease.cubic}
     ${INITIAL_ANIM_DELAY}ms both;
+
+  ${mq.from.S`
+    width: 40vw;
+    height: 40vw;
+  `}
+
+  ${mq.from.M`
+    width: 20vw;
+    height: 20vw;
+  `}
 `
 
 const LogoWrapper = styled.div`
