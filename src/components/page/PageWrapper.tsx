@@ -1,5 +1,3 @@
-"use client"
-
 // Config
 import { config as pageConfig } from "@/config/page.config"
 

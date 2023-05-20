@@ -1,5 +1,4 @@
-"use client"
-
+import Link from "next/link"
 import Image from "next/image"
 import styled from "styled-components"
 
@@ -25,6 +24,7 @@ const StyleguidePage: React.FC = () => {
             alt={"Logo of a hand-painted wolf with aviator goggles on"}
           />
           <Title>Styleguide</Title>
+          <Link href="/">Home Page</Link>
         </Header>
 
         <Content>

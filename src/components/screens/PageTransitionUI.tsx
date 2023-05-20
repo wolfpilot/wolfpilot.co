@@ -1,5 +1,3 @@
-"use client"
-
 export interface Props {
   children?: React.ReactNode
 }
