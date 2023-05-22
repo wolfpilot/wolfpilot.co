@@ -1,7 +1,5 @@
-"use client"
-
+import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import { useSearchParams } from "next/navigation"
 import styled from "styled-components"
 
 // Utils
@@ -19,7 +17,11 @@ const DebugGrid: React.FC = () => {
   const [columnsNr, setColumnsNr] = useState<number>(0)
 
   const { width, height } = useWindowSize()
-  const debugGridParam = useSearchParams().get("debugGrid")
+
+  const router = useRouter()
+  const { debugGrid = "" } = router.query
+  const debugGridParam =
+    typeof debugGrid === "string" ? debugGrid : debugGrid[0]
 
   /**
    * Update the App ctx if debugGrid param is found

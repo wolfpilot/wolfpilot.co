@@ -30,6 +30,7 @@ export const appReducer = (state: State, action: Action) => {
       }
     }
     default:
+      // @ts-ignore next-line
       throw new Error(`Unhandled action type: ${action.type}`)
   }
 }

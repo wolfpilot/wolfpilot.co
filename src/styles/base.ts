@@ -1,5 +1,9 @@
 import { css } from "styled-components"
 
+// Constants
+import { DISABLE_SCROLL_CLASSNAME } from "@/constants/dom"
+
+// Styles
 import { mq } from "@/styles/utils/mediaQueries"
 import {
   MAX_CONTENT_WIDTH,
@@ -81,7 +85,7 @@ export const base = css`
     --c-pageColor: ${colors.pageColor};
     --c-accent1: ${colors.accent1};
     --c-accent2: ${colors.accent2};
-    --c-text-highlight: ${colors.textHighlight};
+    --c-textHighlight: ${colors.textHighlight};
     --c-gridBgColor: ${colors.gridBgColor};
     --c-gridColumnBgColor: ${colors.gridColumnBgColor};
     --c-gridTextColor: ${colors.gridTextColor};
@@ -89,7 +93,7 @@ export const base = css`
 
   /* Custom text highlighting */
   ::selection {
-    background-color: var(--c-text-highlight);
+    background-color: var(--c-textHighlight);
     color: var(--c-black);
   }
 
@@ -135,5 +139,9 @@ export const base = css`
   img {
     max-width: 100%;
     margin-bottom: 0;
+  }
+
+  .${DISABLE_SCROLL_CLASSNAME} {
+    overflow: hidden;
   }
 `
