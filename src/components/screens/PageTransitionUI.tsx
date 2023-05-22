@@ -4,10 +4,10 @@ import { AnimatePresence, motion } from "framer-motion"
 import styled from "styled-components"
 
 // Utils
-import { disableScroll } from "@/utils/domHelper"
+import { disableScroll } from "@utils/domHelper"
 
 // Styles
-import { zIndexes } from "@/styles/zIndexes"
+import { zIndexes } from "@styles/zIndexes"
 
 export interface Props {
   children?: React.ReactNode

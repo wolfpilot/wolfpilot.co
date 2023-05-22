@@ -1,15 +1,15 @@
 import type { AppProps } from "next/app"
 
 // Utils
-import { AppProvider } from "@/utils/context/AppContext"
-import { PageProvider } from "@/utils/context/PageContext"
+import { AppProvider } from "@utils/context/AppContext"
+import { PageProvider } from "@utils/context/PageContext"
 
 // Styles
-import GlobalStyle from "@/styles/global"
+import GlobalStyle from "@styles/global"
 
 // Components
-import DebugGrid from "@/components/utils/DebugGrid"
-import PageWrapper from "@/components/page/PageWrapper"
+import DebugGrid from "@components/utils/DebugGrid"
+import PageWrapper from "@components/page/PageWrapper"
 
 export const metadata = {
   title: "Create Next App",

@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react"
 
 // Config
-import { config as pageConfig } from "@/config/page.config"
+import { config as pageConfig } from "@config/page.config"
 
 export interface State {
   // !: shouldSplashScreenPlay ; maybe move all this to PageProvider or something

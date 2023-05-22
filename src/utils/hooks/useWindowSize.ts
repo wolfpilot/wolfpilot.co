@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react"
 
 // Utils
-import { isClient } from "@/utils/domHelper"
+import { isClient } from "@utils/domHelper"
 
 export interface WindowSize {
   width: number | null

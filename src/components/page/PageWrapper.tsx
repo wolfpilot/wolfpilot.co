@@ -1,8 +1,8 @@
 // Config
-import { config as pageConfig } from "@/config/page.config"
+import { config as pageConfig } from "@config/page.config"
 
 // Utils
-import { usePageState } from "@/utils/context/PageContext"
+import { usePageState } from "@utils/context/PageContext"
 
 // Components
 import SplashScreenUI from "../screens/SplashScreenUI"

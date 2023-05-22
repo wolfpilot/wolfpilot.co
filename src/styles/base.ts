@@ -1,19 +1,19 @@
 import { css } from "styled-components"
 
 // Constants
-import { DISABLE_SCROLL_CLASSNAME } from "@/constants/dom"
+import { DISABLE_SCROLL_CLASSNAME } from "@constants/dom"
 
 // Styles
-import { mq } from "@/styles/utils/mediaQueries"
+import { mq } from "@styles/utils/mediaQueries"
 import {
   MAX_CONTENT_WIDTH,
   BORDER_RADIUS_SML,
   BORDER_RADIUS_LRG,
   columns,
   gutter,
-} from "@/styles/layout"
-import { colors } from "@/styles/colors"
-import { fonts, textStyles, weights } from "@/styles/typography"
+} from "@styles/layout"
+import { colors } from "@styles/colors"
+import { fonts, textStyles, weights } from "@styles/typography"
 
 export const base = css`
   @font-face {

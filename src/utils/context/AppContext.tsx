@@ -1,7 +1,7 @@
 import { createContext, useContext, useReducer } from "react"
 
 // Config
-import { config as appConfig } from "@/config/app.config"
+import { config as appConfig } from "@config/app.config"
 
 export interface State {
   showDebugGrid: boolean

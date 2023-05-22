@@ -3,11 +3,11 @@ import { useState, useEffect } from "react"
 import styled from "styled-components"
 
 // Utils
-import { useWindowSize } from "@/utils/hooks/useWindowSize"
-import { useAppState, useAppDispatch } from "@/utils/context/AppContext"
+import { useWindowSize } from "@utils/hooks/useWindowSize"
+import { useAppState, useAppDispatch } from "@utils/context/AppContext"
 
 // Styles
-import { zIndexes } from "@/styles/zIndexes"
+import { zIndexes } from "@styles/zIndexes"
 
 const DebugGrid: React.FC = () => {
   const appState = useAppState()
