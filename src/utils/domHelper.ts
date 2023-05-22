@@ -1,5 +1,5 @@
 // Constants
-import { DISABLE_SCROLL_CLASSNAME } from "@/constants/dom"
+import { DISABLE_SCROLL_CLASSNAME } from "@constants/dom"
 
 /**
  * Check if scripts are running on the client or server-side

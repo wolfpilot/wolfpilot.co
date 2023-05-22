@@ -2,18 +2,18 @@ import { useEffect } from "react"
 import styled, { css, keyframes } from "styled-components"
 
 // Assets
-import LogoLetter from "@/components/logo/LogoLetter"
-import LogoShading from "@/components/logo/LogoShading"
-import LogoTriangle from "@/components/logo/LogoTriangle"
+import LogoLetter from "@components/logo/LogoLetter"
+import LogoShading from "@components/logo/LogoShading"
+import LogoTriangle from "@components/logo/LogoTriangle"
 
 // Utils
-import { usePageDispatch } from "@/utils/context/PageContext"
-import { delay } from "@/utils/helper"
+import { usePageDispatch } from "@utils/context/PageContext"
+import { delay } from "@utils/helper"
 
 // Styles
-import { mq } from "@/styles/utils/mediaQueries"
-import { zIndexes } from "@/styles/zIndexes"
-import { ease, animFadeIn, animFadeOut, animOilSpill } from "@/styles/animation"
+import { mq } from "@styles/utils/mediaQueries"
+import { zIndexes } from "@styles/zIndexes"
+import { ease, animFadeIn, animFadeOut, animOilSpill } from "@styles/animation"
 
 // Setup
 const DRAW_ANIM_DURATION = 900

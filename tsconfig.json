@@ -11,8 +11,12 @@
     "incremental": true,
     "isolatedModules": true,
     "noEmit": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "baseUrl": "./",
     "lib": ["dom", "dom.iterable", "esnext"],
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
@@ -21,7 +25,14 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@root/*": ["./*"],
+      "@components/*": ["src/components/*"],
+      "@config/*": ["src/config/*"],
+      "@constants/*": ["src/constants/*"],
+      "@pages/*": ["src/pages/*"],
+      "@styles/*": ["src/styles/*"],
+      "@ts/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": [

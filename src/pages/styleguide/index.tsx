@@ -6,12 +6,12 @@ import styled from "styled-components"
 import LogoSVG from "public/images/svg/logo.svg"
 
 // Styles
-import { colors } from "@/styles/colors"
+import { colors } from "@styles/colors"
 
 // Components
-import Container from "@/components/layout/Container"
-import Heading from "@/components/generic/Heading"
-import Text from "@/components/generic/Text"
+import Container from "@components/layout/Container"
+import Heading from "@components/generic/Heading"
+import Text from "@components/generic/Text"
 
 const StyleguidePage: React.FC = () => {
   return (
