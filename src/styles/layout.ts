@@ -18,3 +18,8 @@ export const gutter = {
   L: "20px",
   XL: "20px",
 }
+
+export const spacing = {
+  default: "20px",
+  section: "90px",
+}

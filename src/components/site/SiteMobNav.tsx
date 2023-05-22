@@ -12,7 +12,8 @@ import { zIndexes } from "@styles/zIndexes"
 import { ease, duration } from "@styles/animation"
 
 // Components
-import Logo from "@components/logo/Logo"
+import LogoComponent from "@components/logo/Logo"
+import SocialComponent from "@components/generic/Social"
 
 export interface Props {}
 
@@ -28,8 +29,9 @@ const listVariants: Variants = {
   visible: {
     visibility: "visible",
     transition: {
-      staggerChildren: duration.fast,
+      when: "beforeChildren",
       delay: duration.medium,
+      staggerChildren: duration.veryFast,
     },
   },
 }
@@ -37,11 +39,27 @@ const listVariants: Variants = {
 const itemVariants: Variants = {
   hidden: {
     opacity: 0,
-    x: -16,
+    y: 16,
   },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
+  },
+}
+
+const socialVariants: Variants = {
+  hidden: {
+    visibility: "hidden",
+    opacity: 0,
+    y: 16,
+  },
+  visible: {
+    visibility: "visible",
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: duration.medium + Object.keys(routes).length * duration.veryFast,
+    },
   },
 }
 
@@ -56,7 +74,7 @@ const SiteMobNav: React.FC<Props> = () => {
     <Wrapper>
       <NavBar>
         <Link href="/" aria-label="Homepage">
-          <LogoMob $isOpen={isOpen} />
+          <Logo $isOpen={isOpen} />
         </Link>
         <Toggle $isOpen={isOpen} onClick={handleOnClick}>
           <ToggleLine $isOpen={isOpen} />
@@ -84,6 +102,14 @@ const SiteMobNav: React.FC<Props> = () => {
               )
             })}
           </NavList>
+
+          <motion.div
+            variants={socialVariants}
+            initial="hidden"
+            animate={isOpen ? "visible" : "hidden"}
+          >
+            <SocialComponent />
+          </motion.div>
         </NavContentInner>
       </NavContent>
     </Wrapper>
@@ -108,7 +134,7 @@ const NavBar = styled.div`
   padding: calc(2 * var(--base-gutter));
 `
 
-const LogoMob = styled(Logo)<{ $isOpen: boolean }>`
+const Logo = styled(LogoComponent)<{ $isOpen: boolean }>`
   width: auto;
   height: 100%;
 
@@ -214,8 +240,12 @@ const NavContent = styled.div<{ $isOpen: boolean }>`
 `
 
 const NavContentInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   padding-top: var(--site-header-height);
+  padding-bottom: var(--base-gutter);
   border-radius: var(--border-radius-sml);
   background-color: var(--c-accent1);
   text-align: center;

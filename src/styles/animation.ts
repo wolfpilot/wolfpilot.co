@@ -8,6 +8,7 @@ export const ease = {
 }
 
 export const duration = {
+  veryFast: 0.05,
   fast: 0.1,
   medium: 0.25,
   slow: 0.5,

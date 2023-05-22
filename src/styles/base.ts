@@ -11,6 +11,7 @@ import {
   BORDER_RADIUS_LRG,
   columns,
   gutter,
+  spacing,
 } from "@styles/layout"
 import { colors } from "@styles/colors"
 import { fonts, textStyles, weights } from "@styles/typography"
@@ -41,6 +42,8 @@ export const base = css`
     /* Set the default nr. of columns, gutter, etc. */
     --base-columns: ${columns.XS};
     --base-gutter: ${gutter.XS};
+    --base-spacing: ${spacing.default};
+    --base-spacing-section: ${spacing.section};
 
     /**
       * To calculate the column size:
