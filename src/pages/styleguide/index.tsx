@@ -24,7 +24,9 @@ const StyleguidePage: React.FC = () => {
             alt={"Logo of a hand-painted wolf with aviator goggles on"}
           />
           <Title>Styleguide</Title>
-          <Link href="/">Home Page</Link>
+          <Link href="/" scroll={false}>
+            Home Page
+          </Link>
         </Header>
 
         <Content>

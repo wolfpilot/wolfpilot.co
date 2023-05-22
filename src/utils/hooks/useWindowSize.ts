@@ -1,5 +1,8 @@
 import { useEffect, useState, useRef } from "react"
 
+// Utils
+import { isClient } from "@/utils/domHelper"
+
 export interface WindowSize {
   width: number | null
   height: number | null
@@ -7,8 +10,6 @@ export interface WindowSize {
 
 export type GetWindowSize = () => WindowSize
 export type UseWindowSize = () => WindowSize
-
-export const isClient = typeof window !== "undefined"
 
 export const getWindowSize: GetWindowSize = () => {
   return {
