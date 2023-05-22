@@ -8,4 +8,5 @@ export const zIndexes = {
   // so there's no risk of conflict
   splashScreenUI: 999,
   pageTransitionUI: 999,
+  siteNav: 99,
 }

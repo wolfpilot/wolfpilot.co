@@ -23,15 +23,13 @@ const App = ({ Component, pageProps, router }: AppProps) => (
 
     <AppProvider>
       <PageProvider>
-        <main>
-          <DebugGrid />
+        <DebugGrid />
 
-          <SiteHeader />
+        <SiteHeader />
 
-          <PageWrapper>
-            <Component key={router.pathname} {...pageProps} />
-          </PageWrapper>
-        </main>
+        <PageWrapper>
+          <Component key={router.pathname} {...pageProps} />
+        </PageWrapper>
       </PageProvider>
     </AppProvider>
   </>

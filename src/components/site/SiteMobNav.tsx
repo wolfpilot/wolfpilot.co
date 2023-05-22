@@ -1,35 +1,91 @@
 import Link from "next/link"
+import { useState } from "react"
 import styled from "styled-components"
+import { Variants, motion } from "framer-motion"
 
 // Constants
 import { routes } from "@constants/routes"
 
 // Styles
-import { mq } from "@root/src/styles/utils/mediaQueries"
+import { mq } from "@styles/utils/mediaQueries"
+import { zIndexes } from "@styles/zIndexes"
+import { ease, duration } from "@styles/animation"
+
+// Components
+import Logo from "@components/logo/Logo"
 
 export interface Props {}
 
+// Setup
+const listVariants: Variants = {
+  hidden: {
+    visibility: "hidden",
+    transition: {
+      staggerChildren: 0,
+      staggerDirection: -1,
+    },
+  },
+  visible: {
+    visibility: "visible",
+    transition: {
+      staggerChildren: duration.fast,
+      delay: duration.medium,
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: -16,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+  },
+}
+
 const SiteMobNav: React.FC<Props> = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
+  const handleOnClick = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <Wrapper>
       <NavBar>
-        <Logo />
-        <Toggle />
+        <Link href="/" aria-label="Homepage">
+          <LogoMob $isOpen={isOpen} />
+        </Link>
+        <Toggle $isOpen={isOpen} onClick={handleOnClick}>
+          <ToggleLine $isOpen={isOpen} />
+          <ToggleLine $isOpen={isOpen} />
+          <ToggleLine $isOpen={isOpen} />
+        </Toggle>
       </NavBar>
 
-      <NavList>
-        {Object.keys(routes).map((key) => {
-          const { label, url } = routes[key]
+      <NavContent $isOpen={isOpen}>
+        <NavContentInner>
+          <NavList
+            variants={listVariants}
+            initial="hidden"
+            animate={isOpen ? "visible" : "hidden"}
+          >
+            {Object.keys(routes).map((key) => {
+              const { label, url } = routes[key]
 
-          if (!label || !url) return null
+              if (!label || !url) return null
 
-          return (
-            <NavItem key={label}>
-              <Link href={url}>{label}</Link>
-            </NavItem>
-          )
-        })}
-      </NavList>
+              return (
+                <NavItem key={label} variants={itemVariants}>
+                  <NavItemLink href={url}>{label}</NavItemLink>
+                </NavItem>
+              )
+            })}
+          </NavList>
+        </NavContentInner>
+      </NavContent>
     </Wrapper>
   )
 }
@@ -40,14 +96,153 @@ const Wrapper = styled.nav`
   `}
 `
 
-const NavBar = styled.div``
+const NavBar = styled.div`
+  position: fixed;
+  z-index: ${zIndexes.siteNav};
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  height: var(--site-header-height);
+  padding: calc(2 * var(--base-gutter));
+`
 
-const Logo = styled.div``
+const LogoMob = styled(Logo)<{ $isOpen: boolean }>`
+  width: auto;
+  height: 100%;
 
-const Toggle = styled.div``
+  g > {
+    g,
+    path {
+      transition: opacity ${duration.medium}s ${ease.default};
+    }
 
-const NavList = styled.ul``
+    // When open, hide everything but the logo letter
+    *:not(:last-child) {
+      ${({ $isOpen }) => $isOpen && `opacity: 0;`}
+    }
+  }
+`
 
-const NavItem = styled.li``
+const ToggleLine = styled.span<{ $isOpen: boolean }>`
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background-color: ${({ $isOpen }) =>
+    $isOpen ? `var(--c-white)` : `var(--c-accent1)`};
+  transition: background-color ${duration.medium}s ${ease.default},
+    transform ${duration.medium}s ${ease.default};
+`
+
+const Toggle = styled.button<{ $isOpen: boolean }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 30px;
+  height: 100%;
+  padding: 0;
+  background: none;
+  outline: none;
+  border: none;
+
+  ${ToggleLine} {
+    &:nth-child(1) {
+      transform: scaleX(1);
+
+      ${({ $isOpen }) => $isOpen && `transform: scaleX(0);`}
+    }
+
+    &:nth-child(2) {
+      transform: scaleX(0.85);
+
+      ${({ $isOpen }) => $isOpen && `transform: scaleX(0.85);`}
+    }
+
+    &:nth-child(3) {
+      transform: scaleX(0.7);
+
+      ${({ $isOpen }) => $isOpen && `transform: scaleX(0);`}
+    }
+  }
+
+  &:hover {
+    ${ToggleLine} {
+      &:nth-child(1) {
+        transform: scaleX(1);
+
+        ${({ $isOpen }) => $isOpen && `transform: scaleX(0);`}
+      }
+
+      &:nth-child(2) {
+        transform: scaleX(1);
+
+        ${({ $isOpen }) => $isOpen && `transform: scaleX(0.5);`}
+      }
+
+      &:nth-child(3) {
+        transform: scaleX(1);
+
+        ${({ $isOpen }) => $isOpen && `transform: scaleX(0);`}
+      }
+    }
+  }
+`
+
+const NavContent = styled.div<{ $isOpen: boolean }>`
+  position: fixed;
+  z-index: ${zIndexes.siteNav - 1};
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  padding: var(--base-gutter);
+  background-color: var(--c-pageColor);
+  transition: visibility ${duration.medium}s ${ease.cubic},
+    opacity ${duration.medium}s ${ease.cubic};
+
+  ${({ $isOpen }) =>
+    $isOpen
+      ? `
+        visibility: visible;
+        opacity: 1;
+    `
+      : `
+        visibility: hidden;
+        opacity: 0;
+    `}
+`
+
+const NavContentInner = styled.div`
+  height: 100%;
+  padding-top: var(--site-header-height);
+  border-radius: var(--border-radius-sml);
+  background-color: var(--c-accent1);
+  text-align: center;
+`
+
+const NavList = styled(motion.ul)`
+  list-style: none;
+  margin: 0;
+  padding: calc(2 * var(--base-gutter)) 0;
+`
+
+const NavItem = styled(motion.li)`
+  text-transform: lowercase;
+
+  &:not(:last-of-type) {
+    margin-bottom: calc(2 * var(--base-gutter));
+  }
+`
+
+const NavItemLink = styled(Link)`
+  color: var(--c-white);
+  font-size: 32px;
+  transition: color ${duration.medium}s ${ease.cubic};
+
+  &:hover {
+    color: var(--c-black);
+  }
+`
 
 export default SiteMobNav

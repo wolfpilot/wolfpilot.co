@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { Route, routes } from "@constants/routes"
 
 // Styles
-import { mq } from "@root/src/styles/utils/mediaQueries"
+import { mq } from "@styles/utils/mediaQueries"
 
 export interface Props {}
 
@@ -39,7 +39,7 @@ const SiteDeskNav: React.FC<Props> = () => {
   )
 }
 
-const Wrapper = styled.header`
+const Wrapper = styled.nav`
   display: none;
 
   ${mq.from.M`
