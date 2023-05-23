@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { social } from "@constants/social"
 
 // Styles
-import { textStyles } from "@styles/typography"
+import { textStylesLrg } from "@styles/typography"
 
 // Components
 import Icon from "@components/icons/Icon"
@@ -40,7 +40,7 @@ const Social: React.FC = () => (
 const Wrapper = styled.div``
 
 const SocialDescription = styled.div`
-  ${textStyles.textLrg};
+  ${textStylesLrg.base};
   margin-bottom: var(--base-spacing);
   color: var(--c-white);
 `

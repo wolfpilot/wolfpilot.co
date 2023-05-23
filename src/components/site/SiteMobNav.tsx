@@ -9,6 +9,7 @@ import { routes } from "@constants/routes"
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
+import { mobNavLinkStyles } from "@styles/typography"
 import { ease, duration } from "@styles/animation"
 
 // Components
@@ -73,9 +74,9 @@ const SiteMobNav: React.FC<Props> = () => {
   return (
     <Wrapper>
       <NavBar>
-        <Link href="/" aria-label="Homepage">
-          <Logo $isOpen={isOpen} />
-        </Link>
+        <LogoLink href="/" aria-label="Homepage">
+          <Logo $isOpen={isOpen} id="mob" />
+        </LogoLink>
         <Toggle $isOpen={isOpen} onClick={handleOnClick}>
           <ToggleLine $isOpen={isOpen} />
           <ToggleLine $isOpen={isOpen} />
@@ -117,26 +118,20 @@ const SiteMobNav: React.FC<Props> = () => {
 }
 
 const Wrapper = styled.nav`
+  height: 100%;
+
   ${mq.from.M`
     display: none;
   `}
 `
 
-const NavBar = styled.div`
-  position: fixed;
-  z-index: ${zIndexes.siteNav};
-  top: 0;
-  right: 0;
-  left: 0;
-  display: flex;
-  justify-content: space-between;
-  height: var(--site-header-height);
-  padding: calc(2 * var(--base-gutter));
+const LogoLink = styled(Link)`
+  display: block;
 `
 
 const Logo = styled(LogoComponent)<{ $isOpen: boolean }>`
-  width: auto;
-  height: 100%;
+  width: 75px;
+  height: auto;
 
   g > {
     g,
@@ -149,6 +144,18 @@ const Logo = styled(LogoComponent)<{ $isOpen: boolean }>`
       ${({ $isOpen }) => $isOpen && `opacity: 0;`}
     }
   }
+`
+
+const NavBar = styled.div`
+  position: fixed;
+  z-index: ${zIndexes.siteNav};
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  height: var(--site-header-height);
+  padding: calc(2 * var(--base-gutter));
 `
 
 const ToggleLine = styled.span<{ $isOpen: boolean }>`
@@ -249,6 +256,10 @@ const NavContentInner = styled.div`
   border-radius: var(--border-radius-sml);
   background-color: var(--c-accent1);
   text-align: center;
+
+  ${mq.from.S`
+    justify-content: space-around;
+  `}
 `
 
 const NavList = styled(motion.ul)`
@@ -266,8 +277,8 @@ const NavItem = styled(motion.li)`
 `
 
 const NavItemLink = styled(Link)`
+  ${mobNavLinkStyles.base};
   color: var(--c-white);
-  font-size: 32px;
   transition: color ${duration.medium}s ${ease.cubic};
 
   &:hover {

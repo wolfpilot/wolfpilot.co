@@ -14,7 +14,7 @@ const Text: React.FC<IProps> = ({ className, children }) => (
 )
 
 const Wrapper = styled.div`
-  ${textStyles.body};
+  ${textStyles.base};
 `
 
 export default Text

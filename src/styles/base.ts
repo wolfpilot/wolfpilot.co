@@ -112,7 +112,7 @@ export const base = css`
   }
 
   body {
-    ${textStyles.body};
+    ${textStyles.base};
     font-family: var(--font-primary);
     color: var(--c-black);
     background: var(--c-pageColor);

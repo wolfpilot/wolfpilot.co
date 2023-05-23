@@ -1,5 +1,3 @@
-import styled from "styled-components"
-
 // Config
 import { config as pageConfig } from "@config/page.config"
 
@@ -18,18 +16,14 @@ const PageWrapper: React.FC<Props> = ({ children }: Props) => {
   const pageState = usePageState()
 
   return (
-    <Main>
+    <main>
       {pageConfig.showSplashScreen && !pageState.hasSplashScreenPlayed && (
         <SplashScreenUI />
       )}
 
       <PageTransitionUI>{children}</PageTransitionUI>
-    </Main>
+    </main>
   )
 }
-
-const Main = styled.main`
-  margin-top: var(--site-header-height);
-`
 
 export default PageWrapper
