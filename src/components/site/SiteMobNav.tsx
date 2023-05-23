@@ -77,7 +77,11 @@ const SiteMobNav: React.FC<Props> = () => {
         <LogoLink href="/" aria-label="Homepage">
           <Logo $isOpen={isOpen} id="mob" />
         </LogoLink>
-        <Toggle $isOpen={isOpen} onClick={handleOnClick}>
+        <Toggle
+          $isOpen={isOpen}
+          onClick={handleOnClick}
+          aria-label="Toggle mobile navigation"
+        >
           <ToggleLine $isOpen={isOpen} />
           <ToggleLine $isOpen={isOpen} />
           <ToggleLine $isOpen={isOpen} />
