@@ -15,8 +15,8 @@ type IBreakpointFunction = { [key: string]: any }
 // These sizes are arbitrary and you can set them to whatever you wish
 const breakpoints: IBreakpoints = {
   XXS: 320,
-  XS: 420,
-  S: 600,
+  XS: 375,
+  S: 425,
   M: 768,
   L: 1024,
   XL: 1440,

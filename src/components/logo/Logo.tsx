@@ -2,9 +2,10 @@ import React from "react"
 
 export interface Props {
   className?: string
+  id: string
 }
 
-const Logo: React.FC<Props> = ({ className }) => (
+const Logo: React.FC<Props> = ({ className, id }) => (
   <svg
     className={className}
     width="604"
@@ -13,38 +14,38 @@ const Logo: React.FC<Props> = ({ className }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clipPath="url(#clip0_160_4948)">
+    <g clipPath={`url(#clip0_160_4948-${id})`}>
       {/* Top */}
       <path
         d="M302 47C235.178 47 0 264 0 264C0 264 230.703 224.158 302 224.158C373.297 224.158 604 264 604 264C604 264 368.822 47 302 47Z"
-        fill="url(#paint0_radial_160_4948)"
+        fill={`url(#paint0_radial_160_4948-${id})`}
       />
       {/* Base */}
       <path
         d="M302 0L0 264C0 264 238 47 302 47C366 47 604 264 604 264L302 0Z"
-        fill="url(#paint1_linear_160_4948)"
+        fill={`url(#paint1_linear_160_4948-${id})`}
       />
       {/* Shading */}
       <g>
         <path
           d="M302.361 188C229.413 188 0 264 0 264C0 264 237.518 205 302.361 205C367.204 205 604 264 604 264C604 264 375.309 188 302.361 188Z"
-          fill="url(#paint2_radial_160_4948)"
+          fill={`url(#paint2_radial_160_4948-${id})`}
         />
         <path
           d="M302.361 151C229.413 151 0 264 0 264C0 264 237.518 160 302.361 160C367.204 160 604 264 604 264C604 264 375.309 151 302.361 151Z"
-          fill="url(#paint3_radial_160_4948)"
+          fill={`url(#paint3_radial_160_4948-${id})`}
         />
         <path
           d="M302.361 115C229.413 115 0 264 0 264C0 264 237.518 127.5 302.361 127.5C367.204 127.5 604 264 604 264C604 264 375.309 115 302.361 115Z"
-          fill="url(#paint4_radial_160_4948)"
+          fill={`url(#paint4_radial_160_4948-${id})`}
         />
         <path
           d="M302.361 82C229.413 82 0 264 0 264C0 264 237.518 89 302.361 89C367.204 89 604 264 604 264C604 264 375.309 82 302.361 82Z"
-          fill="url(#paint5_radial_160_4948)"
+          fill={`url(#paint5_radial_160_4948-${id})`}
         />
         <path
           d="M302.361 58C229.412 58 0 264 0 264C0 264 237.518 62 302.361 62C367.204 62 604 264 604 264C604 264 375.31 58 302.361 58Z"
-          fill="url(#paint6_radial_160_4948)"
+          fill={`url(#paint6_radial_160_4948-${id})`}
         />
       </g>
       {/* Letter */}
@@ -55,7 +56,7 @@ const Logo: React.FC<Props> = ({ className }) => (
     </g>
     <defs>
       <radialGradient
-        id="paint0_radial_160_4948"
+        id={`paint0_radial_160_4948-${id}`}
         cx="0"
         cy="0"
         r="1"
@@ -69,7 +70,7 @@ const Logo: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <linearGradient
-        id="paint1_linear_160_4948"
+        id={`paint1_linear_160_4948-${id}`}
         x1="302"
         y1="-1.47913"
         x2="302"
@@ -82,7 +83,7 @@ const Logo: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </linearGradient>
       <radialGradient
-        id="paint2_radial_160_4948"
+        id={`paint2_radial_160_4948-${id}`}
         cx="0"
         cy="0"
         r="1"
@@ -96,7 +97,7 @@ const Logo: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint3_radial_160_4948"
+        id={`paint3_radial_160_4948-${id}`}
         cx="0"
         cy="0"
         r="1"
@@ -110,7 +111,7 @@ const Logo: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint4_radial_160_4948"
+        id={`paint4_radial_160_4948-${id}`}
         cx="0"
         cy="0"
         r="1"
@@ -124,7 +125,7 @@ const Logo: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint5_radial_160_4948"
+        id={`paint5_radial_160_4948-${id}`}
         cx="0"
         cy="0"
         r="1"
@@ -138,7 +139,7 @@ const Logo: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint6_radial_160_4948"
+        id={`paint6_radial_160_4948-${id}`}
         cx="0"
         cy="0"
         r="1"
@@ -151,7 +152,7 @@ const Logo: React.FC<Props> = ({ className }) => (
         <stop offset="0.772926" stopColor="#E9412B" />
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
-      <clipPath id="clip0_160_4948">
+      <clipPath id={`clip0_160_4948-${id}`}>
         <rect width="604" height="264" fill="white" />
       </clipPath>
     </defs>

@@ -11,9 +11,11 @@ import {
   BORDER_RADIUS_LRG,
   columns,
   gutter,
+  spacing,
 } from "@styles/layout"
 import { colors } from "@styles/colors"
 import { fonts, textStyles, weights } from "@styles/typography"
+import { sizes } from "@styles/sizes"
 
 export const base = css`
   @font-face {
@@ -29,6 +31,7 @@ export const base = css`
     --max-content-width: ${MAX_CONTENT_WIDTH};
     --border-radius-sml: ${BORDER_RADIUS_SML};
     --border-radius-lrg: ${BORDER_RADIUS_LRG};
+    --site-header-height: ${sizes.siteHeaderSize.mob};
 
     /**
      * @NOTE: IE 11 doesn't support vars, so just use the equivalent vw values
@@ -39,6 +42,8 @@ export const base = css`
     /* Set the default nr. of columns, gutter, etc. */
     --base-columns: ${columns.XS};
     --base-gutter: ${gutter.XS};
+    --base-spacing: ${spacing.default};
+    --base-spacing-section: ${spacing.section};
 
     /**
       * To calculate the column size:
@@ -57,6 +62,7 @@ export const base = css`
     `}
 
     ${mq.from.M`
+      --site-header-height: ${sizes.siteHeaderSize.desk};
       --base-columns: ${columns.M};
       --base-gutter: ${gutter.M};
     `}
@@ -106,7 +112,7 @@ export const base = css`
   }
 
   body {
-    ${textStyles.body};
+    ${textStyles.base};
     font-family: var(--font-primary);
     color: var(--c-black);
     background: var(--c-pageColor);
@@ -128,8 +134,12 @@ export const base = css`
     text-decoration: none;
   }
 
-  button:focus {
-    outline: none;
+  button {
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   picture {

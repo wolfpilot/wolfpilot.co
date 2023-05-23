@@ -16,13 +16,13 @@ const PageWrapper: React.FC<Props> = ({ children }: Props) => {
   const pageState = usePageState()
 
   return (
-    <>
+    <main>
       {pageConfig.showSplashScreen && !pageState.hasSplashScreenPlayed && (
         <SplashScreenUI />
       )}
 
       <PageTransitionUI>{children}</PageTransitionUI>
-    </>
+    </main>
   )
 }
 

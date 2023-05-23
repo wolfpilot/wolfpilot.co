@@ -7,6 +7,14 @@ export const ease = {
   elastic: "cubic-bezier(0.68, -0.55, 0.27, 1.55)",
 }
 
+export const duration = {
+  veryFast: 0.05,
+  fast: 0.1,
+  medium: 0.25,
+  slow: 0.5,
+  verySlow: 0.75,
+}
+
 // Effects
 export const animFadeIn = keyframes`
   from {

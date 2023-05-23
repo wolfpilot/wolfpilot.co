@@ -14,7 +14,12 @@ export const columns = {
 export const gutter = {
   XS: "10px",
   S: "10px",
-  M: "20px",
+  M: "10px",
   L: "20px",
   XL: "20px",
+}
+
+export const spacing = {
+  default: "20px",
+  section: "90px",
 }
