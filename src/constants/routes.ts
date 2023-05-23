@@ -1,11 +1,7 @@
-export interface Route {
-  label: string
-  url: string
-}
+// Types
+import { Anchors } from "@ts/dom"
 
-export type Routes = Record<string, Route>
-
-export const routes: Routes = {
+export const routes: Anchors = {
   work: {
     label: "Work",
     url: "/#work",

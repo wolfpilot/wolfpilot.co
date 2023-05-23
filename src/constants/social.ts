@@ -1,11 +1,7 @@
-export interface Link {
-  label: string
-  url: string
-}
+// Types
+import { Anchors } from "@ts/dom"
 
-export type Links = Record<string, Link>
-
-export const social: Links = {
+export const social: Anchors = {
   email: {
     url: "mailto:howl@wolfpilot.co",
     label: "Email",
