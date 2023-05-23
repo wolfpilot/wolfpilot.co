@@ -7,7 +7,7 @@ const Codepen: React.FC<Icon> = ({ className }) => (
     height="28"
     viewBox="0 0 28 28"
     fill="none"
-    stroke="#151515"
+    stroke="#000000"
     strokeWidth="2"
     strokeLinejoin="round"
     xmlns="http://www.w3.org/2000/svg"

@@ -5,15 +5,20 @@ import styled from "styled-components"
 import { social } from "@constants/social"
 
 // Styles
-import { textStylesLrg } from "@styles/typography"
+import { duration, ease } from "@styles/animation"
 
 // Components
 import Icon from "@components/icons/Icon"
 
-const Social: React.FC = () => (
-  <Wrapper>
-    <SocialDescription>find me on</SocialDescription>
+export type Option = "light" | "dark"
 
+export interface Props {
+  className?: string
+  option: Option
+}
+
+const Social: React.FC<Props> = ({ className, option }) => (
+  <Wrapper className={className}>
     <SocialList>
       {Object.keys(social).map((key) => {
         const { label, url } = social[key]
@@ -23,12 +28,13 @@ const Social: React.FC = () => (
         return (
           <SocialItem key={label}>
             <SocialItemLink
+              option={option}
               href={url}
               aria-label={label}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <SocialItemLinkIcon type={label.toLowerCase()} />
+              <SocialItemLinkIcon type={label.toLowerCase()} option={option} />
             </SocialItemLink>
           </SocialItem>
         )
@@ -38,12 +44,6 @@ const Social: React.FC = () => (
 )
 
 const Wrapper = styled.div``
-
-const SocialDescription = styled.div`
-  ${textStylesLrg.base};
-  margin-bottom: var(--base-spacing);
-  color: var(--c-white);
-`
 
 const SocialList = styled.ul`
   display: flex;
@@ -59,14 +59,23 @@ const SocialItem = styled.li`
   }
 `
 
-const SocialItemLink = styled(Link)`
+const SocialItemLinkIcon = styled(Icon)<{ option: Option }>`
+  stroke: ${({ option }) =>
+    option === "light" ? "var(--c-white)" : "var(--c-black)"};
+  transition: stroke ${duration.medium}s ${ease.cubic};
+`
+
+const SocialItemLink = styled(Link)<{ option: Option }>`
   display: block;
   padding: calc(var(--base-spacing) / 2);
   line-height: 0;
-`
 
-const SocialItemLinkIcon = styled(Icon)`
-  stroke: var(--c-white);
+  &:hover {
+    ${SocialItemLinkIcon} {
+      stroke: ${({ option }) =>
+        option === "light" ? "var(--c-black)" : "var(--c-accent1)"};
+    }
+  }
 `
 
 export default Social

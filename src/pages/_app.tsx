@@ -10,6 +10,7 @@ import GlobalStyle from "@styles/global"
 // Components
 import DebugGrid from "@components/utils/DebugGrid"
 import SiteHeader from "@components/site/SiteHeader"
+import SiteFooter from "@components/site/SiteFooter"
 import PageWrapper from "@components/page/PageWrapper"
 
 export const metadata = {
@@ -30,6 +31,8 @@ const App = ({ Component, pageProps, router }: AppProps) => (
         <PageWrapper>
           <Component key={router.pathname} {...pageProps} />
         </PageWrapper>
+
+        <SiteFooter />
       </PageProvider>
     </AppProvider>
   </>
