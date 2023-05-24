@@ -1,5 +1,7 @@
+import { useRef } from "react"
 import Image, { ImageProps } from "next/image"
 import styled from "styled-components"
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -13,14 +15,30 @@ export interface Props {
   copy: string
 }
 
+// Setup
+const PARALLAX_SCROLL_DISTANCE = -50
+
+const useParallax = (value: MotionValue<number>, distance: number) =>
+  useTransform(value, [0, 1], [-distance, distance])
+
 const Card: React.FC<Props> = ({ featuredImg, heading, copy }) => {
+  const wrapperRef = useRef(null)
+
+  // Parallax
+  const { scrollYProgress } = useScroll({ target: wrapperRef })
+  const y = useParallax(scrollYProgress, PARALLAX_SCROLL_DISTANCE)
+
   if (!featuredImg || !heading || !copy) return null
 
   return (
-    <Wrapper>
+    <Wrapper ref={wrapperRef}>
       {featuredImg?.src && (
         <FeaturedImageWrapper>
-          <FeaturedImage src={featuredImg.src} alt={featuredImg.alt || ""} />
+          <FeaturedImage
+            src={featuredImg.src}
+            alt={featuredImg.alt || ""}
+            style={{ y }}
+          />
         </FeaturedImageWrapper>
       )}
 
@@ -75,10 +93,14 @@ const FeaturedImageWrapper = styled.div`
   }
 `
 
-const FeaturedImage = styled(Image)`
+const FeaturedImage = styled(motion(Image))`
+  position: relative;
+  // Centre image due to extra height
+  top: -10%;
   display: block;
   width: 100%;
-  height: 100%;
+  // Make image taller to compensate for parallax motion
+  height: 120%;
   object-fit: cover;
   line-height: 0;
   filter: saturate(0);
