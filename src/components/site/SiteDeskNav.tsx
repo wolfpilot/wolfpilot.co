@@ -79,13 +79,13 @@ const Logo = styled(LogoComponent)`
 
   ${mq.from.L`
     width: 75px;
-    margin-right: var(--base-gutter);
-    margin-left: var(--base-gutter);
+    margin-right: var(--grid-gutter-size);
+    margin-left: var(--grid-gutter-size);
   `}
 
   ${mq.from.XL`
-    margin-right: calc(2 * var(--base-gutter));
-    margin-left: calc(2 * var(--base-gutter));
+    margin-right: calc(2 * var(--grid-gutter-size));
+    margin-left: calc(2 * var(--grid-gutter-size));
   `}
 `
 

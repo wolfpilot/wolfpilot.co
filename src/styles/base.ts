@@ -32,7 +32,14 @@ export const base = css`
     --max-content-width: ${MAX_CONTENT_WIDTH};
     --border-radius-sml: ${BORDER_RADIUS_SML};
     --border-radius-lrg: ${BORDER_RADIUS_LRG};
+
+    // Global components
     --site-header-height: ${sizes.siteHeaderSize.mob};
+
+    // Spacing
+    --spacing-default: ${spacing.default};
+    --spacing-block: ${spacing.block.base};
+    --spacing-section: ${spacing.section.base};
 
     /**
      * @NOTE: IE 11 doesn't support vars, so just use the equivalent vw values
@@ -41,12 +48,8 @@ export const base = css`
      * 1 col in a 12 col grid = 8.33vw
      */
     /* Set the default nr. of columns, gutter, etc. */
-    --base-columns: ${columns.XS};
-    --base-gutter: ${gutter.XS};
-
-    --spacing-default: ${spacing.default};
-    --spacing-block: ${spacing.block.base};
-    --spacing-section: ${spacing.section.base};
+    --grid-columns: ${columns.XS};
+    --grid-gutter-size: ${gutter.XS};
 
     /**
       * To calculate the column size:
@@ -54,37 +57,37 @@ export const base = css`
       * - Subtract the gaps
       * - Divide the result by the number of columns
       */
-    --base-column-size: calc(
-      (100vw - ((var(--base-columns) + 1) * var(--base-gutter))) /
-        var(--base-columns)
+    --grid-column-size: calc(
+      (100vw - ((var(--grid-columns) + 1) * var(--grid-gutter-size))) /
+        var(--grid-columns)
     );
 
     ${mq.from.S`
-      --base-columns: ${columns.S};
-      --base-gutter: ${gutter.S};
+      --grid-columns: ${columns.S};
+      --grid-gutter-size: ${gutter.S};
     `}
 
     ${mq.from.M`
       --site-header-height: ${sizes.siteHeaderSize.desk};
-      --base-columns: ${columns.M};
-      --base-gutter: ${gutter.M};
       --spacing-block: ${spacing.block.M};
       --spacing-section: ${spacing.section.M};
+      --grid-columns: ${columns.M};
+      --grid-gutter-size: ${gutter.M};
     `}
 
     ${mq.from.L`
-      --base-columns: ${columns.L};
-      --base-gutter: ${gutter.L};
       --spacing-block: ${spacing.block.L};
       --spacing-section: ${spacing.section.L};
+      --grid-columns: ${columns.L};
+      --grid-gutter-size: ${gutter.L};
     `}
 
     ${mq.from.XL`
-      --base-columns: ${columns.XL};
-      --base-gutter: ${gutter.XL};
-      --base-column-size: calc(
-        (${MAX_CONTENT_WIDTH} - ((var(--base-columns) + 1) * var(--base-gutter))) /
-          var(--base-columns));
+      --grid-columns: ${columns.XL};
+      --grid-gutter-size: ${gutter.XL};
+      --grid-column-size: calc(
+        (${MAX_CONTENT_WIDTH} - ((var(--grid-columns) + 1) * var(--grid-gutter-size))) /
+          var(--grid-columns));
     `}
       
     // Typography
@@ -149,7 +152,7 @@ export const base = css`
   h4,
   h5,
   h6 {
-    margin-bottom: var(--base-gutter);
+    margin-bottom: var(--grid-gutter-size);
     font-weight: ${weights.normal};
   }
 

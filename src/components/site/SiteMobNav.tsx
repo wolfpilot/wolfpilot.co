@@ -169,7 +169,7 @@ const NavBar = styled.div`
   height: 100%;
   justify-content: space-between;
   height: var(--site-header-height);
-  padding: calc(2 * var(--base-gutter));
+  padding: calc(2 * var(--grid-gutter-size));
 `
 
 const ToggleLine = styled.span<{ $isOpen: boolean }>`
@@ -243,7 +243,7 @@ const NavContent = styled.div<{ $isOpen: boolean }>`
   right: 0;
   left: 0;
   bottom: 0;
-  padding: var(--base-gutter);
+  padding: var(--grid-gutter-size);
   background-color: var(--c-pageColor);
   transition: visibility ${duration.medium}s ${ease.cubic},
     opacity ${duration.medium}s ${ease.cubic};
@@ -266,7 +266,7 @@ const NavContentInner = styled.div`
   justify-content: space-between;
   height: 100%;
   padding-top: var(--site-header-height);
-  padding-bottom: var(--base-gutter);
+  padding-bottom: var(--grid-gutter-size);
   border-radius: var(--border-radius-sml);
   background-color: var(--c-accent1);
   text-align: center;
@@ -279,14 +279,14 @@ const NavContentInner = styled.div`
 const NavList = styled(motion.ul)`
   list-style: none;
   margin: 0;
-  padding: calc(2 * var(--base-gutter)) 0;
+  padding: calc(2 * var(--grid-gutter-size)) 0;
 `
 
 const NavItem = styled(motion.li)`
   text-transform: lowercase;
 
   &:not(:last-of-type) {
-    margin-bottom: calc(2 * var(--base-gutter));
+    margin-bottom: calc(2 * var(--grid-gutter-size));
   }
 `
 

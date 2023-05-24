@@ -63,25 +63,25 @@ const HeroImageWrapper = styled.div`
 `
 
 const HeroBackdrop = styled.div`
-  width: calc(2 * var(--base-column-size));
-  height: calc(2 * var(--base-column-size));
+  width: calc(2 * var(--grid-column-size));
+  height: calc(2 * var(--grid-column-size));
   margin: 0 auto;
   background: var(--g-accent-diagonal);
   border-radius: 50%;
 
   ${mq.from.S`
-    width: calc(1.5 * var(--base-column-size));
-    height: calc(1.5 * var(--base-column-size));
+    width: calc(1.5 * var(--grid-column-size));
+    height: calc(1.5 * var(--grid-column-size));
   `}
 
   ${mq.from.M`
-    width: calc(2 * var(--base-column-size));
-    height: calc(2 * var(--base-column-size));
+    width: calc(2 * var(--grid-column-size));
+    height: calc(2 * var(--grid-column-size));
   `}
 
   ${mq.from.L`
-    width: calc(2 * var(--base-column-size) + 3 * var(--base-gutter));
-    height: calc(2 * var(--base-column-size) + 3 * var(--base-gutter));
+    width: calc(2 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
+    height: calc(2 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
   `}
 `
 
@@ -89,21 +89,21 @@ const HeroImage = styled(Image)`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(2 * var(--base-column-size) - 2 * var(--base-gutter));
+  width: calc(2 * var(--grid-column-size) - 2 * var(--grid-gutter-size));
   height: auto;
   mix-blend-mode: darken;
   transform: translate(-50%, -45%);
 
   ${mq.from.S`
-    width: calc(1.5 * var(--base-column-size) - 1.5 * var(--base-gutter));
+    width: calc(1.5 * var(--grid-column-size) - 1.5 * var(--grid-gutter-size));
   `}
 
   ${mq.from.M`
-    width: calc(2 * var(--base-column-size) - 2 * var(--base-gutter));
+    width: calc(2 * var(--grid-column-size) - 2 * var(--grid-gutter-size));
   `}
 
   ${mq.from.L`
-    width: calc(2 * var(--base-column-size) + 2 * var(--base-gutter));
+    width: calc(2 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
   `}
 `
 

@@ -87,7 +87,7 @@ const StyleguidePage: React.FC = () => {
 }
 
 const Main = styled.div`
-  padding: var(--base-gutter);
+  padding: var(--grid-gutter-size);
 `
 Main.displayName = "Main"
 
@@ -97,7 +97,7 @@ const Header = styled.div`
   justify-content: center;
   align-items: center;
   height: 25vh;
-  margin-bottom: var(--base-gutter);
+  margin-bottom: var(--grid-gutter-size);
   border-radius: var(--border-radius-sml);
   background-color: var(--c-neutral4);
   color: var(--c-black);
@@ -111,8 +111,8 @@ Title.displayName = "Title"
 
 const Content = styled.div`
   &:not(:last-of-type) {
-    margin-bottom: var(--base-gutter);
-    padding-bottom: calc(2 * var(--base-gutter));
+    margin-bottom: var(--grid-gutter-size);
+    padding-bottom: calc(2 * var(--grid-gutter-size));
   }
 `
 Content.displayName = "Content"
@@ -128,8 +128,8 @@ const ColorList = styled.div``
 ColorList.displayName = "ColorList"
 
 const ColorBlock = styled.div<{ hex: string }>`
-  margin: var(--base-gutter) 0;
-  padding: var(--base-gutter);
+  margin: var(--grid-gutter-size) 0;
+  padding: var(--grid-gutter-size);
   border-radius: var(--border-radius-sml);
   background-color: ${({ hex }) => hex};
   ${({ hex }) => hex === colors.black && `color: ${colors.white}`};

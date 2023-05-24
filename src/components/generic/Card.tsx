@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   `}
 
   ${mq.from.XL`
-    width: calc(10 * var(--base-column-size) + 9 * var(--base-gutter));
+    width: calc(10 * var(--grid-column-size) + 9 * var(--grid-gutter-size));
   `}
 `
 
@@ -51,15 +51,15 @@ const FeaturedImageWrapper = styled.div`
   position: relative;
 
   ${mq.from.M`
-    width: calc(2 * var(--base-column-size) + var(--base-gutter));
+    width: calc(2 * var(--grid-column-size) + var(--grid-gutter-size));
   `}
 
   ${mq.from.L`
-    width: calc(4 * var(--base-column-size) + 3 * var(--base-gutter));
+    width: calc(4 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
   `}
 
   ${mq.from.XL`
-    width: calc(3 * var(--base-column-size) + 2 * var(--base-gutter));
+    width: calc(3 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
   `}
 
   &:after {
@@ -89,15 +89,15 @@ const Content = styled.div`
   color: var(--c-white);
 
   ${mq.from.M`
-    width: calc(4 * var(--base-column-size) + 4 * var(--base-gutter));
+    width: calc(4 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
   `}
 
   ${mq.from.L`
-    width: calc(8 * var(--base-column-size) + 8 * var(--base-gutter));
+    width: calc(8 * var(--grid-column-size) + 8 * var(--grid-gutter-size));
   `}
 
   ${mq.from.XL`
-    width: calc(7 * var(--base-column-size) + 7 * var(--base-gutter));
+    width: calc(7 * var(--grid-column-size) + 7 * var(--grid-gutter-size));
   `}
 `
 
