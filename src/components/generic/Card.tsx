@@ -16,10 +16,11 @@ export interface Props {
 }
 
 // Setup
-const PARALLAX_SCROLL_DISTANCE = -50
+const PARALLAX_SCROLL_DISTANCE = -10
 
+// Map total percentage scrolled from -10% to 10%
 const useParallax = (value: MotionValue<number>, distance: number) =>
-  useTransform(value, [0, 1], [-distance, distance])
+  useTransform(value, [0, 1], [`${-distance}%`, `${distance}%`])
 
 const Card: React.FC<Props> = ({ featuredImg, heading, copy }) => {
   const wrapperRef = useRef(null)
@@ -31,14 +32,16 @@ const Card: React.FC<Props> = ({ featuredImg, heading, copy }) => {
   if (!featuredImg || !heading || !copy) return null
 
   return (
-    <Wrapper ref={wrapperRef}>
+    <Wrapper>
       {featuredImg?.src && (
-        <FeaturedImageWrapper>
-          <FeaturedImage
-            src={featuredImg.src}
-            alt={featuredImg.alt || ""}
-            style={{ y }}
-          />
+        <FeaturedImageWrapper ref={wrapperRef}>
+          <FeaturedImageResizer>
+            <FeaturedImage
+              src={featuredImg.src}
+              alt={featuredImg.alt || ""}
+              style={{ y }}
+            />
+          </FeaturedImageResizer>
         </FeaturedImageWrapper>
       )}
 
@@ -67,6 +70,7 @@ const Wrapper = styled.div`
 
 const FeaturedImageWrapper = styled.div`
   position: relative;
+  overflow: hidden;
 
   ${mq.from.M`
     width: calc(2 * var(--grid-column-size) + var(--grid-gutter-size));
@@ -93,14 +97,16 @@ const FeaturedImageWrapper = styled.div`
   }
 `
 
+const FeaturedImageResizer = styled.div`
+  height: 100%;
+  // Make image larger to compensate for parallax motion
+  transform: scale(1.2);
+`
+
 const FeaturedImage = styled(motion(Image))`
-  position: relative;
-  // Centre image due to extra height
-  top: -10%;
   display: block;
   width: 100%;
-  // Make image taller to compensate for parallax motion
-  height: 120%;
+  height: 100%;
   object-fit: cover;
   line-height: 0;
   filter: saturate(0);
