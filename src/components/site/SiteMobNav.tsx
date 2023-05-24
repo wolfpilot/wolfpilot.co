@@ -9,12 +9,12 @@ import { routes } from "@constants/routes"
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
-import { mobNavLinkStyles } from "@styles/typography"
+import { mobNavLinkStyles, textStylesLrg } from "@styles/typography"
 import { ease, duration } from "@styles/animation"
 
 // Components
 import LogoComponent from "@components/logo/Logo"
-import SocialComponent from "@components/generic/Social"
+import SocialLinks from "@components/generic/SocialLinks"
 
 export interface Props {}
 
@@ -113,7 +113,11 @@ const SiteMobNav: React.FC<Props> = () => {
             initial="hidden"
             animate={isOpen ? "visible" : "hidden"}
           >
-            <SocialComponent />
+            <Social>
+              <SocialDescription>find me on</SocialDescription>
+
+              <SocialLinks option="light" />
+            </Social>
           </motion.div>
         </NavContentInner>
       </NavContent>
@@ -148,6 +152,14 @@ const Logo = styled(LogoComponent)<{ $isOpen: boolean }>`
       ${({ $isOpen }) => $isOpen && `opacity: 0;`}
     }
   }
+`
+
+const Social = styled.div``
+
+const SocialDescription = styled.div`
+  ${textStylesLrg.base};
+  margin-bottom: var(--base-spacing);
+  color: var(--c-white);
 `
 
 const NavBar = styled.div`
