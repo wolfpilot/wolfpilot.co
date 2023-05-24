@@ -89,12 +89,8 @@ const Logo = styled(LogoComponent)`
   `}
 `
 
-const NavBar = styled.nav`
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: var(--site-header-height);
+const NavBar = styled.div`
+  height: 100%;
 `
 
 const NavList = styled.ul`
