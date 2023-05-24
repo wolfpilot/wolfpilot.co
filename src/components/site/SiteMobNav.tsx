@@ -163,12 +163,10 @@ const SocialDescription = styled.div`
 `
 
 const NavBar = styled.div`
-  position: fixed;
+  position: relative;
   z-index: ${zIndexes.siteNav};
-  top: 0;
-  right: 0;
-  left: 0;
   display: flex;
+  height: 100%;
   justify-content: space-between;
   height: var(--site-header-height);
   padding: calc(2 * var(--base-gutter));
