@@ -1,9 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-// Styles
-import { textStyles } from "@styles/typography"
-
 interface IProps {
   className?: string
   children?: React.ReactNode
@@ -14,7 +11,7 @@ const Text: React.FC<IProps> = ({ className, children }) => (
 )
 
 const Wrapper = styled.div`
-  ${textStyles.base};
+  white-space: pre-line;
 `
 
 export default Text

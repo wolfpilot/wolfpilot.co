@@ -14,7 +14,8 @@ import {
   spacing,
 } from "@styles/layout"
 import { colors } from "@styles/colors"
-import { fonts, textStyles, weights } from "@styles/typography"
+import { fonts, weights } from "@styles/typography"
+import { textStyles } from "./textStyles"
 import { sizes } from "@styles/sizes"
 
 export const base = css`
@@ -115,7 +116,7 @@ export const base = css`
   }
 
   body {
-    ${textStyles.base};
+    ${textStyles.copy};
     font-family: var(--font-primary);
     color: var(--c-black);
     background: var(--c-pageColor);
@@ -131,6 +132,28 @@ export const base = css`
   q,
   caption {
     margin-top: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: var(--base-gutter);
+    font-weight: ${weights.normal};
+  }
+
+  h1 {
+    ${textStyles.headingL};
+  }
+
+  h2 {
+    ${textStyles.headingM};
+  }
+
+  h3 {
+    ${textStyles.headingS};
   }
 
   a {

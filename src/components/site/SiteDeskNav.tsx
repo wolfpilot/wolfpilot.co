@@ -10,7 +10,7 @@ import { routes } from "@constants/routes"
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { ease, duration } from "@styles/animation"
-import { deskNavLinkStyles } from "@styles/typography"
+import { textStyles } from "@styles/textStyles"
 
 // Components
 import ContainerComponent from "@components/layout/Container"
@@ -105,18 +105,10 @@ const NavList = styled.ul`
 `
 
 const NavItemLink = styled(Link)`
-  ${deskNavLinkStyles.base};
+  ${textStyles.navLinkDesk};
   color: var(--c-neutral3);
   text-transform: lowercase;
   transition: color ${duration.medium}s ${ease.cubic};
-
-  ${mq.from.L`
-    ${deskNavLinkStyles.L};
-  `}
-
-  ${mq.from.XL`
-    ${deskNavLinkStyles.XL};
-  `}
 
   &:hover {
     color: var(--c-accent1);

@@ -9,7 +9,7 @@ import { routes } from "@constants/routes"
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
-import { mobNavLinkStyles, textStylesLrg } from "@styles/typography"
+import { textStyles } from "@styles/textStyles"
 import { ease, duration } from "@styles/animation"
 
 // Components
@@ -157,7 +157,7 @@ const Logo = styled(LogoComponent)<{ $isOpen: boolean }>`
 const Social = styled.div``
 
 const SocialDescription = styled.div`
-  ${textStylesLrg.base};
+  ${textStyles.copyL};
   margin-bottom: var(--base-spacing);
   color: var(--c-white);
 `
@@ -291,7 +291,7 @@ const NavItem = styled(motion.li)`
 `
 
 const NavItemLink = styled(Link)`
-  ${mobNavLinkStyles.base};
+  ${textStyles.navLinkMob};
   color: var(--c-white);
   transition: color ${duration.medium}s ${ease.cubic};
 
