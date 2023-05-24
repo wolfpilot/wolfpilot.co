@@ -169,7 +169,7 @@ const NavBar = styled.div`
   height: 100%;
   justify-content: space-between;
   height: var(--site-header-height);
-  padding: calc(2 * var(--grid-gutter-size));
+  padding: var(--spacing-default);
 `
 
 const ToggleLine = styled.span<{ $isOpen: boolean }>`
@@ -279,14 +279,14 @@ const NavContentInner = styled.div`
 const NavList = styled(motion.ul)`
   list-style: none;
   margin: 0;
-  padding: calc(2 * var(--grid-gutter-size)) 0;
+  padding: var(--spacing-default) 0;
 `
 
 const NavItem = styled(motion.li)`
   text-transform: lowercase;
 
   &:not(:last-of-type) {
-    margin-bottom: calc(2 * var(--grid-gutter-size));
+    margin-bottom: var(--spacing-default);
   }
 `
 

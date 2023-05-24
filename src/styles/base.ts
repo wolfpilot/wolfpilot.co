@@ -10,6 +10,7 @@ import {
   BORDER_RADIUS_SML,
   BORDER_RADIUS_LRG,
   columns,
+  offset,
   gutter,
   spacing,
 } from "@styles/layout"
@@ -49,6 +50,7 @@ export const base = css`
      */
     /* Set the default nr. of columns, gutter, etc. */
     --grid-columns: ${columns.XS};
+    --grid-offset-size: ${offset.XS};
     --grid-gutter-size: ${gutter.XS};
 
     /**
@@ -64,6 +66,7 @@ export const base = css`
 
     ${mq.from.S`
       --grid-columns: ${columns.S};
+      --grid-offset-size: ${offset.S};
       --grid-gutter-size: ${gutter.S};
     `}
 
@@ -72,6 +75,7 @@ export const base = css`
       --spacing-block: ${spacing.block.M};
       --spacing-section: ${spacing.section.M};
       --grid-columns: ${columns.M};
+      --grid-offset-size: ${offset.M};
       --grid-gutter-size: ${gutter.M};
     `}
 
@@ -79,11 +83,13 @@ export const base = css`
       --spacing-block: ${spacing.block.L};
       --spacing-section: ${spacing.section.L};
       --grid-columns: ${columns.L};
+      --grid-offset-size: ${offset.L};
       --grid-gutter-size: ${gutter.L};
     `}
 
     ${mq.from.XL`
       --grid-columns: ${columns.XL};
+      --grid-offset-size: ${offset.XL};
       --grid-gutter-size: ${gutter.XL};
       --grid-column-size: calc(
         (${MAX_CONTENT_WIDTH} - ((var(--grid-columns) + 1) * var(--grid-gutter-size))) /
