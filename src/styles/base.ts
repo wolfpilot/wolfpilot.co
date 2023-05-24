@@ -75,6 +75,9 @@ export const base = css`
     ${mq.from.XL`
       --base-columns: ${columns.XL};
       --base-gutter: ${gutter.XL};
+      --base-column-size: calc(
+        (${MAX_CONTENT_WIDTH} - ((var(--base-columns) + 1) * var(--base-gutter))) /
+          var(--base-columns));
     `}
       
     // Typography
