@@ -21,5 +21,14 @@ export const gutter = {
 
 export const spacing = {
   default: "20px",
-  section: "90px",
+  block: {
+    base: "40px",
+    M: "50px",
+    L: "60px",
+  },
+  section: {
+    base: "60px",
+    M: "80px",
+    L: "100px",
+  },
 }

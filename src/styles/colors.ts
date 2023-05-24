@@ -18,3 +18,7 @@ export const colors = {
   gridColumnBgColor: "#0085FF10",
   gridTextColor: "#151515",
 }
+
+export const gradients = {
+  accentDiagonal: "linear-gradient(135deg, #f49167, #f86449)",
+}

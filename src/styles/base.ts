@@ -13,7 +13,7 @@ import {
   gutter,
   spacing,
 } from "@styles/layout"
-import { colors } from "@styles/colors"
+import { colors, gradients } from "@styles/colors"
 import { fonts, weights } from "@styles/typography"
 import { textStyles } from "./textStyles"
 import { sizes } from "@styles/sizes"
@@ -43,8 +43,10 @@ export const base = css`
     /* Set the default nr. of columns, gutter, etc. */
     --base-columns: ${columns.XS};
     --base-gutter: ${gutter.XS};
-    --base-spacing: ${spacing.default};
-    --base-spacing-section: ${spacing.section};
+
+    --spacing-default: ${spacing.default};
+    --spacing-block: ${spacing.block.base};
+    --spacing-section: ${spacing.section.base};
 
     /**
       * To calculate the column size:
@@ -66,11 +68,15 @@ export const base = css`
       --site-header-height: ${sizes.siteHeaderSize.desk};
       --base-columns: ${columns.M};
       --base-gutter: ${gutter.M};
+      --spacing-block: ${spacing.block.M};
+      --spacing-section: ${spacing.section.M};
     `}
 
     ${mq.from.L`
       --base-columns: ${columns.L};
       --base-gutter: ${gutter.L};
+      --spacing-block: ${spacing.block.L};
+      --spacing-section: ${spacing.section.L};
     `}
 
     ${mq.from.XL`
@@ -99,6 +105,9 @@ export const base = css`
     --c-gridBgColor: ${colors.gridBgColor};
     --c-gridColumnBgColor: ${colors.gridColumnBgColor};
     --c-gridTextColor: ${colors.gridTextColor};
+
+    // Gradients
+    --g-accent-diagonal: ${gradients.accentDiagonal};
   }
 
   /* Custom text highlighting */

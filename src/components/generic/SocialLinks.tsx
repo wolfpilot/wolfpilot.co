@@ -55,7 +55,7 @@ const SocialList = styled.ul`
 
 const SocialItem = styled.li`
   &:not(:last-child) {
-    margin-right: calc(var(--base-spacing) / 2);
+    margin-right: calc(var(--spacing-default) / 2);
   }
 `
 
@@ -67,7 +67,7 @@ const SocialItemLinkIcon = styled(Icon)<{ option: Option }>`
 
 const SocialItemLink = styled(Link)<{ option: Option }>`
   display: block;
-  padding: calc(var(--base-spacing) / 2);
+  padding: calc(var(--spacing-default) / 2);
   line-height: 0;
 
   &:hover {

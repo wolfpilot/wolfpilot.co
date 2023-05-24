@@ -158,7 +158,7 @@ const Social = styled.div``
 
 const SocialDescription = styled.div`
   ${textStyles.copyL};
-  margin-bottom: var(--base-spacing);
+  margin-bottom: var(--spacing-default);
   color: var(--c-white);
 `
 
