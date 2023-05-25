@@ -26,18 +26,20 @@ const updateWindowWidthAndHeight = (newWidth: number, newHeight: number) => {
   window.dispatchEvent(new Event("resize"))
 }
 
-it("should get the default jsdom window width and height", () => {
-  const { result } = renderHook(() => useWindowSize())
+describe("useWindowSize", () => {
+  it("should get the default jsdom window width and height", () => {
+    const { result } = renderHook(() => useWindowSize())
 
-  expect(result.current.width).toBe(1024)
-  expect(result.current.height).toBe(768)
-})
+    expect(result.current.width).toBe(1024)
+    expect(result.current.height).toBe(768)
+  })
 
-it("should get the correct window width and height on update", () => {
-  updateWindowWidthAndHeight(1920, 1080)
+  it("should get the correct window width and height on update", () => {
+    updateWindowWidthAndHeight(1920, 1080)
 
-  const { result } = renderHook(() => useWindowSize())
+    const { result } = renderHook(() => useWindowSize())
 
-  expect(result.current.width).toBe(1920)
-  expect(result.current.height).toBe(1080)
+    expect(result.current.width).toBe(1920)
+    expect(result.current.height).toBe(1080)
+  })
 })

@@ -10,8 +10,12 @@ const Text: React.FC<IProps> = ({ className, children }) => (
   <Wrapper className={className}>{children}</Wrapper>
 )
 
-const Wrapper = styled.div`
+const Wrapper = styled.p`
   white-space: pre-line;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `
 
 export default Text
