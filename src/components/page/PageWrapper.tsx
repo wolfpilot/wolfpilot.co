@@ -3,30 +3,21 @@ import styled from "styled-components"
 // Config
 import { config as pageConfig } from "@config/page.config"
 
-// Utils
-import { usePageState } from "@utils/context/PageContext"
-
 // Components
-import SplashScreenUI from "../screens/SplashScreenUI"
-import PageTransitionUI from "../screens/PageTransitionUI"
+import SplashScreenUI from "@components/screens/SplashScreenUI"
+import PageTransitionUI from "@components/screens/PageTransitionUI"
 
 export interface Props {
   children?: React.ReactNode
 }
 
-const PageWrapper: React.FC<Props> = ({ children }: Props) => {
-  const pageState = usePageState()
+const PageWrapper: React.FC<Props> = ({ children }: Props) => (
+  <Main>
+    {pageConfig.showSplashScreen && <SplashScreenUI />}
 
-  return (
-    <Main>
-      {pageConfig.showSplashScreen && !pageState.hasSplashScreenPlayed && (
-        <SplashScreenUI />
-      )}
-
-      <PageTransitionUI>{children}</PageTransitionUI>
-    </Main>
-  )
-}
+    <PageTransitionUI>{children}</PageTransitionUI>
+  </Main>
+)
 
 const Main = styled.main`
   padding-top: var(--site-header-height);

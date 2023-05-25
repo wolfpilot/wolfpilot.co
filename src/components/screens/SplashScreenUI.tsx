@@ -2,8 +2,9 @@ import { useEffect } from "react"
 import styled, { css, keyframes } from "styled-components"
 
 // Utils
-import { usePageDispatch } from "@utils/context/PageContext"
+import { usePageState, usePageDispatch } from "@utils/context/PageContext"
 import { delay } from "@utils/helper"
+import { disableScroll } from "@utils/domHelper"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -24,8 +25,10 @@ export const TOTAL_ANIM_DURATION =
   3.5 * DRAW_ANIM_DURATION + 2 * PAINT_ANIM_DURATION
 
 const SplashScreenUI: React.FC = () => {
+  const pageState = usePageState()
   const pageDispatch = usePageDispatch()
 
+  // Handle animation cycle
   useEffect(() => {
     const onAnimEnd = async () => {
       await delay(TOTAL_ANIM_DURATION * 1000)
@@ -38,6 +41,13 @@ const SplashScreenUI: React.FC = () => {
 
     onAnimEnd()
   }, [pageDispatch])
+
+  // Handle scroll lock
+  useEffect(() => {
+    disableScroll(document.documentElement, !pageState.hasSplashScreenPlayed)
+  }, [pageState.hasSplashScreenPlayed])
+
+  if (pageState.hasSplashScreenPlayed) return null
 
   return (
     <Wrapper>
