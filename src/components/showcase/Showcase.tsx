@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Image, { ImageProps } from "next/image"
 import styled from "styled-components"
 
 // Types
@@ -29,6 +30,8 @@ export interface ShowcaseItem {
   name: string
   tagline: string
   tags: Tag[]
+  thumb: ImageProps
+  image: ImageProps
   alt: string
   links?: ShowcaseItemLink[]
 }
@@ -82,9 +85,20 @@ const Showcase: React.FC<Props> = ({ items }) => {
       </NavList>
 
       {activeItems && (
-        <Project>
+        <ProjectList>
           {activeItems.map((item) => (
             <ProjectItem key={item.id}>
+              {item.name && item.tagline && item.thumb?.src && (
+                <ProjectItemThumbnailWrapper>
+                  <ProjectItemThumbnail
+                    src={item.thumb.src}
+                    width={item.thumb.width}
+                    height={item.thumb.height}
+                    alt={item.thumb.alt}
+                  />
+                </ProjectItemThumbnailWrapper>
+              )}
+
               <ProjectItemContent>
                 {item.name && (
                   <ProjectItemName level="h3">{item.name}</ProjectItemName>
@@ -96,7 +110,7 @@ const Showcase: React.FC<Props> = ({ items }) => {
               </ProjectItemContent>
             </ProjectItem>
           ))}
-        </Project>
+        </ProjectList>
       )}
     </Wrapper>
   )
@@ -136,7 +150,7 @@ const NavItemSpacer = styled.div`
   color: var(--c-neutral3);
 `
 
-const Project = styled.div`
+const ProjectList = styled.div`
   ${mq.from.M`
     column-count: 2;
     column-gap: var(--grid-gutter);
@@ -157,6 +171,16 @@ const ProjectItem = styled.div`
   &:not(:last-of-type) {
     margin-bottom: var(--grid-gutter-size);
   }
+`
+
+const ProjectItemThumbnailWrapper = styled.div`
+  position: relative;
+`
+
+const ProjectItemThumbnail = styled(Image)`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 `
 
 const ProjectItemContent = styled.div`

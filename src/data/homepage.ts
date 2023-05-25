@@ -3,9 +3,14 @@ import HeroImageSrc from "/public/images/graphics/wolf.png"
 import AboutFeaturedImageSrc from "/public/images/photos/homepage-about-featured.jpg"
 
 // Types
-import { Props as ShowcaseProps } from "@components/showcase/Showcase"
+import { ShowcaseItem } from "@components/showcase/Showcase"
 
-const showcaseData: ShowcaseProps = {
+export type ShowcaseItemRaw = Omit<ShowcaseItem, "thumb" | "image">
+export interface ShowcaseDataRaw {
+  items: ShowcaseItemRaw[]
+}
+
+const showcaseDataRaw: ShowcaseDataRaw = {
   items: [
     {
       id: "up-n-running",
@@ -405,6 +410,6 @@ export const data = {
   work: {
     heading: "Work",
     description: "Take a look at some of my projects",
-    showcase: showcaseData,
+    showcase: showcaseDataRaw,
   },
 }
