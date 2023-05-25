@@ -1,13 +1,17 @@
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import styled from "styled-components"
 import { Variants, motion } from "framer-motion"
 
 // Constants
 import { routes } from "@constants/routes"
 
+// Utils
+import { disableScroll } from "@utils/domHelper"
+import { useWindowSize } from "@utils/hooks/useWindowSize"
+
 // Styles
-import { mq } from "@styles/utils/mediaQueries"
+import { mq, breakpoints } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
 import { textStyles } from "@styles/textStyles"
 import { ease, duration } from "@styles/animation"
@@ -66,10 +70,23 @@ const socialVariants: Variants = {
 
 const SiteMobNav: React.FC<Props> = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const windowSize = useWindowSize()
 
-  const handleOnClick = () => {
-    setIsOpen(!isOpen)
+  const toggle = (newState: boolean) => {
+    setIsOpen(newState)
+    disableScroll(document.documentElement, newState)
   }
+
+  const handleOnToggle = () => {
+    toggle(!isOpen)
+  }
+
+  // Reset behaviour on larger devices
+  useEffect(() => {
+    if (!isOpen || !windowSize.width || windowSize.width < breakpoints.M) return
+
+    toggle(false)
+  }, [isOpen, windowSize.width])
 
   return (
     <Wrapper>
@@ -79,7 +96,7 @@ const SiteMobNav: React.FC<Props> = () => {
         </LogoLink>
         <Toggle
           $isOpen={isOpen}
-          onClick={handleOnClick}
+          onClick={handleOnToggle}
           aria-label="Toggle mobile navigation"
         >
           <ToggleLine $isOpen={isOpen} />

@@ -3,11 +3,21 @@ import { render, screen, fireEvent } from "@testing-library/react"
 // Constants
 import { routes } from "@constants/routes"
 
+// Styles
+import { breakpoints } from "@styles/utils/mediaQueries"
+
+// Utils
+import { updateWindowSize } from "@utils/hooks/useWindowSize.spec"
+
 // Components
 import SiteMobNav from "./SiteMobNav"
 
 describe("SiteMobNav", () => {
   it("renders correctly", () => {
+    updateWindowSize({
+      width: breakpoints.S,
+    })
+
     render(<SiteMobNav />)
 
     // Check that the logo link is being rendered
@@ -25,6 +35,10 @@ describe("SiteMobNav", () => {
   })
 
   it("shows the nav content when toggle is pressed", async () => {
+    updateWindowSize({
+      width: breakpoints.S,
+    })
+
     render(<SiteMobNav />)
 
     const toggleButton = screen.getByRole("button", {
