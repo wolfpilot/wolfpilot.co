@@ -110,6 +110,7 @@ export const base = css`
     --c-pageColor: ${colors.pageColor};
     --c-accent1: ${colors.accent1};
     --c-accent2: ${colors.accent2};
+    --c-cursor: ${colors.cursor};
     --c-textHighlight: ${colors.textHighlight};
     --c-gridBgColor: ${colors.gridBgColor};
     --c-gridColumnBgColor: ${colors.gridColumnBgColor};

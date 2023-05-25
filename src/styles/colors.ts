@@ -13,6 +13,7 @@ export const colors = {
   pageColor: "#FCFBFB",
   accent1: "#FF864C",
   accent2: "#F0482F",
+  cursor: "#69ff9c",
   textHighlight: "#14FF6460",
   gridBgColor: "#6470790d",
   gridColumnBgColor: "#0085FF10",
