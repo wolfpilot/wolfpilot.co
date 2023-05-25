@@ -81,6 +81,19 @@ const SiteMobNav: React.FC<Props> = () => {
     toggle(!isOpen)
   }
 
+  // Close on ESC
+  useEffect(() => {
+    const handleOnKeydown = (e: KeyboardEvent) => {
+      if (isOpen && e.key === "Escape") {
+        toggle(false)
+      }
+    }
+
+    document.addEventListener("keydown", handleOnKeydown)
+
+    return () => document.removeEventListener("keydown", handleOnKeydown)
+  }, [isOpen])
+
   // Reset behaviour on larger devices
   useEffect(() => {
     if (!isOpen || !windowSize.width || windowSize.width < breakpoints.M) return
