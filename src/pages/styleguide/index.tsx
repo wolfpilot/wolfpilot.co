@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Image from "next/image"
 import styled from "styled-components"
 
@@ -15,7 +14,7 @@ import Text from "@components/generic/Text"
 
 const StyleguidePage: React.FC = () => {
   return (
-    <Main>
+    <>
       <Container>
         <Header>
           <Image
@@ -24,12 +23,9 @@ const StyleguidePage: React.FC = () => {
             alt={"Logo of a hand-painted wolf with aviator goggles on"}
           />
           <Title>Styleguide</Title>
-          <Link href="/" scroll={false}>
-            Home Page
-          </Link>
         </Header>
 
-        <Content>
+        <Section>
           <ContentHeading level="h2">Headings</ContentHeading>
 
           <Heading level="h1">Heading 1</Heading>
@@ -38,9 +34,9 @@ const StyleguidePage: React.FC = () => {
           <Heading level="h4">Heading 4</Heading>
           <Heading level="h5">Heading 5</Heading>
           <Heading level="h6">Heading 6</Heading>
-        </Content>
+        </Section>
 
-        <Content>
+        <Section>
           <ContentHeading level="h2">Copy</ContentHeading>
 
           <Text>
@@ -67,73 +63,63 @@ const StyleguidePage: React.FC = () => {
             viverra vitae congue eu consequat ac. Orci ac auctor augue mauris
             augue neque gravida in fermentum.
           </Text>
-        </Content>
+        </Section>
 
-        <Content>
+        <Section>
           <ContentHeading level="h2">Colors</ContentHeading>
 
           <ColorList>
             {Object.entries(colors).map(([key, val], index) => (
               <ColorBlock key={index} hex={val}>
-                {key && <Heading level="h5">{key}</Heading>}
+                {key && <Heading level="h3">{key}</Heading>}
                 {val && <Text>{val}</Text>}
               </ColorBlock>
             ))}
           </ColorList>
-        </Content>
+        </Section>
       </Container>
-    </Main>
+    </>
   )
 }
-
-const Main = styled.div`
-  padding: var(--base-gutter);
-`
-Main.displayName = "Main"
 
 const Header = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 25vh;
-  margin-bottom: var(--base-gutter);
+  min-height: 25vh;
+  margin-bottom: var(--spacing-block);
+  padding: var(--spacing-block) 0;
   border-radius: var(--border-radius-sml);
   background-color: var(--c-neutral4);
   color: var(--c-black);
 `
-Header.displayName = "Header"
 
-const Title = styled.div`
+const Title = styled.h1`
   font-size: 72px;
 `
-Title.displayName = "Title"
 
-const Content = styled.div`
+const Section = styled.div`
   &:not(:last-of-type) {
-    margin-bottom: var(--base-gutter);
-    padding-bottom: calc(2 * var(--base-gutter));
+    margin-bottom: var(--spacing-section);
   }
 `
-Content.displayName = "Content"
 
 const ContentHeading = styled(Heading)`
+  padding-bottom: var(--spacing-default);
   text-transform: uppercase;
   letter-spacing: 0.5em;
   border-bottom: 1px solid var(--c-neutral3);
 `
-ContentHeading.displayName = "ContentHeading"
 
 const ColorList = styled.div``
-ColorList.displayName = "ColorList"
 
 const ColorBlock = styled.div<{ hex: string }>`
-  margin: var(--base-gutter) 0;
-  padding: var(--base-gutter);
+  margin: var(--spacing-default) 0;
+  padding: var(--spacing-default);
   border-radius: var(--border-radius-sml);
   background-color: ${({ hex }) => hex};
   ${({ hex }) => hex === colors.black && `color: ${colors.white}`};
 `
-ColorBlock.displayName = "ColorBlock"
 
 export default StyleguidePage

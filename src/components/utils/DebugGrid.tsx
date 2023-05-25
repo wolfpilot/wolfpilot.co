@@ -44,7 +44,7 @@ const DebugGrid: React.FC = () => {
   useEffect(() => {
     const baseColumnsStr = getComputedStyle(
       document.documentElement
-    ).getPropertyValue("--base-columns")
+    ).getPropertyValue("--grid-columns")
     const baseColumnsNr = parseInt(baseColumnsStr, 10)
 
     setColumnsNr(baseColumnsNr)
@@ -87,7 +87,7 @@ Wrapper.displayName = "Wrapper"
 
 const Info = styled.h2`
   position: absolute;
-  top: var(--base-gutter);
+  top: var(--grid-gutter-size);
   left: 0;
   right: 0;
   text-align: center;
@@ -96,13 +96,13 @@ Info.displayName = "Info"
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(var(--base-columns), 1fr);
-  grid-gap: var(--base-gutter);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: var(--grid-gutter-size);
   max-width: var(--max-content-width);
   width: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 0 var(--base-gutter);
+  padding: 0 var(--grid-offset-size);
   background-color: var(--c-gridBgColor);
 `
 Grid.displayName = "Grid"

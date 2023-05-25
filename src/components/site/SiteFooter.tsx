@@ -32,7 +32,7 @@ const SiteFooter: React.FC = () => {
 }
 
 const Wrapper = styled.footer`
-  padding: var(--base-gutter) 0;
+  padding: var(--spacing-default) 0;
 `
 
 const Content = styled.div`
@@ -47,7 +47,7 @@ const Content = styled.div`
 `
 
 const SocialLinks = styled(SocialLinksComponent)`
-  margin-bottom: var(--base-gutter);
+  margin-bottom: var(--spacing-default);
 
   ${mq.from.M`
     margin-bottom:0;

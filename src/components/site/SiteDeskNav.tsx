@@ -10,7 +10,7 @@ import { routes } from "@constants/routes"
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { ease, duration } from "@styles/animation"
-import { deskNavLinkStyles } from "@styles/typography"
+import { textStyles } from "@styles/textStyles"
 
 // Components
 import ContainerComponent from "@components/layout/Container"
@@ -79,13 +79,13 @@ const Logo = styled(LogoComponent)`
 
   ${mq.from.L`
     width: 75px;
-    margin-right: var(--base-gutter);
-    margin-left: var(--base-gutter);
+    margin-right: var(--spacing-default);
+    margin-left: var(--spacing-default);
   `}
 
   ${mq.from.XL`
-    margin-right: calc(2 * var(--base-gutter));
-    margin-left: calc(2 * var(--base-gutter));
+    margin-right: calc(2 * var(--spacing-default));
+    margin-left: calc(2 * var(--spacing-default));
   `}
 `
 
@@ -105,18 +105,10 @@ const NavList = styled.ul`
 `
 
 const NavItemLink = styled(Link)`
-  ${deskNavLinkStyles.base};
+  ${textStyles.navLinkDesk};
   color: var(--c-neutral3);
   text-transform: lowercase;
   transition: color ${duration.medium}s ${ease.cubic};
-
-  ${mq.from.L`
-    ${deskNavLinkStyles.L};
-  `}
-
-  ${mq.from.XL`
-    ${deskNavLinkStyles.XL};
-  `}
 
   &:hover {
     color: var(--c-accent1);
