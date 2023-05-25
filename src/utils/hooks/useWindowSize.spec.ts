@@ -8,20 +8,31 @@ import { useWindowSize } from "./useWindowSize"
  * For more info, see:
  * https://stackoverflow.com/a/60817030
  */
-const updateWindowWidthAndHeight = (newWidth: number, newHeight: number) => {
+export const updateWindowSize = ({
+  width,
+  height,
+}: {
+  width?: number
+  height?: number
+}) => {
   const windowPropsConfig = {
     writable: true,
     configurable: true,
   }
 
-  Object.defineProperty(window, "innerWidth", {
-    ...windowPropsConfig,
-    value: newWidth,
-  })
-  Object.defineProperty(window, "innerHeight", {
-    ...windowPropsConfig,
-    value: newHeight,
-  })
+  if (typeof width !== undefined) {
+    Object.defineProperty(window, "innerWidth", {
+      ...windowPropsConfig,
+      value: width,
+    })
+  }
+
+  if (typeof height !== undefined) {
+    Object.defineProperty(window, "innerHeight", {
+      ...windowPropsConfig,
+      value: height,
+    })
+  }
 
   window.dispatchEvent(new Event("resize"))
 }
@@ -35,7 +46,10 @@ describe("useWindowSize", () => {
   })
 
   it("should get the correct window width and height on update", () => {
-    updateWindowWidthAndHeight(1920, 1080)
+    updateWindowSize({
+      width: 1920,
+      height: 1080,
+    })
 
     const { result } = renderHook(() => useWindowSize())
 
