@@ -10,4 +10,5 @@ export const zIndexes = {
   pageTransitionUI: 999,
   siteHeader: 99,
   siteNav: 98,
+  customCursor: 97,
 }
