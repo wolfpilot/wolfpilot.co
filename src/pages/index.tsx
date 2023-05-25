@@ -13,6 +13,7 @@ import Container from "@components/layout/Container"
 import HeadingComponent from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 import Card from "@components/generic/Card"
+import Showcase from "@components/showcase/Showcase"
 
 const HomePage = () => {
   if (!data) return null
@@ -20,7 +21,7 @@ const HomePage = () => {
   return (
     <>
       {data.about && (
-        <Section>
+        <Section id="about">
           <Container>
             {data.about.hero && (
               <Hero>
@@ -43,12 +44,36 @@ const HomePage = () => {
           </Container>
         </Section>
       )}
+
+      {data.work && (
+        <Section id="work">
+          <Container>
+            <SectionHeader>
+              {data.work.heading && (
+                <SectionHeading level="h2">{data.work.heading}</SectionHeading>
+              )}
+
+              {data.work.description && <Text>{data.work.description}</Text>}
+            </SectionHeader>
+
+            {data.work.showcase && <Showcase {...data.work.showcase} />}
+          </Container>
+        </Section>
+      )}
     </>
   )
 }
 
 const Section = styled.section`
   margin-bottom: var(--spacing-section);
+`
+
+const SectionHeader = styled.div`
+  margin-bottom: var(--spacing-block);
+`
+
+const SectionHeading = styled(HeadingComponent)`
+  ${textStyles.headingL};
 `
 
 const Hero = styled.div`

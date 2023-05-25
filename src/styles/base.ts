@@ -159,7 +159,7 @@ export const base = css`
   h4,
   h5,
   h6 {
-    margin-bottom: var(--grid-gutter-size);
+    margin-bottom: calc(var(--spacing-default) / 2);
     font-weight: ${weights.normal};
   }
 
