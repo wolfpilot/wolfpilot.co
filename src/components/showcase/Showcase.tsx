@@ -235,9 +235,22 @@ const ProjectItemThumbnailWrapper = styled.div`
 `
 
 const ProjectItemThumbnail = styled(Image)`
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  /* A little border to help out with item separation on one column */
+  border-width: 2px;
+  border-color: var(--c-neutral4);
+  border-top-style: solid;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-top-left-radius: var(--border-radius-sml);
+  border-top-right-radius: var(--border-radius-sml);
+
+  ${mq.from.M`
+    border: none;
+  `}
 `
 
 const ProjectItemContent = styled.div`
