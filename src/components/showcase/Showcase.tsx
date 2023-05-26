@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Image, { ImageProps } from "next/image"
 import styled from "styled-components"
+import { Variants, AnimatePresence, motion } from "framer-motion"
 
 // Types
 import { Anchor } from "@ts/dom"
@@ -49,6 +50,17 @@ const tags: Tag[] = [
   "illustration",
 ]
 
+const variants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 16,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+}
+
 const Showcase: React.FC<Props> = ({ items }) => {
   const [activeTag, setActiveTag] = useState<Tag>("featured")
 
@@ -84,39 +96,47 @@ const Showcase: React.FC<Props> = ({ items }) => {
         })}
       </NavList>
 
-      {activeItems && (
-        <ProjectList>
-          {activeItems.map((item) => (
-            <ProjectItem key={item.id}>
-              {item.name && item.tagline && item.thumb?.src && (
-                <ProjectItemThumbnailWrapper>
-                  <ProjectItemThumbnail
-                    src={item.thumb.src}
-                    sizes={`
+      <AnimatePresence initial={false} mode="wait">
+        {activeItems && (
+          <ProjectList
+            key={activeTag}
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          >
+            {activeItems.map((item) => (
+              <ProjectItem key={item.id}>
+                {item.name && item.tagline && item.thumb?.src && (
+                  <ProjectItemThumbnailWrapper>
+                    <ProjectItemThumbnail
+                      src={item.thumb.src}
+                      sizes={`
                       (min-width: ${mq.breakpoints.L}px) 456px,
                       (min-width: ${mq.breakpoints.M}px) 50vw,
                       100vw,
                     `}
-                    width={item.thumb.width}
-                    height={item.thumb.height}
-                    alt={item.thumb.alt}
-                  />
-                </ProjectItemThumbnailWrapper>
-              )}
-
-              <ProjectItemContent>
-                {item.name && (
-                  <ProjectItemName level="h3">{item.name}</ProjectItemName>
+                      width={item.thumb.width}
+                      height={item.thumb.height}
+                      alt={item.thumb.alt}
+                    />
+                  </ProjectItemThumbnailWrapper>
                 )}
 
-                {item.tagline && (
-                  <ProjectItemTagline>{item.tagline}</ProjectItemTagline>
-                )}
-              </ProjectItemContent>
-            </ProjectItem>
-          ))}
-        </ProjectList>
-      )}
+                <ProjectItemContent>
+                  {item.name && (
+                    <ProjectItemName level="h3">{item.name}</ProjectItemName>
+                  )}
+
+                  {item.tagline && (
+                    <ProjectItemTagline>{item.tagline}</ProjectItemTagline>
+                  )}
+                </ProjectItemContent>
+              </ProjectItem>
+            ))}
+          </ProjectList>
+        )}
+      </AnimatePresence>
     </Wrapper>
   )
 }
@@ -176,7 +196,7 @@ const NavItemSpacer = styled.div`
   color: var(--c-neutral2);
 `
 
-const ProjectList = styled.div`
+const ProjectList = styled(motion.div)`
   ${mq.from.M`
     column-count: 2;
     column-gap: var(--grid-gutter);
@@ -201,6 +221,17 @@ const ProjectItem = styled.div`
 
 const ProjectItemThumbnailWrapper = styled.div`
   position: relative;
+
+  &::after {
+    /* content: ""; */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--c-accent2);
+    opacity: 0.5;
+  }
 `
 
 const ProjectItemThumbnail = styled(Image)`
