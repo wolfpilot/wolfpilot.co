@@ -126,13 +126,29 @@ const Wrapper = styled.div``
 const NavList = styled.ul`
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 0;
   margin-bottom: var(--spacing-default);
-  padding: 0;
+  padding-right: calc(var(--spacing-default) / 2);
+  padding-left: calc(var(--spacing-default) / 2);
+  background-color: var(--c-neutral5);
+
+  ${mq.from.L`
+    justify-content: flex-start;
+    background: none;
+  `}
 `
 
 const NavItem = styled.li`
   display: flex;
+  margin-top: 8px;
+  margin-bottom: 8px;
+
+  ${mq.from.L`
+    margin-top: 0;
+    margin-bottom: 0;
+  `}
 `
 
 const NavItemButton = styled.button<{ $isActive: boolean }>`
@@ -141,8 +157,12 @@ const NavItemButton = styled.button<{ $isActive: boolean }>`
   border: none;
   background: none;
   color: ${({ $isActive }) =>
-    $isActive ? "var(--c-accent2)" : "var(--c-neutral3)"};
+    $isActive ? "var(--c-accent2)" : "var(--c-neutral1)"};
   transition: color ${duration.medium}s ${ease.cubic};
+
+  &:focus {
+    color: var(--c-black);
+  }
 
   &:hover {
     color: var(--c-accent2);
@@ -150,9 +170,10 @@ const NavItemButton = styled.button<{ $isActive: boolean }>`
 `
 
 const NavItemSpacer = styled.div`
-  margin-right: 8px;
-  margin-left: 8px;
-  color: var(--c-neutral3);
+  display: block;
+  margin-right: calc(var(--spacing-default) / 2);
+  margin-left: calc(var(--spacing-default) / 2);
+  color: var(--c-neutral2);
 `
 
 const ProjectList = styled.div`
