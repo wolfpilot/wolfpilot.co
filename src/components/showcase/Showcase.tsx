@@ -92,6 +92,11 @@ const Showcase: React.FC<Props> = ({ items }) => {
                 <ProjectItemThumbnailWrapper>
                   <ProjectItemThumbnail
                     src={item.thumb.src}
+                    sizes={`
+                      (min-width: ${mq.breakpoints.L}px) 456px,
+                      (min-width: ${mq.breakpoints.M}px) 50vw,
+                      100vw,
+                    `}
                     width={item.thumb.width}
                     height={item.thumb.height}
                     alt={item.thumb.alt}
