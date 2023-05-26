@@ -12,7 +12,7 @@ export const duration = {
   fast: 0.1,
   medium: 0.25,
   slow: 0.5,
-  verySlow: 0.75,
+  verySlow: 1,
 }
 
 // Effects
