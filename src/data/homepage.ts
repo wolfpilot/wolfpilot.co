@@ -21,8 +21,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Illustration of a plastic cup with a straw in it next to some text.",
       links: [
         {
-          type: "ext",
-          label: "Gulp Boilerplate",
+          label: "Github",
           url: "https://github.com/wolfpilot/up-n-running-gulp-boilerplate",
         },
       ],
@@ -36,9 +35,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Two warriors armed with futuristic shields and swords face a 4-legged giant insectoid on an alien world. A swarm can be seen in the background, gathered around a human ship.",
       links: [
         {
-          type: "ext",
-          label: "Forever Darkness",
-          url: "http://n-deed.deviantart.com/art/Forever-Darkness-Book-Cover-332757595",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Forever-Darkness-Book-Cover-332757595",
         },
       ],
     },
@@ -51,8 +49,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "UI showing a centred image split in half with various debugging text being displayed.",
       links: [
         {
-          type: "ext",
-          label: "",
+          label: "Github",
           url: "https://github.com/wolfpilot/ColourMe",
         },
       ],
@@ -66,8 +63,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "An album preview showing the track list and the artwork at the top.",
       links: [
         {
-          type: "ext",
-          label: "",
+          label: "Github",
           url: "https://github.com/wolfpilot/music-box",
         },
       ],
@@ -80,14 +76,12 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Reel-to-reel tape recorder created in code only",
       links: [
         {
-          type: "int",
           label: "",
           url: "/case-studies/retrocade",
         },
         {
-          type: "ext",
-          label: "",
-          url: "http://codepen.io/wolfpilot/pen/5a00949b8ade2d0010989e454dfe654f/",
+          label: "Codepen",
+          url: "https://codepen.io/wolfpilot/pen/5a00949b8ade2d0010989e454dfe654f/",
         },
       ],
     },
@@ -99,9 +93,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Half destroyed mecha on an alien moon. It's weilding a smoking gatling gun.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
         },
       ],
     },
@@ -114,9 +107,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "A young man resting on a tree admires a distant waterfall. 30 meters above, there is a small, rustic house on the cliffside.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
         },
       ],
     },
@@ -128,9 +120,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Rusted hot rod sitting in front of a sunset and a palm tree.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Vandal-396333301",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Vandal-396333301",
         },
       ],
     },
@@ -143,9 +134,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Simple smartphone design with a power button on the right side and volume on the left.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://codepen.io/wolfpilot/full/NrqemV/",
+          label: "Codepen",
+          url: "https://codepen.io/wolfpilot/full/NrqemV/",
         },
       ],
     },
@@ -166,7 +156,6 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Logo spells Centre for Agroecology, Water and Resilience.",
       links: [
         {
-          type: "int",
           label: "",
           url: "/case-studies/cawr",
         },
@@ -181,9 +170,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Painting of a broken Orc shield. On its front, an eerie skull protrudes through the metal, grinning.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Orc-Shield-323026962",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Orc-Shield-323026962",
         },
       ],
     },
@@ -195,9 +183,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Character shapes and a fully-fledged rendering of an Amazonian warrior.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Silhouettes-479116661",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Silhouettes-479116661",
         },
       ],
     },
@@ -210,9 +197,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Green humanoid strapped in a shiny, scaled armour. Wields futuristic beam weapon.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Commission-Othor-Warrior-300991233",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Commission-Othor-Warrior-300991233",
         },
       ],
     },
@@ -225,9 +211,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Frog humanoid holding spear in hand. The spear emits light from its top, almost as if it's fire.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Commission-The-Tulh-300322013",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Commission-The-Tulh-300322013",
         },
       ],
     },
@@ -239,9 +224,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Humanoid cybord wielding a futuristic energy weapon. Has a red light sensor in place of eyes and multiple antennas can be seen on its back.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Corporate-Ghost-Recon-289478028",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Corporate-Ghost-Recon-289478028",
         },
       ],
     },
@@ -253,9 +237,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Grim Reaper and his trusty scythe, a true classic.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Grim-Reaper-Commission-334034630",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Grim-Reaper-Commission-334034630",
         },
       ],
     },
@@ -268,9 +251,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Futuristic city floating above a canyon. Waterfalls can be seen flowing from huge pipes underneath the city. An old man watches silently from afar.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/The-Floating-City-290472146",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/The-Floating-City-290472146",
         },
       ],
     },
@@ -283,9 +265,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "The desert warrior has fiery eyes and pulls a knife towards his chest. He's ready to defend himself from whatever he may face.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Nomad-Warrior-288896159",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Nomad-Warrior-288896159",
         },
       ],
     },
@@ -297,9 +278,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Plasma rifle. There are lights indicating the bullets left in the magazine, as well as heat sinks to allow for better cooling of the weapon",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/TH-50-SPECTRE-Sniper-Rifle-332046473",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/TH-50-SPECTRE-Sniper-Rifle-332046473",
         },
       ],
     },
@@ -312,9 +292,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "The samurai is channeling energy into his left palm.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Samurai-I-264578714",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Samurai-I-264578714",
         },
       ],
     },
@@ -326,9 +305,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Surrounded by his minions, an Orc chieftain sacrifices a heart in a bloody explosion.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Red-Fury-265161473",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Red-Fury-265161473",
         },
       ],
     },
@@ -347,9 +325,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "Female pirate dressed in a corset and puffed shirt. Has gun strapped to her chest.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Steampunk-Pirate-480076759",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Steampunk-Pirate-480076759",
         },
       ],
     },
@@ -361,9 +338,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "A rocky golem meets his old human friend in a garden of many luminous and colourful plants.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Hello-There-Old-Friend-292403819",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Hello-There-Old-Friend-292403819",
         },
       ],
     },
@@ -376,9 +352,8 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       alt: "The toucan sits on a branch looking above.",
       links: [
         {
-          type: "ext",
-          label: "",
-          url: "http://n-deed.deviantart.com/art/Toucan-Study-419654587",
+          label: "DeviantArt",
+          url: "https://n-deed.deviantart.com/art/Toucan-Study-419654587",
         },
       ],
     },

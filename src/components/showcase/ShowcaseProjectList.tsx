@@ -32,6 +32,7 @@ const ShowcaseProjectList: React.FC<Props> = ({ items }) => (
         name={item.name}
         tagline={item.tagline}
         thumb={item.thumb}
+        links={item.links}
       />
     ))}
   </Wrapper>

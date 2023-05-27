@@ -1,14 +1,18 @@
 import fs from "fs"
 import path from "path"
 import sizeOf from "image-size"
-import Image from "next/image"
+import Image, { ImageProps } from "next/image"
 import styled from "styled-components"
 
 // Types
 import { NextPage, GetStaticProps } from "next"
+import { Route } from "@ts/routes"
 
 // Data
 import { data as rawData, ShowcaseItemRaw } from "@data/homepage"
+
+// Utils
+import { getLinkType } from "@utils/routeHelper"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -91,9 +95,28 @@ export const getStaticProps: GetStaticProps = async () => {
   const { work: workData } = rawData
 
   /**
+   * Generate additional data required on the client-side at render time
+   */
+  const generateLinksData = (item: ShowcaseItemRaw): Route[] => {
+    if (!item.links?.length) return []
+
+    return item.links.map((link) => {
+      if (!link.url) return link
+
+      return {
+        ...link,
+        type: getLinkType(link.url),
+      }
+    })
+  }
+
+  /**
    * Generate additional data required by Next to serve static assets
    */
-  const generateImageData = (item: ShowcaseItemRaw, isThumb: boolean) => {
+  const generateImageData = (
+    item: ShowcaseItemRaw,
+    isThumb: boolean
+  ): ImageProps => {
     const suffix = isThumb
       ? `${item.id}/${item.id}--thumb.jpg`
       : `${item.id}/${item.id}.jpg`
@@ -114,6 +137,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const parsedWorkItems = workData.showcase.items.map((item) => ({
     ...item,
+    links: generateLinksData(item),
     thumb: generateImageData(item, true),
     image: generateImageData(item, false),
   }))
@@ -161,7 +185,7 @@ const HeroBackdrop = styled.div`
   width: calc(2 * var(--grid-column-size));
   height: calc(2 * var(--grid-column-size));
   margin: 0 auto;
-  background: var(--g-accent-diagonal);
+  background: var(--g-primary-diagonal);
   border-radius: 50%;
 
   ${mq.from.S`

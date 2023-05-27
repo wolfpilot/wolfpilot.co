@@ -117,7 +117,8 @@ export const base = css`
     --c-gridTextColor: ${colors.gridTextColor};
 
     // Gradients
-    --g-accent-diagonal: ${gradients.accentDiagonal};
+    --g-primary-diagonal: ${gradients.primaryDiagonal};
+    --g-secondary-diagonal: ${gradients.secondaryDiagonal};
   }
 
   /* Custom text highlighting */

@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { AnimatePresence } from "framer-motion"
 
 // Types
-import { Anchor } from "@ts/dom"
+import { Route } from "@ts/routes"
 
 // Components
 import ShowcaseNavList from "./ShowcaseNavList"
@@ -19,10 +19,6 @@ export type Tag =
 
 export type LinkType = "ext" | "int"
 
-export interface ShowcaseItemLink extends Anchor {
-  type: LinkType
-}
-
 export interface ShowcaseItem {
   id: string
   name: string
@@ -31,7 +27,7 @@ export interface ShowcaseItem {
   thumb: ImageProps
   image: ImageProps
   alt: string
-  links?: ShowcaseItemLink[]
+  links?: Route[]
 }
 
 export interface Props {

@@ -1,7 +1,7 @@
 // Types
-import { Anchors } from "@ts/dom"
+import { Routes } from "@ts/routes"
 
-export const social: Anchors = {
+export const social: Routes = {
   email: {
     url: "mailto:howl@wolfpilot.co",
     label: "Email",

@@ -2,7 +2,7 @@ import Link from "next/link"
 import styled from "styled-components"
 
 // Types
-import { Anchor } from "@ts/dom"
+import { Route } from "@ts/routes"
 
 // Constants
 import { routes } from "@constants/routes"
@@ -22,7 +22,7 @@ export interface Props {}
 const leftItemsGroup = [routes.about, routes.work, routes.cases]
 const rightItemsGroup = [routes.experience, routes.contact, routes.resume]
 
-const generateNavItems = (routesGroup: Anchor[]) => {
+const generateNavItems = (routesGroup: Route[]) => {
   return routesGroup.map(({ label, url }) => {
     if (!label || !url) return null
 
