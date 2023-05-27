@@ -182,7 +182,7 @@ const ContentWrapper = styled.div<{ $isLoaded: boolean }>`
     transform ${duration.verySlow}s ${ease.cubic} ${duration.fast}s;
 
   // Decorative pseudo-element shown on item hover
-  &::after {
+  &::before {
     ${pseudoHoverStyles};
   }
 `
@@ -199,10 +199,15 @@ const ContentSecondary = styled.div`
   left: var(--spacing-default);
   visibility: hidden;
   opacity: 0;
+  color: var(--c-neutral4);
   transform: translateY(-20px);
   transition: visibility ${duration.slow}s ${ease.cubic},
     opacity ${duration.slow}s ${ease.cubic},
     transform ${duration.slow}s ${ease.cubic};
+
+  a {
+    color: var(--c-accent3);
+  }
 `
 
 const Links = styled.ul`
@@ -234,9 +239,14 @@ const Wrapper = styled.div`
   }
 
   &:hover {
-    ${ThumbnailWrapper},
-    ${ContentWrapper} {
+    ${ThumbnailWrapper} {
       &::after {
+        transform: scaleY(1);
+      }
+    }
+
+    ${ContentWrapper} {
+      &::before {
         transform: scaleY(1);
       }
     }
