@@ -8,6 +8,7 @@ import { Route } from "@ts/routes"
 import { ShowcaseItem } from "./Showcase"
 
 // Utils
+import { usePageDispatch } from "@utils/context/PageContext"
 import { getDomain } from "@utils/routeHelper"
 
 // Styles
@@ -18,7 +19,9 @@ import { duration, ease } from "@styles/animation"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 
-export type Props = Pick<ShowcaseItem, "name" | "tagline" | "thumb" | "links">
+export interface Props {
+  data: ShowcaseItem
+}
 
 // Helpers
 const renderLinkText = (link: Route) => {
@@ -38,18 +41,17 @@ const renderLinkText = (link: Route) => {
   )
 }
 
-const ShowcaseProjectItem: React.FC<Props> = ({
-  name,
-  tagline,
-  thumb,
-  links = [],
-}) => {
+const ShowcaseProjectItem: React.FC<Props> = ({ data }) => {
   const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
 
-  const hanldeImgLoadingComplete = () => {
-    setIsImgLoaded(true)
-  }
+  const pageDispatch = usePageDispatch()
 
+  // Early exit check
+  if (!data) return null
+
+  const { name, tagline, thumb, links = [] } = data
+
+  // Ensure required data is present
   if (
     !name ||
     !tagline ||
@@ -61,22 +63,36 @@ const ShowcaseProjectItem: React.FC<Props> = ({
     return null
   }
 
+  // Handlers
+  const handleImgLoadingComplete = () => {
+    setIsImgLoaded(true)
+  }
+
+  const handleImgClick = () => {
+    pageDispatch({
+      type: "updateShowcaseActiveItem",
+      payload: data,
+    })
+  }
+
   return (
     <Wrapper>
       <ThumbnailWrapper $isLoaded={isImgLoaded}>
-        <Thumbnail
-          src={thumb.src}
-          sizes={`
-            (min-width: ${mq.breakpoints.L}px) 456px,
-            (min-width: ${mq.breakpoints.M}px) 50vw,
-            100vw,
-            `}
-          width={thumb.width}
-          height={thumb.height}
-          alt={thumb.alt || ""}
-          onLoadingComplete={hanldeImgLoadingComplete}
-          $isLoaded={isImgLoaded}
-        />
+        <ThumbnailBtn aria-label="Open in modal" onClick={handleImgClick}>
+          <Thumbnail
+            src={thumb.src}
+            sizes={`
+          (min-width: ${mq.breakpoints.L}px) 456px,
+          (min-width: ${mq.breakpoints.M}px) 50vw,
+          100vw,
+          `}
+            width={thumb.width}
+            height={thumb.height}
+            alt={thumb.alt || ""}
+            onLoadingComplete={handleImgLoadingComplete}
+            $isLoaded={isImgLoaded}
+          />
+        </ThumbnailBtn>
       </ThumbnailWrapper>
 
       <ContentWrapper $isLoaded={isImgLoaded} $linksAmount={links.length}>
@@ -137,6 +153,9 @@ const pseudoHoverStyles = css`
 const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   position: relative;
   overflow: hidden;
+  background: none;
+  outline: none;
+  border: none;
   // Hide corners again due to mix-blend-mode showing through regardless of parent styles
   border-top-left-radius: var(--border-radius-sml);
   border-top-right-radius: var(--border-radius-sml);
@@ -149,6 +168,20 @@ const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   // Decorative pseudo-element shown on item hover
   &::after {
     ${pseudoHoverStyles};
+  }
+`
+
+const ThumbnailBtn = styled.button`
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: none;
+  outline: none;
+  border: none;
+
+  &:hover {
+    cursor: zoom-in;
   }
 `
 

@@ -1,11 +1,15 @@
 import { createContext, useContext, useReducer } from "react"
 
+// Types
+import { ShowcaseItem } from "@components/showcase/Showcase"
+
 // Config
 import { config as pageConfig } from "@config/page.config"
 
 export interface State {
   // !: shouldSplashScreenPlay ; maybe move all this to PageProvider or something
   hasSplashScreenPlayed: boolean
+  showcaseActiveItem: ShowcaseItem | null
 }
 
 // Actions
@@ -14,12 +18,18 @@ export type updateHasSplashScreenPlayed = {
   payload: boolean
 }
 
-export type Action = updateHasSplashScreenPlayed
+export type updateShowcaseActiveItem = {
+  type: "updateShowcaseActiveItem"
+  payload: ShowcaseItem | null
+}
+
+export type Action = updateHasSplashScreenPlayed | updateShowcaseActiveItem
 
 export type Dispatch = (action: Action) => void
 
 export const initialState: State = {
   hasSplashScreenPlayed: pageConfig.hasSplashScreenPlayed,
+  showcaseActiveItem: null,
 }
 
 export const pageReducer = (state: State, action: Action) => {
@@ -28,6 +38,12 @@ export const pageReducer = (state: State, action: Action) => {
       return {
         ...state,
         hasSplashScreenPlayed: action.payload,
+      }
+    }
+    case "updateShowcaseActiveItem": {
+      return {
+        ...state,
+        showcaseActiveItem: action.payload,
       }
     }
     default:
