@@ -42,7 +42,7 @@ const ShowcaseProjectItem: React.FC<Props> = ({
   name,
   tagline,
   thumb,
-  links,
+  links = [],
 }) => {
   const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
 
@@ -79,7 +79,7 @@ const ShowcaseProjectItem: React.FC<Props> = ({
         />
       </ThumbnailWrapper>
 
-      <ContentWrapper $isLoaded={isImgLoaded}>
+      <ContentWrapper $isLoaded={isImgLoaded} $linksAmount={links.length}>
         <ContentPrimary>
           <Heading level="h3">{name}</Heading>
           <Text>{tagline}</Text>
@@ -88,7 +88,7 @@ const ShowcaseProjectItem: React.FC<Props> = ({
         <ContentSecondary>
           <Heading level="h3">Project details</Heading>
 
-          {links?.length ? (
+          {links.length ? (
             <Links>
               {links.map((link, index) => (
                 <li key={index}>{renderLinkText(link)}</li>
@@ -161,8 +161,27 @@ const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
   transition: transform ${duration.verySlow}s ${ease.cubic};
 `
 
-const ContentWrapper = styled.div<{ $isLoaded: boolean }>`
+const ContentWrapper = styled.div<{ $isLoaded: boolean; $linksAmount: number }>`
   padding: var(--spacing-default);
+
+  /**
+   * Because the secondary content is positioned absolute, thus depends on the
+   * primary content's height, we need to calculate the minimum wrapper height
+   * so that the links don't overflow on item hover. Formula below:
+   *  
+   * heading height
+   * + 2 * vertical padding
+   * + number of links * one row's height
+   */
+  ${({ $linksAmount }) =>
+    $linksAmount > 1 &&
+    `
+    min-height: calc(
+      45px
+      + 2 * var(--spacing-default)
+      + ${$linksAmount * 24}px)
+    ;
+  `}
 
   // Set a background-color for mix-blend-mode to work with
   background-color: var(--c-neutral4);
