@@ -2,12 +2,10 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import NextImage from "next/image"
 import styled from "styled-components"
 
-// Types
-import { ShowcaseItem } from "./Showcase"
-
 // Utils
 import { usePageState, usePageDispatch } from "@utils/context/PageContext"
 import { disableScroll } from "@utils/domHelper"
+import { calculateAspectRatio } from "@utils/mathHelper"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -20,9 +18,7 @@ import ContainerComponent from "@components/layout/Container"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 
-export interface Props {
-  data: ShowcaseItem | null
-}
+type Axis = "vertical" | "horizontal"
 
 const ShowcaseModal: React.FC = () => {
   const pageState = usePageState()
@@ -31,17 +27,20 @@ const ShowcaseModal: React.FC = () => {
   const data = pageState.showcaseActiveItem
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isImgMax, setIsImgMax] = useState<boolean>(false)
+  const [imgFillAxis, setImgFillAxis] = useState<Axis | null>(null)
 
   const imgWrapperRef = useRef<HTMLDivElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
 
-  // Handlers
   const toggle = useCallback(
     (newState: boolean) => {
       setIsOpen(newState)
       disableScroll(document.documentElement, newState)
 
       if (newState === false) {
+        setIsImgMax(false)
+
         pageDispatch({
           type: "updateShowcaseActiveItem",
           payload: null,
@@ -51,11 +50,40 @@ const ShowcaseModal: React.FC = () => {
     [pageDispatch]
   )
 
+  const handleImgClick = () => {
+    setIsImgMax(!isImgMax)
+  }
+
+  /**
+   * Expand automatically when data is set
+   */
   useEffect(() => {
     if (!data) return
 
     toggle(true)
   }, [data, toggle])
+
+  /**
+   * Find out which axis the image should expand on when maximised
+   */
+  useEffect(() => {
+    if (!imgWrapperRef?.current || !data?.image.width || !data?.image.height) {
+      return
+    }
+
+    const imgWidth = Number(data.image.width)
+    const imgHeight = Number(data.image.height)
+
+    const imgAR = calculateAspectRatio(imgWidth, imgHeight)
+    const wrapperAR = calculateAspectRatio(
+      imgWrapperRef.current.scrollWidth,
+      imgWrapperRef.current.scrollHeight
+    )
+
+    const newImgFillAxis = imgAR > wrapperAR ? "vertical" : "horizontal"
+
+    setImgFillAxis(newImgFillAxis)
+  }, [data])
 
   // Close on ESC
   useEffect(() => {
@@ -89,13 +117,16 @@ const ShowcaseModal: React.FC = () => {
             {tagline && <Text>{tagline}</Text>}
           </Details>
 
-          <ImageWrapper ref={imgWrapperRef}>
+          <ImageWrapper ref={imgWrapperRef} $isImgMax={isImgMax}>
             <Image
               ref={imgRef}
               src={image.src}
               width={image.width}
               height={image.height}
               alt={image.alt}
+              $isImgMax={isImgMax}
+              $imgFillAxis={imgFillAxis}
+              onClick={handleImgClick}
             />
           </ImageWrapper>
         </Content>
@@ -113,7 +144,7 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
   left: 0;
   padding-top: calc(2 * var(--spacing-default));
   padding-bottom: calc(2 * var(--spacing-default));
-  background-color: ${colors.black}60;
+  background-color: ${colors.black}80;
 
   ${({ $isOpen }) =>
     $isOpen
@@ -128,6 +159,11 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
 
   transition: visibility ${duration.slow}s ${ease.cubic},
     opacity ${duration.slow}s ${ease.cubic};
+
+  ${mq.from.M`
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+  `}
 `
 
 const Container = styled(ContainerComponent)`
@@ -173,26 +209,67 @@ const Details = styled.div`
   `}
 `
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.div<{ $isImgMax: boolean }>`
   display: flex;
-  justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: ${colors.black}20;
+
   /**
-   * Force flex children to respect their parents' size.
+   * When image is maximised, allow overflowing in either direction. Otherwise,
+   * force the flex children to stay contained to their parents' size.
    *
-   * For more info, see:
+   * For more info on the latter, see:
    * https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
    */
-  min-width: 0;
-  min-height: 0;
-  background-color: ${colors.black}20;
+  ${({ $isImgMax }) =>
+    $isImgMax
+      ? `
+      justify-content: flex-start;
+      align-items: flex-start;
+      overflow: scroll;
+    `
+      : `
+      justify-content: center;
+      min-width: 0;
+      min-height: 0;
+  `}
 `
 
-const Image = styled(NextImage)`
+const Image = styled(NextImage)<{
+  $isImgMax: boolean
+  $imgFillAxis: string | null
+}>`
   width: 100%;
   height: 100%;
   object-fit: contain;
+
+  ${({ $isImgMax }) =>
+    $isImgMax
+      ? `
+      max-width: none;
+      max-height: none;
+      cursor: zoom-out;
+      `
+      : `
+      max-width: 100%;
+      max-height: 100%;
+      cursor: zoom-in;
+    `}
+
+  ${({ $imgFillAxis }) =>
+    $imgFillAxis === "vertical" &&
+    `
+      width: auto;
+      height: 100%;
+    `}
+
+  ${({ $imgFillAxis }) =>
+    $imgFillAxis === "horizontal" &&
+    `
+      width: 100%;
+      height: auto;
+    `}
 `
 
 export default ShowcaseModal
