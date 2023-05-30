@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 // Types
-import { Tag, ShowcaseItem, HandleClickTag } from "./Showcase"
+import { Tag, ShowcaseItem } from "./Showcase"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -13,15 +13,9 @@ export interface Props {
   items: ShowcaseItem[]
   tags: Tag[]
   activeTag: Tag
-  handleClickTag: HandleClickTag
 }
 
-const ShowcaseNavList: React.FC<Props> = ({
-  items,
-  tags,
-  activeTag,
-  handleClickTag,
-}) => (
+const ShowcaseNavList: React.FC<Props> = ({ items, tags, activeTag }) => (
   <Wrapper>
     {tags.map((tag, index) => {
       const taggedItemsAmount = items
@@ -34,7 +28,6 @@ const ShowcaseNavList: React.FC<Props> = ({
           tag={tag}
           isActive={activeTag === tag}
           taggedItemsAmount={taggedItemsAmount}
-          handleClickTag={handleClickTag}
         />
       )
     })}

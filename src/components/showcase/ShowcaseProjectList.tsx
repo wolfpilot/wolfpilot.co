@@ -26,8 +26,8 @@ const variants: Variants = {
 
 const ShowcaseProjectList: React.FC<Props> = ({ items }) => (
   <Wrapper variants={variants} initial="hidden" animate="visible" exit="hidden">
-    {items.map((item) => (
-      <ShowcaseProjectItem key={item.id} data={item} />
+    {items.map((item, index) => (
+      <ShowcaseProjectItem key={item.id} index={index} data={item} />
     ))}
   </Wrapper>
 )

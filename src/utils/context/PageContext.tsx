@@ -1,15 +1,14 @@
 import { createContext, useContext, useReducer } from "react"
 
 // Types
-import { ShowcaseItem } from "@components/showcase/Showcase"
-
-// Config
-import { config as pageConfig } from "@config/page.config"
+import { ShowcaseItem, Tag } from "@components/showcase/Showcase"
 
 export interface State {
   // !: shouldSplashScreenPlay ; maybe move all this to PageProvider or something
   hasSplashScreenPlayed: boolean
-  showcaseActiveItem: ShowcaseItem | null
+  showcaseActiveTag: Tag
+  showcaseActiveItems: ShowcaseItem[] | null
+  showcaseActiveItemIndex: number | null
 }
 
 // Actions
@@ -18,18 +17,34 @@ export type updateHasSplashScreenPlayed = {
   payload: boolean
 }
 
-export type updateShowcaseActiveItem = {
-  type: "updateShowcaseActiveItem"
-  payload: ShowcaseItem | null
+export type updateShowcaseActiveTag = {
+  type: "updateShowcaseActiveTag"
+  payload: Tag
 }
 
-export type Action = updateHasSplashScreenPlayed | updateShowcaseActiveItem
+export type updateShowcaseActiveItems = {
+  type: "updateShowcaseActiveItems"
+  payload: ShowcaseItem[] | null
+}
+
+export type updateShowcaseActiveItemIndex = {
+  type: "updateShowcaseActiveItemIndex"
+  payload: number | null
+}
+
+export type Action =
+  | updateHasSplashScreenPlayed
+  | updateShowcaseActiveTag
+  | updateShowcaseActiveItems
+  | updateShowcaseActiveItemIndex
 
 export type Dispatch = (action: Action) => void
 
 export const initialState: State = {
-  hasSplashScreenPlayed: pageConfig.hasSplashScreenPlayed,
-  showcaseActiveItem: null,
+  hasSplashScreenPlayed: false,
+  showcaseActiveTag: "featured",
+  showcaseActiveItemIndex: null,
+  showcaseActiveItems: null,
 }
 
 export const pageReducer = (state: State, action: Action) => {
@@ -40,10 +55,22 @@ export const pageReducer = (state: State, action: Action) => {
         hasSplashScreenPlayed: action.payload,
       }
     }
-    case "updateShowcaseActiveItem": {
+    case "updateShowcaseActiveTag": {
       return {
         ...state,
-        showcaseActiveItem: action.payload,
+        showcaseActiveTag: action.payload,
+      }
+    }
+    case "updateShowcaseActiveItems": {
+      return {
+        ...state,
+        showcaseActiveItems: action.payload,
+      }
+    }
+    case "updateShowcaseActiveItemIndex": {
+      return {
+        ...state,
+        showcaseActiveItemIndex: action.payload,
       }
     }
     default:

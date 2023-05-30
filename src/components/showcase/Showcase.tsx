@@ -1,10 +1,13 @@
-import { useState } from "react"
+import { useEffect } from "react"
 import { ImageProps } from "next/image"
 import styled from "styled-components"
 import { AnimatePresence } from "framer-motion"
 
 // Types
 import { Route } from "@ts/routes"
+
+// Utils
+import { usePageState, usePageDispatch } from "@utils/context/PageContext"
 
 // Components
 import ShowcaseNavList from "./ShowcaseNavList"
@@ -34,8 +37,6 @@ export interface Props {
   items: ShowcaseItem[]
 }
 
-export type HandleClickTag = (tag: Tag) => void
-
 // Setup
 const tags: Tag[] = [
   "featured",
@@ -46,24 +47,29 @@ const tags: Tag[] = [
 ]
 
 const Showcase: React.FC<Props> = ({ items }) => {
-  const [activeTag, setActiveTag] = useState<Tag>("featured")
+  const pageState = usePageState()
+  const pageDispatch = usePageDispatch()
+
+  const { showcaseActiveTag: activeTag, showcaseActiveItems: activeItems } =
+    pageState
+
+  /**
+   * Update the active items when active tag changes
+   */
+  useEffect(() => {
+    const newActiveItems = items.filter((item) => item.tags.includes(activeTag))
+
+    pageDispatch({
+      type: "updateShowcaseActiveItems",
+      payload: newActiveItems,
+    })
+  }, [items, activeTag, pageDispatch])
 
   if (!items?.length) return null
 
-  const handleClickTag: HandleClickTag = (newTag: Tag) => {
-    setActiveTag(newTag)
-  }
-
-  const activeItems = items.filter((item) => item.tags.includes(activeTag))
-
   return (
     <Wrapper>
-      <ShowcaseNavList
-        items={items}
-        tags={tags}
-        activeTag={activeTag}
-        handleClickTag={handleClickTag}
-      />
+      <ShowcaseNavList items={items} tags={tags} activeTag={activeTag} />
 
       <AnimatePresence initial={false} mode="wait">
         {activeItems && (

@@ -20,6 +20,7 @@ import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 
 export interface Props {
+  index: number
   data: ShowcaseItem
 }
 
@@ -41,7 +42,7 @@ const renderLinkText = (link: Route) => {
   )
 }
 
-const ShowcaseProjectItem: React.FC<Props> = ({ data }) => {
+const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
   const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
 
   const pageDispatch = usePageDispatch()
@@ -70,8 +71,8 @@ const ShowcaseProjectItem: React.FC<Props> = ({ data }) => {
 
   const handleImgClick = () => {
     pageDispatch({
-      type: "updateShowcaseActiveItem",
-      payload: data,
+      type: "updateShowcaseActiveItemIndex",
+      payload: index,
     })
   }
 

@@ -24,7 +24,16 @@ const ShowcaseModal: React.FC = () => {
   const pageState = usePageState()
   const pageDispatch = usePageDispatch()
 
-  const data = pageState.showcaseActiveItem
+  const {
+    showcaseActiveItems: activeItems,
+    showcaseActiveItemIndex: activeItemIndex,
+  } = pageState
+
+  const data =
+    (activeItems !== null &&
+      activeItemIndex !== null &&
+      activeItems[activeItemIndex]) ||
+    null
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isImgMax, setIsImgMax] = useState<boolean>(false)
@@ -33,16 +42,17 @@ const ShowcaseModal: React.FC = () => {
   const imgWrapperRef = useRef<HTMLDivElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
 
+  // Utils
   const toggle = useCallback(
-    (newState: boolean) => {
-      setIsOpen(newState)
-      disableScroll(document.documentElement, newState)
+    (value: boolean) => {
+      setIsOpen(value)
+      disableScroll(document.documentElement, value)
 
-      if (newState === false) {
+      if (value === false) {
         setIsImgMax(false)
 
         pageDispatch({
-          type: "updateShowcaseActiveItem",
+          type: "updateShowcaseActiveItemIndex",
           payload: null,
         })
       }
@@ -58,10 +68,10 @@ const ShowcaseModal: React.FC = () => {
    * Expand automatically when data is set
    */
   useEffect(() => {
-    if (!data) return
+    if (isOpen || !data) return
 
     toggle(true)
-  }, [data, toggle])
+  }, [isOpen, data, toggle])
 
   /**
    * Find out which axis the image should expand on when maximised
@@ -85,7 +95,9 @@ const ShowcaseModal: React.FC = () => {
     setImgFillAxis(newImgFillAxis)
   }, [data])
 
-  // Close on ESC
+  /**
+   * Monitor key presses for various actions
+   */
   useEffect(() => {
     const handleOnKeydown = (e: KeyboardEvent) => {
       if (isOpen && e.key === "Escape") {
