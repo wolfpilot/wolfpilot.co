@@ -1,6 +1,6 @@
 import { Icon } from "@ts/icons"
 
-const Codepen: React.FC<Icon> = ({ className }) => (
+const Logo: React.FC<Icon> = ({ className }) => (
   <svg
     className={className}
     width="604"
@@ -148,4 +148,4 @@ const Codepen: React.FC<Icon> = ({ className }) => (
   </svg>
 )
 
-export default Codepen
+export default Logo
