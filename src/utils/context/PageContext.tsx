@@ -1,10 +1,9 @@
 import { createContext, useContext, useReducer } from "react"
 
 // Types
-import { ShowcaseItem, Tag } from "@components/showcase/Showcase"
+import { ShowcaseItem, Tag } from "@components/showcase/types"
 
 export interface State {
-  // !: shouldSplashScreenPlay ; maybe move all this to PageProvider or something
   hasSplashScreenPlayed: boolean
   showcaseActiveTag: Tag
   showcaseActiveItems: ShowcaseItem[] | null

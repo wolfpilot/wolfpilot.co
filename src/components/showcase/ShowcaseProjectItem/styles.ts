@@ -1,127 +1,9 @@
-import { useState } from "react"
-import Link from "next/link"
 import Image from "next/image"
 import styled, { css } from "styled-components"
-
-// Types
-import { Route } from "@ts/routes"
-import { ShowcaseItem } from "./Showcase"
-
-// Utils
-import { usePageDispatch } from "@utils/context/PageContext"
-import { getDomain } from "@utils/routeHelper"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { duration, ease } from "@styles/animation"
-
-// Components
-import Heading from "@components/generic/Heading"
-import Text from "@components/generic/Text"
-import ImageLoader from "@components/loaders/ImageLoader"
-
-export interface Props {
-  index: number
-  data: ShowcaseItem
-}
-
-// Helpers
-const renderLinkText = (link: Route) => {
-  if (!link || !link.type || !link.url) return null
-
-  return link.type === "external" ? (
-    <>
-      View on{" "}
-      <a href={link.url} target="_blank" rel="noopener noreferrer">
-        {getDomain(link.url)}
-      </a>
-    </>
-  ) : (
-    <>
-      Go to <Link href={link.url}>case study</Link>
-    </>
-  )
-}
-
-const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
-  const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
-
-  const pageDispatch = usePageDispatch()
-
-  // Early exit check
-  if (!data) return null
-
-  const { name, tagline, thumb, links = [] } = data
-
-  // Ensure required data is present
-  if (
-    !name ||
-    !tagline ||
-    !thumb ||
-    !thumb.src ||
-    !thumb.width ||
-    !thumb.height
-  ) {
-    return null
-  }
-
-  // Handlers
-  const handleImgLoadingComplete = () => {
-    setIsImgLoaded(true)
-  }
-
-  const handleImgClick = () => {
-    pageDispatch({
-      type: "updateShowcaseActiveItemIndex",
-      payload: index,
-    })
-  }
-
-  return (
-    <Wrapper>
-      <ThumbnailWrapper $isLoaded={isImgLoaded}>
-        <ThumbnailBtn aria-label="Open in modal" onClick={handleImgClick}>
-          <Thumbnail
-            src={thumb.src}
-            sizes={`
-          (min-width: ${mq.breakpoints.L}px) 456px,
-          (min-width: ${mq.breakpoints.M}px) 50vw,
-          100vw,
-          `}
-            width={thumb.width}
-            height={thumb.height}
-            alt={thumb.alt || ""}
-            onLoadingComplete={handleImgLoadingComplete}
-            $isLoaded={isImgLoaded}
-          />
-
-          <ImageLoader isLoaded={isImgLoaded} />
-        </ThumbnailBtn>
-      </ThumbnailWrapper>
-
-      <ContentWrapper $isLoaded={isImgLoaded} $linksAmount={links.length}>
-        <ContentPrimary>
-          <Heading level="h3">{name}</Heading>
-          <Text>{tagline}</Text>
-        </ContentPrimary>
-
-        <ContentSecondary>
-          <Heading level="h3">Project details</Heading>
-
-          {links.length ? (
-            <Links>
-              {links.map((link, index) => (
-                <li key={index}>{renderLinkText(link)}</li>
-              ))}
-            </Links>
-          ) : (
-            <Text>Zoom in to view more</Text>
-          )}
-        </ContentSecondary>
-      </ContentWrapper>
-    </Wrapper>
-  )
-}
 
 // Helper styles
 const pseudoHoverStyles = css`
@@ -140,7 +22,7 @@ const pseudoHoverStyles = css`
 `
 
 // Main styles
-const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
+export const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   position: relative;
   overflow: hidden;
   background: none;
@@ -156,7 +38,7 @@ const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   }
 `
 
-const ThumbnailBtn = styled.button`
+export const ThumbnailBtn = styled.button`
   display: block;
   width: 100%;
   height: 100%;
@@ -170,7 +52,7 @@ const ThumbnailBtn = styled.button`
   }
 `
 
-const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
+export const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
   display: block;
   width: 100%;
   height: 100%;
@@ -179,7 +61,10 @@ const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
   transition: transform ${duration.verySlow}s ${ease.cubic};
 `
 
-const ContentWrapper = styled.div<{ $isLoaded: boolean; $linksAmount: number }>`
+export const ContentWrapper = styled.div<{
+  $isLoaded: boolean
+  $linksAmount: number
+}>`
   padding: var(--spacing-default);
 
   /**
@@ -224,13 +109,13 @@ const ContentWrapper = styled.div<{ $isLoaded: boolean; $linksAmount: number }>`
   }
 `
 
-const ContentPrimary = styled.div`
+export const ContentPrimary = styled.div`
   transition: visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
     opacity ${duration.slow}s ${ease.cubic} ${duration.medium}s,
     transform ${duration.slow}s ${ease.cubic} ${duration.medium}s;
 `
 
-const ContentSecondary = styled.div`
+export const ContentSecondary = styled.div`
   position: absolute;
   top: var(--spacing-default);
   left: var(--spacing-default);
@@ -247,13 +132,13 @@ const ContentSecondary = styled.div`
   }
 `
 
-const Links = styled.ul`
+export const Links = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
 `
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   display: flex;
@@ -307,5 +192,3 @@ const Wrapper = styled.div`
     }
   }
 `
-
-export default ShowcaseProjectItem

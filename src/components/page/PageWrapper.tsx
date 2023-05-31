@@ -8,7 +8,7 @@ import { config as pageConfig } from "@config/page.config"
 import SplashScreenUI from "@components/screens/SplashScreenUI"
 import PageTransitionUI from "@components/screens/PageTransitionUI"
 import CustomCursor from "@components/cursor/CustomCursor"
-import ShowcaseModal from "@components/showcase/ShowcaseModal"
+import ShowcaseModal from "@components/showcase/ShowcaseModal/ShowcaseModal"
 
 export interface Props {
   children?: React.ReactNode

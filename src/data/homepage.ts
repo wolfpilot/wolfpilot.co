@@ -3,7 +3,7 @@ import HeroImageSrc from "/public/images/graphics/wolf.png"
 import AboutFeaturedImageSrc from "/public/images/photos/homepage-about-featured.jpg"
 
 // Types
-import { ShowcaseItem } from "@components/showcase/Showcase"
+import { ShowcaseItem } from "@components/showcase/types"
 
 export type ShowcaseItemRaw = Omit<ShowcaseItem, "thumb" | "image">
 export interface ShowcaseDataRaw {

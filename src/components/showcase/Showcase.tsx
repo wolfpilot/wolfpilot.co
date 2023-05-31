@@ -1,42 +1,20 @@
 import { useEffect } from "react"
-import { ImageProps } from "next/image"
 import styled from "styled-components"
 import { AnimatePresence } from "framer-motion"
 
 // Types
-import { Route } from "@ts/routes"
+import { Tag, ShowcaseItem } from "./types"
 
 // Utils
 import { usePageState, usePageDispatch } from "@utils/context/PageContext"
 
 // Components
-import ShowcaseNavList from "./ShowcaseNavList"
-import ShowcaseProjectList from "./ShowcaseProjectList"
-
-export type Tag =
-  | "featured"
-  | "web development"
-  | "web design"
-  | "concept art"
-  | "illustration"
-
-export type LinkType = "ext" | "int"
-
-export interface ShowcaseItem {
-  id: string
-  name: string
-  tagline: string
-  tags: Tag[]
-  thumb: ImageProps
-  image: ImageProps
-  alt: string
-  links?: Route[]
-}
+import ShowcaseNavList from "./ShowcaseNavList/ShowcaseNavList"
+import ShowcaseProjectList from "./ShowcaseProjectList/ShowcaseProjectList"
 
 export interface Props {
   items: ShowcaseItem[]
 }
-
 // Setup
 const tags: Tag[] = [
   "featured",

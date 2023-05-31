@@ -1,45 +1,10 @@
 import styled from "styled-components"
 
-// Types
-import { Tag } from "./Showcase"
-
-// Utils
-import { usePageDispatch } from "@utils/context/PageContext"
-
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { duration, ease } from "@styles/animation"
 
-export interface Props {
-  tag: Tag
-  isActive: boolean
-  taggedItemsAmount: number
-}
-
-const ShowcaseNavItem: React.FC<Props> = ({
-  tag,
-  isActive,
-  taggedItemsAmount,
-}) => {
-  const pageDispatch = usePageDispatch()
-
-  const handleClickTag = () => {
-    pageDispatch({
-      type: "updateShowcaseActiveTag",
-      payload: tag,
-    })
-  }
-
-  return (
-    <Wrapper>
-      <Button $isActive={isActive} onClick={handleClickTag}>
-        {tag} <sup>{taggedItemsAmount}</sup>
-      </Button>
-    </Wrapper>
-  )
-}
-
-const Wrapper = styled.li`
+export const Wrapper = styled.li`
   display: flex;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -61,7 +26,7 @@ const Wrapper = styled.li`
   }
 `
 
-const Button = styled.button<{ $isActive: boolean }>`
+export const Button = styled.button<{ $isActive: boolean }>`
   padding: 4px 0;
   outline: none;
   border: none;
@@ -78,5 +43,3 @@ const Button = styled.button<{ $isActive: boolean }>`
     color: var(--c-accent2);
   }
 `
-
-export default ShowcaseNavItem
