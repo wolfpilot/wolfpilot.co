@@ -5,6 +5,7 @@ import { Variants, AnimatePresence, motion } from "framer-motion"
 
 // Utils
 import { usePageState, usePageDispatch } from "@utils/context/PageContext"
+import { useClickOutside } from "@utils/hooks/useClickOutside"
 import { disableScroll } from "@utils/domHelper"
 import { calculateAspectRatio } from "@utils/mathHelper"
 
@@ -265,6 +266,15 @@ const ShowcaseModal: React.FC = () => {
 
     return () => document.removeEventListener("keydown", handleOnKeydown)
   }, [isOpen, toggle, cycle])
+
+  /**
+   * Close when clicking outside the content
+   */
+  useClickOutside(contentRef, () => {
+    if (!isOpen) return
+
+    toggle(false)
+  })
 
   return (
     <AnimatePresence>
