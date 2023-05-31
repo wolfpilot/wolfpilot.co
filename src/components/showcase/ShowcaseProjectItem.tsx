@@ -18,6 +18,7 @@ import { duration, ease } from "@styles/animation"
 // Components
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
+import ImageLoader from "@components/loaders/ImageLoader"
 
 export interface Props {
   index: number
@@ -93,6 +94,8 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
             onLoadingComplete={handleImgLoadingComplete}
             $isLoaded={isImgLoaded}
           />
+
+          <ImageLoader isLoaded={isImgLoaded} />
         </ThumbnailBtn>
       </ThumbnailWrapper>
 
@@ -121,20 +124,6 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
 }
 
 // Helper styles
-const pseudoEntryStyles = css<{ $isLoaded: boolean }>`
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: var(--c-neutral4);
-  transform: ${({ $isLoaded }) =>
-    $isLoaded ? "translateY(100%)" : "translateY(0)"};
-  transition: transform ${duration.verySlow}s ${ease.cubic};
-`
-
 const pseudoHoverStyles = css`
   content: "";
   position: absolute;
@@ -160,11 +149,6 @@ const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   // Hide corners again due to mix-blend-mode showing through regardless of parent styles
   border-top-left-radius: var(--border-radius-sml);
   border-top-right-radius: var(--border-radius-sml);
-
-  // Decorative pseudo-element shown on image load
-  &::before {
-    ${pseudoEntryStyles};
-  }
 
   // Decorative pseudo-element shown on item hover
   &::after {
