@@ -1,8 +1,14 @@
 export enum IconTypesEnum {
   // Generic
   Logo = "logo",
+  LinkExternal = "linkExternal",
+  LinkInternal = "linkInternal",
+  // Interaction
   Prev = "prev",
   Next = "next",
+  Close = "close",
+  Expand = "expand",
+  Collapse = "collapse",
   // Info
   Email = "email",
   // Social

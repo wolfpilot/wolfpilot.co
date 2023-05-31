@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback, useRef } from "react"
+import { Fragment, useState, useEffect, useCallback, useRef } from "react"
+import NextLink from "next/link"
 import NextImage from "next/image"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { Variants, AnimatePresence, motion } from "framer-motion"
 
 // Utils
@@ -8,11 +9,13 @@ import { usePageState, usePageDispatch } from "@utils/context/PageContext"
 import { useClickOutside } from "@utils/hooks/useClickOutside"
 import { disableScroll } from "@utils/domHelper"
 import { calculateAspectRatio } from "@utils/mathHelper"
+import { getDomain } from "@utils/routeHelper"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
 import { colors } from "@styles/colors"
+import { textStyles } from "@styles/textStyles"
 import { duration, ease } from "@styles/animation"
 import { btnResetStyles } from "@styles/button"
 
@@ -78,7 +81,7 @@ const detailsAnimVariants: Variants = {
     opacity: 0,
     translateY: 20,
     transition: {
-      duration: 0.75,
+      duration: ANIM_DURATION,
       ease: ANIM_EASE,
     },
   },
@@ -86,7 +89,7 @@ const detailsAnimVariants: Variants = {
     opacity: 1,
     translateY: 0,
     transition: {
-      duration: 0.75,
+      duration: ANIM_DURATION,
       ease: ANIM_EASE,
     },
   },
@@ -201,8 +204,12 @@ const ShowcaseModal: React.FC = () => {
     setIsImgLoaded(true)
   }
 
-  const handleImgClick = () => {
+  const handleZoomClick = () => {
     setIsImgMax(!isImgMax)
+  }
+
+  const handleCloseClick = () => {
+    toggle(false)
   }
 
   // Hooks
@@ -333,12 +340,48 @@ const ShowcaseModal: React.FC = () => {
                             $isImgMax={isImgMax}
                             $imgFillAxis={imgFillAxis}
                             onLoadingComplete={handleImgLoadingComplete}
-                            onClick={handleImgClick}
+                            onClick={handleZoomClick}
                           />
                         </ImageScroller>
                       </AnimatePresence>
                     </ImageWrapper>
                   )}
+
+                <Controls>
+                  <ControlCloseBtn onClick={handleCloseClick}>
+                    <Icon type="close" />
+                  </ControlCloseBtn>
+
+                  <ControlZoomBtn onClick={handleZoomClick}>
+                    {isImgMax ? (
+                      <Icon type="collapse" />
+                    ) : (
+                      <Icon type="expand" />
+                    )}
+                  </ControlZoomBtn>
+
+                  {data.links?.map((link, index) => (
+                    <Fragment key={index}>
+                      {link.type === "external" ? (
+                        <ControlExternalLink
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ControlLinkText>
+                            View on {getDomain(link.url)}
+                          </ControlLinkText>
+                          <Icon type="linkExternal" />
+                        </ControlExternalLink>
+                      ) : (
+                        <ControlInternalLink href={link.url}>
+                          <ControlLinkText>Go to case study</ControlLinkText>
+                          <Icon type="linkInternal" />
+                        </ControlInternalLink>
+                      )}
+                    </Fragment>
+                  ))}
+                </Controls>
 
                 <Navigation>
                   <NavigationPrevBtn
@@ -364,6 +407,41 @@ const ShowcaseModal: React.FC = () => {
   )
 }
 
+// Shared styles
+const sharedControlStyles = css`
+  ${btnResetStyles};
+  position: relative;
+
+  &:not(:last-child) {
+    margin-bottom: var(--spacing-default);
+  }
+
+  &:hover {
+    > div {
+      visibility: visible;
+      opacity: 1;
+      padding-right: 40px;
+    }
+
+    svg {
+      transform: scale(0.85);
+    }
+  }
+
+  svg {
+    fill: var(--c-white);
+    transition: transform ${duration.medium}s ${ease.cubic};
+    transform-origin: center center;
+  }
+`
+
+const sharedNavigationStyles = css`
+  ${btnResetStyles};
+  padding: 5px;
+  margin: 0 5px;
+`
+
+// Main styles
 const Wrapper = styled(motion.div)`
   position: fixed;
   z-index: ${zIndexes.modal};
@@ -424,6 +502,53 @@ const Details = styled(motion.div)`
   `}
 `
 
+const Controls = styled.div`
+  position: absolute;
+  z-index: 1;
+  top: var(--spacing-default);
+  right: var(--spacing-default);
+  display: flex;
+  flex-direction: column;
+  opacity: 0.5;
+  transition: opacity ${duration.medium}s ${ease.cubic};
+`
+
+const ControlLinkText = styled.div`
+  ${textStyles.copyS};
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: -4px;
+  width: max-content;
+  padding: 10px;
+  border-radius: var(--border-radius-sml);
+  background-color: var(--c-black);
+  color: var(--c-white);
+  text-align: right;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: visibility ${duration.medium}s ${ease.cubic},
+    opacity ${duration.medium}s ${ease.cubic},
+    padding ${duration.medium}s ${ease.cubic};
+`
+
+const ControlCloseBtn = styled.button`
+  ${sharedControlStyles};
+`
+
+const ControlZoomBtn = styled.button`
+  ${sharedControlStyles};
+`
+
+const ControlExternalLink = styled.a`
+  ${sharedControlStyles};
+`
+
+const ControlInternalLink = styled(NextLink)`
+  ${sharedControlStyles};
+`
+
 const Navigation = styled.div`
   position: absolute;
   z-index: 1;
@@ -432,8 +557,7 @@ const Navigation = styled.div`
   left: 0;
   display: flex;
   justify-content: center;
-  opacity: 0.25;
-  mix-blend-mode: difference;
+  opacity: 0.5;
   transition: opacity ${duration.medium}s ${ease.cubic};
 `
 
@@ -446,9 +570,7 @@ const Icon = styled(IconComponent)`
 `
 
 const NavigationPrevBtn = styled.button`
-  ${btnResetStyles};
-  padding: 5px;
-  margin: 0 5px;
+  ${sharedNavigationStyles};
 
   &:hover {
     .path__triangle {
@@ -458,9 +580,7 @@ const NavigationPrevBtn = styled.button`
 `
 
 const NavigationNextBtn = styled.button`
-  ${btnResetStyles};
-  padding: 5px;
-  margin: 0 5px;
+  ${sharedNavigationStyles};
 
   &:hover {
     .path__triangle {
@@ -478,9 +598,33 @@ const Media = styled.div`
   overflow: hidden;
 
   &:hover {
+    &::after {
+      opacity: 0.25;
+    }
+
+    ${Controls},
     ${Navigation} {
       opacity: 1;
     }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--c-black),
+      transparent,
+      transparent,
+      var(--c-black)
+    );
+    opacity: 0;
+    transition: opacity ${duration.medium}s ${ease.cubic};
+    pointer-events: none;
   }
 `
 

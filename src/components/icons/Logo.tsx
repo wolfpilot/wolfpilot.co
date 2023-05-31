@@ -9,7 +9,7 @@ const Logo: React.FC<Icon> = ({ className }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_160_4948)">
+    <g clipPath="url(#clip0_160_4948)">
       <path
         d="M302 47C235.178 47 0 264 0 264C0 264 230.703 224.158 302 224.158C373.297 224.158 604 264 604 264C604 264 368.822 47 302 47Z"
         fill="url(#paint0_radial_160_4948)"
