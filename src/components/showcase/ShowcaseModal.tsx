@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import NextImage from "next/image"
 import styled from "styled-components"
+import { Variants, AnimatePresence, motion } from "framer-motion"
 
 // Utils
 import { usePageState, usePageDispatch } from "@utils/context/PageContext"
@@ -12,13 +13,106 @@ import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
 import { colors } from "@styles/colors"
 import { duration, ease } from "@styles/animation"
+import { btnResetStyles } from "@styles/button"
 
 // Components
 import ContainerComponent from "@components/layout/Container"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
+import IconComponent from "@components/icons/Icon"
 
 type Axis = "vertical" | "horizontal"
+
+// Setup
+const ANIM_DURATION = duration.slow
+const ANIM_DELAY = duration.medium
+const ANIM_EASE = ease.framer.cubic
+
+const wrapperAnimVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    transition: {
+      duration: ANIM_DURATION,
+      delay: ANIM_DELAY,
+      ease: ANIM_EASE,
+    },
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: ANIM_DURATION,
+      delay: ANIM_DELAY,
+      ease: ANIM_EASE,
+    },
+  },
+}
+
+const contentAnimVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    translateY: -20,
+    transition: {
+      duration: ANIM_DURATION,
+      delay: ANIM_DELAY,
+      ease: ANIM_EASE,
+    },
+  },
+  visible: {
+    opacity: 1,
+    translateY: 0,
+    transition: {
+      duration: ANIM_DURATION,
+      delay: ANIM_DELAY,
+      ease: ANIM_EASE,
+    },
+  },
+}
+
+const detailsAnimVariants: Variants = {
+  initial: {
+    opacity: 0,
+    translateY: -20,
+  },
+  hidden: {
+    opacity: 0,
+    translateY: 20,
+    transition: {
+      duration: 0.75,
+      ease: ANIM_EASE,
+    },
+  },
+  visible: {
+    opacity: 1,
+    translateY: 0,
+    transition: {
+      duration: 0.75,
+      ease: ANIM_EASE,
+    },
+  },
+}
+
+const imgScrollerAnimVariants: Variants = {
+  initial: {
+    opacity: 0,
+    scale: 1.05,
+  },
+  hidden: {
+    opacity: 0,
+    scale: 1,
+    transition: {
+      duration: ANIM_DURATION,
+      ease: ANIM_EASE,
+    },
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: ANIM_DURATION,
+      ease: ANIM_EASE,
+    },
+  },
+}
 
 const ShowcaseModal: React.FC = () => {
   const pageState = usePageState()
@@ -36,10 +130,12 @@ const ShowcaseModal: React.FC = () => {
     null
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
   const [isImgMax, setIsImgMax] = useState<boolean>(false)
   const [imgFillAxis, setImgFillAxis] = useState<Axis | null>(null)
 
-  const imgWrapperRef = useRef<HTMLDivElement | null>(null)
+  const contentRef = useRef<HTMLDivElement | null>(null)
+  const mediaRef = useRef<HTMLDivElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
 
   // Utils
@@ -49,6 +145,7 @@ const ShowcaseModal: React.FC = () => {
       disableScroll(document.documentElement, value)
 
       if (value === false) {
+        setIsImgLoaded(false)
         setIsImgMax(false)
 
         pageDispatch({
@@ -60,9 +157,54 @@ const ShowcaseModal: React.FC = () => {
     [pageDispatch]
   )
 
+  const cycle = useCallback(
+    (value: number) => {
+      if (
+        pageState.showcaseActiveItemIndex === null ||
+        pageState.showcaseActiveItems === null
+      ) {
+        return
+      }
+
+      const targetIndex = pageState.showcaseActiveItemIndex + value
+      const itemsAmount = pageState.showcaseActiveItems.length
+
+      if (!itemsAmount) return
+
+      // prettier-ignore
+      const newIndex =
+      // Loop around to the first item
+      targetIndex >= itemsAmount ? 0
+      // Loop around to the last item
+      : targetIndex < 0 ? itemsAmount - 1
+      // Default to the provided index
+      : targetIndex
+
+      setIsImgLoaded(false)
+      setIsImgMax(false)
+
+      pageDispatch({
+        type: "updateShowcaseActiveItemIndex",
+        payload: newIndex,
+      })
+    },
+    [
+      pageState.showcaseActiveItemIndex,
+      pageState.showcaseActiveItems,
+      pageDispatch,
+    ]
+  )
+
+  // Handlers
+  const handleImgLoadingComplete = () => {
+    setIsImgLoaded(true)
+  }
+
   const handleImgClick = () => {
     setIsImgMax(!isImgMax)
   }
+
+  // Hooks
 
   /**
    * Expand automatically when data is set
@@ -77,77 +219,142 @@ const ShowcaseModal: React.FC = () => {
    * Find out which axis the image should expand on when maximised
    */
   useEffect(() => {
-    if (!imgWrapperRef?.current || !data?.image.width || !data?.image.height) {
+    if (!mediaRef?.current || !data?.image.width || !data?.image.height) {
       return
     }
 
     const imgWidth = Number(data.image.width)
     const imgHeight = Number(data.image.height)
 
+    /**
+     * When calculating the wrapper's size, use client dimensions to ignore
+     * invisible content such as an image loader.
+     */
     const imgAR = calculateAspectRatio(imgWidth, imgHeight)
-    const wrapperAR = calculateAspectRatio(
-      imgWrapperRef.current.scrollWidth,
-      imgWrapperRef.current.scrollHeight
+    const mediaAR = calculateAspectRatio(
+      mediaRef.current.clientWidth,
+      mediaRef.current.clientHeight
     )
 
-    const newImgFillAxis = imgAR > wrapperAR ? "vertical" : "horizontal"
+    const newImgFillAxis = imgAR > mediaAR ? "vertical" : "horizontal"
 
     setImgFillAxis(newImgFillAxis)
-  }, [data])
+  }, [data?.image.width, data?.image.height])
 
   /**
    * Monitor key presses for various actions
    */
   useEffect(() => {
     const handleOnKeydown = (e: KeyboardEvent) => {
-      if (isOpen && e.key === "Escape") {
-        toggle(false)
+      if (!isOpen) return
+
+      switch (e.key) {
+        case "Escape":
+          toggle(false)
+          break
+        case "ArrowLeft":
+          cycle(-1)
+          break
+        case "ArrowRight":
+          cycle(1)
+          break
       }
     }
 
     document.addEventListener("keydown", handleOnKeydown)
 
     return () => document.removeEventListener("keydown", handleOnKeydown)
-  }, [isOpen, toggle])
-
-  // Early exit check
-  if (!data) return null
-
-  const { name, tagline, image } = data
-
-  // Ensure required data is present
-  if (!name || !tagline || !image?.width || !image?.height) {
-    return null
-  }
+  }, [isOpen, toggle, cycle])
 
   return (
-    <Wrapper $isOpen={isOpen}>
-      <Container>
-        <Content>
-          <Details>
-            {name && <Heading level="h3">{name}</Heading>}
-            {tagline && <Text>{tagline}</Text>}
-          </Details>
+    <AnimatePresence>
+      {data && (
+        <Wrapper
+          key="modal"
+          variants={wrapperAnimVariants}
+          initial="hidden"
+          animate={isOpen ? "visible" : "hidden"}
+          exit="hidden"
+        >
+          <Container>
+            <Content
+              key="modal-content"
+              variants={contentAnimVariants}
+              initial="hidden"
+              animate={isOpen ? "visible" : "hidden"}
+              exit="hidden"
+              ref={contentRef}
+            >
+              <AnimatePresence initial={false} mode="popLayout">
+                <Details
+                  key={`modal-details-${pageState.showcaseActiveItemIndex}`}
+                  variants={detailsAnimVariants}
+                  initial="initial"
+                  animate={isImgLoaded ? "visible" : "hidden"}
+                  exit="hidden"
+                >
+                  {data.name && <Heading level="h3">{data.name}</Heading>}
+                  {data.tagline && <Text>{data.tagline}</Text>}
+                </Details>
+              </AnimatePresence>
 
-          <ImageWrapper ref={imgWrapperRef} $isImgMax={isImgMax}>
-            <Image
-              ref={imgRef}
-              src={image.src}
-              width={image.width}
-              height={image.height}
-              alt={image.alt}
-              $isImgMax={isImgMax}
-              $imgFillAxis={imgFillAxis}
-              onClick={handleImgClick}
-            />
-          </ImageWrapper>
-        </Content>
-      </Container>
-    </Wrapper>
+              <Media ref={mediaRef}>
+                {data.image &&
+                  data.image.src &&
+                  data.image.width &&
+                  data.image.height &&
+                  data.image.alt && (
+                    <ImageWrapper>
+                      <AnimatePresence mode="popLayout" initial={false}>
+                        <ImageScroller
+                          key={`modal-image-scroller-${pageState.showcaseActiveItemIndex}`}
+                          variants={imgScrollerAnimVariants}
+                          initial="initial"
+                          animate={isImgLoaded ? "visible" : "hidden"}
+                          exit="hidden"
+                          $isImgMax={isImgMax}
+                        >
+                          <Image
+                            ref={imgRef}
+                            src={data.image.src}
+                            width={data.image.width}
+                            height={data.image.height}
+                            alt={data.image.alt}
+                            $isImgMax={isImgMax}
+                            $imgFillAxis={imgFillAxis}
+                            onLoadingComplete={handleImgLoadingComplete}
+                            onClick={handleImgClick}
+                          />
+                        </ImageScroller>
+                      </AnimatePresence>
+                    </ImageWrapper>
+                  )}
+
+                <Navigation>
+                  <NavigationPrevBtn
+                    aria-label="View previous project"
+                    onClick={() => cycle(-1)}
+                  >
+                    <Icon type="prev" />
+                  </NavigationPrevBtn>
+
+                  <NavigationNextBtn
+                    aria-label="View next project"
+                    onClick={() => cycle(1)}
+                  >
+                    <Icon type="next" />
+                  </NavigationNextBtn>
+                </Navigation>
+              </Media>
+            </Content>
+          </Container>
+        </Wrapper>
+      )}
+    </AnimatePresence>
   )
 }
 
-const Wrapper = styled.div<{ $isOpen: boolean }>`
+const Wrapper = styled(motion.div)`
   position: fixed;
   z-index: ${zIndexes.modal};
   top: 0;
@@ -156,21 +363,7 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
   left: 0;
   padding-top: calc(2 * var(--spacing-default));
   padding-bottom: calc(2 * var(--spacing-default));
-  background-color: ${colors.black}80;
-
-  ${({ $isOpen }) =>
-    $isOpen
-      ? `
-    visibility: visible;
-    opacity: 1;
-  `
-      : `
-    visibility: hidden;
-    opacity: 0;
-  `};
-
-  transition: visibility ${duration.slow}s ${ease.cubic},
-    opacity ${duration.slow}s ${ease.cubic};
+  background-color: ${colors.black}99;
 
   ${mq.from.M`
     padding-top: 20vh;
@@ -187,7 +380,7 @@ const Container = styled(ContainerComponent)`
   `}
 `
 
-const Content = styled.div`
+const Content = styled(motion.div)`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -205,7 +398,7 @@ const Content = styled.div`
   `}
 `
 
-const Details = styled.div`
+const Details = styled(motion.div)`
   padding: var(--spacing-default);
 
   ${mq.from.M`
@@ -221,27 +414,94 @@ const Details = styled.div`
   `}
 `
 
-const ImageWrapper = styled.div<{ $isImgMax: boolean }>`
+const Navigation = styled.div`
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: var(--spacing-default);
+  left: 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0.25;
+  mix-blend-mode: difference;
+  transition: opacity ${duration.medium}s ${ease.cubic};
+`
+
+const Icon = styled(IconComponent)`
+  fill: var(--c-white);
+
+  .path {
+    transition: transform ${duration.medium}s ${ease.cubic};
+  }
+`
+
+const NavigationPrevBtn = styled.button`
+  ${btnResetStyles};
+  padding: 5px;
+  margin: 0 5px;
+
+  &:hover {
+    .path__triangle {
+      transform: translateX(-3px);
+    }
+  }
+`
+
+const NavigationNextBtn = styled.button`
+  ${btnResetStyles};
+  padding: 5px;
+  margin: 0 5px;
+
+  &:hover {
+    .path__triangle {
+      transform: translateX(3px);
+    }
+  }
+`
+
+const Media = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   height: 100%;
   background-color: ${colors.black}20;
+  overflow: hidden;
+
+  &:hover {
+    ${Navigation} {
+      opacity: 1;
+    }
+  }
+`
+
+const ImageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
+
+const ImageScroller = styled(motion.div)<{ $isImgMax: boolean }>`
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
 
   /**
-   * When image is maximised, allow overflowing in either direction. Otherwise,
-   * force the flex children to stay contained to their parents' size.
-   *
-   * For more info on the latter, see:
-   * https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
-   */
+  * When image is maximised, allow overflowing in either direction. Otherwise,
+  * force the flex children to stay contained to their parents' size.
+  *
+  * For more info on the latter, see:
+  * https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size
+  */
   ${({ $isImgMax }) =>
     $isImgMax
       ? `
+      overflow: scroll;
       justify-content: flex-start;
       align-items: flex-start;
-      overflow: scroll;
     `
       : `
+      overflow: hidden;
       justify-content: center;
       min-width: 0;
       min-height: 0;
@@ -252,8 +512,6 @@ const Image = styled(NextImage)<{
   $isImgMax: boolean
   $imgFillAxis: string | null
 }>`
-  width: 100%;
-  height: 100%;
   object-fit: contain;
 
   ${({ $isImgMax }) =>
@@ -262,26 +520,30 @@ const Image = styled(NextImage)<{
       max-width: none;
       max-height: none;
       cursor: zoom-out;
-      `
+    `
       : `
+      width: 100%;
+      height: 100%;
       max-width: 100%;
       max-height: 100%;
       cursor: zoom-in;
     `}
 
-  ${({ $imgFillAxis }) =>
+  ${({ $isImgMax, $imgFillAxis }) =>
+    $isImgMax &&
     $imgFillAxis === "vertical" &&
     `
       width: auto;
       height: 100%;
     `}
 
-  ${({ $imgFillAxis }) =>
+  ${({ $isImgMax, $imgFillAxis }) =>
+    $isImgMax &&
     $imgFillAxis === "horizontal" &&
     `
       width: 100%;
       height: auto;
-    `}
+    `};
 `
 
 export default ShowcaseModal

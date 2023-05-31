@@ -3,6 +3,8 @@ import { IconTypesEnum, Icon } from "@ts/icons"
 
 // SVGs
 import Logo from "./Logo"
+import Prev from "./Prev"
+import Next from "./Next"
 
 import Email from "./Email"
 
@@ -16,6 +18,10 @@ const Icon: React.FC<Icon> = ({ type, ...props }) => {
     // Generic
     case IconTypesEnum.Logo:
       return <Logo {...props} />
+    case IconTypesEnum.Prev:
+      return <Prev {...props} />
+    case IconTypesEnum.Next:
+      return <Next {...props} />
     // Info
     case IconTypesEnum.Email:
       return <Email {...props} />

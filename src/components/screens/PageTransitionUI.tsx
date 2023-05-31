@@ -8,13 +8,15 @@ import { disableScroll } from "@utils/domHelper"
 
 // Styles
 import { zIndexes } from "@styles/zIndexes"
+import { ease } from "@styles/animation"
 
 export interface Props {
   children?: React.ReactNode
 }
 
 // Constants
-const BASE_ANIM_DURATION = 1.5
+const ANIM_DURATION = 1.5
+const ANIM_EASE = ease.framer.cubic
 
 const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
   const pathname = usePathname()
@@ -48,8 +50,8 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
           animate={{ scaleY: 0, translateY: 0 }}
           exit={{ scaleY: [0, 1, 1], translateY: [0, 0, "-100%"] }}
           transition={{
-            duration: BASE_ANIM_DURATION,
-            ease: [0.4, 0, 0.2, 1],
+            duration: ANIM_DURATION,
+            ease: ANIM_EASE,
           }}
         />
 
@@ -59,9 +61,9 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
           animate={{ opacity: 1, translateY: "0px" }}
           exit={{ opacity: 0, translateY: "0px" }}
           transition={{
-            duration: BASE_ANIM_DURATION / 3,
-            delay: BASE_ANIM_DURATION / 3,
-            ease: [0.4, 0, 0.2, 1],
+            duration: ANIM_DURATION / 3,
+            delay: ANIM_DURATION / 3,
+            ease: ANIM_EASE,
           }}
         >
           {children}
