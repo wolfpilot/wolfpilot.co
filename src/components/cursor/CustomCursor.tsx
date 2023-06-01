@@ -23,7 +23,7 @@ const CustomCursor: React.FC = () => {
 
 const Wrapper = styled.div`
   // Only enable for hover capable devices, aka no touch
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     position: fixed;
     z-index: ${zIndexes.customCursor};
     display: flex;

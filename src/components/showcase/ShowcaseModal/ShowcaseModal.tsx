@@ -44,7 +44,9 @@ const ShowcaseModal: React.FC = () => {
   const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
   const [isImgMax, setIsImgMax] = useState<boolean>(false)
   const [imgFillAxis, setImgFillAxis] = useState<Axis | null>(null)
+  const [hasCycled, setHasCycled] = useState<boolean>(false)
 
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const contentRef = useRef<HTMLDivElement | null>(null)
   const mediaRef = useRef<HTMLDivElement | null>(null)
   const imgRef = useRef<HTMLImageElement | null>(null)
@@ -62,9 +64,12 @@ const ShowcaseModal: React.FC = () => {
       setIsOpen(value)
       disableScroll(document.documentElement, value)
 
-      if (value === false) {
+      if (value) {
+        wrapperRef.current?.focus()
+      } else {
         setIsImgLoaded(false)
         setIsImgMax(false)
+        setHasCycled(false)
 
         pageDispatch({
           type: "updateShowcaseActiveItemIndex",
@@ -100,6 +105,7 @@ const ShowcaseModal: React.FC = () => {
 
       setIsImgLoaded(false)
       setIsImgMax(false)
+      setHasCycled(true)
 
       pageDispatch({
         type: "updateShowcaseActiveItemIndex",
@@ -175,9 +181,13 @@ const ShowcaseModal: React.FC = () => {
           toggle(false)
           break
         case "ArrowLeft":
+          if (!e.ctrlKey) return
+
           cycle(-1)
           break
         case "ArrowRight":
+          if (!e.ctrlKey) return
+
           cycle(1)
           break
       }
@@ -200,7 +210,12 @@ const ShowcaseModal: React.FC = () => {
   return (
     <AnimatePresence>
       {data && (
-        <S.Wrapper key="modal" {...animProps.wrapper}>
+        <S.Wrapper
+          key="modal"
+          ref={wrapperRef}
+          tabIndex={0}
+          {...animProps.wrapper}
+        >
           <S.Container>
             <S.Content
               key="modal-content"
@@ -267,16 +282,14 @@ const ShowcaseModal: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <S.ControlLinkText>
+                          <S.ControlTooltip>
                             View on {getDomain(link.url)}
-                          </S.ControlLinkText>
+                          </S.ControlTooltip>
                           <S.Icon type="linkExternal" />
                         </S.ControlExternalLink>
                       ) : (
                         <S.ControlInternalLink href={link.url}>
-                          <S.ControlLinkText>
-                            Go to case study
-                          </S.ControlLinkText>
+                          <S.ControlTooltip>Go to case study</S.ControlTooltip>
                           <S.Icon type="linkInternal" />
                         </S.ControlInternalLink>
                       )}
@@ -287,6 +300,7 @@ const ShowcaseModal: React.FC = () => {
                 <S.Navigation>
                   <S.NavigationPrevBtn
                     aria-label="View previous project"
+                    $showTooltip={!hasCycled}
                     onClick={() => cycle(-1)}
                   >
                     <S.Icon type="prev" />
@@ -294,10 +308,15 @@ const ShowcaseModal: React.FC = () => {
 
                   <S.NavigationNextBtn
                     aria-label="View next project"
+                    $showTooltip={!hasCycled}
                     onClick={() => cycle(1)}
                   >
                     <S.Icon type="next" />
                   </S.NavigationNextBtn>
+
+                  <S.NavigationTooltip>
+                    Or press CTRL + ⇦ / ⇨
+                  </S.NavigationTooltip>
                 </S.Navigation>
               </S.Media>
             </S.Content>

@@ -7,12 +7,12 @@ import { motion } from "framer-motion"
 import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
 import { colors } from "@styles/colors"
-import { textStyles } from "@styles/textStyles"
 import { duration, ease } from "@styles/animation"
 import { btnResetStyles } from "@styles/button"
 
 // Components
 import ContainerComponent from "@components/layout/Container"
+import Tooltip from "@components/generic/Tooltip"
 import IconComponent from "@components/icons/Icon"
 
 // Shared styles
@@ -24,8 +24,9 @@ const sharedControlStyles = css`
     margin-bottom: var(--spacing-default);
   }
 
-  &:hover {
-    > div {
+  &:hover,
+  &:focus {
+    > span {
       visibility: visible;
       opacity: 1;
       padding-right: 40px;
@@ -38,15 +39,29 @@ const sharedControlStyles = css`
 
   svg {
     fill: var(--c-white);
-    transition: transform ${duration.medium}s ${ease.cubic};
     transform-origin: center center;
+    transition: transform ${duration.medium}s ${ease.cubic};
   }
 `
 
-const sharedNavigationStyles = css`
+const sharedNavigationStyles = css<{ $showTooltip: boolean }>`
   ${btnResetStyles};
+  position: relative;
   padding: 5px;
   margin: 0 5px;
+
+  &:hover,
+  &:focus {
+    ~ span {
+      ${({ $showTooltip }) =>
+        $showTooltip &&
+        `
+        visibility: visible;
+        opacity: 1;
+        transform: translate(-50%, -10px);
+      `}
+    }
+  }
 `
 
 // Main styles
@@ -61,10 +76,13 @@ export const Wrapper = styled(motion.div)`
   padding-bottom: calc(2 * var(--spacing-default));
   background-color: ${colors.black}99;
 
-  ${mq.from.M`
+  // prettier-ignore
+  @media (hover: hover)
+    and (pointer: fine)
+    and (min-width: ${mq.breakpoints.M}px) {
     padding-top: 20vh;
     padding-bottom: 20vh;
-  `}
+  }
 `
 
 export const Container = styled(ContainerComponent)`
@@ -121,24 +139,24 @@ export const Controls = styled.div`
   transition: opacity ${duration.medium}s ${ease.cubic};
 `
 
-export const ControlLinkText = styled.div`
-  ${textStyles.copyS};
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  right: -4px;
-  width: max-content;
-  padding: 10px;
-  border-radius: var(--border-radius-sml);
-  background-color: var(--c-black);
-  color: var(--c-white);
-  text-align: right;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-50%);
-  transition: visibility ${duration.medium}s ${ease.cubic},
-    opacity ${duration.medium}s ${ease.cubic},
-    padding ${duration.medium}s ${ease.cubic};
+export const ControlTooltip = styled(Tooltip)`
+  display: none;
+
+  @media (hover: hover) and (pointer: fine) {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    right: -4px;
+    display: initial;
+    width: max-content;
+    text-align: right;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: visibility ${duration.medium}s ${ease.cubic},
+      opacity ${duration.medium}s ${ease.cubic},
+      padding ${duration.medium}s ${ease.cubic};
+  }
 `
 
 export const ControlCloseBtn = styled.button`
@@ -160,12 +178,12 @@ export const ControlInternalLink = styled(NextLink)`
 export const Navigation = styled.div`
   position: absolute;
   z-index: 1;
-  right: 0;
   bottom: var(--spacing-default);
-  left: 0;
+  left: 50%;
   display: flex;
   justify-content: center;
   opacity: 0.5;
+  transform: translateX(-50%);
   transition: opacity ${duration.medium}s ${ease.cubic};
 `
 
@@ -177,20 +195,41 @@ export const Icon = styled(IconComponent)`
   }
 `
 
-export const NavigationPrevBtn = styled.button`
+export const NavigationTooltip = styled(Tooltip)`
+  display: none;
+
+  @media (hover: hover) and (pointer: fine) {
+    position: absolute;
+    z-index: -1;
+    top: -100%;
+    left: 50%;
+    display: initial;
+    width: max-content;
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%, 0);
+    transition: visibility ${duration.medium}s ${ease.cubic},
+      opacity ${duration.medium}s ${ease.cubic},
+      transform ${duration.medium}s ${ease.cubic};
+  }
+`
+
+export const NavigationPrevBtn = styled.button<{ $showTooltip: boolean }>`
   ${sharedNavigationStyles};
 
-  &:hover {
+  &:hover,
+  &:focus {
     .path__triangle {
       transform: translateX(-3px);
     }
   }
 `
 
-export const NavigationNextBtn = styled.button`
+export const NavigationNextBtn = styled.button<{ $showTooltip: boolean }>`
   ${sharedNavigationStyles};
 
-  &:hover {
+  &:hover,
+  &:focus {
     .path__triangle {
       transform: translateX(3px);
     }
@@ -205,7 +244,8 @@ export const Media = styled.div`
   background-color: ${colors.black}20;
   overflow: hidden;
 
-  &:hover {
+  &:hover,
+  &:focus-within {
     &::after {
       opacity: 0.25;
     }
@@ -230,9 +270,13 @@ export const Media = styled.div`
       transparent,
       var(--c-black)
     );
-    opacity: 0;
+    opacity: 0.25;
     transition: opacity ${duration.medium}s ${ease.cubic};
     pointer-events: none;
+
+    @media (hover: hover) and (pointer: fine) {
+      opacity: 0;
+    }
   }
 `
 

@@ -32,6 +32,12 @@ export const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   border-top-left-radius: var(--border-radius-sml);
   border-top-right-radius: var(--border-radius-sml);
 
+  &:focus-within {
+    &::after {
+      transform: scaleY(1);
+    }
+  }
+
   // Decorative pseudo-element shown on item hover
   &::after {
     ${pseudoHoverStyles};
@@ -46,6 +52,11 @@ export const ThumbnailBtn = styled.button`
   background: none;
   outline: none;
   border: none;
+  pointer-events: none;
+
+  ${mq.from.M`
+    pointer-events: all;
+  `}
 
   &:hover {
     cursor: zoom-in;
@@ -59,6 +70,29 @@ export const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
   object-fit: contain;
   transform: ${({ $isLoaded }) => ($isLoaded ? "scale(1)" : "scale(1.25)")};
   transition: transform ${duration.verySlow}s ${ease.cubic};
+`
+
+export const ContentPrimary = styled.div`
+  transition: visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
+    opacity ${duration.slow}s ${ease.cubic} ${duration.medium}s,
+    transform ${duration.slow}s ${ease.cubic} ${duration.medium}s;
+`
+
+export const ContentSecondary = styled.div`
+  position: absolute;
+  top: var(--spacing-default);
+  left: var(--spacing-default);
+  visibility: hidden;
+  opacity: 0;
+  color: var(--c-neutral4);
+  transform: translateY(-20px);
+  transition: visibility ${duration.slow}s ${ease.cubic},
+    opacity ${duration.slow}s ${ease.cubic},
+    transform ${duration.slow}s ${ease.cubic};
+
+  a {
+    color: var(--c-accent3);
+  }
 `
 
 export const ContentWrapper = styled.div<{
@@ -103,32 +137,37 @@ export const ContentWrapper = styled.div<{
     opacity ${duration.verySlow}s ${ease.cubic} ${duration.fast}s,
     transform ${duration.verySlow}s ${ease.cubic} ${duration.fast}s;
 
+  &:focus-within {
+    &::before {
+      transform: scaleY(1);
+    }
+
+    ${ContentPrimary} {
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: visibility ${duration.slow}s ${ease.cubic},
+        opacity ${duration.slow}s ${ease.cubic},
+        transform ${duration.slow}s ${ease.cubic};
+    }
+
+    ${ContentSecondary} {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition: visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
+        opacity ${duration.slow}s ${ease.cubic} ${duration.medium}s,
+        transform ${duration.slow}s ${ease.cubic} ${duration.medium}s;
+    }
+  }
+
   // Decorative pseudo-element shown on item hover
   &::before {
     ${pseudoHoverStyles};
   }
-`
 
-export const ContentPrimary = styled.div`
-  transition: visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
-    opacity ${duration.slow}s ${ease.cubic} ${duration.medium}s,
-    transform ${duration.slow}s ${ease.cubic} ${duration.medium}s;
-`
-
-export const ContentSecondary = styled.div`
-  position: absolute;
-  top: var(--spacing-default);
-  left: var(--spacing-default);
-  visibility: hidden;
-  opacity: 0;
-  color: var(--c-neutral4);
-  transform: translateY(-20px);
-  transition: visibility ${duration.slow}s ${ease.cubic},
-    opacity ${duration.slow}s ${ease.cubic},
-    transform ${duration.slow}s ${ease.cubic};
-
-  a {
-    color: var(--c-accent3);
+  &:focus {
+    outline: none;
   }
 `
 

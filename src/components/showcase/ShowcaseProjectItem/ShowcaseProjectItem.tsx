@@ -97,7 +97,11 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
         </S.ThumbnailBtn>
       </S.ThumbnailWrapper>
 
-      <S.ContentWrapper $isLoaded={isImgLoaded} $linksAmount={links.length}>
+      <S.ContentWrapper
+        tabIndex={0}
+        $isLoaded={isImgLoaded}
+        $linksAmount={links.length}
+      >
         <S.ContentPrimary>
           <Heading level="h3">{name}</Heading>
           <Text>{tagline}</Text>
