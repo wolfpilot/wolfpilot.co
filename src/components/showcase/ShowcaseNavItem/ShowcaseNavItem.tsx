@@ -2,7 +2,7 @@
 import { Tag } from "../types"
 
 // Utils
-import { usePageDispatch } from "@utils/context/PageContext"
+import { useShowcaseDispatch } from "../Context"
 
 // Styles
 import * as S from "./styles"
@@ -18,11 +18,11 @@ const ShowcaseNavItem: React.FC<Props> = ({
   isActive,
   taggedItemsAmount,
 }) => {
-  const pageDispatch = usePageDispatch()
+  const showcaseDispatch = useShowcaseDispatch()
 
   const handleClickTag = () => {
-    pageDispatch({
-      type: "updateShowcaseActiveTag",
+    showcaseDispatch({
+      type: "updateActiveTag",
       payload: tag,
     })
   }

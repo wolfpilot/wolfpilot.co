@@ -6,7 +6,7 @@ import { AnimatePresence } from "framer-motion"
 import { Tag, ShowcaseItem } from "./types"
 
 // Utils
-import { usePageState, usePageDispatch } from "@utils/context/PageContext"
+import { useShowcaseState, useShowcaseDispatch } from "./Context"
 
 // Components
 import ShowcaseNavList from "./ShowcaseNavList/ShowcaseNavList"
@@ -25,11 +25,10 @@ const tags: Tag[] = [
 ]
 
 const Showcase: React.FC<Props> = ({ items }) => {
-  const pageState = usePageState()
-  const pageDispatch = usePageDispatch()
+  const showcaseState = useShowcaseState()
+  const showcaseDispatch = useShowcaseDispatch()
 
-  const { showcaseActiveTag: activeTag, showcaseActiveItems: activeItems } =
-    pageState
+  const { activeTag, activeItems } = showcaseState
 
   /**
    * Update the active items when active tag changes
@@ -37,11 +36,11 @@ const Showcase: React.FC<Props> = ({ items }) => {
   useEffect(() => {
     const newActiveItems = items.filter((item) => item.tags.includes(activeTag))
 
-    pageDispatch({
-      type: "updateShowcaseActiveItems",
+    showcaseDispatch({
+      type: "updateActiveItems",
       payload: newActiveItems,
     })
-  }, [items, activeTag, pageDispatch])
+  }, [items, activeTag, showcaseDispatch])
 
   if (!items?.length) return null
 

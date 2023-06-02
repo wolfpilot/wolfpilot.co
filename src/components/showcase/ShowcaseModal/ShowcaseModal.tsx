@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect, useCallback, useRef } from "react"
 import { AnimatePresence } from "framer-motion"
 
 // Utils
-import { usePageState, usePageDispatch } from "@utils/context/PageContext"
+import { useShowcaseState, useShowcaseDispatch } from "../Context"
 import { useClickOutside } from "@utils/hooks/useClickOutside"
 import { disableScroll } from "@utils/domHelper"
 import { calculateAspectRatio } from "@utils/mathHelper"
@@ -26,13 +26,10 @@ import {
 type Axis = "vertical" | "horizontal"
 
 const ShowcaseModal: React.FC = () => {
-  const pageState = usePageState()
-  const pageDispatch = usePageDispatch()
+  const showcaseState = useShowcaseState()
+  const showcaseDispatch = useShowcaseDispatch()
 
-  const {
-    showcaseActiveItems: activeItems,
-    showcaseActiveItemIndex: activeItemIndex,
-  } = pageState
+  const { activeItems, activeItemIndex } = showcaseState
 
   const data =
     activeItems !== null && activeItemIndex !== null
@@ -86,13 +83,13 @@ const ShowcaseModal: React.FC = () => {
         setImgScrollDP(null)
         setHasCycled(false)
 
-        pageDispatch({
-          type: "updateShowcaseActiveItemIndex",
+        showcaseDispatch({
+          type: "updateActiveItemIndex",
           payload: null,
         })
       }
     },
-    [pageDispatch]
+    [showcaseDispatch]
   )
 
   const cycle = useCallback(
@@ -121,12 +118,12 @@ const ShowcaseModal: React.FC = () => {
       setImgScrollDP(null)
       setHasCycled(true)
 
-      pageDispatch({
-        type: "updateShowcaseActiveItemIndex",
+      showcaseDispatch({
+        type: "updateActiveItemIndex",
         payload: newIndex,
       })
     },
-    [activeItemIndex, activeItems, pageDispatch]
+    [activeItemIndex, activeItems, showcaseDispatch]
   )
 
   const zoomOut = () => {

@@ -1,13 +1,7 @@
 import { createContext, useContext, useReducer } from "react"
 
-// Types
-import { ShowcaseItem, Tag } from "@components/showcase/types"
-
 export interface State {
   hasSplashScreenPlayed: boolean
-  showcaseActiveTag: Tag
-  showcaseActiveItems: ShowcaseItem[] | null
-  showcaseActiveItemIndex: number | null
 }
 
 // Actions
@@ -16,34 +10,12 @@ export type updateHasSplashScreenPlayed = {
   payload: boolean
 }
 
-export type updateShowcaseActiveTag = {
-  type: "updateShowcaseActiveTag"
-  payload: Tag
-}
-
-export type updateShowcaseActiveItems = {
-  type: "updateShowcaseActiveItems"
-  payload: ShowcaseItem[] | null
-}
-
-export type updateShowcaseActiveItemIndex = {
-  type: "updateShowcaseActiveItemIndex"
-  payload: number | null
-}
-
-export type Action =
-  | updateHasSplashScreenPlayed
-  | updateShowcaseActiveTag
-  | updateShowcaseActiveItems
-  | updateShowcaseActiveItemIndex
+export type Action = updateHasSplashScreenPlayed
 
 export type Dispatch = (action: Action) => void
 
 export const initialState: State = {
   hasSplashScreenPlayed: false,
-  showcaseActiveTag: "featured",
-  showcaseActiveItemIndex: null,
-  showcaseActiveItems: null,
 }
 
 export const pageReducer = (state: State, action: Action) => {
@@ -52,24 +24,6 @@ export const pageReducer = (state: State, action: Action) => {
       return {
         ...state,
         hasSplashScreenPlayed: action.payload,
-      }
-    }
-    case "updateShowcaseActiveTag": {
-      return {
-        ...state,
-        showcaseActiveTag: action.payload,
-      }
-    }
-    case "updateShowcaseActiveItems": {
-      return {
-        ...state,
-        showcaseActiveItems: action.payload,
-      }
-    }
-    case "updateShowcaseActiveItemIndex": {
-      return {
-        ...state,
-        showcaseActiveItemIndex: action.payload,
       }
     }
     default:

@@ -47,8 +47,14 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
         <AnimatedCover
           key={`cover-${pathname}`}
           initial={false}
-          animate={{ scaleY: 0, translateY: 0 }}
-          exit={{ scaleY: [0, 1, 1], translateY: [0, 0, "-100%"] }}
+          animate={{
+            scaleY: 0,
+            translateY: "0%",
+          }}
+          exit={{
+            scaleY: [0, 1, 1],
+            translateY: ["0%", "0%", "-100%"],
+          }}
           transition={{
             duration: ANIM_DURATION,
             ease: ANIM_EASE,
@@ -57,9 +63,28 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
 
         <motion.div
           key={`page-${pathname}`}
-          initial={{ opacity: 0, translateY: "-20px" }}
-          animate={{ opacity: 1, translateY: "0px" }}
-          exit={{ opacity: 0, translateY: "0px" }}
+          initial={{
+            opacity: 0,
+            translateY: -20,
+          }}
+          animate={{
+            opacity: 1,
+            translateY: 0,
+            transitionEnd: {
+              /**
+               * Fix Framer leaving transform property inline which screws up
+               * any sort of absolute or fixed positioning.
+               *
+               * For more info, see:
+               * https://github.com/framer/motion/issues/823
+               */
+              translateY: 0,
+            },
+          }}
+          exit={{
+            opacity: 0,
+            translateY: 0,
+          }}
           transition={{
             duration: ANIM_DURATION / 3,
             delay: ANIM_DURATION / 3,

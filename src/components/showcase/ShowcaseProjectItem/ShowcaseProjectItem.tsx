@@ -6,7 +6,7 @@ import { Route } from "@ts/routes"
 import { ShowcaseItem } from "../types"
 
 // Utils
-import { usePageDispatch } from "@utils/context/PageContext"
+import { useShowcaseDispatch } from "../Context"
 import { getDomain } from "@utils/routeHelper"
 
 // Styles
@@ -44,7 +44,7 @@ const renderLinkText = (link: Route) => {
 const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
   const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
 
-  const pageDispatch = usePageDispatch()
+  const showcaseDispatch = useShowcaseDispatch()
 
   // Early exit check
   if (!data) return null
@@ -69,8 +69,8 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
   }
 
   const handleImgClick = () => {
-    pageDispatch({
-      type: "updateShowcaseActiveItemIndex",
+    showcaseDispatch({
+      type: "updateActiveItemIndex",
       payload: index,
     })
   }
