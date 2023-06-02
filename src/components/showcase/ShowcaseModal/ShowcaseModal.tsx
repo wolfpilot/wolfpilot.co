@@ -35,21 +35,34 @@ const ShowcaseModal: React.FC = () => {
   } = pageState
 
   const data =
-    (activeItems !== null &&
-      activeItemIndex !== null &&
-      activeItems[activeItemIndex]) ||
-    null
+    activeItems !== null && activeItemIndex !== null
+      ? activeItems[activeItemIndex]
+      : null
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
   const [isImgMax, setIsImgMax] = useState<boolean>(false)
   const [imgFillAxis, setImgFillAxis] = useState<Axis | null>(null)
+  const [imgScrollDP, setImgScrollDP] = useState<Record<string, number> | null>(
+    null
+  )
   const [hasCycled, setHasCycled] = useState<boolean>(false)
 
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const contentRef = useRef<HTMLDivElement | null>(null)
   const mediaRef = useRef<HTMLDivElement | null>(null)
-  const imgRef = useRef<HTMLImageElement | null>(null)
+
+  /**
+   * TODO: Report bug to Framer Motion.
+   *
+   * Work-around since both "sync" and "popLayout" modes return refs backwards,
+   * first the new element, then null, overwriting the value of the ref.
+   *
+   * In our case, imgRef becomes null on any state update, whereas arrays
+   * keep the latest object references intact.
+   */
+  const imgRefArray = useRef<HTMLImageElement[] | null[]>([])
+  const activeImgRef = imgRefArray.current[activeItemIndex || 0]
 
   const animProps = {
     wrapper: getWrapperAnimProps(isOpen),
@@ -69,6 +82,8 @@ const ShowcaseModal: React.FC = () => {
       } else {
         setIsImgLoaded(false)
         setIsImgMax(false)
+        setImgFillAxis(null)
+        setImgScrollDP(null)
         setHasCycled(false)
 
         pageDispatch({
@@ -82,15 +97,12 @@ const ShowcaseModal: React.FC = () => {
 
   const cycle = useCallback(
     (value: number) => {
-      if (
-        pageState.showcaseActiveItemIndex === null ||
-        pageState.showcaseActiveItems === null
-      ) {
+      if (activeItemIndex === null || activeItems === null) {
         return
       }
 
-      const targetIndex = pageState.showcaseActiveItemIndex + value
-      const itemsAmount = pageState.showcaseActiveItems.length
+      const targetIndex = activeItemIndex + value
+      const itemsAmount = activeItems.length
 
       if (!itemsAmount) return
 
@@ -105,6 +117,8 @@ const ShowcaseModal: React.FC = () => {
 
       setIsImgLoaded(false)
       setIsImgMax(false)
+      setImgFillAxis(null)
+      setImgScrollDP(null)
       setHasCycled(true)
 
       pageDispatch({
@@ -112,24 +126,79 @@ const ShowcaseModal: React.FC = () => {
         payload: newIndex,
       })
     },
-    [
-      pageState.showcaseActiveItemIndex,
-      pageState.showcaseActiveItems,
-      pageDispatch,
-    ]
+    [activeItemIndex, activeItems, pageDispatch]
   )
+
+  const zoomOut = () => {
+    setIsImgMax(false)
+    setImgScrollDP(null)
+  }
+
+  const zoomIn = (dpX: number, dpY: number) => {
+    setIsImgMax(true)
+    setImgScrollDP({
+      x: dpX,
+      y: dpY,
+    })
+  }
 
   // Handlers
   const handleImgLoadingComplete = () => {
     setIsImgLoaded(true)
   }
 
-  const handleZoomClick = () => {
-    setIsImgMax(!isImgMax)
+  const handleCloseBtnClick = () => {
+    toggle(false)
   }
 
-  const handleCloseClick = () => {
-    toggle(false)
+  const handleZoomBtnClick = () => {
+    // Zooming out
+    if (isImgMax) {
+      zoomOut()
+
+      return
+    }
+
+    // Zooming in
+
+    // Simulate click in the middle of the image
+    const dpX = 50
+    const dpY = 50
+
+    zoomIn(dpX, dpY)
+  }
+
+  const handleZoomImgClick = (e: React.MouseEvent) => {
+    // Zooming out
+    if (isImgMax) {
+      zoomOut()
+
+      return
+    }
+
+    // Zooming in
+    if (!activeImgRef || !data?.image.width || !data?.image.height) {
+      return
+    }
+
+    // Get the cursor position at the time of the interaction
+    const { clientX, clientY } = e
+
+    // Get the visible element coordinates and dimensions
+    const renderedImgBounds = activeImgRef.getBoundingClientRect()
+
+    const renderedImgWidth = Math.floor(renderedImgBounds.width)
+    const renderedImgHeight = Math.floor(renderedImgBounds.height)
+
+    // Calculate the distance (px) from the cursor to the edges of the image
+    const dX = clientX - renderedImgBounds.x
+    const dY = clientY - renderedImgBounds.y
+
+    // Calculate the distance (%) from the cursor to the edges of the image
+    const dpX = (dX * 100) / renderedImgWidth
+    const dpY = (dY * 100) / renderedImgHeight
+
+    zoomIn(dpX, dpY)
   }
 
   // Hooks
@@ -151,23 +220,62 @@ const ShowcaseModal: React.FC = () => {
       return
     }
 
+    // Convert Next's SafeNumber type to Number
     const imgWidth = Number(data.image.width)
     const imgHeight = Number(data.image.height)
+    const imgAR = calculateAspectRatio(imgWidth, imgHeight)
+
+    // Use client dimensions to ignore invisible content such as an image loader
+    const mediaWidth = mediaRef.current.clientWidth
+    const mediaHeight = mediaRef.current.clientHeight
+    const mediaAR = calculateAspectRatio(mediaWidth, mediaHeight)
 
     /**
-     * When calculating the wrapper's size, use client dimensions to ignore
-     * invisible content such as an image loader.
+     * Think of the fill axis like this:
+     *
+     * A narrow (width) image, when zoomed in, will expand horizontally.
+     * A short (height) image, when zoomed in, will expand vertically.
      */
-    const imgAR = calculateAspectRatio(imgWidth, imgHeight)
-    const mediaAR = calculateAspectRatio(
-      mediaRef.current.clientWidth,
-      mediaRef.current.clientHeight
-    )
-
     const newImgFillAxis = imgAR > mediaAR ? "vertical" : "horizontal"
 
     setImgFillAxis(newImgFillAxis)
   }, [data?.image.width, data?.image.height])
+
+  /**
+   * Scroll to the zoom-in coords
+   *
+   * * NOTE (to self): Why not do all of this in one function?
+   *
+   * Because we need to wait for the image to actually expand past its container
+   * before scrolling, aka wait for the CSS styles to apply. That's why it's
+   * necessary to have isImgMax as a dependency of this effect.
+   */
+  useEffect(() => {
+    if (!activeImgRef || !isImgMax || !imgFillAxis || imgScrollDP === null) {
+      return
+    }
+
+    const containerElem = activeImgRef.parentElement
+
+    if (!containerElem) return
+
+    // Get the visible element coordinates and dimensions
+    const renderedContainerBounds = containerElem.getBoundingClientRect()
+
+    const renderedContainerWidth = Math.floor(renderedContainerBounds.width)
+    const renderedContainerHeight = Math.floor(renderedContainerBounds.height)
+
+    // Calculate the distance (px) available for scrolling
+    const dX = activeImgRef.scrollWidth - renderedContainerWidth
+    const dY = activeImgRef.scrollHeight - renderedContainerHeight
+
+    // Calculate the distance (px) to scroll from the top / left of the container
+    const dScrollX = (imgScrollDP.x * dX) / 100
+    const dScrollY = (imgScrollDP.y * dY) / 100
+
+    containerElem.scrollLeft = dScrollX
+    containerElem.scrollTop = dScrollY
+  }, [isImgMax, imgFillAxis, imgScrollDP, activeImgRef])
 
   /**
    * Monitor key presses for various actions
@@ -224,7 +332,7 @@ const ShowcaseModal: React.FC = () => {
             >
               <AnimatePresence initial={false} mode="popLayout">
                 <S.Details
-                  key={`modal-details-${pageState.showcaseActiveItemIndex}`}
+                  key={`modal-details-${data.id}`}
                   {...animProps.details}
                 >
                   {data.name && <Heading level="h3">{data.name}</Heading>}
@@ -239,14 +347,16 @@ const ShowcaseModal: React.FC = () => {
                   data.image.height &&
                   data.image.alt && (
                     <S.ImageWrapper>
-                      <AnimatePresence mode="popLayout" initial={false}>
+                      <AnimatePresence initial={false} mode="popLayout">
                         <S.ImageScroller
-                          key={`modal-image-scroller-${pageState.showcaseActiveItemIndex}`}
+                          key={activeItemIndex || 0}
                           $isImgMax={isImgMax}
                           {...animProps.imgScroller}
                         >
                           <S.Image
-                            ref={imgRef}
+                            ref={(ref) => {
+                              imgRefArray.current[activeItemIndex || 0] = ref
+                            }}
                             src={data.image.src}
                             width={data.image.width}
                             height={data.image.height}
@@ -254,7 +364,7 @@ const ShowcaseModal: React.FC = () => {
                             $isImgMax={isImgMax}
                             $imgFillAxis={imgFillAxis}
                             onLoadingComplete={handleImgLoadingComplete}
-                            onClick={handleZoomClick}
+                            onClick={handleZoomImgClick}
                           />
                         </S.ImageScroller>
                       </AnimatePresence>
@@ -262,11 +372,11 @@ const ShowcaseModal: React.FC = () => {
                   )}
 
                 <S.Controls>
-                  <S.ControlCloseBtn onClick={handleCloseClick}>
+                  <S.ControlCloseBtn onClick={handleCloseBtnClick}>
                     <S.Icon type="close" />
                   </S.ControlCloseBtn>
 
-                  <S.ControlZoomBtn onClick={handleZoomClick}>
+                  <S.ControlZoomBtn onClick={handleZoomBtnClick}>
                     {isImgMax ? (
                       <S.Icon type="collapse" />
                     ) : (
