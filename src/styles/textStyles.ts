@@ -11,6 +11,10 @@ export const textStyles = {
     font-size: 16px;
     line-height: 1.5;
   `,
+  copyS: css`
+    font-size: 13px;
+    line-height: 1;
+  `,
   copyL: css`
     font-size: 22px;
     line-height: 1;

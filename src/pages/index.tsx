@@ -1,8 +1,18 @@
-import Image from "next/image"
+import fs from "fs"
+import path from "path"
+import sizeOf from "image-size"
+import Image, { ImageProps } from "next/image"
 import styled from "styled-components"
 
+// Types
+import { NextPage, GetStaticProps } from "next"
+import { Route } from "@ts/routes"
+
 // Data
-import { data } from "@data/homepage"
+import { data as rawData, ShowcaseItemRaw } from "@data/homepage"
+
+// Utils
+import { getLinkType } from "@utils/routeHelper"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -13,33 +23,62 @@ import Container from "@components/layout/Container"
 import HeadingComponent from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 import Card from "@components/generic/Card"
+import Showcase from "@components/showcase/Showcase"
 
-const HomePage = () => {
-  if (!data) return null
+export interface Props {
+  pageData: any
+}
+
+const HomePage: NextPage<Props> = ({ pageData }) => {
+  if (!pageData) return null
 
   return (
     <>
-      {data.about && (
-        <Section>
+      {pageData.about && (
+        <Section id="about">
           <Container>
-            {data.about.hero && (
+            {pageData.about.hero && (
               <Hero>
-                {data.about.hero.img && (
+                {pageData.about.hero.img && (
                   <HeroImageWrapper>
                     <HeroBackdrop>
-                      <HeroImage {...data.about.hero.img} />
+                      <HeroImage {...pageData.about.hero.img} />
                     </HeroBackdrop>
                   </HeroImageWrapper>
                 )}
 
-                {data.about.hero.title && (
-                  <HeroHeading level="h1">{data.about.hero.title}</HeroHeading>
+                {pageData.about.hero.title && (
+                  <HeroHeading level="h1">
+                    {pageData.about.hero.title}
+                  </HeroHeading>
                 )}
-                {data.about.hero.text && <Text>{data.about.hero.text}</Text>}
+                {pageData.about.hero.text && (
+                  <Text>{pageData.about.hero.text}</Text>
+                )}
               </Hero>
             )}
 
-            {data.about.card && <Card {...data.about.card} />}
+            {pageData.about.card && <Card {...pageData.about.card} />}
+          </Container>
+        </Section>
+      )}
+
+      {pageData.work && (
+        <Section id="work">
+          <Container>
+            <SectionHeader>
+              {pageData.work.heading && (
+                <SectionHeading level="h2">
+                  {pageData.work.heading}
+                </SectionHeading>
+              )}
+
+              {pageData.work.description && (
+                <Text>{pageData.work.description}</Text>
+              )}
+            </SectionHeader>
+
+            {pageData.work.showcase && <Showcase {...pageData.work.showcase} />}
           </Container>
         </Section>
       )}
@@ -47,8 +86,88 @@ const HomePage = () => {
   )
 }
 
+export const getStaticProps: GetStaticProps = async () => {
+  const baseShowcaseUrl = "/images/showcase"
+
+  const publicPath = path.join(process.cwd(), "public")
+  const baseShowcasePath = `${publicPath}/images/showcase/`
+
+  const { work: workData } = rawData
+
+  /**
+   * Generate additional data required on the client-side at render time
+   */
+  const generateLinksData = (item: ShowcaseItemRaw): Route[] => {
+    if (!item.links?.length) return []
+
+    return item.links.map((link) => {
+      if (!link.url) return link
+
+      return {
+        ...link,
+        type: getLinkType(link.url),
+      }
+    })
+  }
+
+  /**
+   * Generate additional data required by Next to serve static assets
+   */
+  const generateImageData = (
+    item: ShowcaseItemRaw,
+    isThumb: boolean
+  ): ImageProps => {
+    const suffix = isThumb
+      ? `${item.id}/${item.id}--thumb.jpg`
+      : `${item.id}/${item.id}.jpg`
+
+    const src = `${baseShowcaseUrl}/${suffix}`
+    const path = `${baseShowcasePath}/${suffix}`
+
+    const data = fs.readFileSync(path)
+    const { width, height } = sizeOf(data)
+
+    return {
+      src,
+      width,
+      height,
+      alt: item.alt,
+    }
+  }
+
+  const parsedWorkItems = workData.showcase.items.map((item) => ({
+    ...item,
+    links: generateLinksData(item),
+    thumb: generateImageData(item, true),
+    image: generateImageData(item, false),
+  }))
+
+  return {
+    props: {
+      pageData: {
+        ...rawData,
+        work: {
+          ...rawData.work,
+          showcase: {
+            ...rawData.work.showcase,
+            items: parsedWorkItems,
+          },
+        },
+      },
+    },
+  }
+}
+
 const Section = styled.section`
   margin-bottom: var(--spacing-section);
+`
+
+const SectionHeader = styled.div`
+  margin-bottom: var(--spacing-block);
+`
+
+const SectionHeading = styled(HeadingComponent)`
+  ${textStyles.headingL};
 `
 
 const Hero = styled.div`
@@ -66,7 +185,7 @@ const HeroBackdrop = styled.div`
   width: calc(2 * var(--grid-column-size));
   height: calc(2 * var(--grid-column-size));
   margin: 0 auto;
-  background: var(--g-accent-diagonal);
+  background: var(--g-primary-diagonal);
   border-radius: 50%;
 
   ${mq.from.S`

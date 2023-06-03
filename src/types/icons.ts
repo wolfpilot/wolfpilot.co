@@ -1,6 +1,14 @@
 export enum IconTypesEnum {
   // Generic
   Logo = "logo",
+  LinkExternal = "linkExternal",
+  LinkInternal = "linkInternal",
+  // Interaction
+  Prev = "prev",
+  Next = "next",
+  Close = "close",
+  Expand = "expand",
+  Collapse = "collapse",
   // Info
   Email = "email",
   // Social
@@ -12,5 +20,7 @@ export enum IconTypesEnum {
 
 export interface Icon extends React.SVGAttributes<SVGElement> {
   className?: string
+  width?: number
+  height?: number
   color?: string
 }

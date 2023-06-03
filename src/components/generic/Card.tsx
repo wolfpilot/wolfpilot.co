@@ -91,7 +91,7 @@ const FeaturedImageWrapper = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background: var(--g-accent-diagonal);
+    background: var(--g-primary-diagonal);
     mix-blend-mode: darken;
     pointer-events: none;
   }

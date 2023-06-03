@@ -110,6 +110,7 @@ export const base = css`
     --c-pageColor: ${colors.pageColor};
     --c-accent1: ${colors.accent1};
     --c-accent2: ${colors.accent2};
+    --c-accent3: ${colors.accent3};
     --c-cursor: ${colors.cursor};
     --c-textHighlight: ${colors.textHighlight};
     --c-gridBgColor: ${colors.gridBgColor};
@@ -117,7 +118,8 @@ export const base = css`
     --c-gridTextColor: ${colors.gridTextColor};
 
     // Gradients
-    --g-accent-diagonal: ${gradients.accentDiagonal};
+    --g-primary-diagonal: ${gradients.primaryDiagonal};
+    --g-secondary-diagonal: ${gradients.secondaryDiagonal};
   }
 
   /* Custom text highlighting */
@@ -159,7 +161,7 @@ export const base = css`
   h4,
   h5,
   h6 {
-    margin-bottom: var(--grid-gutter-size);
+    margin-bottom: calc(var(--spacing-default) / 2);
     font-weight: ${weights.normal};
   }
 

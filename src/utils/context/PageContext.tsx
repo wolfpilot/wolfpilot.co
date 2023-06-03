@@ -1,10 +1,6 @@
 import { createContext, useContext, useReducer } from "react"
 
-// Config
-import { config as pageConfig } from "@config/page.config"
-
 export interface State {
-  // !: shouldSplashScreenPlay ; maybe move all this to PageProvider or something
   hasSplashScreenPlayed: boolean
 }
 
@@ -19,7 +15,7 @@ export type Action = updateHasSplashScreenPlayed
 export type Dispatch = (action: Action) => void
 
 export const initialState: State = {
-  hasSplashScreenPlayed: pageConfig.hasSplashScreenPlayed,
+  hasSplashScreenPlayed: false,
 }
 
 export const pageReducer = (state: State, action: Action) => {

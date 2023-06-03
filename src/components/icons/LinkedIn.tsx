@@ -1,6 +1,6 @@
 import { Icon } from "@ts/icons"
 
-const Codepen: React.FC<Icon> = ({ className }) => (
+const LinkedIn: React.FC<Icon> = ({ className }) => (
   <svg
     className={className}
     width="28"
@@ -19,4 +19,4 @@ const Codepen: React.FC<Icon> = ({ className }) => (
   </svg>
 )
 
-export default Codepen
+export default LinkedIn
