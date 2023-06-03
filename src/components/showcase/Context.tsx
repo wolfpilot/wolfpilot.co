@@ -29,7 +29,7 @@ export type Action = updateActiveTag | updateActiveItems | updateActiveItemIndex
 
 export type Dispatch = (action: Action) => void
 
-export const initialState: State = {
+export const defaultState: State = {
   activeTag: "featured",
   activeItemIndex: null,
   activeItems: null,
@@ -67,8 +67,10 @@ export const ShowcaseDispatchCtx = createContext<Dispatch | null>(null)
 // HOC
 export const ShowcaseProvider = ({
   children,
+  initialState = defaultState,
 }: {
   children: React.ReactNode
+  initialState?: State
 }) => {
   const [state, dispatch] = useReducer(showcaseReducer, initialState)
 

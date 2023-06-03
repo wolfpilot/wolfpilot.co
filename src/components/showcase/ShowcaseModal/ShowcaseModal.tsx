@@ -369,11 +369,17 @@ const ShowcaseModal: React.FC = () => {
                   )}
 
                 <S.Controls>
-                  <S.ControlCloseBtn onClick={handleCloseBtnClick}>
+                  <S.ControlCloseBtn
+                    aria-label="Close"
+                    onClick={handleCloseBtnClick}
+                  >
                     <S.Icon type="close" />
                   </S.ControlCloseBtn>
 
-                  <S.ControlZoomBtn onClick={handleZoomBtnClick}>
+                  <S.ControlZoomBtn
+                    aria-label={isImgMax ? "Zoom out" : "Zoom in"}
+                    onClick={handleZoomBtnClick}
+                  >
                     {isImgMax ? (
                       <S.Icon type="collapse" />
                     ) : (
