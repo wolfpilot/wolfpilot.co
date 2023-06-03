@@ -14,12 +14,16 @@ export interface Props {
   items: ShowcaseItem[]
 }
 
-const ShowcaseProjectList: React.FC<Props> = ({ items }) => (
-  <S.Wrapper {...animProps}>
-    {items.map((item, index) => (
-      <ShowcaseProjectItem key={item.id} index={index} data={item} />
-    ))}
-  </S.Wrapper>
-)
+const ShowcaseProjectList: React.FC<Props> = ({ items }) => {
+  if (!items.length) return null
+
+  return (
+    <S.Wrapper {...animProps}>
+      {items.map((item, index) => (
+        <ShowcaseProjectItem key={item.id} index={index} data={item} />
+      ))}
+    </S.Wrapper>
+  )
+}
 
 export default ShowcaseProjectList

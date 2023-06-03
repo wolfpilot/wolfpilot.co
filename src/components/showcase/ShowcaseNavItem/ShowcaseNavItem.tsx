@@ -27,6 +27,8 @@ const ShowcaseNavItem: React.FC<Props> = ({
     })
   }
 
+  if (!tag) return null
+
   return (
     <S.Wrapper>
       <S.Button $isActive={isActive} onClick={handleClickTag}>

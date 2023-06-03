@@ -177,7 +177,7 @@ export const Links = styled.ul`
   padding: 0;
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.li`
   position: relative;
   overflow: hidden;
   display: flex;
