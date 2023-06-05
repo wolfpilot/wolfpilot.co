@@ -1,28 +1,32 @@
 import Link from "next/link"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
+import { motion } from "framer-motion"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
+import { listResetStyles } from "@styles/list"
+import { btnResetStyles } from "@styles/button"
 import { textStyles } from "@styles/textStyles"
 import { duration, ease } from "@styles/animation"
 
 // Components
 import Heading from "@components/generic/Heading"
 
-export const Wrapper = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
+export const Wrapper = styled.div``
+
+export const List = styled.ul`
+  ${listResetStyles};
 `
 
-export const Item = styled.li`
+export const Item = styled(motion.li)`
   &:not(:last-child) {
     border-bottom: 1px solid var(--c-neutral3);
   }
 `
 
 export const ItemNumber = styled.div`
-  margin-right: calc(var(--spacing-default) / 2);
+  width: 20px;
+  margin-right: 10px;
 
   @media (hover: hover) and (pointer: fine) {
     visibility: hidden;
@@ -64,9 +68,10 @@ export const ItemCategory = styled.div`
   `}
 `
 
-export const ItemLink = styled(Link)`
+const sharedCtaStyles = css`
   display: flex;
   align-items: center;
+  width: 100%;
   padding-top: var(--spacing-default);
   padding-bottom: var(--spacing-default);
   color: var(--c-neutral2);
@@ -99,4 +104,13 @@ export const ItemLink = styled(Link)`
       }
     }
   }
+`
+
+export const ItemLink = styled(Link)`
+  ${sharedCtaStyles};
+`
+
+export const ItemBtn = styled.button`
+  ${btnResetStyles};
+  ${sharedCtaStyles};
 `
