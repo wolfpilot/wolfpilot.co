@@ -5,11 +5,13 @@ import AboutFeaturedImageSrc from "/public/images/photos/homepage-about-featured
 // Types
 import { ShowcaseItem } from "@components/showcase/types"
 import { Props as CasesProps } from "@components/cases/Cases"
+import { Props as TimelineProps } from "@components/timeline/Timeline"
 
 // Data
 import { data as casePagesData } from "./cases"
 
 export type ShowcaseItemRaw = Omit<ShowcaseItem, "thumb" | "image">
+
 export interface ShowcaseDataRaw {
   items: ShowcaseItemRaw[]
 }
@@ -378,6 +380,97 @@ export const casesData: CasesProps = {
   items: casesItemsData,
 }
 
+const timelineItemsData = [
+  {
+    position: "Individual Retail Trader",
+    company: {
+      label: "Self-Employed",
+      url: "",
+    },
+    period: {
+      start: "Jan 2021",
+      end: "Present",
+    },
+    description: "Lorem",
+  },
+  {
+    position: "Senior Front-End Developer",
+    company: {
+      label: "Jungle Minds",
+      url: "https://www.jungleminds.com/",
+    },
+    period: {
+      start: "Jul 2019",
+      end: "Jan 2021",
+    },
+    description: "Lorem",
+  },
+  {
+    position: "Senior Front-End Developer",
+    company: {
+      label: "Mirabeau",
+      url: "https://www.mirabeau.nl/",
+    },
+    period: {
+      start: "Jan 2019",
+      end: "Jun 2019",
+    },
+    description: "Lorem",
+  },
+  {
+    position: "Front-End Developer",
+    company: {
+      label: "Mirabeau",
+      url: "https://www.mirabeau.nl/",
+    },
+    period: {
+      start: "Aug 2017",
+      end: "Jun 2019",
+    },
+    description: "Lorem",
+  },
+  {
+    position: "Front-End Developer",
+    company: {
+      label: "Propeller Communications",
+      url: "https://www.propeller.co.uk/",
+    },
+    period: {
+      start: "Jul 2015",
+      end: "Jul 2017",
+    },
+    description: "Lorem",
+  },
+  {
+    position: "Web Designer & Developer",
+    company: {
+      label: "Freelance",
+      url: "",
+    },
+    period: {
+      start: "Jun 2013",
+      end: "Jul 2015",
+    },
+    description: "Lorem",
+  },
+  {
+    position: "Concept Artist & Illustrator",
+    company: {
+      label: "Freelance",
+      url: "",
+    },
+    period: {
+      start: "May 2012",
+      end: "May 2015",
+    },
+    description: "Lorem",
+  },
+]
+
+export const timelineData: TimelineProps = {
+  items: timelineItemsData,
+}
+
 export const data = {
   about: {
     hero: {
@@ -410,5 +503,10 @@ export const data = {
     description:
       "See what goes in the mind of ze creator. A collection of ramblings behind works of all sorts",
     cases: casesData,
+  },
+  experience: {
+    heading: "Experience",
+    description: "My timeline as a working professional",
+    timeline: timelineData,
   },
 }

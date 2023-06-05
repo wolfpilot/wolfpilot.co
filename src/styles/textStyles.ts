@@ -20,8 +20,12 @@ export const textStyles = {
     line-height: 1;
   `,
   headingL: css`
-    font-size: 80px;
+    font-size: 48px;
     line-height: 1.15;
+
+    ${mq.from.S`
+      font-size: 64px;
+    `}
 
     ${mq.from.M`
       font-size: 96px;
@@ -32,8 +36,12 @@ export const textStyles = {
     `}
   `,
   headingM: css`
-    font-size: 36px;
+    font-size: 32px;
     line-height: 1.15;
+
+    ${mq.from.S`
+      font-size: 40px;
+    `}
 
     ${mq.from.M`
       font-size: 48px;
@@ -46,6 +54,10 @@ export const textStyles = {
   headingS: css`
     font-size: 20px;
     line-height: 1.15;
+
+    ${mq.from.S`
+      font-size: 22px;
+    `}
 
     ${mq.from.M`
       font-size: 24px;
