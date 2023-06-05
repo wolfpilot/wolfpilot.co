@@ -3,11 +3,10 @@ import { motion } from "framer-motion"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
+import { listResetStyles } from "@styles/list"
 
 export const Wrapper = styled(motion.ul)`
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  ${listResetStyles};
 
   ${mq.from.M`
     column-count: 2;

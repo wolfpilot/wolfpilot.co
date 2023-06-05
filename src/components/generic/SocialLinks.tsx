@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { social } from "@constants/social"
 
 // Styles
+import { listResetStyles } from "@styles/list"
 import { duration, ease } from "@styles/animation"
 
 // Components
@@ -46,11 +47,9 @@ const Social: React.FC<Props> = ({ className, option }) => (
 const Wrapper = styled.div``
 
 const SocialList = styled.ul`
+  ${listResetStyles};
   display: flex;
   justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 `
 
 const SocialItem = styled.li`

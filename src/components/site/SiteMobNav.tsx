@@ -12,6 +12,7 @@ import { useWindowSize } from "@utils/hooks/useWindowSize"
 
 // Styles
 import { mq, breakpoints } from "@styles/utils/mediaQueries"
+import { listResetStyles } from "@styles/list"
 import { zIndexes } from "@styles/zIndexes"
 import { textStyles } from "@styles/textStyles"
 import { ease, duration } from "@styles/animation"
@@ -307,8 +308,7 @@ const NavContentInner = styled.div`
 `
 
 const NavList = styled(motion.ul)`
-  list-style: none;
-  margin: 0;
+  ${listResetStyles};
   padding: var(--spacing-default) 0;
 `
 

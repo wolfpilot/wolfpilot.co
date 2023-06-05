@@ -9,6 +9,7 @@ import { routes } from "@constants/routes"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
+import { listResetStyles } from "@styles/list"
 import { ease, duration } from "@styles/animation"
 import { textStyles } from "@styles/textStyles"
 
@@ -94,14 +95,12 @@ const NavBar = styled.div`
 `
 
 const NavList = styled.ul`
+  ${listResetStyles};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  list-style: none;
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
 `
 
 const NavItemLink = styled(Link)`

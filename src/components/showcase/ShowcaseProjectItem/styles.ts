@@ -3,6 +3,7 @@ import styled, { css } from "styled-components"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
+import { listResetStyles } from "@styles/list"
 import { duration, ease } from "@styles/animation"
 
 // Helper styles
@@ -172,9 +173,7 @@ export const ContentWrapper = styled.div<{
 `
 
 export const Links = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  ${listResetStyles};
 `
 
 export const Wrapper = styled.li`
