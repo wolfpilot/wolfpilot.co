@@ -24,6 +24,7 @@ import HeadingComponent from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 import Card from "@components/generic/Card"
 import Showcase from "@components/showcase/Showcase"
+import Cases from "@components/cases/Cases"
 
 export interface Props {
   pageData: any
@@ -79,6 +80,28 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
             </SectionHeader>
 
             {pageData.work.showcase && <Showcase {...pageData.work.showcase} />}
+          </Container>
+        </Section>
+      )}
+
+      {pageData.caseStudies && (
+        <Section id="cases">
+          <Container>
+            <SectionHeader>
+              {pageData.caseStudies.heading && (
+                <SectionHeading level="h2">
+                  {pageData.caseStudies.heading}
+                </SectionHeading>
+              )}
+
+              {pageData.caseStudies.description && (
+                <Text>{pageData.caseStudies.description}</Text>
+              )}
+            </SectionHeader>
+
+            {pageData.caseStudies.cases && (
+              <Cases {...pageData.caseStudies.cases} />
+            )}
           </Container>
         </Section>
       )}

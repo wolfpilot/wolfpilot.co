@@ -4,6 +4,10 @@ import AboutFeaturedImageSrc from "/public/images/photos/homepage-about-featured
 
 // Types
 import { ShowcaseItem } from "@components/showcase/types"
+import { Props as CasesProps } from "@components/cases/Cases"
+
+// Data
+import { data as casePagesData } from "./cases"
 
 export type ShowcaseItemRaw = Omit<ShowcaseItem, "thumb" | "image">
 export interface ShowcaseDataRaw {
@@ -360,6 +364,20 @@ const showcaseDataRaw: ShowcaseDataRaw = {
   ],
 }
 
+const casesItemsData = Object.keys(casePagesData).map((key) => {
+  const data = casePagesData[key]
+
+  return {
+    id: data.meta.title.toLowerCase().replace(" ", "-"),
+    title: data.meta.title,
+    category: data.meta.category,
+  }
+})
+
+export const casesData: CasesProps = {
+  items: casesItemsData,
+}
+
 export const data = {
   about: {
     hero: {
@@ -386,5 +404,11 @@ export const data = {
     heading: "Work",
     description: "Take a look at some of my projects",
     showcase: showcaseDataRaw,
+  },
+  caseStudies: {
+    heading: "Case Studies",
+    description:
+      "See what goes in the mind of ze creator. A collection of ramblings behind works of all sorts",
+    cases: casesData,
   },
 }
