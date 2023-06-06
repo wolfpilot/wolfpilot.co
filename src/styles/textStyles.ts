@@ -13,11 +13,11 @@ export const textStyles = {
   `,
   copyS: css`
     font-size: 13px;
-    line-height: 1;
+    line-height: 1.5;
   `,
   copyL: css`
     font-size: 22px;
-    line-height: 1;
+    line-height: 1.5;
   `,
   headingL: css`
     font-size: 48px;

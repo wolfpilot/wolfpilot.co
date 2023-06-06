@@ -387,11 +387,16 @@ const timelineItemsData = [
       label: "Self-Employed",
       url: "",
     },
-    period: {
+    date: {
       start: "Jan 2021",
       end: "Present",
     },
-    description: "Lorem",
+    description: `• Trading spot and derivative contracts in Forex, Stocks and Cryptocurrencies.
+    • Managing risk on a per trade basis
+    • Journalling strategies, wins and losses, emotions
+    • Researching projects, IPOs, ICOs
+    • Interacting with DeFi (staking, smart contracts, LPs)
+    • Developing custom indicators and automated strategies`,
   },
   {
     position: "Senior Front-End Developer",
@@ -399,11 +404,16 @@ const timelineItemsData = [
       label: "Jungle Minds",
       url: "https://www.jungleminds.com/",
     },
-    period: {
+    date: {
       start: "Jul 2019",
       end: "Jan 2021",
     },
-    description: "Lorem",
+    description: `• Tech Lead for clients such as Tom Holkenborg, Leading Courses (BETA), Rouze and PON Automotive.
+    • Rebuilt Jungle Minds’ new portfolio website.
+    • Responsible for security audits (XSS, CSRF, privacy leaks, dependency vulnerabilities, pentesting).
+    • Responsible for performance audits (Lighthouse reports, optimising bundle size and assets, FPS, repainting, memleaks).
+    • Coaching team members.
+    • Defining code review standards, merging strategies and conventions.`,
   },
   {
     position: "Senior Front-End Developer",
@@ -411,11 +421,12 @@ const timelineItemsData = [
       label: "Mirabeau",
       url: "https://www.mirabeau.nl/",
     },
-    period: {
+    date: {
       start: "Jan 2019",
       end: "Jun 2019",
     },
-    description: "Lorem",
+    description: `• Lead Front-End Developer in charge of building user dashboard for employment mediator Brunel International. Tech stack comprised of React and GraphQL and full integration with Sitecore via JSS services.
+    • Additional responsibilities included mentoring colleagues, performing weekly code reviews and holding cross-team workshops.`,
   },
   {
     position: "Front-End Developer",
@@ -423,11 +434,13 @@ const timelineItemsData = [
       label: "Mirabeau",
       url: "https://www.mirabeau.nl/",
     },
-    period: {
+    date: {
       start: "Aug 2017",
       end: "Jun 2019",
     },
-    description: "Lorem",
+    description: `• Built the new applicant flow for Brunel International. I was tasked with setting up the project, implementing custom form validation throughout, tracking user behaviour and last, but not least, making things pretty.
+    • Reviewed applicants and carried out job interviews.
+    • Contributed regularly to Mirabeau’s open-source boilerplate repo.`,
   },
   {
     position: "Front-End Developer",
@@ -435,11 +448,13 @@ const timelineItemsData = [
       label: "Propeller Communications",
       url: "https://www.propeller.co.uk/",
     },
-    period: {
+    date: {
       start: "Jul 2015",
       end: "Jul 2017",
     },
-    description: "Lorem",
+    description: `• Flexible Front-End role where I occasionally got to wear the almighty full-stack hat. I built websites in FuelPHP and WordPress, while also managing a few multi-site templates for hospitality clients.
+    • Workflow included automation via Gulp, BEM methodology using
+    SASS and version control through Git.`,
   },
   {
     position: "Web Designer & Developer",
@@ -447,11 +462,11 @@ const timelineItemsData = [
       label: "Freelance",
       url: "",
     },
-    period: {
+    date: {
       start: "Jun 2013",
       end: "Jul 2015",
     },
-    description: "Lorem",
+    description: `Responsible for project planning with clients, negotiating contracts, developing wireframes, mock-ups and high-end designs, as well as coding and maintaining websites.`,
   },
   {
     position: "Concept Artist & Illustrator",
@@ -459,11 +474,13 @@ const timelineItemsData = [
       label: "Freelance",
       url: "",
     },
-    period: {
+    date: {
       start: "May 2012",
       end: "May 2015",
     },
-    description: "Lorem",
+    description: `• Designed album covers for Toadstool - The Visitors, Cavendish - Positive Trailers and New Paradigm - Faultlines
+    • Worked on several book covers and character concepts for various novelists and authors
+    • Commisioned for a variety of concept art and illustration pieces, including D&D characters and fan art`,
   },
 ]
 
