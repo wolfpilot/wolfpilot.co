@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { motion } from "framer-motion"
 
 // Types
 import { Route } from "@ts/routes"
@@ -26,16 +25,27 @@ export interface Props {
 
 const Timeline: React.FC<Props> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0)
+  const [showAll, setShowAll] = useState<boolean>(false)
 
   // Handlers
   const handleToggleBtnClick = (newActiveIndex: number) => {
     setActiveIndex(newActiveIndex)
   }
 
+  const handleToggleAllClick = () => {
+    setShowAll(!showAll)
+  }
+
   if (!items?.length) return null
 
   return (
     <S.Wrapper>
+      <S.Controls>
+        <S.ControlToggleAll type="button" onClick={handleToggleAllClick}>
+          {showAll ? "hide all" : "show all"}
+        </S.ControlToggleAll>
+      </S.Controls>
+
       <S.List>
         {items.map((item, index) => {
           const { position, company, date, description } = item
@@ -50,28 +60,30 @@ const Timeline: React.FC<Props> = ({ items }) => {
             return null
           }
 
-          const isHighlighted = activeIndex > index
-          const isActive = activeIndex === index
+          const isHighlighted = showAll ? false : activeIndex > index
+          const isActive = showAll ? true : activeIndex === index
 
-          const itemAnimProps = getItemAnimProps(isActive)
+          const itemAnimProps = getItemAnimProps(showAll ? true : isActive)
 
           return (
-            <S.Item
-              key={`timeline-item-${index}`}
-              $isHighlighted={isHighlighted}
-            >
-              <S.ItemTrack>
+            <S.Item key={`timeline-item-${index}`}>
+              <S.ItemIndicator>
                 <S.ItemBullet
                   $isHighlighted={isHighlighted}
-                  $isActive={isActive}
+                  $isActive={showAll ? false : activeIndex === index}
                 >
                   •
                 </S.ItemBullet>
-              </S.ItemTrack>
+
+                {index !== items.length - 1 && (
+                  <S.ItemTrack $isHighlighted={isHighlighted} />
+                )}
+              </S.ItemIndicator>
 
               <S.ItemContent $isActive={isActive}>
                 <S.ItemToggleBtn
                   type="button"
+                  disabled={showAll}
                   onClick={() => handleToggleBtnClick(index)}
                 >
                   {position}
@@ -89,13 +101,13 @@ const Timeline: React.FC<Props> = ({ items }) => {
                   <S.ItemCompanyName>— {company.label}</S.ItemCompanyName>
                 )}
 
-                <S.Date>
+                <S.ItemDate>
                   {item.date.start} - {item.date.end}
-                </S.Date>
+                </S.ItemDate>
 
-                <motion.div {...itemAnimProps}>
-                  <S.Description>{item.description}</S.Description>
-                </motion.div>
+                <S.ItemDetails {...itemAnimProps} $isActive={isActive}>
+                  <S.ItemDescription>{item.description}</S.ItemDescription>
+                </S.ItemDetails>
               </S.ItemContent>
             </S.Item>
           )

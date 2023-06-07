@@ -184,6 +184,10 @@ export const base = css`
   button {
     cursor: pointer;
 
+    &[disabled] {
+      cursor: not-allowed;
+    }
+
     &:focus {
       outline: none;
     }

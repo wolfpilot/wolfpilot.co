@@ -26,9 +26,9 @@ const itemVariants: Variants = {
   },
 }
 
-export const getItemAnimProps = (isSelected: boolean): AnimationProps => ({
+export const getItemAnimProps = (isActive: boolean): AnimationProps => ({
   variants: itemVariants,
   initial: "hidden",
-  animate: isSelected ? "visible" : "hidden",
+  animate: isActive ? "visible" : "hidden",
   exit: "hidden",
 })

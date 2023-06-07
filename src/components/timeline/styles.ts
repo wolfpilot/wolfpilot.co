@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { motion } from "framer-motion"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -13,52 +14,58 @@ import Text from "@components/generic/Text"
 export const Wrapper = styled.div`
   ${mq.from.M`
     display: flex;
-    width: calc(8 * var(--grid-column-size) + 7 * var(--grid-gutter-size));
+    align-items: baseline;
   `}
+`
+
+export const Controls = styled.div`
+  display: none;
+
+  ${mq.from.M`
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 0 calc(var(--grid-column-size) + var(--grid-gutter-size));
+    padding-right: var(--grid-gutter-size);
+  `}
+`
+
+export const ControlToggleAll = styled.button`
+  ${btnResetStyles};
+  color: var(--c-neutral1);
+  line-height: 1.5;
+  transition: color ${duration.medium}s ${ease.cubic};
+
+  &:focus,
+  &:hover {
+    color: var(--c-accent2);
+  }
 `
 
 export const List = styled.ul`
   ${listResetStyles};
+
+  ${mq.from.M`
+    padding-right: calc(var(--grid-column-size) + var(--grid-gutter-size));
+  `}
 `
 
 export const ItemContent = styled.div<{ $isActive: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+  padding-left: var(--spacing-default);
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.3)};
   transition: opacity ${duration.medium}s ${ease.cubic};
 `
 
-export const Item = styled.li<{ $isHighlighted: boolean }>`
+export const Item = styled.li`
   position: relative;
   display: flex;
 
-  // Safe padding for content to animate to
-  padding-right: var(--spacing-default);
-
   &:not(:last-child) {
-    padding-bottom: var(--spacing-default);
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 30px;
-      left: 3px;
-      bottom: 0;
-      width: 2px;
-      transition: background-color ${duration.medium}s ${ease.cubic},
-        opacity ${duration.medium}s ${ease.cubic};
-
-      ${({ $isHighlighted }) =>
-        $isHighlighted
-          ? `
-          background-color: var(--c-accent1);
-          opacity: 1;
-        `
-          : `
-          background-color: var(--c-neutral3);
-          opacity: 0.3;
-        `}
+    ${ItemContent} {
+      padding-bottom: var(--spacing-default);
     }
   }
 
@@ -70,10 +77,28 @@ export const Item = styled.li<{ $isHighlighted: boolean }>`
   }
 `
 
-export const ItemTrack = styled.div`
+export const ItemIndicator = styled.div`
   display: flex;
-  align-items: baseline;
-  margin-right: var(--grid-gutter-size);
+  flex-direction: column;
+  align-items: center;
+`
+
+export const ItemTrack = styled.div<{ $isHighlighted: boolean }>`
+  width: 2px;
+  height: 100%;
+  transition: background-color ${duration.medium}s ${ease.cubic},
+    opacity ${duration.medium}s ${ease.cubic};
+
+  ${({ $isHighlighted }) =>
+    $isHighlighted
+      ? `
+          background-color: var(--c-accent1);
+          opacity: 1;
+        `
+      : `
+          background-color: var(--c-neutral3);
+          opacity: 0.3;
+        `}
 `
 
 export const ItemBullet = styled.div<{
@@ -102,6 +127,11 @@ export const ItemToggleBtn = styled.button`
   ${mq.from.XS`
     ${textStyles.copyL};
   `}
+
+  &[disabled] {
+    color: var(--c-black);
+    cursor: initial;
+  }
 `
 
 export const ItemCompanyLink = styled.a`
@@ -117,10 +147,24 @@ export const ItemCompanyName = styled(Text)`
   margin-bottom: 0;
 `
 
-export const Date = styled(Text)`
+export const ItemDate = styled(Text)`
   margin-bottom: 0;
 `
 
-export const Description = styled(Text)`
+export const ItemDetails = styled(motion.div)<{ $isActive: boolean }>`
+  /**
+   * Fix Framer Motion bug where visibility is set to hidden at the end of
+   * the show animation.
+   *
+   * To replicate, toggle the animation quickly a few times and notice how
+   * transitionEnd applies its styles regardless of which variant is playing.
+   *
+   * For more info, see:
+   * https://github.com/framer/motion/issues/706
+   */
+  ${({ $isActive }) => $isActive && "visibility: visible !important;"}
+`
+
+export const ItemDescription = styled(Text)`
   padding-top: var(--spacing-default);
 `
