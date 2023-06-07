@@ -135,8 +135,8 @@ export const ItemToggleBtn = styled.button`
 `
 
 export const ItemCompanyLink = styled.a`
+  ${textStyles.hyperlink};
   ${textStyles.copyS};
-  color: var(--c-accent2);
 
   ${mq.from.XS`
     ${textStyles.copy};

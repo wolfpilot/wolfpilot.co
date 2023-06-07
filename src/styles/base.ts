@@ -134,6 +134,7 @@ export const base = css`
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-smooth: never;
   }
 
   body {
@@ -179,6 +180,10 @@ export const base = css`
 
   a {
     text-decoration: none;
+  }
+
+  p a {
+    ${textStyles.hyperlink};
   }
 
   button {

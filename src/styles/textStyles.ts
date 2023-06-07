@@ -67,6 +67,14 @@ export const textStyles = {
       font-size: 32px;
     `}
   `,
+  hyperlink: css`
+    color: var(--c-accent2);
+
+    &:focus {
+      outline: none;
+      text-decoration: underline;
+    }
+  `,
   navLinkMob: css`
     font-size: 32px;
   `,
