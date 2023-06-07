@@ -25,6 +25,7 @@ import Text from "@components/generic/Text"
 import Card from "@components/generic/Card"
 import Showcase from "@components/showcase/Showcase"
 import Cases from "@components/cases/Cases"
+import Timeline from "@components/timeline/Timeline"
 
 export interface Props {
   pageData: any
@@ -101,6 +102,28 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
 
             {pageData.caseStudies.cases && (
               <Cases {...pageData.caseStudies.cases} />
+            )}
+          </Container>
+        </Section>
+      )}
+
+      {pageData.experience && (
+        <Section id="experience">
+          <Container>
+            <SectionHeader>
+              {pageData.experience.heading && (
+                <SectionHeading level="h2">
+                  {pageData.experience.heading}
+                </SectionHeading>
+              )}
+
+              {pageData.experience.description && (
+                <Text>{pageData.experience.description}</Text>
+              )}
+            </SectionHeader>
+
+            {pageData.experience.timeline && (
+              <Timeline {...pageData.experience.timeline} />
             )}
           </Container>
         </Section>
