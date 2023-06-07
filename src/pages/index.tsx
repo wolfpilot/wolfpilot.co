@@ -26,6 +26,7 @@ import Card from "@components/generic/Card"
 import Showcase from "@components/showcase/Showcase"
 import Cases from "@components/cases/Cases"
 import Timeline from "@components/timeline/Timeline"
+import Contact from "@components/contact/Contact"
 
 export interface Props {
   pageData: any
@@ -128,6 +129,10 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
           </Container>
         </Section>
       )}
+
+      <Section id="contact">
+        <Contact />
+      </Section>
     </>
   )
 }
@@ -205,7 +210,9 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 
 const Section = styled.section`
-  margin-bottom: var(--spacing-section);
+  &:not(:last-child) {
+    margin-bottom: var(--spacing-section);
+  }
 `
 
 const SectionHeader = styled.div`
