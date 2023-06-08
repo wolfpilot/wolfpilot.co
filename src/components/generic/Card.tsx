@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
 
 // Styles
+import { fixBorderRadiusOverflow } from "@styles/vendor/safari"
 import { mq } from "@styles/utils/mediaQueries"
 
 // Components
@@ -54,6 +55,7 @@ const Card: React.FC<Props> = ({ featuredImg, heading, copy }) => {
 }
 
 const Wrapper = styled.div`
+  ${fixBorderRadiusOverflow}
   overflow: hidden;
   margin: 0 auto;
   border-radius: var(--border-radius-sml);

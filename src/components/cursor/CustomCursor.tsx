@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { useMousePosition } from "@utils/hooks/useMousePosition"
 
 // Styles
+import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
 
 // Setup
@@ -23,9 +24,10 @@ const CustomCursor: React.FC = () => {
   return (
     <Wrapper
       style={{
-        transform: `translate(
+        transform: `translate3d(
           ${mouseCoords.x - CURSOR_RADIUS}px,
-          ${mouseCoords.y - CURSOR_RADIUS}px
+          ${mouseCoords.y - CURSOR_RADIUS}px,
+          0
         )`,
       }}
     />
@@ -45,6 +47,10 @@ const Wrapper = styled.div`
     background-color: var(--c-cursor);
     mix-blend-mode: hue;
     pointer-events: none;
+
+    ${mq.vendor.safariOnly`
+      mix-blend-mode: color-burn;
+    `}
   }
 `
 

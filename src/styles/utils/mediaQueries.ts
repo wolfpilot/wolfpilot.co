@@ -13,7 +13,7 @@ type IBreakpointPresets = {
 type IBreakpointFunction = { [key: string]: any }
 
 // These sizes are arbitrary and you can set them to whatever you wish
-const breakpoints: IBreakpoints = {
+export const breakpoints: IBreakpoints = {
   XXS: 320,
   XS: 375,
   S: 425,
@@ -28,7 +28,7 @@ const breakpoints: IBreakpoints = {
  * changing their browsers font-size. For more info, see:
  * https://zellwk.com/blog/media-query-units/
  */
-const emBreakpoints = Object.freeze(
+export const emBreakpoints = Object.freeze(
   Object.keys(breakpoints).reduce(
     (mqObject, size) => ({
       ...mqObject,
@@ -47,7 +47,7 @@ const emBreakpoints = Object.freeze(
  *  display: block;
  * `}
  */
-const from = Object.freeze(
+export const from = Object.freeze(
   Object.keys(breakpoints).reduce(
     (mqObject, size) => ({
       ...mqObject,
@@ -74,7 +74,7 @@ const from = Object.freeze(
  *  display: block;
  * `}
  */
-const fromPx =
+export const fromPx =
   (px: number) => (cssStrings: TemplateStringsArray, breakpointSize: string) =>
     css`
       @media (min-width: ${px}px) {
@@ -82,10 +82,22 @@ const fromPx =
       }
     ` as IBreakpointFunction
 
-const mq = {
+/**
+ * Media queries targeting Safari browser
+ */
+export const safariOnly = (cssStrings: TemplateStringsArray) => css`
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      ${css(cssStrings)}
+    }
+  }
+`
+
+export const mq = {
   breakpoints,
   from,
   fromPx,
+  vendor: {
+    safariOnly,
+  },
 }
-
-export { breakpoints, from, fromPx, mq }

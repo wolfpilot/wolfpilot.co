@@ -2,6 +2,7 @@ import Image from "next/image"
 import styled, { css } from "styled-components"
 
 // Styles
+import { fixBorderRadiusOverflow } from "@styles/vendor/safari"
 import { mq } from "@styles/utils/mediaQueries"
 import { listResetStyles } from "@styles/list"
 import { duration, ease } from "@styles/animation"
@@ -177,6 +178,7 @@ export const Links = styled.ul`
 `
 
 export const Wrapper = styled.li`
+  ${fixBorderRadiusOverflow}
   position: relative;
   overflow: hidden;
   display: flex;

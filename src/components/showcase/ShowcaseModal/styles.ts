@@ -4,6 +4,7 @@ import styled, { css } from "styled-components"
 import { motion } from "framer-motion"
 
 // Styles
+import { fixBorderRadiusOverflow } from "@styles/vendor/safari"
 import { mq } from "@styles/utils/mediaQueries"
 import { zIndexes } from "@styles/zIndexes"
 import { colors } from "@styles/colors"
@@ -95,6 +96,7 @@ export const Container = styled(ContainerComponent)`
 `
 
 export const Content = styled(motion.div)`
+  ${fixBorderRadiusOverflow}
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -144,7 +146,6 @@ export const ControlTooltip = styled(Tooltip)`
 
   @media (hover: hover) and (pointer: fine) {
     position: absolute;
-    z-index: -1;
     top: 50%;
     right: -4px;
     display: initial;
