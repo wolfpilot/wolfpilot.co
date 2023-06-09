@@ -2,11 +2,12 @@
 import * as S from "./styles"
 
 export interface Props {
-  children?: React.ReactNode
+  children: React.ReactNode
+  className?: string
 }
 
-const Container: React.FC<Props> = ({ children }) => (
-  <S.Wrapper>{children}</S.Wrapper>
+const Container: React.FC<Props> = ({ children, className }) => (
+  <S.Wrapper className={className}>{children}</S.Wrapper>
 )
 
 export default Container
