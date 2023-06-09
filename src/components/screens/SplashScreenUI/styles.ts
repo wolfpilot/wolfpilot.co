@@ -1,10 +1,4 @@
-import { useEffect } from "react"
-import styled, { css, keyframes } from "styled-components"
-
-// Utils
-import { usePageState, usePageDispatch } from "@utils/context/PageContext"
-import { delay } from "@utils/helper"
-import { disableScroll } from "@utils/domHelper"
+import styled, { css } from "styled-components"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -16,151 +10,16 @@ import LogoLetter from "@components/logo/LogoLetter"
 import LogoShading from "@components/logo/LogoShading"
 import LogoTriangle from "@components/logo/LogoTriangle"
 
-// Setup
-const DRAW_ANIM_DURATION = 0.9
-const PAINT_ANIM_DURATION = 0.6
-const STAGGER_ANIM_DELAY = 0.1
-
-export const TOTAL_ANIM_DURATION =
-  3.5 * DRAW_ANIM_DURATION + 2 * PAINT_ANIM_DURATION
-
-const SplashScreenUI: React.FC = () => {
-  const pageState = usePageState()
-  const pageDispatch = usePageDispatch()
-
-  // Handle animation cycle
-  useEffect(() => {
-    const onAnimEnd = async () => {
-      await delay(TOTAL_ANIM_DURATION * 1000)
-
-      pageDispatch({
-        type: "updateHasSplashScreenPlayed",
-        payload: true,
-      })
-    }
-
-    onAnimEnd()
-  }, [pageDispatch])
-
-  // Handle scroll lock
-  useEffect(() => {
-    disableScroll(document.documentElement, !pageState.hasSplashScreenPlayed)
-  }, [pageState.hasSplashScreenPlayed])
-
-  if (pageState.hasSplashScreenPlayed) return null
-
-  return (
-    <Wrapper>
-      <Backdrop />
-
-      <LogoWrapper>
-        <StyledLogoTriangle />
-        <StyledLogoShading />
-        <StyledLogoLetter />
-      </LogoWrapper>
-    </Wrapper>
-  )
-}
-
-/**
- * * A short note on the animations:
- *
- * There are two phases to the logo animation:
- *
- * 1) Draw in: hide the fill in order to draw the lines
- * 2) Paint in: hide the lines and paint back the original fill
- *
- * Unfortunately, once the fill value is changed, there is no easy way to get
- * the original colours back. There are several CSS values that should work
- * (initial, revert), however neither does the trick. Either the fill ends up
- * transparent or black.
- *
- * Instead, we duplicate the letter and triangle paths and draw the lines on the
- * first element, while the second simply fades in with all its original
- * colours.
- *
- * One extra benefit we get is that we can now also apply 3D transforms to
- * individual parts of the logo since 3d transforms can only be used on SVG
- * elements, not on the paths or groups themselves.
- */
-
-// Keyframes
-const animShiftLogo = keyframes`
-  0% {
-    transform: perspective(500px) rotate3d(0, 0, 0, 0deg);
-  }
-
-  50% {
-    transform: perspective(500px) rotate3d(1, 0, 0, 15deg);
-  }
-
-  65% {
-    transform: perspective(500px) rotate3d(1, 1, 0, -5deg);
-  }
-
-  85% {
-    transform: perspective(500px) rotate3d(1, 1, 0, 5deg);
-  }
-
-  100% {
-    transform: perspective(500px) rotate3d(0, 0, 0, 0deg);
-  }
-`
-
-const animPaintBackdrop = keyframes`
-  0% {
-    opacity: 0;
-    transform: scale(1.15);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  65% {
-    opacity: 0.75;
-    transform: scale(1.25);
-  }
-
-  85% {
-    opacity: 0.5;
-    transform: scale(1.5);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(20);
-  }
-`
-
-const animDrawLines = keyframes`
-  0% {
-    opacity: 0;
-    fill: none;
-    stroke: var(--c-black);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
-  }
-
-  100% {
-    opacity: 1;
-    fill: none;
-    stroke: var(--c-black);
-    stroke-dasharray: 1;
-    stroke-dashoffset: 0;
-  }
-`
-
-const animPushOut3D = keyframes`
-  0% {
-    transform: perspective(500px) translate3d(0, 0, 50px);
-  }
-
-  100% {
-    transform: perspective(500px) translate3d(0, 0, 0);
-  }
-`
+// Animation
+import {
+  DRAW_ANIM_DURATION,
+  PAINT_ANIM_DURATION,
+  STAGGER_ANIM_DELAY,
+  animShiftLogo,
+  animPaintBackdrop,
+  animDrawLines,
+  animPushOut3D,
+} from "./animation"
 
 // Shared styles
 const sharedLogoStyles = css`
@@ -185,7 +44,7 @@ const sharedLogoStyles = css`
 `
 
 // Main styles
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   position: fixed;
   z-index: ${zIndexes.splashScreenUI};
   top: 0;
@@ -202,7 +61,7 @@ const Wrapper = styled.div`
     ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}s both;
 `
 
-const Backdrop = styled.div`
+export const Backdrop = styled.div`
   position: absolute;
   z-index: -1;
   width: calc(2 * var(--grid-column-size) + var(--grid-gutter-size));
@@ -229,14 +88,14 @@ const Backdrop = styled.div`
   `}
 `
 
-const LogoWrapper = styled.div`
+export const LogoWrapper = styled.div`
   position: relative;
 
   animation: ${animShiftLogo} ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}s
     ${ease.cubic} both;
 `
 
-const StyledLogoTriangle = styled(LogoTriangle)`
+export const StyledLogoTriangle = styled(LogoTriangle)`
   ${sharedLogoStyles};
 
   animation-name: ${animPushOut3D};
@@ -276,7 +135,7 @@ const StyledLogoTriangle = styled(LogoTriangle)`
   }
 `
 
-const StyledLogoShading = styled(LogoShading)`
+export const StyledLogoShading = styled(LogoShading)`
   ${sharedLogoStyles};
 
   // Height & width inferred from the triangle logo
@@ -323,7 +182,7 @@ const StyledLogoShading = styled(LogoShading)`
   }
 `
 
-const StyledLogoLetter = styled(LogoLetter)`
+export const StyledLogoLetter = styled(LogoLetter)`
   ${sharedLogoStyles};
 
   // Height & width inferred from the triangle logo
@@ -357,5 +216,3 @@ const StyledLogoLetter = styled(LogoLetter)`
     }
   }
 `
-
-export default SplashScreenUI
