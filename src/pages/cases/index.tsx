@@ -1,7 +1,8 @@
-import styled from "styled-components"
-
 // Types
 import { Meta } from "@data/cases"
+
+// Styles
+import * as S from "@styles/pages/cases"
 
 // Components
 import Heading from "@components/generic/Heading"
@@ -18,21 +19,15 @@ const CaseLayout: React.FC<Props> = ({ children, meta }) => {
   }
 
   return (
-    <Wrapper>
-      <Header>
+    <S.Wrapper>
+      <S.Header>
         <Heading level="h1">{meta.title}</Heading>
         <Text>{meta.tagline}</Text>
-      </Header>
+      </S.Header>
 
-      <Content>{children}</Content>
-    </Wrapper>
+      <S.Content>{children}</S.Content>
+    </S.Wrapper>
   )
 }
-
-const Wrapper = styled.article``
-
-const Header = styled.header``
-
-const Content = styled.div``
 
 export default CaseLayout

@@ -1,8 +1,7 @@
 import fs from "fs"
 import path from "path"
 import sizeOf from "image-size"
-import Image, { ImageProps } from "next/image"
-import styled from "styled-components"
+import { ImageProps } from "next/image"
 
 // Types
 import { NextPage, GetStaticProps } from "next"
@@ -15,12 +14,10 @@ import { data as rawData, ShowcaseItemRaw } from "@data/homepage"
 import { getLinkType } from "@utils/routeHelper"
 
 // Styles
-import { mq } from "@styles/utils/mediaQueries"
-import { textStyles } from "@styles/textStyles"
+import * as S from "@styles/pages/homepage"
 
 // Components
 import Container from "@components/layout/Container"
-import HeadingComponent from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 import Card from "@components/generic/Card"
 import Showcase from "@components/showcase/Showcase"
@@ -38,101 +35,101 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
   return (
     <>
       {pageData.about && (
-        <Section id="about">
+        <S.Section id="about">
           <Container>
             {pageData.about.hero && (
-              <Hero>
+              <S.Hero>
                 {pageData.about.hero.img && (
-                  <HeroImageWrapper>
-                    <HeroBackdrop>
-                      <HeroImage {...pageData.about.hero.img} />
-                    </HeroBackdrop>
-                  </HeroImageWrapper>
+                  <S.HeroImageWrapper>
+                    <S.HeroBackdrop>
+                      <S.HeroImage {...pageData.about.hero.img} />
+                    </S.HeroBackdrop>
+                  </S.HeroImageWrapper>
                 )}
 
                 {pageData.about.hero.title && (
-                  <HeroHeading level="h1">
+                  <S.HeroHeading level="h1">
                     {pageData.about.hero.title}
-                  </HeroHeading>
+                  </S.HeroHeading>
                 )}
                 {pageData.about.hero.text && (
                   <Text>{pageData.about.hero.text}</Text>
                 )}
-              </Hero>
+              </S.Hero>
             )}
 
             {pageData.about.card && <Card {...pageData.about.card} />}
           </Container>
-        </Section>
+        </S.Section>
       )}
 
       {pageData.work && (
-        <Section id="work">
+        <S.Section id="work">
           <Container>
-            <SectionHeader>
+            <S.SectionHeader>
               {pageData.work.heading && (
-                <SectionHeading level="h2">
+                <S.SectionHeading level="h2">
                   {pageData.work.heading}
-                </SectionHeading>
+                </S.SectionHeading>
               )}
 
               {pageData.work.description && (
                 <Text>{pageData.work.description}</Text>
               )}
-            </SectionHeader>
+            </S.SectionHeader>
 
             {pageData.work.showcase && <Showcase {...pageData.work.showcase} />}
           </Container>
-        </Section>
+        </S.Section>
       )}
 
       {pageData.caseStudies && (
-        <Section id="cases">
+        <S.Section id="cases">
           <Container>
-            <SectionHeader>
+            <S.SectionHeader>
               {pageData.caseStudies.heading && (
-                <SectionHeading level="h2">
+                <S.SectionHeading level="h2">
                   {pageData.caseStudies.heading}
-                </SectionHeading>
+                </S.SectionHeading>
               )}
 
               {pageData.caseStudies.description && (
                 <Text>{pageData.caseStudies.description}</Text>
               )}
-            </SectionHeader>
+            </S.SectionHeader>
 
             {pageData.caseStudies.cases && (
               <Cases {...pageData.caseStudies.cases} />
             )}
           </Container>
-        </Section>
+        </S.Section>
       )}
 
       {pageData.experience && (
-        <Section id="experience">
+        <S.Section id="experience">
           <Container>
-            <SectionHeader>
+            <S.SectionHeader>
               {pageData.experience.heading && (
-                <SectionHeading level="h2">
+                <S.SectionHeading level="h2">
                   {pageData.experience.heading}
-                </SectionHeading>
+                </S.SectionHeading>
               )}
 
               {pageData.experience.description && (
                 <Text>{pageData.experience.description}</Text>
               )}
-            </SectionHeader>
+            </S.SectionHeader>
 
             {pageData.experience.timeline && (
               <Timeline {...pageData.experience.timeline} />
             )}
           </Container>
-        </Section>
+        </S.Section>
       )}
 
-      <Section id="contact">
+      <S.Section id="contact">
         <Contact />
-      </Section>
+      </S.Section>
     </>
   )
 }
@@ -208,79 +205,5 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
-
-const Section = styled.section`
-  &:not(:last-child) {
-    margin-bottom: var(--spacing-section);
-  }
-`
-
-const SectionHeader = styled.div`
-  margin-bottom: var(--spacing-block);
-`
-
-const SectionHeading = styled(HeadingComponent)`
-  ${textStyles.headingL};
-`
-
-const Hero = styled.div`
-  padding-top: calc(2 * var(--spacing-block));
-  padding-bottom: calc(3 * var(--spacing-block));
-  text-align: center;
-`
-
-const HeroImageWrapper = styled.div`
-  position: relative;
-  margin-bottom: calc(2 * var(--spacing-block));
-`
-
-const HeroBackdrop = styled.div`
-  width: calc(2 * var(--grid-column-size));
-  height: calc(2 * var(--grid-column-size));
-  margin: 0 auto;
-  background: var(--g-primary-diagonal);
-  border-radius: 50%;
-
-  ${mq.from.S`
-    width: calc(1.5 * var(--grid-column-size));
-    height: calc(1.5 * var(--grid-column-size));
-  `}
-
-  ${mq.from.M`
-    width: calc(2 * var(--grid-column-size));
-    height: calc(2 * var(--grid-column-size));
-  `}
-
-  ${mq.from.L`
-    width: calc(2 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
-    height: calc(2 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
-  `}
-`
-
-const HeroImage = styled(Image)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: calc(2 * var(--grid-column-size) - 2 * var(--grid-gutter-size));
-  height: auto;
-  mix-blend-mode: darken;
-  transform: translate(-50%, -45%);
-
-  ${mq.from.S`
-    width: calc(1.5 * var(--grid-column-size) - 1.5 * var(--grid-gutter-size));
-  `}
-
-  ${mq.from.M`
-    width: calc(2 * var(--grid-column-size) - 2 * var(--grid-gutter-size));
-  `}
-
-  ${mq.from.L`
-    width: calc(2 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
-  `}
-`
-
-const HeroHeading = styled(HeadingComponent)`
-  ${textStyles.headingM};
-`
 
 export default HomePage
