@@ -3,9 +3,6 @@
 
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    mdxRs: true,
-  },
   compiler: {
     // Enables the styled-components SWC transform
     // see https://styled-components.com/docs/tooling#babel-plugin for more info on the options.
@@ -16,6 +13,4 @@ const nextConfig = {
   },
 }
 
-const withMDX = require("@next/mdx")()
-
-module.exports = withMDX(nextConfig)
+module.exports = nextConfig
