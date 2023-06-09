@@ -8,7 +8,7 @@ import * as S from "@styles/pages/styleguide"
 import { colors } from "@styles/colors"
 
 // Components
-import Container from "@components/layout/Container"
+import Container from "@components/layout/Container/Container"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 

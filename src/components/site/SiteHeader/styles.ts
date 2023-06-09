@@ -3,18 +3,7 @@ import styled from "styled-components"
 // Styles
 import { zIndexes } from "@styles/zIndexes"
 
-// Components
-import SiteMobNav from "@components/site/SiteMobNav"
-import SiteDeskNav from "@components/site/SiteDeskNav"
-
-const SiteHeader: React.FC = () => (
-  <Wrapper>
-    <SiteMobNav />
-    <SiteDeskNav />
-  </Wrapper>
-)
-
-const Wrapper = styled.header`
+export const Wrapper = styled.header`
   position: fixed;
   z-index: ${zIndexes.siteHeader};
   top: 0;
@@ -25,5 +14,3 @@ const Wrapper = styled.header`
   border-top: 3px solid var(--c-accent1);
   border-bottom: 1px solid var(--c-neutral3);
 `
-
-export default SiteHeader

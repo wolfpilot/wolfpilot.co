@@ -5,7 +5,7 @@ import { social } from "@constants/social"
 import * as S from "./styles"
 
 // Components
-import Container from "@components/layout/Container"
+import Container from "@components/layout/Container/Container"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 

@@ -1,6 +1,5 @@
-import styled from "styled-components"
-
 // Styles
+import * as S from "./styles"
 import { duration as animDuration, ease as animEase } from "@styles/animation"
 
 export interface Props {
@@ -18,7 +17,7 @@ const ImageLoader: React.FC<Props> = ({
   ease = animEase.cubic,
   delay = 0,
 }) => (
-  <Wrapper
+  <S.Wrapper
     className={className}
     $isLoaded={isLoaded}
     duration={duration}
@@ -26,24 +25,5 @@ const ImageLoader: React.FC<Props> = ({
     delay={delay}
   />
 )
-
-const Wrapper = styled.div<{
-  $isLoaded: boolean
-  duration: number
-  ease: string
-  delay: number
-}>`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: var(--c-neutral4);
-  transform: ${({ $isLoaded }) =>
-    $isLoaded ? "translateY(100%)" : "translateY(0)"};
-  ${({ duration, ease, delay }) =>
-    duration && `transition: transform ${duration}s ${ease} ${delay}s;`}
-`
 
 export default ImageLoader

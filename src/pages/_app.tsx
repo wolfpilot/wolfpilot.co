@@ -9,10 +9,10 @@ import { ShowcaseProvider } from "@components/showcase/Context"
 import GlobalStyle from "@styles/global"
 
 // Components
-import DebugGrid from "@components/utils/DebugGrid"
-import SiteHeader from "@components/site/SiteHeader"
-import SiteFooter from "@components/site/SiteFooter"
-import PageWrapper from "@components/page/PageWrapper"
+import DebugGrid from "@components/utils/DebugGrid/DebugGrid"
+import SiteHeader from "@components/site/SiteHeader/SiteHeader"
+import SiteFooter from "@components/site/SiteFooter/SiteFooter"
+import PageWrapper from "@components/layout/PageWrapper/PageWrapper"
 import ShowcaseModal from "@components/showcase/ShowcaseModal/ShowcaseModal"
 
 export const metadata = {

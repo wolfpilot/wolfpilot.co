@@ -12,7 +12,7 @@ import { duration, ease } from "@styles/animation"
 import { btnResetStyles } from "@styles/button"
 
 // Components
-import ContainerComponent from "@components/layout/Container"
+import ContainerComponent from "@components/layout/Container/Container"
 import Tooltip from "@components/generic/Tooltip"
 import IconComponent from "@components/icons/Icon"
 

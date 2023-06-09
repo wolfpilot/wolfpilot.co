@@ -17,7 +17,7 @@ import { getLinkType } from "@utils/routeHelper"
 import * as S from "@styles/pages/homepage"
 
 // Components
-import Container from "@components/layout/Container"
+import Container from "@components/layout/Container/Container"
 import Text from "@components/generic/Text"
 import Card from "@components/generic/Card"
 import Showcase from "@components/showcase/Showcase"

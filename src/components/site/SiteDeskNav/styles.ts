@@ -1,12 +1,6 @@
 import Link from "next/link"
 import styled from "styled-components"
 
-// Types
-import { Route } from "@ts/routes"
-
-// Constants
-import { routes } from "@constants/routes"
-
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 import { listResetStyles } from "@styles/list"
@@ -14,50 +8,10 @@ import { ease, duration } from "@styles/animation"
 import { textStyles } from "@styles/textStyles"
 
 // Components
-import ContainerComponent from "@components/layout/Container"
+import ContainerComponent from "@components/layout/Container/Container"
 import LogoComponent from "@components/logo/Logo"
 
-export interface Props {}
-
-// Utils
-const leftItemsGroup = [routes.about, routes.work, routes.cases]
-const rightItemsGroup = [routes.experience, routes.contact, routes.resume]
-
-const generateNavItems = (routesGroup: Route[]) => {
-  return routesGroup.map(({ label, url }) => {
-    if (!label || !url) return null
-
-    return (
-      <NavItem key={label}>
-        <NavItemLink href={url}>{label}</NavItemLink>
-      </NavItem>
-    )
-  })
-}
-
-const SiteDeskNav: React.FC<Props> = () => {
-  return (
-    <Wrapper>
-      <NavBar>
-        <Container>
-          <NavList>
-            <NavItemGroup>{generateNavItems(leftItemsGroup)}</NavItemGroup>
-
-            <NavItem>
-              <LogoLink href="/" aria-label="Homepage">
-                <Logo id="desk" />
-              </LogoLink>
-            </NavItem>
-
-            <NavItemGroup>{generateNavItems(rightItemsGroup)}</NavItemGroup>
-          </NavList>
-        </Container>
-      </NavBar>
-    </Wrapper>
-  )
-}
-
-const Wrapper = styled.nav`
+export const Wrapper = styled.nav`
   display: none;
 
   ${mq.from.M`
@@ -66,15 +20,15 @@ const Wrapper = styled.nav`
   `}
 `
 
-const Container = styled(ContainerComponent)`
+export const Container = styled(ContainerComponent)`
   height: 100%;
 `
 
-const LogoLink = styled(Link)`
+export const LogoLink = styled(Link)`
   display: block;
 `
 
-const Logo = styled(LogoComponent)`
+export const Logo = styled(LogoComponent)`
   width: 60px;
   height: auto;
 
@@ -90,11 +44,11 @@ const Logo = styled(LogoComponent)`
   `}
 `
 
-const NavBar = styled.div`
+export const NavBar = styled.div`
   height: 100%;
 `
 
-const NavList = styled.ul`
+export const NavList = styled.ul`
   ${listResetStyles};
   display: flex;
   justify-content: space-between;
@@ -103,7 +57,7 @@ const NavList = styled.ul`
   height: 100%;
 `
 
-const NavItemLink = styled(Link)`
+export const NavItemLink = styled(Link)`
   ${textStyles.navLinkDesk};
   color: var(--c-neutral3);
   text-transform: lowercase;
@@ -114,11 +68,11 @@ const NavItemLink = styled(Link)`
   }
 `
 
-const NavItem = styled.li`
+export const NavItem = styled.li`
   margin: 0 20px;
 `
 
-const NavItemGroup = styled.div`
+export const NavItemGroup = styled.div`
   display: flex;
   flex-grow: 1;
   flex-basis: 0;
@@ -145,5 +99,3 @@ const NavItemGroup = styled.div`
     }
   }
 `
-
-export default SiteDeskNav

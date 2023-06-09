@@ -1,14 +1,8 @@
-import styled from "styled-components"
-
 // Utils
 import { useMousePosition } from "@utils/hooks/useMousePosition"
 
 // Styles
-import { mq } from "@styles/utils/mediaQueries"
-import { zIndexes } from "@styles/zIndexes"
-
-// Setup
-const CURSOR_RADIUS = 20
+import * as S from "./styles"
 
 const CustomCursor: React.FC = () => {
   const mouseCoords = useMousePosition()
@@ -22,36 +16,16 @@ const CustomCursor: React.FC = () => {
    * * with hundreds of classes per second.
    */
   return (
-    <Wrapper
+    <S.Wrapper
       style={{
         transform: `translate3d(
-          ${mouseCoords.x - CURSOR_RADIUS}px,
-          ${mouseCoords.y - CURSOR_RADIUS}px,
+          ${mouseCoords.x - S.CURSOR_RADIUS}px,
+          ${mouseCoords.y - S.CURSOR_RADIUS}px,
           0
         )`,
       }}
     />
   )
 }
-
-const Wrapper = styled.div`
-  // Only enable for hover capable devices, aka no touch
-  @media (hover: hover) and (pointer: fine) {
-    position: fixed;
-    z-index: ${zIndexes.customCursor};
-    top: 0;
-    left: 0;
-    width: ${2 * CURSOR_RADIUS}px;
-    height: ${2 * CURSOR_RADIUS}px;
-    border-radius: 50%;
-    background-color: var(--c-cursor);
-    mix-blend-mode: hue;
-    pointer-events: none;
-
-    ${mq.vendor.safariOnly`
-      mix-blend-mode: color-burn;
-    `}
-  }
-`
 
 export default CustomCursor

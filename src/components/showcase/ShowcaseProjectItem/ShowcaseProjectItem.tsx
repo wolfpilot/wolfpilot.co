@@ -16,7 +16,7 @@ import { mq } from "@styles/utils/mediaQueries"
 // Components
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
-import ImageLoader from "@components/loaders/ImageLoader"
+import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
 
 export interface Props {
   index: number

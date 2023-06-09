@@ -1,13 +1,12 @@
 import { useRouter } from "next/router"
 import { useState, useEffect } from "react"
-import styled from "styled-components"
 
 // Utils
 import { useWindowSize } from "@utils/hooks/useWindowSize"
 import { useAppState, useAppDispatch } from "@utils/context/AppContext"
 
 // Styles
-import { zIndexes } from "@styles/zIndexes"
+import * as S from "./styles"
 
 const DebugGrid: React.FC = () => {
   const appState = useAppState()
@@ -60,60 +59,18 @@ const DebugGrid: React.FC = () => {
   }
 
   return (
-    <Wrapper>
-      <Info>
+    <S.Wrapper>
+      <S.Info>
         {width} x {height}
-      </Info>
+      </S.Info>
 
-      <Grid>
+      <S.Grid>
         {new Array(columnsNr).fill(0).map((_, index) => (
-          <Column key={index}>{index + 1}</Column>
+          <S.Column key={index}>{index + 1}</S.Column>
         ))}
-      </Grid>
-    </Wrapper>
+      </S.Grid>
+    </S.Wrapper>
   )
 }
-
-const Wrapper = styled.div`
-  position: fixed;
-  z-index: ${zIndexes.gridOverlay};
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-`
-Wrapper.displayName = "Wrapper"
-
-const Info = styled.h2`
-  position: absolute;
-  top: var(--grid-gutter-size);
-  left: 0;
-  right: 0;
-  text-align: center;
-`
-Info.displayName = "Info"
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
-  grid-gap: var(--grid-gutter-size);
-  max-width: var(--max-content-width);
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 var(--grid-offset-size);
-  background-color: var(--c-gridBgColor);
-`
-Grid.displayName = "Grid"
-
-const Column = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--c-gridColumnBgColor);
-  color: var(--c-gridTextColor);
-`
-Column.displayName = "Column"
 
 export default DebugGrid
