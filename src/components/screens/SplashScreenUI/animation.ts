@@ -23,12 +23,11 @@ import { keyframes } from "styled-components"
  */
 
 // Setup
-export const DRAW_ANIM_DURATION = 0.9
-export const PAINT_ANIM_DURATION = 0.6
-export const STAGGER_ANIM_DELAY = 0.1
+export const DRAW_DURATION = 0.9
+export const PAINT_DURATION = 0.6
+export const STAGGER_DELAY = 0.1
 
-export const TOTAL_ANIM_DURATION =
-  3.5 * DRAW_ANIM_DURATION + 2 * PAINT_ANIM_DURATION
+export const TOTAL_DURATION = 3.5 * DRAW_DURATION + 2 * PAINT_DURATION
 
 // Keyframes
 export const animShiftLogo = keyframes`
@@ -98,7 +97,7 @@ export const animDrawLines = keyframes`
   }
 `
 
-export const animPushOut3D = keyframes`
+export const animPulse3d = keyframes`
   0% {
     transform: perspective(500px) translate3d(0, 0, 50px);
   }

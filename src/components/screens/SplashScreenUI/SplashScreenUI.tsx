@@ -9,7 +9,7 @@ import { disableScroll } from "@utils/domHelper"
 import * as S from "./styles"
 
 // Animation
-import { TOTAL_ANIM_DURATION } from "./animation"
+import { TOTAL_DURATION } from "./animation"
 
 const SplashScreenUI: React.FC = () => {
   const pageState = usePageState()
@@ -18,7 +18,7 @@ const SplashScreenUI: React.FC = () => {
   // Handle animation cycle
   useEffect(() => {
     const onAnimEnd = async () => {
-      await delay(TOTAL_ANIM_DURATION * 1000)
+      await delay(TOTAL_DURATION * 1000)
 
       pageDispatch({
         type: "updateHasSplashScreenPlayed",
@@ -42,7 +42,7 @@ const SplashScreenUI: React.FC = () => {
 
       <S.LogoWrapper>
         <S.StyledLogoTriangle />
-        <S.StyledLogoShading />
+        <S.StyledLogoDetails />
         <S.StyledLogoLetter />
       </S.LogoWrapper>
     </S.Wrapper>

@@ -7,19 +7,46 @@ import { ease, animFadeIn, animFadeOut, animOilSpill } from "@styles/animation"
 
 // Components
 import LogoLetter from "@components/logo/LogoLetter"
-import LogoShading from "@components/logo/LogoShading"
+import LogoDetails from "@components/logo/LogoDetails"
 import LogoTriangle from "@components/logo/LogoTriangle"
 
 // Animation
 import {
-  DRAW_ANIM_DURATION,
-  PAINT_ANIM_DURATION,
-  STAGGER_ANIM_DELAY,
+  DRAW_DURATION,
+  PAINT_DURATION,
+  STAGGER_DELAY,
   animShiftLogo,
   animPaintBackdrop,
   animDrawLines,
-  animPushOut3D,
+  animPulse3d,
 } from "./animation"
+
+/**
+ * * Design philosophy:
+ *
+ * The whole idea behind this animation is to emphasize the building order,
+ * starting with the bare outlines, dropping in solid blocks of colour and
+ * eventually the entire thing comes together.
+ *
+ * You get a little bit of time to look at the result, then it disappears.
+ *
+ * * Animation order explained:
+ *
+ * 1. Enter backdrop.
+ * 2. Draw in triangle top, then bottom, then letter, staggered.
+ * 3. Paint in letter.
+ * 4. Paint in details, staggered.
+ * 5. Fade out drawings.
+ * 6. Paint in triangle.
+ * 7. Display.
+ * 8. Fade out.
+ *
+ * * Other notes:
+ *
+ * Throughout the animation, the LogoWrapper manipulates the overall shape.
+ * Drawings fade out prior to shaped being painted in.
+ * Shapes pulse outwards at various intervals.
+ */
 
 // Shared styles
 const sharedLogoStyles = css`
@@ -37,10 +64,6 @@ const sharedLogoStyles = css`
   ${mq.from.L`
     width: calc(3 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
   `}
-
-  path {
-    animation-fill-mode: both;
-  }
 `
 
 // Main styles
@@ -57,8 +80,17 @@ export const Wrapper = styled.div`
   align-items: center;
   background-color: var(--c-pageColor);
 
-  animation: ${animFadeOut} ${PAINT_ANIM_DURATION}s ${ease.cubic}
-    ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}s both;
+  animation-name: ${animFadeOut};
+  animation-duration: ${PAINT_DURATION}s;
+  animation-delay: ${3.5 * DRAW_DURATION + PAINT_DURATION}s;
+  animation-timing-function: ${ease.cubic};
+  animation-fill-mode: both;
+
+  svg,
+  g,
+  path {
+    animation-fill-mode: both;
+  }
 `
 
 export const Backdrop = styled.div`
@@ -69,8 +101,10 @@ export const Backdrop = styled.div`
   border-radius: 50%;
   background-color: var(--c-neutral4);
 
-  animation: ${animPaintBackdrop}
-    ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}s ${ease.cubic} both;
+  animation-name: ${animPaintBackdrop};
+  animation-duration: ${3.5 * DRAW_DURATION + PAINT_DURATION}s;
+  animation-timing-function: ${ease.cubic};
+  animation-fill-mode: both;
 
   ${mq.from.S`
     width: calc(1.5 * var(--grid-column-size) + 0.5 * var(--grid-gutter-size));
@@ -91,93 +125,41 @@ export const Backdrop = styled.div`
 export const LogoWrapper = styled.div`
   position: relative;
 
-  animation: ${animShiftLogo} ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}s
-    ${ease.cubic} both;
+  animation-name: ${animShiftLogo};
+  animation-duration: ${3.5 * DRAW_DURATION + PAINT_DURATION}s;
+  animation-timing-function: ${ease.cubic};
 `
 
 export const StyledLogoTriangle = styled(LogoTriangle)`
   ${sharedLogoStyles};
 
-  animation-name: ${animPushOut3D};
+  animation-name: ${animPulse3d};
+  animation-duration: ${PAINT_DURATION}s;
+  animation-delay: ${3.5 * DRAW_DURATION}s;
   animation-timing-function: ${ease.cubic};
-  animation-duration: ${PAINT_ANIM_DURATION}s;
-  animation-delay: ${3.5 * DRAW_ANIM_DURATION}s;
-  animation-fill-mode: both;
 
-  g {
-    // Contour
-    &:nth-of-type(1) {
-      path {
-        animation-name: ${animDrawLines}, ${animFadeOut};
-        animation-timing-function: linear, ${ease.cubic};
-        animation-duration: ${DRAW_ANIM_DURATION}s, ${DRAW_ANIM_DURATION}s;
+  &__contour {
+    &-path {
+      animation-name: ${animDrawLines}, ${animFadeOut};
+      animation-duration: ${DRAW_DURATION}s;
+      animation-timing-function: linear, ${ease.cubic};
 
-        &:nth-of-type(1) {
-          animation-delay: ${PAINT_ANIM_DURATION}s, ${3 * DRAW_ANIM_DURATION}s;
-        }
-
-        &:nth-of-type(2) {
-          animation-delay: ${0.5 * PAINT_ANIM_DURATION}s,
-            ${3 * DRAW_ANIM_DURATION}s;
-        }
+      &-top {
+        animation-delay: ${0.5 * PAINT_DURATION}s, ${3 * DRAW_DURATION}s;
       }
-    }
 
-    // Fill
-    &:nth-of-type(2) {
-      path {
-        animation-name: ${animFadeIn}, ${animOilSpill};
-        animation-timing-function: ${ease.cubic};
-        animation-duration: ${PAINT_ANIM_DURATION}s;
-        animation-delay: ${3.5 * DRAW_ANIM_DURATION}s;
+      &-bottom {
+        animation-delay: ${PAINT_DURATION}s, ${3 * DRAW_DURATION}s;
       }
     }
   }
-`
 
-export const StyledLogoShading = styled(LogoShading)`
-  ${sharedLogoStyles};
-
-  // Height & width inferred from the triangle logo
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  animation-name: ${animPushOut3D};
-  animation-duration: ${PAINT_ANIM_DURATION}s;
-  animation-timing-function: ${ease.cubic};
-  animation-fill-mode: both;
-  animation-delay: ${2.5 * DRAW_ANIM_DURATION + 4 * STAGGER_ANIM_DELAY}s;
-
-  // Fill
-  path {
-    opacity: 0;
-
-    animation-name: ${animFadeIn}, ${animOilSpill};
-    animation-duration: ${PAINT_ANIM_DURATION}s;
-    animation-timing-function: ${ease.cubic};
-    animation-fill-mode: both;
-
-    &:nth-of-type(1) {
-      animation-delay: ${2.5 * DRAW_ANIM_DURATION}s;
-    }
-
-    &:nth-of-type(2) {
-      animation-delay: ${2.5 * DRAW_ANIM_DURATION + STAGGER_ANIM_DELAY}s;
-    }
-
-    &:nth-of-type(3) {
-      animation-delay: ${2.5 * DRAW_ANIM_DURATION + 2 * STAGGER_ANIM_DELAY}s;
-    }
-
-    &:nth-of-type(4) {
-      animation-delay: ${2.5 * DRAW_ANIM_DURATION + 3 * STAGGER_ANIM_DELAY}s;
-    }
-
-    &:nth-of-type(5) {
-      animation-delay: ${2.5 * DRAW_ANIM_DURATION + 4 * STAGGER_ANIM_DELAY}s;
+  &__shading {
+    &-path {
+      animation-name: ${animFadeIn}, ${animOilSpill};
+      animation-duration: ${PAINT_DURATION}s;
+      animation-delay: ${3.5 * DRAW_DURATION}s;
+      animation-timing-function: ${ease.cubic};
     }
   }
 `
@@ -192,27 +174,70 @@ export const StyledLogoLetter = styled(LogoLetter)`
   right: 0;
   bottom: 0;
 
-  animation-name: ${animPushOut3D};
+  animation-name: ${animPulse3d};
+  animation-duration: ${PAINT_DURATION}s;
+  animation-delay: ${2 * DRAW_DURATION}s;
   animation-timing-function: ${ease.elastic};
-  animation-duration: ${PAINT_ANIM_DURATION}s;
-  animation-delay: ${2 * DRAW_ANIM_DURATION}s;
-  animation-fill-mode: both;
 
-  path {
-    // Contour
-    &:nth-of-type(1) {
+  &__contour {
+    &-path {
       animation-name: ${animDrawLines}, ${animFadeOut};
+      animation-duration: ${DRAW_DURATION}s;
+      animation-delay: ${1.5 * PAINT_DURATION}s, ${2 * DRAW_DURATION}s;
       animation-timing-function: linear, ${ease.cubic};
-      animation-duration: ${DRAW_ANIM_DURATION}s, ${DRAW_ANIM_DURATION}s;
-      animation-delay: ${1.5 * PAINT_ANIM_DURATION}s, ${2 * DRAW_ANIM_DURATION}s;
     }
+  }
 
-    // Fill
-    &:nth-of-type(2) {
+  &__shading {
+    &-path {
       animation-name: ${animFadeIn};
+      animation-duration: ${PAINT_DURATION}s;
+      animation-delay: ${2 * DRAW_DURATION}s;
       animation-timing-function: ${ease.cubic};
-      animation-duration: ${PAINT_ANIM_DURATION}s;
-      animation-delay: ${2 * DRAW_ANIM_DURATION}s;
+    }
+  }
+`
+
+export const StyledLogoDetails = styled(LogoDetails)`
+  ${sharedLogoStyles};
+
+  // Height & width inferred from the triangle logo
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  animation-name: ${animPulse3d};
+  animation-duration: ${PAINT_DURATION}s;
+  animation-delay: ${2.5 * DRAW_DURATION + 4 * STAGGER_DELAY}s;
+  animation-timing-function: ${ease.cubic};
+
+  &__shading {
+    &-path {
+      animation-name: ${animFadeIn}, ${animOilSpill};
+      animation-duration: ${PAINT_DURATION}s;
+      animation-timing-function: ${ease.cubic};
+
+      &:nth-of-type(1) {
+        animation-delay: ${2.5 * DRAW_DURATION}s;
+      }
+
+      &:nth-of-type(2) {
+        animation-delay: ${2.5 * DRAW_DURATION + STAGGER_DELAY}s;
+      }
+
+      &:nth-of-type(3) {
+        animation-delay: ${2.5 * DRAW_DURATION + 2 * STAGGER_DELAY}s;
+      }
+
+      &:nth-of-type(4) {
+        animation-delay: ${2.5 * DRAW_DURATION + 3 * STAGGER_DELAY}s;
+      }
+
+      &:nth-of-type(5) {
+        animation-delay: ${2.5 * DRAW_DURATION + 4 * STAGGER_DELAY}s;
+      }
     }
   }
 `
