@@ -14,28 +14,33 @@ const LogoLetter: React.FC<Props> = ({ className }) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
+      className={`${className}__shading-path`}
       d="M302.361 188C229.413 188 0 264 0 264C0 264 237.518 205 302.361 205C367.204 205 604 264 604 264C604 264 375.309 188 302.361 188Z"
-      fill="url(#paint0_radial_251_1837)"
+      fill="url(#logoDetails-gradient0)"
     />
     <path
+      className={`${className}__shading-path`}
       d="M302.361 151C229.413 151 0 264 0 264C0 264 237.518 160 302.361 160C367.204 160 604 264 604 264C604 264 375.309 151 302.361 151Z"
-      fill="url(#paint1_radial_251_1837)"
+      fill="url(#logoDetails-gradient1)"
     />
     <path
+      className={`${className}__shading-path`}
       d="M302.361 115C229.413 115 0 264 0 264C0 264 237.518 127.5 302.361 127.5C367.204 127.5 604 264 604 264C604 264 375.309 115 302.361 115Z"
-      fill="url(#paint2_radial_251_1837)"
+      fill="url(#logoDetails-gradient2)"
     />
     <path
+      className={`${className}__shading-path`}
       d="M302.361 82C229.413 82 0 264 0 264C0 264 237.518 89 302.361 89C367.204 89 604 264 604 264C604 264 375.309 82 302.361 82Z"
-      fill="url(#paint3_radial_251_1837)"
+      fill="url(#logoDetails-gradient3)"
     />
     <path
+      className={`${className}__shading-path`}
       d="M302.361 58C229.412 58 0 264 0 264C0 264 237.518 62 302.361 62C367.204 62 604 264 604 264C604 264 375.31 58 302.361 58Z"
-      fill="url(#paint4_radial_251_1837)"
+      fill="url(#logoDetails-gradient4)"
     />
     <defs>
       <radialGradient
-        id="paint0_radial_251_1837"
+        id="logoDetails-gradient0"
         cx="0"
         cy="0"
         r="1"
@@ -49,7 +54,7 @@ const LogoLetter: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint1_radial_251_1837"
+        id="logoDetails-gradient1"
         cx="0"
         cy="0"
         r="1"
@@ -63,7 +68,7 @@ const LogoLetter: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint2_radial_251_1837"
+        id="logoDetails-gradient2"
         cx="0"
         cy="0"
         r="1"
@@ -77,7 +82,7 @@ const LogoLetter: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint3_radial_251_1837"
+        id="logoDetails-gradient3"
         cx="0"
         cy="0"
         r="1"
@@ -91,7 +96,7 @@ const LogoLetter: React.FC<Props> = ({ className }) => (
         <stop offset="1" stopColor="#BF0420" />
       </radialGradient>
       <radialGradient
-        id="paint4_radial_251_1837"
+        id="logoDetails-gradient4"
         cx="0"
         cy="0"
         r="1"
