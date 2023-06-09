@@ -2,8 +2,9 @@ import { useEffect } from "react"
 import styled, { css, keyframes } from "styled-components"
 
 // Utils
-import { usePageDispatch } from "@utils/context/PageContext"
+import { usePageState, usePageDispatch } from "@utils/context/PageContext"
 import { delay } from "@utils/helper"
+import { disableScroll } from "@utils/domHelper"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -24,8 +25,10 @@ export const TOTAL_ANIM_DURATION =
   3.5 * DRAW_ANIM_DURATION + 2 * PAINT_ANIM_DURATION
 
 const SplashScreenUI: React.FC = () => {
+  const pageState = usePageState()
   const pageDispatch = usePageDispatch()
 
+  // Handle animation cycle
   useEffect(() => {
     const onAnimEnd = async () => {
       await delay(TOTAL_ANIM_DURATION * 1000)
@@ -38,6 +41,13 @@ const SplashScreenUI: React.FC = () => {
 
     onAnimEnd()
   }, [pageDispatch])
+
+  // Handle scroll lock
+  useEffect(() => {
+    disableScroll(document.documentElement, !pageState.hasSplashScreenPlayed)
+  }, [pageState.hasSplashScreenPlayed])
+
+  if (pageState.hasSplashScreenPlayed) return null
 
   return (
     <Wrapper>
@@ -154,15 +164,19 @@ const animPushOut3D = keyframes`
 
 // Shared styles
 const sharedLogoStyles = css`
-  width: 75vw;
+  width: calc(2 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
   height: auto;
 
   ${mq.from.S`
-    width: 50vw;
+    width: calc(1.5 * var(--grid-column-size) + 2.5 * var(--grid-gutter-size));
+  `}
+
+  ${mq.from.M`
+    width: calc(2 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
   `}
 
   ${mq.from.L`
-    width: 25vw;
+    width: calc(3 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
   `}
 
   path {
@@ -191,8 +205,8 @@ const Wrapper = styled.div`
 const Backdrop = styled.div`
   position: absolute;
   z-index: -1;
-  width: 60vw;
-  height: 60vw;
+  width: calc(2 * var(--grid-column-size) + var(--grid-gutter-size));
+  height: calc(2 * var(--grid-column-size) + var(--grid-gutter-size));
   border-radius: 50%;
   background-color: var(--c-neutral4);
 
@@ -200,13 +214,18 @@ const Backdrop = styled.div`
     ${3.5 * DRAW_ANIM_DURATION + PAINT_ANIM_DURATION}s ${ease.cubic} both;
 
   ${mq.from.S`
-    width: 40vw;
-    height: 40vw;
+    width: calc(1.5 * var(--grid-column-size) + 0.5 * var(--grid-gutter-size));
+    height: calc(1.5 * var(--grid-column-size) + 0.5 * var(--grid-gutter-size));
   `}
 
   ${mq.from.M`
-    width: 20vw;
-    height: 20vw;
+    width: calc(2 * var(--grid-column-size) + var(--grid-gutter-size));
+    height: calc(2 * var(--grid-column-size) + var(--grid-gutter-size));
+  `}
+
+  ${mq.from.L`
+    width: calc(3 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
+    height: calc(3 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
   `}
 `
 

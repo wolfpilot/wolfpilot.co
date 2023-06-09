@@ -3,6 +3,14 @@ import { IconTypesEnum, Icon } from "@ts/icons"
 
 // SVGs
 import Logo from "./Logo"
+import LinkExternal from "./LinkExternal"
+import LinkInternal from "./LinkInternal"
+
+import Prev from "./Prev"
+import Next from "./Next"
+import Close from "./Close"
+import Expand from "./Expand"
+import Collapse from "./Collapse"
 
 import Email from "./Email"
 
@@ -16,6 +24,21 @@ const Icon: React.FC<Icon> = ({ type, ...props }) => {
     // Generic
     case IconTypesEnum.Logo:
       return <Logo {...props} />
+    case IconTypesEnum.LinkExternal:
+      return <LinkExternal {...props} />
+    case IconTypesEnum.LinkInternal:
+      return <LinkInternal {...props} />
+    // Interaction
+    case IconTypesEnum.Prev:
+      return <Prev {...props} />
+    case IconTypesEnum.Next:
+      return <Next {...props} />
+    case IconTypesEnum.Close:
+      return <Close {...props} />
+    case IconTypesEnum.Expand:
+      return <Expand {...props} />
+    case IconTypesEnum.Collapse:
+      return <Collapse {...props} />
     // Info
     case IconTypesEnum.Email:
       return <Email {...props} />

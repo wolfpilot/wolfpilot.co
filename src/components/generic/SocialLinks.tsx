@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { social } from "@constants/social"
 
 // Styles
+import { listResetStyles } from "@styles/list"
 import { duration, ease } from "@styles/animation"
 
 // Components
@@ -46,16 +47,14 @@ const Social: React.FC<Props> = ({ className, option }) => (
 const Wrapper = styled.div``
 
 const SocialList = styled.ul`
+  ${listResetStyles};
   display: flex;
   justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
 `
 
 const SocialItem = styled.li`
   &:not(:last-child) {
-    margin-right: calc(var(--base-spacing) / 2);
+    margin-right: calc(var(--spacing-default) / 2);
   }
 `
 
@@ -67,7 +66,7 @@ const SocialItemLinkIcon = styled(Icon)<{ option: Option }>`
 
 const SocialItemLink = styled(Link)<{ option: Option }>`
   display: block;
-  padding: calc(var(--base-spacing) / 2);
+  padding: calc(var(--spacing-default) / 2);
   line-height: 0;
 
   &:hover {

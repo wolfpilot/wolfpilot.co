@@ -1,7 +1,7 @@
 // Types
-import { Anchors } from "@ts/dom"
+import { Routes } from "@ts/routes"
 
-export const routes: Anchors = {
+export const routes: Routes = {
   work: {
     label: "Work",
     url: "/#work",

@@ -28,6 +28,7 @@
       "@components/*": ["src/components/*"],
       "@config/*": ["src/config/*"],
       "@constants/*": ["src/constants/*"],
+      "@data/*": ["src/data/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
       "@ts/*": ["src/types/*"],
