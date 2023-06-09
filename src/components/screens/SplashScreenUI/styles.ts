@@ -14,7 +14,9 @@ import LogoTriangle from "@components/logo/LogoTriangle"
 import {
   DRAW_DURATION,
   PAINT_DURATION,
+  EXIT_DURATION,
   STAGGER_DELAY,
+  ANIM_DURATION,
   animShiftLogo,
   animPaintBackdrop,
   animDrawLines,
@@ -64,6 +66,17 @@ const sharedLogoStyles = css`
   ${mq.from.L`
     width: calc(3 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
   `}
+
+  /**
+   * Because Safari is a PITA :)
+   *
+   * For more info, see:
+   * https://stackoverflow.com/questions/5472802/css-z-index-lost-after-webkit-transform-translate3d
+   * https://bugs.webkit.org/show_bug.cgi?id=61824
+   */
+  ${mq.vendor.safariOnly`
+    animation: none;
+  `}
 `
 
 // Main styles
@@ -81,8 +94,8 @@ export const Wrapper = styled.div`
   background-color: var(--c-pageColor);
 
   animation-name: ${animFadeOut};
-  animation-duration: ${PAINT_DURATION}s;
-  animation-delay: ${3.5 * DRAW_DURATION + PAINT_DURATION}s;
+  animation-duration: ${EXIT_DURATION}s;
+  animation-delay: ${ANIM_DURATION}s;
   animation-timing-function: ${ease.cubic};
   animation-fill-mode: both;
 
@@ -102,7 +115,7 @@ export const Backdrop = styled.div`
   background-color: var(--c-neutral4);
 
   animation-name: ${animPaintBackdrop};
-  animation-duration: ${3.5 * DRAW_DURATION + PAINT_DURATION}s;
+  animation-duration: ${ANIM_DURATION}s;
   animation-timing-function: ${ease.cubic};
   animation-fill-mode: both;
 
@@ -126,7 +139,7 @@ export const LogoWrapper = styled.div`
   position: relative;
 
   animation-name: ${animShiftLogo};
-  animation-duration: ${3.5 * DRAW_DURATION + PAINT_DURATION}s;
+  animation-duration: ${ANIM_DURATION}s;
   animation-timing-function: ${ease.cubic};
 `
 
@@ -164,45 +177,12 @@ export const StyledLogoTriangle = styled(LogoTriangle)`
   }
 `
 
-export const StyledLogoLetter = styled(LogoLetter)`
-  ${sharedLogoStyles};
-
-  // Height & width inferred from the triangle logo
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  animation-name: ${animPulse3d};
-  animation-duration: ${PAINT_DURATION}s;
-  animation-delay: ${2 * DRAW_DURATION}s;
-  animation-timing-function: ${ease.elastic};
-
-  &__contour {
-    &-path {
-      animation-name: ${animDrawLines}, ${animFadeOut};
-      animation-duration: ${DRAW_DURATION}s;
-      animation-delay: ${1.5 * PAINT_DURATION}s, ${2 * DRAW_DURATION}s;
-      animation-timing-function: linear, ${ease.cubic};
-    }
-  }
-
-  &__shading {
-    &-path {
-      animation-name: ${animFadeIn};
-      animation-duration: ${PAINT_DURATION}s;
-      animation-delay: ${2 * DRAW_DURATION}s;
-      animation-timing-function: ${ease.cubic};
-    }
-  }
-`
-
 export const StyledLogoDetails = styled(LogoDetails)`
   ${sharedLogoStyles};
 
   // Height & width inferred from the triangle logo
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
@@ -238,6 +218,41 @@ export const StyledLogoDetails = styled(LogoDetails)`
       &:nth-of-type(5) {
         animation-delay: ${2.5 * DRAW_DURATION + 4 * STAGGER_DELAY}s;
       }
+    }
+  }
+`
+
+export const StyledLogoLetter = styled(LogoLetter)`
+  ${sharedLogoStyles};
+
+  // Height & width inferred from the triangle logo
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  animation-name: ${animPulse3d};
+  animation-duration: ${PAINT_DURATION}s;
+  animation-delay: ${2 * DRAW_DURATION}s;
+  animation-timing-function: ${ease.elastic};
+
+  &__contour {
+    &-path {
+      animation-name: ${animDrawLines}, ${animFadeOut};
+      animation-duration: ${DRAW_DURATION}s;
+      animation-delay: ${1.5 * PAINT_DURATION}s, ${2 * DRAW_DURATION}s;
+      animation-timing-function: linear, ${ease.cubic};
+    }
+  }
+
+  &__shading {
+    &-path {
+      animation-name: ${animFadeIn};
+      animation-duration: ${PAINT_DURATION}s;
+      animation-delay: ${2 * DRAW_DURATION}s;
+      animation-timing-function: ${ease.cubic};
     }
   }
 `

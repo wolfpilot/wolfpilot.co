@@ -25,30 +25,39 @@ import { keyframes } from "styled-components"
 // Setup
 export const DRAW_DURATION = 0.9
 export const PAINT_DURATION = 0.6
+export const EXIT_DURATION = 0.6
 export const STAGGER_DELAY = 0.1
 
-export const TOTAL_DURATION = 3.5 * DRAW_DURATION + 2 * PAINT_DURATION
+export const ANIM_DURATION = 3.5 * DRAW_DURATION + PAINT_DURATION
+export const TOTAL_DURATION = ANIM_DURATION + EXIT_DURATION
 
 // Keyframes
+
+/**
+ * translateZ shouldn't be necessary, but otherwise Safari cuts off elements
+ *
+ * For more info, see:
+ * https://stackoverflow.com/a/34863394
+ */
 export const animShiftLogo = keyframes`
   0% {
-    transform: perspective(500px) rotate3d(0, 0, 0, 0deg);
+    transform: perspective(500px) translateZ(20px) rotate3d(0, 0, 0, 0deg);
   }
 
   50% {
-    transform: perspective(500px) rotate3d(1, 0, 0, 15deg);
+    transform: perspective(500px) translateZ(20px) rotate3d(1, 0, 0, 15deg);
   }
 
   65% {
-    transform: perspective(500px) rotate3d(1, 1, 0, -5deg);
+    transform: perspective(500px) translateZ(20px) rotate3d(1, 1, 0, -5deg);
   }
 
   85% {
-    transform: perspective(500px) rotate3d(1, 1, 0, 5deg);
+    transform: perspective(500px) translateZ(20px) rotate3d(1, 1, 0, 5deg);
   }
 
   100% {
-    transform: perspective(500px) rotate3d(0, 0, 0, 0deg);
+    transform: perspective(500px) translateZ(20px) rotate3d(0, 0, 0, 0deg);
   }
 `
 
@@ -99,10 +108,10 @@ export const animDrawLines = keyframes`
 
 export const animPulse3d = keyframes`
   0% {
-    transform: perspective(500px) translate3d(0, 0, 50px);
+    transform: perspective(500px) translateZ(50px);
   }
 
   100% {
-    transform: perspective(500px) translate3d(0, 0, 0);
+    transform: perspective(500px) translateZ(0);
   }
 `
