@@ -1,7 +1,7 @@
 import { NextPage } from "next"
 
 // Data
-import { pageData } from "@data/cases/wolfPilot"
+import { pageData } from "@data/cases/cawr"
 
 // Components
 import CaseLayout from "./"

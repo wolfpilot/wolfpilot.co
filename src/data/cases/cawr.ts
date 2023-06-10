@@ -1,14 +1,20 @@
+// Assets
+import HeroImage from "/public/images/cases/cawr/hero.jpg"
+
 // Types
 import { Meta, PageData } from "./"
 
 export const meta: Meta = {
   title: "CAWR",
-  tagline:
-    "Clear, user-friendly and informative: the three most important goals for CAWR's Communications and Publications new website",
+  tagline: "Centre for Agroecology, Water and Resilience",
   category: "commercial",
-  tags: ["web design"],
   date: new Date("April 2015"),
   technologies: "Photoshop, good ol' pen & paper",
+  tags: ["web design"],
+  image: {
+    src: HeroImage,
+    alt: "Top-down view of a terraced field used in farming",
+  },
 }
 
 export const pageData: PageData = {

@@ -16,8 +16,20 @@ export const textStyles = {
     line-height: 1.5;
   `,
   copyL: css`
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1.5;
+
+    ${mq.from.S`
+      font-size: 20px;
+    `}
+
+    ${mq.from.M`
+      font-size: 22px;
+    `}
+
+    ${mq.from.L`
+      font-size: 24px;
+    `}
   `,
   headingL: css`
     font-size: 48px;
