@@ -49,7 +49,7 @@ export const textStyles = {
   `,
   headingM: css`
     font-size: 32px;
-    line-height: 1.15;
+    line-height: 1.25;
 
     ${mq.from.S`
       font-size: 40px;
@@ -65,7 +65,7 @@ export const textStyles = {
   `,
   headingS: css`
     font-size: 20px;
-    line-height: 1.15;
+    line-height: 1.5;
 
     ${mq.from.S`
       font-size: 22px;

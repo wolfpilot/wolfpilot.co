@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react"
 
 // Types
-import { Meta } from "@data/cases"
+import { PageData } from "@data/cases"
 
 // Styles
 import * as S from "@styles/pages/cases"
@@ -10,19 +10,26 @@ import { mq } from "@styles/utils/mediaQueries"
 // Components
 import Container from "@components/layout/Container/Container"
 import Heading from "@components/generic/Heading"
+import Text from "@components/generic/Text"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
 
-export interface Props {
+export interface Props extends PageData {
   children: React.ReactNode
-  meta: Meta
 }
 
-const CaseLayout: React.FC<Props> = ({ children, meta }) => {
-  const { title, tagline, image, date, technologies, tags } = meta
+const CaseLayout: React.FC<Props> = ({ children, meta, summary }) => {
+  const { title, tagline, date, technologies, tags, image } = meta
 
   const [isHeroImgLoaded, setIsHeroImgLoaded] = useState<boolean>(false)
 
-  if (!title || !tagline || !image?.src || !image?.alt) {
+  if (
+    !title ||
+    !tagline ||
+    !image?.src ||
+    !image?.alt ||
+    !summary?.heading ||
+    !summary?.text
+  ) {
     return null
   }
 
@@ -105,6 +112,20 @@ const CaseLayout: React.FC<Props> = ({ children, meta }) => {
           </Container>
         </S.Hero>
       </S.Header>
+
+      <S.Summary>
+        <Container>
+          <S.SummaryContent>
+            <S.SummaryHeadingWrapper>
+              <Heading level="h3">{summary.heading}</Heading>
+            </S.SummaryHeadingWrapper>
+
+            <S.SummaryTextWrapper>
+              <Text>{summary.text}</Text>
+            </S.SummaryTextWrapper>
+          </S.SummaryContent>
+        </Container>
+      </S.Summary>
 
       <S.Content>{children}</S.Content>
     </S.Wrapper>

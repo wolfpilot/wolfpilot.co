@@ -22,8 +22,14 @@ export interface Meta {
   }
 }
 
+export interface Summary {
+  heading: string
+  text: string
+}
+
 export interface PageData {
   meta: Meta
+  summary: Summary
 }
 
 export const data: Record<string, PageData> = {

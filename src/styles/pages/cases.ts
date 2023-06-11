@@ -21,6 +21,7 @@ export const Wrapper = styled.article`
 export const Header = styled.header``
 
 export const Hero = styled.div`
+  margin-bottom: var(--spacing-block);
   background-color: var(--c-neutral5);
 `
 
@@ -84,6 +85,42 @@ export const HeroInfoText = styled.div`
 export const HeroInfoLink = styled(Link)`
   ${textStyles.copy};
   ${textStyles.hyperlink};
+`
+
+export const Summary = styled.div`
+  margin-bottom: var(--spacing-block);
+`
+
+export const SummaryContent = styled.div`
+  ${mq.from.M`
+    display: flex;
+    justify-content: space-between;
+  `}
+
+  ${mq.from.L`
+    padding-left: calc(var(--grid-column-size) + var(--grid-gutter-size));
+    padding-right: calc(var(--grid-column-size) + var(--grid-gutter-size));
+  `}
+`
+
+export const SummaryHeadingWrapper = styled.div`
+  ${mq.from.M`
+    width: calc(2 * var(--grid-column-size) + 1 * var(--grid-gutter-size));
+  `}
+
+  ${mq.from.L`
+    width: calc(4 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
+  `}
+`
+
+export const SummaryTextWrapper = styled.div`
+  ${mq.from.M`
+    width: calc(3 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
+  `}
+
+  ${mq.from.L`
+    width: calc(5 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
+  `}
 `
 
 export const Content = styled.div``

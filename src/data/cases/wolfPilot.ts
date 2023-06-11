@@ -2,7 +2,7 @@
 import HeroImage from "/public/images/cases/wolf-pilot/hero.jpg"
 
 // Types
-import { Meta, PageData } from "./"
+import { Meta, Summary, PageData } from "./"
 
 export const meta: Meta = {
   title: "Wolf Pilot",
@@ -17,6 +17,13 @@ export const meta: Meta = {
   },
 }
 
+const summary: Summary = {
+  heading:
+    "Gentle on the outside, a beast on the inside - my most accomplished work so far.",
+  text: `Wolf Pilot is my portfolio site. It's also an identity. It's the culmination of many struggles, and an expression of my artistic self. It's modular, but light. It's minimal, but doesn't compromise any essential features. And most of all, it has been an adventure in itself.`,
+}
+
 export const pageData: PageData = {
   meta,
+  summary,
 }
