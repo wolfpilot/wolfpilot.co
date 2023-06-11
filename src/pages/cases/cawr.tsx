@@ -4,7 +4,7 @@ import { NextPage } from "next"
 import { pageData } from "@data/cases/cawr"
 
 // Components
-import CaseLayout from "./"
+import CaseLayout from "@components/templates/CaseTemplate/CaseTemplate"
 
 const WolfPilotPage: NextPage = () => (
   <CaseLayout meta={pageData.meta}>[...] more content to follow.</CaseLayout>
