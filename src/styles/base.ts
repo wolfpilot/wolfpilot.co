@@ -43,6 +43,11 @@ export const base = css`
     --spacing-section: ${spacing.section.base};
 
     /**
+      * Set dynamically via JS
+      */
+    --scrollbar-width: 0px;
+
+    /**
      * @NOTE: IE 11 doesn't support vars, so just use the equivalent vw values
      * 1 col in a 3 col grid = 33.33vw
      * 1 col in a 6 col grid = 16.66vw
@@ -56,12 +61,19 @@ export const base = css`
     /**
       * To calculate the column size:
       * - Take the total width of the screen
+      * - Subtract the scrollbar
+      * - Subtract the two offsets
       * - Subtract the gaps
       * - Divide the result by the number of columns
       */
+
+    // prettier-ignore
     --grid-column-size: calc(
-      (100vw - ((var(--grid-columns) + 1) * var(--grid-gutter-size))) /
-        var(--grid-columns)
+        (100vw
+        - var(--scrollbar-width)
+        - (2 * var(--grid-offset-size))
+        - ((var(--grid-columns) - 1) * var(--grid-gutter-size))
+        ) / var(--grid-columns)
     );
 
     ${mq.from.S`
@@ -92,8 +104,11 @@ export const base = css`
       --grid-offset-size: ${offset.XL};
       --grid-gutter-size: ${gutter.XL};
       --grid-column-size: calc(
-        (${MAX_CONTENT_WIDTH} - ((var(--grid-columns) + 1) * var(--grid-gutter-size))) /
-          var(--grid-columns));
+        (${MAX_CONTENT_WIDTH}
+        - (2 * var(--grid-offset-size))
+        - ((var(--grid-columns) - 1) * var(--grid-gutter-size))
+        ) / var(--grid-columns)
+      );
     `}
       
     // Typography

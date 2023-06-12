@@ -9,6 +9,7 @@ import { ShowcaseProvider } from "@components/showcase/Context"
 import GlobalStyle from "@styles/global"
 
 // Components
+import DOMManager from "@utils/managers/DOMManager"
 import DebugGrid from "@components/utils/DebugGrid/DebugGrid"
 import SiteHeader from "@components/site/SiteHeader/SiteHeader"
 import SiteFooter from "@components/site/SiteFooter/SiteFooter"
@@ -26,6 +27,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
   return (
     <>
       <GlobalStyle />
+      <DOMManager />
 
       <AppProvider>
         <DebugGrid />
