@@ -10,7 +10,7 @@ export const Wrapper = styled(motion.ul)`
 
   ${mq.from.M`
     column-count: 2;
-    column-gap: var(--grid-gutter);
+    column-gap: var(--grid-gutter-size);
   `}
 
   ${mq.from.L`
