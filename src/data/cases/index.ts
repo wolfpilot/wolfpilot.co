@@ -1,6 +1,7 @@
 // Types
 import { StaticImageData } from "next/image"
 import { Tag } from "@components/showcase/types"
+import { Props as CardProps } from "@components/generic/Card"
 
 // Data
 import { pageData as cawrPageData } from "./cawr"
@@ -27,9 +28,12 @@ export interface Summary {
   text: string
 }
 
+export interface Statement extends CardProps {}
+
 export interface PageData {
   meta: Meta
   summary: Summary
+  statement: Statement
 }
 
 export const data: Record<string, PageData> = {

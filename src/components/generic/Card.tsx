@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useState, useRef } from "react"
 import Image, { ImageProps } from "next/image"
 import styled from "styled-components"
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
@@ -9,11 +9,13 @@ import { mq } from "@styles/utils/mediaQueries"
 
 // Components
 import Text from "@components/generic/Text"
+import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
 
 export interface Props {
   featuredImg: ImageProps
   heading: string
   copy: string
+  backgroundImg?: ImageProps
 }
 
 // Setup
@@ -23,7 +25,16 @@ const PARALLAX_SCROLL_DISTANCE = -10
 const useParallax = (value: MotionValue<number>, distance: number) =>
   useTransform(value, [0, 1], [`${-distance}%`, `${distance}%`])
 
-const Card: React.FC<Props> = ({ featuredImg, heading, copy }) => {
+const Card: React.FC<Props> = ({
+  featuredImg,
+  heading,
+  copy,
+  backgroundImg,
+}) => {
+  const [isFeaturedImgLoaded, setIsFeaturedImgLoaded] = useState<boolean>(false)
+  const [isBackgroundImgLoaded, setIsBackgroundImgLoaded] =
+    useState<boolean>(false)
+
   const wrapperRef = useRef(null)
 
   // Parallax
@@ -32,41 +43,123 @@ const Card: React.FC<Props> = ({ featuredImg, heading, copy }) => {
 
   if (!featuredImg || !heading || !copy) return null
 
+  // Handlers
+  const handleFeaturedImgLoadingComplete = () => {
+    setIsFeaturedImgLoaded(true)
+  }
+
+  const handleBackgroundImgLoadingComplete = () => {
+    setIsBackgroundImgLoaded(true)
+  }
+
+  const hasFtImg = !!(featuredImg?.src && featuredImg?.alt)
+  const hasBgImg = !!(backgroundImg?.src && backgroundImg?.alt)
+
   return (
-    <Wrapper>
-      {featuredImg?.src && (
-        <FeaturedImageWrapper ref={wrapperRef}>
-          <FeaturedImageResizer>
-            <FeaturedImage
-              src={featuredImg.src}
-              alt={featuredImg.alt || ""}
-              style={{ y }}
-            />
-          </FeaturedImageResizer>
-        </FeaturedImageWrapper>
+    <Wrapper $hasBgImage={hasBgImg}>
+      {hasBgImg && (
+        <BackgroundImageWrapper>
+          <BackgroundImage
+            src={backgroundImg.src}
+            sizes={`
+              (min-width: ${mq.breakpoints.M}px) 66vw
+            `}
+            alt={backgroundImg.alt}
+            onLoadingComplete={handleBackgroundImgLoadingComplete}
+          />
+
+          <BackgroundImageLoader isLoaded={isBackgroundImgLoaded} />
+        </BackgroundImageWrapper>
       )}
 
-      <Content>
-        <Heading dangerouslySetInnerHTML={{ __html: heading }} />
-        <Text>{copy}</Text>
-      </Content>
+      <MediaWrapper>
+        {hasFtImg && (
+          <FeaturedImageWrapper ref={wrapperRef}>
+            <FeaturedImageResizer>
+              <FeaturedImage
+                src={featuredImg.src}
+                sizes={`
+                  (min-width: ${mq.breakpoints.M}px) 33vw,
+                  100vw,
+                `}
+                alt={featuredImg.alt}
+                style={{ y }}
+                onLoadingComplete={handleFeaturedImgLoadingComplete}
+              />
+            </FeaturedImageResizer>
+
+            <FeaturedImageLoader isLoaded={isFeaturedImgLoaded} />
+          </FeaturedImageWrapper>
+        )}
+
+        <Content>
+          <Heading dangerouslySetInnerHTML={{ __html: heading }} />
+          <Text>{copy}</Text>
+        </Content>
+      </MediaWrapper>
     </Wrapper>
   )
 }
 
-const Wrapper = styled.div`
-  ${fixBorderRadiusOverflow}
-  overflow: hidden;
+const Wrapper = styled.div<{ $hasBgImage: boolean }>`
+  position: relative;
   margin: 0 auto;
-  border-radius: var(--border-radius-sml);
-  background-color: var(--c-black);
 
   ${mq.from.M`
-    display: flex;
+    ${({ $hasBgImage }: { $hasBgImage: boolean }) =>
+      $hasBgImage &&
+      `
+      padding-top: calc(2 * var(--spacing-default));
+      padding-bottom: calc(3 * var(--spacing-default));
+    `}
   `}
 
   ${mq.from.XL`
-    width: calc(10 * var(--grid-column-size) + 9 * var(--grid-gutter-size));
+    padding-left: calc(var(--grid-column-size) + var(--grid-gutter-size));
+    padding-right: calc(var(--grid-column-size) + var(--grid-gutter-size));
+  `}
+`
+
+const BackgroundImageWrapper = styled.div`
+  display: none;
+
+  ${mq.from.M`
+    ${fixBorderRadiusOverflow}
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: calc(-1 * var(--grid-offset-size));
+    bottom: 0;
+    display: block;
+    overflow: hidden;
+    width: calc(4 * var(--grid-column-size) + 4 * var(--grid-gutter-size) + var(--grid-offset-size));
+    height: 100%;
+    border-top-left-radius: var(--border-radius-sml);
+    border-bottom-left-radius: var(--border-radius-sml);
+  `}
+
+  ${mq.from.L`
+    width: calc(8 * var(--grid-column-size) + 8 * var(--grid-gutter-size) + var(--grid-offset-size));
+  `}
+`
+
+const BackgroundImage = styled(Image)`
+  height: 100%;
+  object-fit: cover;
+`
+
+const BackgroundImageLoader = styled(ImageLoader)`
+  background-color: var(--c-pageColor);
+`
+
+const MediaWrapper = styled.div`
+  ${fixBorderRadiusOverflow}
+  overflow: hidden;
+  border-radius: var(--border-radius-sml);
+
+  ${mq.from.M`
+    display: flex;
+    justify-content: center;
   `}
 `
 
@@ -105,6 +198,10 @@ const FeaturedImageResizer = styled.div`
   transform: scale(1.2);
 `
 
+const FeaturedImageLoader = styled(ImageLoader)`
+  background-color: var(--c-black);
+`
+
 const FeaturedImage = styled(motion(Image))`
   display: block;
   width: 100%;
@@ -116,15 +213,16 @@ const FeaturedImage = styled(motion(Image))`
 
 const Content = styled.div`
   padding: calc(2 * var(--spacing-default)) var(--spacing-default);
+  background-color: var(--c-black);
   color: var(--c-white);
 
   ${mq.from.M`
     width: calc(4 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
-  `}
+    `}
 
   ${mq.from.L`
     width: calc(8 * var(--grid-column-size) + 8 * var(--grid-gutter-size));
-  `}
+    `}
 
   ${mq.from.XL`
     width: calc(7 * var(--grid-column-size) + 7 * var(--grid-gutter-size));

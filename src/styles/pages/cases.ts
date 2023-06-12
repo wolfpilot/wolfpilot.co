@@ -88,7 +88,7 @@ export const HeroInfoLink = styled(Link)`
 `
 
 export const Summary = styled.div`
-  margin-bottom: var(--spacing-block);
+  margin-bottom: calc(2 * var(--spacing-block));
 `
 
 export const SummaryContent = styled.div`
@@ -122,5 +122,7 @@ export const SummaryTextWrapper = styled.div`
     width: calc(5 * var(--grid-column-size) + 4 * var(--grid-gutter-size));
   `}
 `
+
+export const Statement = styled.div``
 
 export const Content = styled.div``

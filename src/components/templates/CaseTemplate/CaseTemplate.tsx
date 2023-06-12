@@ -11,13 +11,19 @@ import { mq } from "@styles/utils/mediaQueries"
 import Container from "@components/layout/Container/Container"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
+import Card from "@components/generic/Card"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
 
 export interface Props extends PageData {
   children: React.ReactNode
 }
 
-const CaseLayout: React.FC<Props> = ({ children, meta, summary }) => {
+const CaseLayout: React.FC<Props> = ({
+  children,
+  meta,
+  summary,
+  statement,
+}) => {
   const { title, tagline, date, technologies, tags, image } = meta
 
   const [isHeroImgLoaded, setIsHeroImgLoaded] = useState<boolean>(false)
@@ -28,7 +34,11 @@ const CaseLayout: React.FC<Props> = ({ children, meta, summary }) => {
     !image?.src ||
     !image?.alt ||
     !summary?.heading ||
-    !summary?.text
+    !summary?.text ||
+    !statement.featuredImg?.src ||
+    !statement.featuredImg?.alt ||
+    !statement?.heading ||
+    !statement?.copy
   ) {
     return null
   }
@@ -126,6 +136,17 @@ const CaseLayout: React.FC<Props> = ({ children, meta, summary }) => {
           </S.SummaryContent>
         </Container>
       </S.Summary>
+
+      <S.Statement>
+        <Container>
+          <Card
+            featuredImg={statement.featuredImg}
+            heading={statement.heading}
+            copy={statement.copy}
+            backgroundImg={image}
+          />
+        </Container>
+      </S.Statement>
 
       <S.Content>{children}</S.Content>
     </S.Wrapper>
