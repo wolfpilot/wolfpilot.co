@@ -47,6 +47,18 @@ const content: Content = [
       alt: "Final design image",
     },
   },
+  {
+    type: "textBlock",
+    data: {
+      heading: "Planning and research",
+      subheading: "Taking one step at a time",
+      copy: `It would be a lie to say that I wasn't the least bit nervous - CAWR was set to become the largest, most important project I had ever worked on. Most of my fears, however, dissipated upon meeting Michel for the second time so that we could discuss the project a bit more in depth.
+      
+      From the little amount of information I was given, I managed to gather a number of stylistic references, as well as prepare a list of tens and tens of points that we needed to touch on: what is the purpose of the site, is there an existing website I could take a look at, are there any brand guidelines or specific features that I would need to integrate, etc.
+      
+      By the end of the project, we found the whole concept to have grown considerably: where before stood only a few rough ideas revolving around multimedia publications, now the website featured a book carousel showcasing CAWR's latest publications, a working papers browser with its own advanced search functionality, a fully customised video player and last, but not least, a geolocated interactive gallery used by researchers around the world to upload photographs taken at various hotspots and share them on the front-page.`,
+    },
+  },
 ]
 
 export const pageData: PageData = {

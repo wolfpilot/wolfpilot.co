@@ -3,6 +3,7 @@ import { StaticImageData } from "next/image"
 import { Tag } from "@components/showcase/types"
 import { Props as CardProps } from "@components/generic/Card"
 import { Props as ImageProps } from "@components/slices/ImageSlice/ImageSlice"
+import { Props as TextBlockProps } from "@components/slices/TextBlockSlice/TextBlockSlice"
 
 // Data
 import { pageData as cawrPageData } from "./cawr"
@@ -38,7 +39,12 @@ export interface ImageSlice {
   data: ImageProps
 }
 
-export type SliceType = ImageSlice
+export interface TextBlockSlice {
+  type: "textBlock"
+  data: TextBlockProps
+}
+
+export type SliceType = ImageSlice | TextBlockSlice
 
 export type Content = SliceType[]
 
