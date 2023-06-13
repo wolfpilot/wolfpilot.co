@@ -13,16 +13,13 @@ import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 import Card from "@components/generic/Card"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
+import Slice from "@components/slices/Slice"
 
-export interface Props extends PageData {
-  children: React.ReactNode
-}
-
-const CaseLayout: React.FC<Props> = ({
-  children,
+const CaseLayout: React.FC<PageData> = ({
   meta,
   summary,
   statement,
+  content,
 }) => {
   const { title, tagline, date, technologies, tags, image } = meta
 
@@ -38,7 +35,8 @@ const CaseLayout: React.FC<Props> = ({
     !statement.featuredImg?.src ||
     !statement.featuredImg?.alt ||
     !statement?.heading ||
-    !statement?.copy
+    !statement?.copy ||
+    !content.length
   ) {
     return null
   }
@@ -148,7 +146,11 @@ const CaseLayout: React.FC<Props> = ({
         </Container>
       </S.Statement>
 
-      <S.Content>{children}</S.Content>
+      <S.Content>
+        {content.map((item, index) => (
+          <Slice key={index} slice={item} />
+        ))}
+      </S.Content>
     </S.Wrapper>
   )
 }

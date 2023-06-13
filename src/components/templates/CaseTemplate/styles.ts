@@ -118,6 +118,8 @@ export const SummaryTextWrapper = styled.div`
   `}
 `
 
-export const Statement = styled.div``
+export const Statement = styled.div`
+  margin-bottom: calc(3 * var(--spacing-block));
+`
 
 export const Content = styled.div``

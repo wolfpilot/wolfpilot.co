@@ -6,8 +6,6 @@ import { pageData } from "@data/cases/retrocade"
 // Components
 import CaseLayout from "@components/templates/CaseTemplate/CaseTemplate"
 
-const WolfPilotPage: NextPage = () => (
-  <CaseLayout {...pageData}>[...] more content to follow.</CaseLayout>
-)
+const RetrocadeCasePage: NextPage = () => <CaseLayout {...pageData} />
 
-export default WolfPilotPage
+export default RetrocadeCasePage

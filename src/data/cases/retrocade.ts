@@ -3,7 +3,7 @@ import HeroImage from "/public/images/cases/retrocade/hero.jpg"
 import StatementFeaturedImage from "/public/images/cases/retrocade/statement-featured.jpg"
 
 // Types
-import { Meta, Summary, Statement, PageData } from "./"
+import { Meta, Summary, Statement, Content, PageData } from "./"
 
 export const meta: Meta = {
   title: "RetroCade",
@@ -35,8 +35,11 @@ const statement: Statement = {
   Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis.`,
 }
 
+export const content: Content = []
+
 export const pageData: PageData = {
   meta,
   summary,
   statement,
+  content,
 }
