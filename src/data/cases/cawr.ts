@@ -2,6 +2,10 @@
 import HeroImage from "/public/images/cases/cawr/hero.jpg"
 import StatementFeaturedImage from "/public/images/cases/cawr/statement-featured.jpg"
 import ContentImage1 from "/public/images/cases/cawr/content-image-1.jpg"
+import ContentImage2 from "/public/images/cases/cawr/content-image-2.jpg"
+import ContentImage3 from "/public/images/cases/cawr/content-image-3.jpg"
+import ContentImage4 from "/public/images/cases/cawr/content-image-4.jpg"
+import ContentImage5 from "/public/images/cases/cawr/content-image-5.jpg"
 
 // Types
 import { Meta, Summary, Statement, Content, PageData } from "./"
@@ -57,6 +61,38 @@ const content: Content = [
       From the little amount of information I was given, I managed to gather a number of stylistic references, as well as prepare a list of tens and tens of points that we needed to touch on: what is the purpose of the site, is there an existing website I could take a look at, are there any brand guidelines or specific features that I would need to integrate, etc.
       
       By the end of the project, we found the whole concept to have grown considerably: where before stood only a few rough ideas revolving around multimedia publications, now the website featured a book carousel showcasing CAWR's latest publications, a working papers browser with its own advanced search functionality, a fully customised video player and last, but not least, a geolocated interactive gallery used by researchers around the world to upload photographs taken at various hotspots and share them on the front-page.`,
+    },
+  },
+  {
+    type: "figure",
+    data: {
+      src: ContentImage2,
+      alt: "Mockup image #1",
+      caption: "Mockups and early concepts #1",
+    },
+  },
+  {
+    type: "figure",
+    data: {
+      src: ContentImage3,
+      alt: "Mockup image #2",
+      caption: "Mockups and early concepts #2",
+    },
+  },
+  {
+    type: "figure",
+    data: {
+      src: ContentImage4,
+      alt: "Mockup image #3",
+      caption: "Mockups and early concepts #3",
+    },
+  },
+  {
+    type: "figure",
+    data: {
+      src: ContentImage5,
+      alt: "Mockup image #4",
+      caption: "Mockups and early concepts #4",
     },
   },
 ]
