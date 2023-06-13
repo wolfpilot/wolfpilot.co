@@ -11,6 +11,7 @@ import ContentImage5 from "/public/images/cases/cawr/content-image-5.jpg"
 import { Meta, Summary, Statement, Content, PageData } from "./"
 
 export const meta: Meta = {
+  id: "cawr",
   title: "CAWR",
   tagline: "Centre for Agroecology, Water and Resilience",
   category: "commercial",

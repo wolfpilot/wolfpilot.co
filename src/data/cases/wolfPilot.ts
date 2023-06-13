@@ -6,6 +6,7 @@ import StatementFeaturedImage from "/public/images/cases/wolf-pilot/statement-fe
 import { Meta, Summary, Statement, Content, PageData } from "./"
 
 export const meta: Meta = {
+  id: "wolf-pilot",
   title: "Wolf Pilot",
   tagline: "Behind the scenes",
   category: "personal",

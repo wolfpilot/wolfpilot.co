@@ -21,9 +21,19 @@ const CaseLayout: React.FC<PageData> = ({
   statement,
   content,
 }) => {
-  const { title, tagline, date, technologies, tags, image } = meta
+  const {
+    title,
+    tagline,
+    date,
+    technologies,
+    tags,
+    image,
+    prevCase,
+    nextCase,
+  } = meta
 
   const [isHeroImgLoaded, setIsHeroImgLoaded] = useState<boolean>(false)
+  const [isFooterImgLoaded, setIsFooterImgLoaded] = useState<boolean>(false)
 
   if (
     !title ||
@@ -35,8 +45,7 @@ const CaseLayout: React.FC<PageData> = ({
     !statement.featuredImg?.src ||
     !statement.featuredImg?.alt ||
     !statement?.heading ||
-    !statement?.copy ||
-    !content.length
+    !statement?.copy
   ) {
     return null
   }
@@ -49,6 +58,10 @@ const CaseLayout: React.FC<PageData> = ({
   // Handlers
   const handleHeroImgLoadingComplete = () => {
     setIsHeroImgLoaded(true)
+  }
+
+  const handleFooterImgLoadingComplete = () => {
+    setIsFooterImgLoaded(true)
   }
 
   return (
@@ -151,6 +164,51 @@ const CaseLayout: React.FC<PageData> = ({
           <Slice key={index} slice={item} />
         ))}
       </S.Content>
+
+      <S.Footer>
+        <S.FooterImageWrapper>
+          <S.FooterImage
+            src={image.src}
+            sizes={`
+              (min-width: ${mq.breakpoints.S}px) 100vw,
+              (min-width: ${mq.breakpoints.XS}px) 150vw,
+              200vw,
+          `}
+            alt={image.alt}
+            fill
+            priority
+            onLoadingComplete={handleFooterImgLoadingComplete}
+            $isLoaded={isFooterImgLoaded}
+          />
+        </S.FooterImageWrapper>
+
+        <S.FooterNavContainer>
+          <S.FooterNav>
+            <S.FooterNavLinkWrapper>
+              {prevCase?.label && prevCase?.url && (
+                <S.FooterNavLink href={prevCase.url}>
+                  <S.FooterNavLinkText>Previous</S.FooterNavLinkText>
+                  <S.FooterNavLinkTitle>{prevCase.label}</S.FooterNavLinkTitle>
+                </S.FooterNavLink>
+              )}
+            </S.FooterNavLinkWrapper>
+
+            <S.FooterCaseCurrent>
+              <S.FooterCaseText>You are now browing</S.FooterCaseText>
+              <S.FooterCaseName>{title}</S.FooterCaseName>
+            </S.FooterCaseCurrent>
+
+            <S.FooterNavLinkWrapper>
+              {nextCase?.label && nextCase?.url && (
+                <S.FooterNavLink href={nextCase.url}>
+                  <S.FooterNavLinkText>Next</S.FooterNavLinkText>
+                  <S.FooterNavLinkTitle>{nextCase.label}</S.FooterNavLinkTitle>
+                </S.FooterNavLink>
+              )}
+            </S.FooterNavLinkWrapper>
+          </S.FooterNav>
+        </S.FooterNavContainer>
+      </S.Footer>
     </S.Wrapper>
   )
 }

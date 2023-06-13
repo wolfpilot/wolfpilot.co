@@ -6,6 +6,7 @@ import StatementFeaturedImage from "/public/images/cases/retrocade/statement-fea
 import { Meta, Summary, Statement, Content, PageData } from "./"
 
 export const meta: Meta = {
+  id: "retrocade",
   title: "RetroCade",
   tagline: "Boogie like it's the '80s",
   category: "personal",

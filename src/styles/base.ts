@@ -135,6 +135,7 @@ export const base = css`
     // Gradients
     --g-primary-diagonal: ${gradients.primaryDiagonal};
     --g-secondary-diagonal: ${gradients.secondaryDiagonal};
+    --g-neutral-radial: ${gradients.neutralRadial};
   }
 
   /* Custom text highlighting */
