@@ -1,8 +1,3 @@
-/**
- * * Next.js doesn't accept style files in the pages directory,
- * * so so we keep 'em here instead.
- */
-
 import Link from "next/link"
 import Image from "next/image"
 import styled from "styled-components"

@@ -4,7 +4,7 @@ import { Fragment, useState } from "react"
 import { PageData } from "@data/cases"
 
 // Styles
-import * as S from "@styles/pages/cases"
+import * as S from "./styles"
 import { mq } from "@styles/utils/mediaQueries"
 
 // Components
