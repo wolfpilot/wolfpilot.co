@@ -22,7 +22,7 @@ export const meta: Meta = {
 const summary: Summary = {
   heading:
     "An adventure through the magical world of CSS design & keyframe animations",
-  text: `Retrocade is an ambitious ever-growing experiment set out to create a functional, semi-realistic audio system in HTML, CSS and JavaScript only.`,
+  html: `<p>Retrocade is an ambitious ever-growing experiment set out to create a functional, semi-realistic audio system in HTML, CSS and JavaScript only.</p>`,
 }
 
 const statement: Statement = {

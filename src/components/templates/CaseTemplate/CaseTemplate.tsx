@@ -10,7 +10,7 @@ import { mq } from "@styles/utils/mediaQueries"
 // Components
 import Container from "@components/layout/Container/Container"
 import Heading from "@components/generic/Heading"
-import Text from "@components/generic/Text"
+import RichText from "@components/generic/RichText"
 import Card from "@components/generic/Card"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
 import Slice from "@components/slices/Slice"
@@ -41,7 +41,7 @@ const CaseLayout: React.FC<PageData> = ({
     !image?.src ||
     !image?.alt ||
     !summary?.heading ||
-    !summary?.text ||
+    !summary?.html ||
     !statement.featuredImg?.src ||
     !statement.featuredImg?.alt ||
     !statement?.heading ||
@@ -141,9 +141,9 @@ const CaseLayout: React.FC<PageData> = ({
               <Heading level="h3">{summary.heading}</Heading>
             </S.SummaryHeadingWrapper>
 
-            <S.SummaryTextWrapper>
-              <Text>{summary.text}</Text>
-            </S.SummaryTextWrapper>
+            <S.SummaryRichTextWrapper>
+              <RichText html={summary.html} />
+            </S.SummaryRichTextWrapper>
           </S.SummaryContent>
         </Container>
       </S.Summary>

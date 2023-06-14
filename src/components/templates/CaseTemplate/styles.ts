@@ -110,7 +110,7 @@ export const SummaryHeadingWrapper = styled.div`
   `}
 `
 
-export const SummaryTextWrapper = styled.div`
+export const SummaryRichTextWrapper = styled.div`
   ${mq.from.M`
     width: calc(3 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
   `}

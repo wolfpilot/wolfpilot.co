@@ -36,7 +36,7 @@ export interface Meta {
 
 export interface Summary {
   heading: string
-  text: string
+  html: string
 }
 
 export interface Statement extends CardProps {}

@@ -5,8 +5,8 @@ import { mq } from "@styles/utils/mediaQueries"
 import { textStyles } from "@styles/textStyles"
 
 // Components
-import TextComponent from "@components/generic/Text"
 import HeadingComponent from "@components/generic/Heading"
+import RichTextComponent from "@components/generic/RichText"
 
 export const Wrapper = styled.div`
   padding-top: calc(2 * var(--spacing-default));
@@ -24,7 +24,7 @@ export const Subheading = styled(HeadingComponent)`
   ${textStyles.copyL};
 `
 
-export const Text = styled(TextComponent)`
+export const RichText = styled(RichTextComponent)`
   ${mq.from.M`
     columns: 2;
     column-gap: var(--spacing-default);
