@@ -146,6 +146,10 @@ const BackgroundImageWrapper = styled.div`
 const BackgroundImage = styled(Image)`
   height: 100%;
   object-fit: cover;
+  // Improve readability and reusability of assets
+  filter: blur(12px);
+  // Fix semi-transparent blurry edges
+  transform: scale(1.05);
 `
 
 const BackgroundImageLoader = styled(ImageLoader)`
