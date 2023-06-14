@@ -223,6 +223,10 @@ export const base = css`
     margin-bottom: 0;
   }
 
+  video {
+    cursor: pointer;
+  }
+
   .${DISABLE_SCROLL_CLASSNAME} {
     overflow: hidden;
   }

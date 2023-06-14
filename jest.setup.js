@@ -4,3 +4,13 @@
 // Used for __tests__/testing-library.js
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect"
+import { TextEncoder, TextDecoder } from "util"
+
+/**
+ * Fix TextEncoder error during test runtime
+ *
+ * For more info, see:
+ * https://github.com/inrupt/solid-client-authn-js/issues/1676#issuecomment-917016646
+ */
+global.TextEncoder = TextEncoder
+global.TextDecoder = TextDecoder

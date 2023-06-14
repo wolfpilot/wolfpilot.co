@@ -15,6 +15,8 @@ export const Wrapper = styled.div<{ $fullWidth: boolean }>`
 `
 
 export const Image = styled(NextImage)<{ $isLoaded: boolean }>`
+  // Remove extra spacing under images
+  display: block;
   width: 100%;
   height: auto;
   opacity: ${({ $isLoaded }) => ($isLoaded ? 1 : 0)};

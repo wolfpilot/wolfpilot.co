@@ -5,6 +5,7 @@ import { Tag } from "@components/showcase/types"
 import { Props as CardProps } from "@components/generic/Card"
 import { Props as ImageProps } from "@components/slices/ImageSlice/ImageSlice"
 import { Props as FigureProps } from "@components/slices/FigureSlice/FigureSlice"
+import { Props as VideoProps } from "@components/slices/VideoSlice/VideoSlice"
 import { Props as TextBlockProps } from "@components/slices/TextBlockSlice/TextBlockSlice"
 
 // Data
@@ -52,12 +53,17 @@ export interface FigureSlice {
   data: FigureProps
 }
 
+export interface VideoSlice {
+  type: "video"
+  data: VideoProps
+}
+
 export interface TextBlockSlice {
   type: "textBlock"
   data: TextBlockProps
 }
 
-export type SliceType = ImageSlice | FigureSlice | TextBlockSlice
+export type SliceType = ImageSlice | FigureSlice | VideoSlice | TextBlockSlice
 
 export type Content = SliceType[]
 

@@ -4,6 +4,7 @@ export enum IconTypesEnum {
   LinkExternal = "linkExternal",
   LinkInternal = "linkInternal",
   // Interaction
+  Play = "play",
   Prev = "prev",
   Next = "next",
   Close = "close",

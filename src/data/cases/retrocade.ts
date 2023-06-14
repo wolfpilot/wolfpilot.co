@@ -1,9 +1,14 @@
 // Assets
 import HeroImage from "/public/images/cases/retrocade/hero.jpg"
-import StatementFeaturedImage from "/public/images/cases/retrocade/statement-featured.jpg"
+import StatementImage from "/public/images/cases/retrocade/statement.jpg"
+import Image1 from "/public/images/cases/retrocade/image-1.jpg"
+import Image2 from "/public/images/cases/retrocade/image-2.jpg"
 
 // Types
 import { Meta, Summary, Statement, Content, PageData } from "./"
+
+// Assets
+const video1Src = `/images/cases/retrocade/video-1`
 
 export const meta: Meta = {
   id: "retrocade",
@@ -27,7 +32,7 @@ const summary: Summary = {
 
 const statement: Statement = {
   featuredImg: {
-    src: StatementFeaturedImage,
+    src: StatementImage,
     alt: "Close-up of an 80's cassette tape recorder",
   },
   heading: "The future is watching",
@@ -36,7 +41,68 @@ const statement: Statement = {
   Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis.`,
 }
 
-export const content: Content = []
+export const content: Content = [
+  {
+    type: "textBlock",
+    data: {
+      heading: "Sweet dreams ",
+      subheading: "(are made of this)",
+      html: `<p>And indeed they are.
+      
+      I based my concept on the <a class="hyperlink" href="http://www.thevintageknob.org/akai-GX-747.html" target="_blank" rel="noopener noreferrer">Akai GX-747</a> and on the memories of my father's <a href="http://www.thevintageknob.org/grundig-TS1000.html" target="_blank" rel="noopener noreferrer">Grundig TS1000</a>. I felt that this mixture of old and new made a perfectly pleasant and balanced layout. Influenced by Google's currently trending material design, the concept went through quite a few iterations and many moments of self-doubt. Am I adding too many buttons? Is it supposed to be three-head or four-head? Should it even have a stop button or just pause? You get the gist of it.</p>`,
+    },
+  },
+  {
+    type: "image",
+    data: {
+      src: Image1,
+      alt: "'80s-style logo reading 'Retrocade'",
+    },
+  },
+  {
+    type: "textBlock",
+    data: {
+      heading: "Get down on it",
+      subheading: "Get down on it!",
+      html: `<p>So, what do I plan on adding in the future, you ask?</p>
+      
+      <ul>
+        <li><strike>Functional power button</strike></li>
+        <li><strike>Functional play/pause buttons</strike></li>
+        <li>Draggable volume sliders</li>
+        <li>Rotating knobs</li>
+        <li>Animated VU meters</li>
+        <li>Easing rewind/fast-forward functions</li>
+        <li><strike>Display counter that actually keeps track of time</strike></li>
+      </ul>
+      
+      <p>Perhaps even the possibility of playing a real track.</p>`,
+    },
+  },
+  {
+    type: "image",
+    data: {
+      src: Image2,
+      alt: "Lower part of a reel-to-reel tape recorder generated in CSS only",
+    },
+  },
+  {
+    type: "textBlock",
+    data: {
+      heading: "See it in action",
+      subheading: "Buttons, dials, sliders",
+      html: `<p>Reel-to-reel tape recorders can often times appear confusing due to their highly complicated layouts. I tried to approach this issue by heavily simplifying the original concept, whilst still providing a somewhat functional, minimalist UI.</p>`,
+    },
+  },
+  {
+    type: "video",
+    data: {
+      src: video1Src,
+      label:
+        "Demo of various interactions with the digital reel-to-reel tape recorder.",
+    },
+  },
+]
 
 export const pageData: PageData = {
   meta,
