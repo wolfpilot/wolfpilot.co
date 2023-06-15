@@ -156,6 +156,9 @@ export const base = css`
   body {
     ${textStyles.copy};
     position: relative;
+    // Fallback for Safari
+    overflow: visible;
+    // Used for positioning Scroll to Top button
     overflow: clip;
     font-family: var(--font-primary);
     color: var(--c-black);
