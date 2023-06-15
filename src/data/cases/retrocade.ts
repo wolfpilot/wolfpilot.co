@@ -3,6 +3,7 @@ import HeroImage from "/public/media/cases/retrocade/hero.jpg"
 import StatementFeaturedImage from "/public/media/cases/retrocade/statement.jpg"
 import Image1 from "/public/media/cases/retrocade/image-1.jpg"
 import Image2 from "/public/media/cases/retrocade/image-2.jpg"
+import Video1PlaceholderImage from "/public/media/cases/retrocade/video-1-placeholder.jpg"
 
 // Types
 import { Meta, Summary, Statement, Content, PageData } from "./"
@@ -97,9 +98,15 @@ export const content: Content = [
   {
     type: "video",
     data: {
-      src: video1Src,
-      label:
-        "Demo of various interactions with the digital reel-to-reel tape recorder.",
+      video: {
+        src: video1Src,
+        label:
+          "Demo of various interactions with the digital reel-to-reel tape recorder.",
+      },
+      placeholder: {
+        src: Video1PlaceholderImage,
+        alt: "First frame of the video",
+      },
     },
   },
 ]

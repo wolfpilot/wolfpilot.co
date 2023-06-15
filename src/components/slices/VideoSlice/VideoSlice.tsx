@@ -1,19 +1,29 @@
 import { useState, useEffect, useRef } from "react"
 
+// Types
+import { StaticImageData } from "next/image"
+
 // Styles
 import * as S from "./styles"
+import { mq } from "@styles/utils/mediaQueries"
 
 export interface Props {
   className?: string
-  src: string
-  label: string
+  video: {
+    src: string
+    label: string
+  }
+  placeholder: {
+    src: StaticImageData
+    alt: string
+  }
   fullWidth?: boolean
 }
 
 const VideoSlice: React.FC<Props> = ({
   className,
-  src,
-  label,
+  video,
+  placeholder,
   fullWidth = false,
 }) => {
   const [isVideoInit, setIsVideoInit] = useState<boolean>(false)
@@ -27,7 +37,8 @@ const VideoSlice: React.FC<Props> = ({
     videoRef.current.play()
   }, [isVideoInit])
 
-  if (!src || !label) return null
+  if (!video?.src || !video?.label || !placeholder?.src || !placeholder?.alt)
+    return null
 
   // Handlers
   const handleOverlayBtnClick = () => {
@@ -36,9 +47,33 @@ const VideoSlice: React.FC<Props> = ({
 
   return (
     <S.Wrapper className={className} $fullWidth={fullWidth}>
-      <S.Video ref={videoRef} loop muted preload="metadata" aria-label={label}>
-        <source src={`${src}.mp4`} type="video/mp4" />
-        <source src={`${src}.webm`} type="video/webm" />
+      <S.Placeholder
+        src={placeholder.src}
+        sizes={`
+          ${
+            fullWidth
+              ? `
+                100vw
+              `
+              : `
+                (min-width: ${mq.breakpoints.L}px) 1440px,
+                100vw,
+              `
+          }
+        `}
+        alt={placeholder.alt}
+        $isVideoInit={isVideoInit}
+      />
+
+      <S.Video
+        ref={videoRef}
+        loop
+        muted
+        preload="none"
+        aria-label={video.label}
+      >
+        <source src={`${video.src}.mp4`} type="video/mp4" />
+        <source src={`${video.src}.webm`} type="video/webm" />
         {`Oops, it looks like your browser doesn't support HTML5 video in MP4 or
         WebM formats.`}
       </S.Video>

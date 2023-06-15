@@ -1,3 +1,4 @@
+import NextImage from "next/image"
 import styled from "styled-components"
 
 // Styles
@@ -18,10 +19,34 @@ export const Wrapper = styled.div<{ $fullWidth: boolean }>`
   }
 `
 
-export const Video = styled.video`
+export const Placeholder = styled(NextImage)<{ $isVideoInit: boolean }>`
   display: block;
   width: 100%;
   height: auto;
+  object-fit: cover;
+  transition: visibility ${duration.medium}s ${ease.cubic},
+    opacity ${duration.medium}s ${ease.cubic};
+
+  ${({ $isVideoInit }) =>
+    $isVideoInit
+      ? `
+      visibility: hidden;
+      opacity: 0;
+    `
+      : `
+      visibility: visible;
+      opacity: 1;
+    `}
+`
+
+export const Video = styled.video`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `
 
 export const Icon = styled(IconComponent)`
