@@ -6,6 +6,7 @@ import ImageSlice from "@components/slices/ImageSlice/ImageSlice"
 import FigureSlice from "@components/slices/FigureSlice/FigureSlice"
 import VideoSlice from "@components/slices/VideoSlice/VideoSlice"
 import TextBlockSlice from "@components/slices/TextBlockSlice/TextBlockSlice"
+import CodeSlice from "@components/slices/CodeSlice/CodeSlice"
 
 export interface Props {
   slice: SliceType
@@ -21,6 +22,8 @@ const Slice: React.FC<Props> = ({ slice }) => {
       return <VideoSlice {...slice.data} />
     case "textBlock":
       return <TextBlockSlice {...slice.data} />
+    case "code":
+      return <CodeSlice {...slice.data} />
     default:
       return null
   }

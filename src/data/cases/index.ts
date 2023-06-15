@@ -7,6 +7,7 @@ import { Props as ImageProps } from "@components/slices/ImageSlice/ImageSlice"
 import { Props as FigureProps } from "@components/slices/FigureSlice/FigureSlice"
 import { Props as VideoProps } from "@components/slices/VideoSlice/VideoSlice"
 import { Props as TextBlockProps } from "@components/slices/TextBlockSlice/TextBlockSlice"
+import { Props as CodeProps } from "@components/slices/CodeSlice/CodeSlice"
 
 // Data
 import { pageData as cawrPageData } from "./cawr"
@@ -63,7 +64,17 @@ export interface TextBlockSlice {
   data: TextBlockProps
 }
 
-export type SliceType = ImageSlice | FigureSlice | VideoSlice | TextBlockSlice
+export interface CodeSlice {
+  type: "code"
+  data: CodeProps
+}
+
+export type SliceType =
+  | ImageSlice
+  | FigureSlice
+  | VideoSlice
+  | TextBlockSlice
+  | CodeSlice
 
 export type Content = SliceType[]
 

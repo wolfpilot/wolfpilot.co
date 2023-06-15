@@ -45,7 +45,7 @@ export const content: Content = [
   {
     type: "textBlock",
     data: {
-      heading: "Sweet dreams ",
+      heading: "Sweet dreams",
       subheading: "(are made of this)",
       html: `<p>And indeed they are.
       
