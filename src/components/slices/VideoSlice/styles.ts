@@ -44,6 +44,8 @@ export const OverlayBtn = styled.button<{ $isVideoInit: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  // Fixes Firefox issue where the element collapses into itself
+  width: 100%;
   transition: visibility ${duration.medium}s ${ease.cubic},
     opacity ${duration.medium}s ${ease.cubic};
 
