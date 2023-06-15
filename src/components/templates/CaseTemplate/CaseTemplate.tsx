@@ -50,7 +50,7 @@ const CaseLayout: React.FC<PageData> = ({
     return null
   }
 
-  const formattedDate = date.toLocaleDateString("en-US", {
+  const formattedDate = date.toLocaleDateString("en-UK", {
     month: "short",
     year: "numeric",
   })

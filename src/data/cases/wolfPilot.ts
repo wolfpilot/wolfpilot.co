@@ -13,7 +13,7 @@ export const meta: Meta = {
   title: "Wolf Pilot",
   tagline: "Behind the scenes",
   category: "personal",
-  date: new Date("April 2017"),
+  date: new Date("2017/04/14"),
   technologies: "Jekyll, SASS, JS, Illustrator, PhotoShop",
   tags: ["web development", "web design"],
   image: {

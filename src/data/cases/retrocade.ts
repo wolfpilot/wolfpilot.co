@@ -15,7 +15,7 @@ export const meta: Meta = {
   title: "RetroCade",
   tagline: "Boogie like it's the '80s",
   category: "personal",
-  date: new Date("June 2016"),
+  date: new Date("2016/06/14"),
   technologies: "SASS, jQuery",
   tags: ["web development", "web design"],
   image: {

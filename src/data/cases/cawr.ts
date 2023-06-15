@@ -15,7 +15,7 @@ export const meta: Meta = {
   title: "CAWR",
   tagline: "Centre for Agroecology, Water and Resilience",
   category: "commercial",
-  date: new Date("April 2015"),
+  date: new Date("2015/05/17"),
   technologies: "Photoshop, good ol' pen & paper",
   tags: ["web design"],
   image: {
