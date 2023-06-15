@@ -155,6 +155,8 @@ export const base = css`
 
   body {
     ${textStyles.copy};
+    position: relative;
+    overflow: clip;
     font-family: var(--font-primary);
     color: var(--c-black);
     background: var(--c-pageColor);

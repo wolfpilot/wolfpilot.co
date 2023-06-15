@@ -6,6 +6,7 @@ import Logo from "./Logo"
 import LinkExternal from "./LinkExternal"
 import LinkInternal from "./LinkInternal"
 
+import Arrow from "./Arrow"
 import Play from "./Play"
 import Prev from "./Prev"
 import Next from "./Next"
@@ -30,6 +31,8 @@ const Icon: React.FC<Icon> = ({ type, ...props }) => {
     case IconTypesEnum.LinkInternal:
       return <LinkInternal {...props} />
     // Interaction
+    case IconTypesEnum.Arrow:
+      return <Arrow {...props} />
     case IconTypesEnum.Play:
       return <Play {...props} />
     case IconTypesEnum.Prev:

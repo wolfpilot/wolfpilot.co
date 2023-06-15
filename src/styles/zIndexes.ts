@@ -12,4 +12,5 @@ export const zIndexes = {
   modal: 99,
   siteHeader: 98,
   siteNav: 97,
+  scrollToTop: 96,
 }
