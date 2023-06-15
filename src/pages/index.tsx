@@ -135,10 +135,10 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const baseShowcaseUrl = "/images/showcase"
+  const baseShowcaseUrl = "/media/showcase"
 
   const publicPath = path.join(process.cwd(), "public")
-  const baseShowcasePath = `${publicPath}/images/showcase/`
+  const baseShowcasePath = `${publicPath}/media/showcase/`
 
   const { work: workData } = rawData
 

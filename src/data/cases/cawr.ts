@@ -1,11 +1,11 @@
 // Assets
-import HeroImage from "/public/images/cases/cawr/hero.jpg"
-import StatementFeaturedImage from "/public/images/cases/cawr/statement-featured.jpg"
-import ContentImage1 from "/public/images/cases/cawr/content-image-1.jpg"
-import ContentImage2 from "/public/images/cases/cawr/content-image-2.jpg"
-import ContentImage3 from "/public/images/cases/cawr/content-image-3.jpg"
-import ContentImage4 from "/public/images/cases/cawr/content-image-4.jpg"
-import ContentImage5 from "/public/images/cases/cawr/content-image-5.jpg"
+import HeroImage from "/public/media/cases/cawr/hero.jpg"
+import StatementFeaturedImage from "/public/media/cases/cawr/statement-featured.jpg"
+import Image1 from "/public/media/cases/cawr/image-1.jpg"
+import Image2 from "/public/media/cases/cawr/image-2.jpg"
+import Image3 from "/public/media/cases/cawr/image-3.jpg"
+import Image4 from "/public/media/cases/cawr/image-4.jpg"
+import Image5 from "/public/media/cases/cawr/image-5.jpg"
 
 // Types
 import { Meta, Summary, Statement, Content, PageData } from "./"
@@ -48,7 +48,7 @@ const content: Content = [
   {
     type: "image",
     data: {
-      src: ContentImage1,
+      src: Image1,
       alt: "Final design image",
     },
   },
@@ -67,7 +67,7 @@ const content: Content = [
   {
     type: "figure",
     data: {
-      src: ContentImage2,
+      src: Image2,
       alt: "Mockup image #1",
       caption: "Mockups and early concepts #1",
     },
@@ -75,7 +75,7 @@ const content: Content = [
   {
     type: "figure",
     data: {
-      src: ContentImage3,
+      src: Image3,
       alt: "Mockup image #2",
       caption: "Mockups and early concepts #2",
     },
@@ -83,7 +83,7 @@ const content: Content = [
   {
     type: "figure",
     data: {
-      src: ContentImage4,
+      src: Image4,
       alt: "Mockup image #3",
       caption: "Mockups and early concepts #3",
     },
@@ -91,7 +91,7 @@ const content: Content = [
   {
     type: "figure",
     data: {
-      src: ContentImage5,
+      src: Image5,
       alt: "Mockup image #4",
       caption: "Mockups and early concepts #4",
     },

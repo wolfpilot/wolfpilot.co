@@ -1,14 +1,14 @@
 // Assets
-import HeroImage from "/public/images/cases/retrocade/hero.jpg"
-import StatementImage from "/public/images/cases/retrocade/statement.jpg"
-import Image1 from "/public/images/cases/retrocade/image-1.jpg"
-import Image2 from "/public/images/cases/retrocade/image-2.jpg"
+import HeroImage from "/public/media/cases/retrocade/hero.jpg"
+import StatementFeaturedImage from "/public/media/cases/retrocade/statement.jpg"
+import Image1 from "/public/media/cases/retrocade/image-1.jpg"
+import Image2 from "/public/media/cases/retrocade/image-2.jpg"
 
 // Types
 import { Meta, Summary, Statement, Content, PageData } from "./"
 
 // Assets
-const video1Src = `/images/cases/retrocade/video-1`
+const video1Src = `/media/cases/retrocade/video-1`
 
 export const meta: Meta = {
   id: "retrocade",
@@ -32,7 +32,7 @@ const summary: Summary = {
 
 const statement: Statement = {
   featuredImg: {
-    src: StatementImage,
+    src: StatementFeaturedImage,
     alt: "Close-up of an 80's cassette tape recorder",
   },
   heading: "The future is watching",

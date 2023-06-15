@@ -1,6 +1,6 @@
 // Assets
-import HeroImage from "/public/images/cases/wolf-pilot/hero.jpg"
-import StatementFeaturedImage from "/public/images/cases/wolf-pilot/statement-featured.jpg"
+import HeroImage from "/public/media/cases/wolf-pilot/hero.jpg"
+import StatementFeaturedImage from "/public/media/cases/wolf-pilot/statement-featured.jpg"
 
 // Types
 import { Meta, Summary, Statement, Content, PageData } from "./"
