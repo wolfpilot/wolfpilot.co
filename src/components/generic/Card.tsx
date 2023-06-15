@@ -1,5 +1,6 @@
 import { useState, useRef } from "react"
 import Image, { ImageProps } from "next/image"
+import { sanitize } from "isomorphic-dompurify"
 import styled from "styled-components"
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
 
@@ -93,7 +94,7 @@ const Card: React.FC<Props> = ({
         )}
 
         <Content>
-          <Heading dangerouslySetInnerHTML={{ __html: heading }} />
+          <Heading dangerouslySetInnerHTML={{ __html: sanitize(heading) }} />
           <Text>{copy}</Text>
         </Content>
       </MediaWrapper>
@@ -146,6 +147,10 @@ const BackgroundImageWrapper = styled.div`
 const BackgroundImage = styled(Image)`
   height: 100%;
   object-fit: cover;
+  // Improve readability and reusability of assets
+  filter: blur(12px);
+  // Fix semi-transparent blurry edges
+  transform: scale(1.05);
 `
 
 const BackgroundImageLoader = styled(ImageLoader)`

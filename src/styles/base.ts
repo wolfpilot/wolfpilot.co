@@ -135,6 +135,7 @@ export const base = css`
     // Gradients
     --g-primary-diagonal: ${gradients.primaryDiagonal};
     --g-secondary-diagonal: ${gradients.secondaryDiagonal};
+    --g-neutral-radial: ${gradients.neutralRadial};
   }
 
   /* Custom text highlighting */
@@ -220,6 +221,10 @@ export const base = css`
   img {
     max-width: 100%;
     margin-bottom: 0;
+  }
+
+  video {
+    cursor: pointer;
   }
 
   .${DISABLE_SCROLL_CLASSNAME} {

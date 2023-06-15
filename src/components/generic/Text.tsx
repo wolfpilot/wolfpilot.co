@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 interface IProps {
   className?: string
-  children?: React.ReactNode
+  children: React.ReactNode
 }
 
 const Text: React.FC<IProps> = ({ className, children }) => (

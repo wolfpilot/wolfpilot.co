@@ -10,23 +10,30 @@ import { mq } from "@styles/utils/mediaQueries"
 // Components
 import Container from "@components/layout/Container/Container"
 import Heading from "@components/generic/Heading"
-import Text from "@components/generic/Text"
+import RichText from "@components/generic/RichText"
 import Card from "@components/generic/Card"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
+import Slice from "@components/slices/Slice"
 
-export interface Props extends PageData {
-  children: React.ReactNode
-}
-
-const CaseLayout: React.FC<Props> = ({
-  children,
+const CaseLayout: React.FC<PageData> = ({
   meta,
   summary,
   statement,
+  content,
 }) => {
-  const { title, tagline, date, technologies, tags, image } = meta
+  const {
+    title,
+    tagline,
+    date,
+    technologies,
+    tags,
+    image,
+    prevCase,
+    nextCase,
+  } = meta
 
   const [isHeroImgLoaded, setIsHeroImgLoaded] = useState<boolean>(false)
+  const [isFooterImgLoaded, setIsFooterImgLoaded] = useState<boolean>(false)
 
   if (
     !title ||
@@ -34,7 +41,7 @@ const CaseLayout: React.FC<Props> = ({
     !image?.src ||
     !image?.alt ||
     !summary?.heading ||
-    !summary?.text ||
+    !summary?.html ||
     !statement.featuredImg?.src ||
     !statement.featuredImg?.alt ||
     !statement?.heading ||
@@ -51,6 +58,10 @@ const CaseLayout: React.FC<Props> = ({
   // Handlers
   const handleHeroImgLoadingComplete = () => {
     setIsHeroImgLoaded(true)
+  }
+
+  const handleFooterImgLoadingComplete = () => {
+    setIsFooterImgLoaded(true)
   }
 
   return (
@@ -130,9 +141,9 @@ const CaseLayout: React.FC<Props> = ({
               <Heading level="h3">{summary.heading}</Heading>
             </S.SummaryHeadingWrapper>
 
-            <S.SummaryTextWrapper>
-              <Text>{summary.text}</Text>
-            </S.SummaryTextWrapper>
+            <S.SummaryRichTextWrapper>
+              <RichText html={summary.html} />
+            </S.SummaryRichTextWrapper>
           </S.SummaryContent>
         </Container>
       </S.Summary>
@@ -148,7 +159,56 @@ const CaseLayout: React.FC<Props> = ({
         </Container>
       </S.Statement>
 
-      <S.Content>{children}</S.Content>
+      <S.Content>
+        {content.map((item, index) => (
+          <Slice key={index} slice={item} />
+        ))}
+      </S.Content>
+
+      <S.Footer>
+        <S.FooterImageWrapper>
+          <S.FooterImage
+            src={image.src}
+            sizes={`
+              (min-width: ${mq.breakpoints.S}px) 100vw,
+              (min-width: ${mq.breakpoints.XS}px) 150vw,
+              200vw,
+          `}
+            alt={image.alt}
+            fill
+            priority
+            onLoadingComplete={handleFooterImgLoadingComplete}
+            $isLoaded={isFooterImgLoaded}
+          />
+        </S.FooterImageWrapper>
+
+        <S.FooterNavContainer>
+          <S.FooterNav>
+            <S.FooterNavLinkWrapper>
+              {prevCase?.label && prevCase?.url && (
+                <S.FooterNavLink href={prevCase.url}>
+                  <S.FooterNavLinkText>Previous</S.FooterNavLinkText>
+                  <S.FooterNavLinkTitle>{prevCase.label}</S.FooterNavLinkTitle>
+                </S.FooterNavLink>
+              )}
+            </S.FooterNavLinkWrapper>
+
+            <S.FooterCaseCurrent>
+              <S.FooterCaseText>You are now browing</S.FooterCaseText>
+              <S.FooterCaseName>{title}</S.FooterCaseName>
+            </S.FooterCaseCurrent>
+
+            <S.FooterNavLinkWrapper>
+              {nextCase?.label && nextCase?.url && (
+                <S.FooterNavLink href={nextCase.url}>
+                  <S.FooterNavLinkText>Next</S.FooterNavLinkText>
+                  <S.FooterNavLinkTitle>{nextCase.label}</S.FooterNavLinkTitle>
+                </S.FooterNavLink>
+              )}
+            </S.FooterNavLinkWrapper>
+          </S.FooterNav>
+        </S.FooterNavContainer>
+      </S.Footer>
     </S.Wrapper>
   )
 }

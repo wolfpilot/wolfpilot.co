@@ -24,4 +24,5 @@ export const colors = {
 export const gradients = {
   primaryDiagonal: "linear-gradient(135deg, #f49167, #f86449)",
   secondaryDiagonal: "linear-gradient(135deg, #a1ffc1, #f1f5f5)",
+  neutralRadial: `radial-gradient(${colors.black}99, ${colors.black}cc)`,
 }

@@ -17,13 +17,13 @@ export const mockItems: ShowcaseItem[] = [
       },
     ],
     thumb: {
-      src: "/images/showcase/up-n-running/up-n-running--thumb.jpg",
+      src: "/media/showcase/up-n-running/up-n-running--thumb.jpg",
       width: 620,
       height: 372,
       alt: "Illustration of a plastic cup with a straw in it next to some text.",
     },
     image: {
-      src: "/images/showcase/up-n-running/up-n-running.jpg",
+      src: "/media/showcase/up-n-running/up-n-running.jpg",
       width: 2000,
       height: 1200,
       alt: "Illustration of a plastic cup with a straw in it next to some text.",
@@ -44,13 +44,13 @@ export const mockItems: ShowcaseItem[] = [
       },
     ],
     thumb: {
-      src: "/images/showcase/forever-darkness/forever-darkness--thumb.jpg",
+      src: "/media/showcase/forever-darkness/forever-darkness--thumb.jpg",
       width: 620,
       height: 805,
       alt: "Two warriors armed with futuristic shields and swords face a 4-legged giant insectoid on an alien world. A swarm can be seen in the background, gathered around a human ship.",
     },
     image: {
-      src: "/images/showcase/forever-darkness/forever-darkness.jpg",
+      src: "/media/showcase/forever-darkness/forever-darkness.jpg",
       width: 720,
       height: 935,
       alt: "Two warriors armed with futuristic shields and swords face a 4-legged giant insectoid on an alien world. A swarm can be seen in the background, gathered around a human ship.",
@@ -70,13 +70,13 @@ export const mockItems: ShowcaseItem[] = [
       },
     ],
     thumb: {
-      src: "/images/showcase/machina-inferni/machina-inferni--thumb.jpg",
+      src: "/media/showcase/machina-inferni/machina-inferni--thumb.jpg",
       width: 620,
       height: 349,
       alt: "Half destroyed mecha on an alien moon. It's weilding a smoking gatling gun.",
     },
     image: {
-      src: "/images/showcase/machina-inferni/machina-inferni.jpg",
+      src: "/media/showcase/machina-inferni/machina-inferni.jpg",
       width: 2000,
       height: 1125,
       alt: "Half destroyed mecha on an alien moon. It's weilding a smoking gatling gun.",
@@ -97,13 +97,13 @@ export const mockItems: ShowcaseItem[] = [
       },
     ],
     thumb: {
-      src: "/images/showcase/welcome-to-my-world/welcome-to-my-world--thumb.jpg",
+      src: "/media/showcase/welcome-to-my-world/welcome-to-my-world--thumb.jpg",
       width: 620,
       height: 1250,
       alt: "A young man resting on a tree admires a distant waterfall. 30 meters above, there is a small, rustic house on the cliffside.",
     },
     image: {
-      src: "/images/showcase/welcome-to-my-world/welcome-to-my-world.jpg",
+      src: "/media/showcase/welcome-to-my-world/welcome-to-my-world.jpg",
       width: 889,
       height: 2000,
       alt: "A young man resting on a tree admires a distant waterfall. 30 meters above, there is a small, rustic house on the cliffside.",

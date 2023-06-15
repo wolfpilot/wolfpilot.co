@@ -11,3 +11,11 @@ export const prefixLeadingZeroes = (target: number, value: number): string => {
 
   return String(value).padStart(totalDigitsAmount, "0")
 }
+
+/**
+ * Format dashed string to camelCase and no dashes. Ex:
+ *
+ * i-am-batman => iAmBatman
+ */
+export const dashToCamel = (value: string) =>
+  value.replace(/(\-[a-z])/g, (word) => word.toUpperCase().replace("-", ""))

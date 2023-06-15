@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
 
 // Assets
-import MockImageSrc from "/public/images/graphics/wolf.png"
+import MockImageSrc from "/public/media/graphics/wolf.png"
 
 // Components
 import Card from "./Card"

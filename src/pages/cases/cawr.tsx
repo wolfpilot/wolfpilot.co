@@ -1,13 +1,11 @@
 import { NextPage } from "next"
 
 // Data
-import { pageData } from "@data/cases/cawr"
+import { data } from "@data/cases"
 
 // Components
 import CaseLayout from "@components/templates/CaseTemplate/CaseTemplate"
 
-const WolfPilotPage: NextPage = () => (
-  <CaseLayout {...pageData}>[...] more content to follow.</CaseLayout>
-)
+const CawrCasePage: NextPage = () => <CaseLayout {...data.cawr} />
 
-export default WolfPilotPage
+export default CawrCasePage
