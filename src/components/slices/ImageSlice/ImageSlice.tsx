@@ -7,6 +7,9 @@ import { StaticImageData } from "next/image"
 import * as S from "./styles"
 import { mq } from "@styles/utils/mediaQueries"
 
+// Components
+import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
+
 export interface Props {
   className?: string
   src: StaticImageData
@@ -65,6 +68,8 @@ const ImageSlice: React.FC<Props> = ({
           <S.ImageCredits>{credits.label}</S.ImageCredits>
         </S.ImageCreditsLink>
       )}
+
+      <ImageLoader isLoaded={isLoaded} />
     </S.Wrapper>
   )
 }

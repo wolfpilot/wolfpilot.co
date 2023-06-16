@@ -33,6 +33,7 @@ export const ImageCreditsLink = styled.a`
 export const Wrapper = styled.div<{ $fullWidth: boolean }>`
   position: relative;
   width: 100%;
+  overflow: hidden;
   margin: 0 auto;
   ${({ $fullWidth }) => !$fullWidth && `max-width: var(--max-content-width);`}
 
