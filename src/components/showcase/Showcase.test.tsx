@@ -12,7 +12,7 @@ import { Tag } from "./types"
 // Data
 import { mockItems } from "./__mocks__/data"
 
-// Utilities
+// Utils
 import { ShowcaseProvider } from "./Context"
 
 // Components

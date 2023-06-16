@@ -83,7 +83,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "",
-          url: "/case-studies/retrocade",
+          url: "/cases/retrocade",
         },
         {
           label: "Codepen",
@@ -163,7 +163,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "",
-          url: "/case-studies/cawr",
+          url: "/cases/cawr",
         },
       ],
     },

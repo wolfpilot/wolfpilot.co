@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import styled from "styled-components"
 import { AnimatePresence } from "framer-motion"
 
@@ -28,7 +29,22 @@ const Showcase: React.FC<Props> = ({ items }) => {
   const showcaseState = useShowcaseState()
   const showcaseDispatch = useShowcaseDispatch()
 
+  const searchParams = useSearchParams()
+  const tagParam = searchParams?.get("tag") as Tag | null
+
   const { activeTag, activeItems } = showcaseState
+
+  /**
+   * Update active tag if found in URL params
+   */
+  useEffect(() => {
+    if (!tagParam || !tags.includes(tagParam)) return
+
+    showcaseDispatch({
+      type: "updateActiveTag",
+      payload: tagParam,
+    })
+  }, [tagParam, showcaseDispatch])
 
   /**
    * Update the active items when active tag changes

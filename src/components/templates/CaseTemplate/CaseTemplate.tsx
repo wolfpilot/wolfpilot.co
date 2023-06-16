@@ -131,7 +131,7 @@ const CaseLayout: React.FC<PageData> = ({
                 <S.HeroInfoText>
                   {tags.map((tag, index) => (
                     <Fragment key={index}>
-                      <S.HeroInfoLink href={`/#work?tag=${tag}`}>
+                      <S.HeroInfoLink href={`/?tag=${tag}#work`}>
                         {tag}
                       </S.HeroInfoLink>
                       {index !== tags.length - 1 && `, `}
