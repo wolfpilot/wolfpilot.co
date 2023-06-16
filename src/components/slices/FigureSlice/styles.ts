@@ -6,7 +6,7 @@ import { fixBorderRadiusOverflow } from "@styles/vendor/safari"
 import { mq } from "@styles/utils/mediaQueries"
 
 // Components
-import ImageLoaderComponent from "@components/loaders/ImageLoader/ImageLoader"
+import ImageSwiperComponent from "@components/loaders/ImageSwiper/ImageSwiper"
 
 export const Wrapper = styled.div`
   &:not(:last-child) {
@@ -32,7 +32,7 @@ export const Image = styled(NextImage)`
   border-radius: var(--border-radius-sml);
 `
 
-export const ImageLoader = styled(ImageLoaderComponent)`
+export const ImageSwiper = styled(ImageSwiperComponent)`
   background-color: var(--c-neutral5);
 `
 

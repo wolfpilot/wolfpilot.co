@@ -12,7 +12,7 @@ import Container from "@components/layout/Container/Container"
 import Heading from "@components/generic/Heading"
 import RichText from "@components/generic/RichText"
 import Card from "@components/generic/Card"
-import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
+import ImageSwiper from "@components/loaders/ImageSwiper/ImageSwiper"
 import Slice from "@components/slices/Slice"
 
 const CaseLayout: React.FC<PageData> = ({
@@ -111,7 +111,7 @@ const CaseLayout: React.FC<PageData> = ({
               </S.HeroImageCreditsLink>
             )}
 
-            <ImageLoader isLoaded={isHeroImgLoaded} />
+            <ImageSwiper isLoaded={isHeroImgLoaded} />
           </S.HeroImageWrapper>
 
           <Container>

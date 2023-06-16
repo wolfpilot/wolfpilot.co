@@ -42,7 +42,7 @@ const FigureSlice: React.FC<Props> = ({ className, src, alt, caption }) => {
             onLoadingComplete={handleLoadingComplete}
           />
           <S.Caption>{caption}</S.Caption>
-          <S.ImageLoader isLoaded={isLoaded} />
+          <S.ImageSwiper isLoaded={isLoaded} />
         </S.Figure>
       </Container>
     </S.Wrapper>

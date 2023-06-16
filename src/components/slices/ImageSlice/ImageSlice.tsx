@@ -8,7 +8,7 @@ import * as S from "./styles"
 import { mq } from "@styles/utils/mediaQueries"
 
 // Components
-import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
+import ImageShimmer from "@components/loaders/ImageShimmer/ImageShimmer"
 
 export interface Props {
   className?: string
@@ -69,7 +69,7 @@ const ImageSlice: React.FC<Props> = ({
         </S.ImageCreditsLink>
       )}
 
-      <ImageLoader isLoaded={isLoaded} />
+      <ImageShimmer isLoaded={isLoaded} />
     </S.Wrapper>
   )
 }

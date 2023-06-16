@@ -16,7 +16,7 @@ import { mq } from "@styles/utils/mediaQueries"
 // Components
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
-import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
+import ImageSwiper from "@components/loaders/ImageSwiper/ImageSwiper"
 
 export interface Props {
   index: number
@@ -93,7 +93,7 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
             $isLoaded={isImgLoaded}
           />
 
-          <ImageLoader isLoaded={isImgLoaded} />
+          <ImageSwiper isLoaded={isImgLoaded} />
         </S.ThumbnailBtn>
       </S.ThumbnailWrapper>
 

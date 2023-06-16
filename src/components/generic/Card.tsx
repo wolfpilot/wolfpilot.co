@@ -12,7 +12,7 @@ import { duration, ease } from "@styles/animation"
 // Components
 import Text from "@components/generic/Text"
 import Tooltip from "@components/generic/Tooltip"
-import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
+import ImageSwiper from "@components/loaders/ImageSwiper/ImageSwiper"
 
 export interface Props {
   featuredImg: ImageProps & {
@@ -76,7 +76,7 @@ const Card: React.FC<Props> = ({
             onLoadingComplete={handleBackgroundImgLoadingComplete}
           />
 
-          <BackgroundImageLoader isLoaded={isBackgroundImgLoaded} />
+          <BackgroundImageSwiper isLoaded={isBackgroundImgLoaded} />
         </BackgroundImageWrapper>
       )}
 
@@ -106,7 +106,7 @@ const Card: React.FC<Props> = ({
               </ImageCreditsLink>
             )}
 
-            <FeaturedImageLoader isLoaded={isFeaturedImgLoaded} />
+            <FeaturedImageSwiper isLoaded={isFeaturedImgLoaded} />
           </FeaturedImageWrapper>
         )}
 
@@ -170,7 +170,7 @@ const BackgroundImage = styled(Image)`
   transform: scale(1.05);
 `
 
-const BackgroundImageLoader = styled(ImageLoader)`
+const BackgroundImageSwiper = styled(ImageSwiper)`
   background-color: var(--c-pageColor);
 `
 
@@ -249,7 +249,7 @@ const FeaturedImageResizer = styled.div`
   }
 `
 
-const FeaturedImageLoader = styled(ImageLoader)`
+const FeaturedImageSwiper = styled(ImageSwiper)`
   background-color: var(--c-black);
 `
 

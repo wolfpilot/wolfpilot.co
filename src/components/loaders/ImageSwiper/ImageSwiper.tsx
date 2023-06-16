@@ -10,7 +10,7 @@ export interface Props {
   delay?: number
 }
 
-const ImageLoader: React.FC<Props> = ({
+const ImageSwiper: React.FC<Props> = ({
   className,
   isLoaded,
   duration = animDuration.verySlow,
@@ -26,4 +26,4 @@ const ImageLoader: React.FC<Props> = ({
   />
 )
 
-export default ImageLoader
+export default ImageSwiper
