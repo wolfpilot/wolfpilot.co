@@ -209,6 +209,8 @@ export const FooterNav = styled.nav`
 `
 
 export const FooterNavLinkWrapper = styled.div`
+  text-align: center;
+
   ${mq.from.L`
     width: calc(3 * var(--grid-column-size) + 3 * var(--grid-gutter-size));
     text-align: center;
@@ -224,22 +226,21 @@ export const FooterNavLinkWrapper = styled.div`
 `
 
 export const FooterNavLink = styled(Link)`
-  color: var(--c-white);
+  ${textStyles.headingS};
+  color: var(--c-accent3);
   text-align: center;
   transition: color ${duration.medium}s ${ease.cubic};
 
   &:focus,
   &:hover {
-    color: var(--c-accent3);
+    outline: none;
+    text-decoration: underline;
   }
 `
 
 export const FooterNavLinkText = styled.div`
   ${textStyles.copyL};
-`
-
-export const FooterNavLinkTitle = styled.div`
-  ${textStyles.headingS};
+  color: var(--c-white);
 `
 
 export const FooterCaseCurrent = styled.div`

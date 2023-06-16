@@ -82,6 +82,7 @@ export const textStyles = {
   hyperlink: css`
     color: var(--c-accent2);
 
+    &:hover,
     &:focus {
       outline: none;
       text-decoration: underline;
