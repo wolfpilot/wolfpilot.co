@@ -10,6 +10,7 @@ import { duration, ease } from "@styles/animation"
 // Components
 import Container from "@components/layout/Container/Container"
 import Text from "@components/generic/Text"
+import Tooltip from "@components/generic/Tooltip"
 
 export const Wrapper = styled.article``
 
@@ -28,9 +29,38 @@ export const HeroTagline = styled(Text)`
   padding-bottom: var(--spacing-default);
 `
 
+export const HeroImageCredits = styled(Tooltip)`
+  display: block;
+`
+
+export const HeroImageCreditsLink = styled.a`
+  position: absolute;
+  right: var(--spacing-default);
+  bottom: var(--spacing-default);
+  color: var(--c-white);
+  opacity: 0.2;
+  transition: opacity ${duration.medium}s ${ease.cubic};
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    opacity: 1;
+    outline: none;
+    text-decoration: underline;
+  }
+`
+
 export const HeroImageWrapper = styled.div`
   position: relative;
   overflow: hidden;
+
+  &:hover {
+    ${HeroImageCreditsLink} {
+      opacity: 1;
+    }
+  }
 `
 
 export const HeroImage = styled(Image)`

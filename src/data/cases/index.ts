@@ -31,6 +31,10 @@ export interface Meta {
   image: {
     src: StaticImageData
     alt: string
+    credits?: {
+      label: string
+      url: string
+    }
   }
   prevCase?: Route
   nextCase?: Route

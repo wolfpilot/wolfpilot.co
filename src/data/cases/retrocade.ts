@@ -22,6 +22,10 @@ export const meta: Meta = {
   image: {
     src: HeroImage,
     alt: "Black and white abstract pattern",
+    credits: {
+      label: "Photo by Robert Haverly",
+      url: "https://unsplash.com/photos/VDFOnAwdVjg",
+    },
   },
 }
 
@@ -35,6 +39,10 @@ const statement: Statement = {
   featuredImg: {
     src: StatementFeaturedImage,
     alt: "Close-up of an 80's cassette tape recorder",
+    credits: {
+      label: "@Xingye Jiang",
+      url: "https://unsplash.com/photos/RZwbk4Kc2xg",
+    },
   },
   heading: "The future is watching",
   copy: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.

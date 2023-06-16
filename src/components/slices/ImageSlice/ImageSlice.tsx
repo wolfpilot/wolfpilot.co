@@ -12,6 +12,10 @@ export interface Props {
   src: StaticImageData
   alt: string
   fullWidth?: boolean
+  credits?: {
+    label: string
+    url: string
+  }
 }
 
 const ImageSlice: React.FC<Props> = ({
@@ -19,6 +23,7 @@ const ImageSlice: React.FC<Props> = ({
   src,
   alt,
   fullWidth = false,
+  credits,
 }) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
@@ -50,6 +55,16 @@ const ImageSlice: React.FC<Props> = ({
         onLoadingComplete={handleLoadingComplete}
         $isLoaded={isLoaded}
       />
+
+      {credits?.label && credits?.url && (
+        <S.ImageCreditsLink
+          href={credits.url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <S.ImageCredits>{credits.label}</S.ImageCredits>
+        </S.ImageCreditsLink>
+      )}
     </S.Wrapper>
   )
 }

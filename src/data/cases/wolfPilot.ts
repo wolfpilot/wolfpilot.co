@@ -19,6 +19,10 @@ export const meta: Meta = {
   image: {
     src: HeroImage,
     alt: "Fasten your seatbelt sign",
+    credits: {
+      label: "Photo by Gus Ruballo",
+      url: "https://unsplash.com/photos/4zbEzE87zz4",
+    },
   },
 }
 
@@ -32,6 +36,10 @@ const statement: Statement = {
   featuredImg: {
     src: StatementFeaturedImage,
     alt: "Side-shot of a biplane on the ground",
+    credits: {
+      label: "@Spencer Davis",
+      url: "https://unsplash.com/photos/ri-cr74Zn6M",
+    },
   },
   heading: "Humble Beginnings",
   copy: `				My plan was simple: what do I need? I need a site that I can display my work on. The bare necessities are made up of a short section about myself, a gallery of sorts and a contact area. Easy enough, right? Right.
@@ -66,6 +74,10 @@ export const content: Content = [
     data: {
       src: Image2,
       alt: "Photo of street signs reading 'ONE WAY'",
+      credits: {
+        label: "Photo by Brendan Church",
+        url: "https://unsplash.com/photos/pKeF6Tt3c08",
+      },
     },
   },
   {

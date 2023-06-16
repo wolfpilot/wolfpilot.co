@@ -101,6 +101,16 @@ const CaseLayout: React.FC<PageData> = ({
               onLoadingComplete={handleHeroImgLoadingComplete}
             />
 
+            {image.credits?.label && image.credits?.url && (
+              <S.HeroImageCreditsLink
+                href={image.credits.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <S.HeroImageCredits>{image.credits.label}</S.HeroImageCredits>
+              </S.HeroImageCreditsLink>
+            )}
+
             <ImageLoader isLoaded={isHeroImgLoaded} />
           </S.HeroImageWrapper>
 

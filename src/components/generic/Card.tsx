@@ -7,13 +7,20 @@ import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
 // Styles
 import { fixBorderRadiusOverflow } from "@styles/vendor/safari"
 import { mq } from "@styles/utils/mediaQueries"
+import { duration, ease } from "@styles/animation"
 
 // Components
 import Text from "@components/generic/Text"
+import Tooltip from "@components/generic/Tooltip"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
 
 export interface Props {
-  featuredImg: ImageProps
+  featuredImg: ImageProps & {
+    credits?: {
+      label: string
+      url: string
+    }
+  }
   heading: string
   copy: string
   backgroundImg?: ImageProps
@@ -88,6 +95,16 @@ const Card: React.FC<Props> = ({
                 onLoadingComplete={handleFeaturedImgLoadingComplete}
               />
             </FeaturedImageResizer>
+
+            {featuredImg.credits?.label && featuredImg.credits?.url && (
+              <ImageCreditsLink
+                href={featuredImg.credits.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ImageCredits>{featuredImg.credits.label}</ImageCredits>
+              </ImageCreditsLink>
+            )}
 
             <FeaturedImageLoader isLoaded={isFeaturedImgLoaded} />
           </FeaturedImageWrapper>
@@ -168,6 +185,29 @@ const MediaWrapper = styled.div`
   `}
 `
 
+const ImageCredits = styled(Tooltip)`
+  display: block;
+`
+
+const ImageCreditsLink = styled.a`
+  position: absolute;
+  right: var(--spacing-default);
+  bottom: var(--spacing-default);
+  color: var(--c-white);
+  opacity: 0.2;
+  transition: opacity ${duration.medium}s ${ease.cubic};
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    opacity: 1;
+    outline: none;
+    text-decoration: underline;
+  }
+`
+
 const FeaturedImageWrapper = styled.div`
   position: relative;
   overflow: hidden;
@@ -184,6 +224,18 @@ const FeaturedImageWrapper = styled.div`
     width: calc(3 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
   `}
 
+  &:hover {
+    ${ImageCreditsLink} {
+      opacity: 1;
+    }
+  }
+`
+
+const FeaturedImageResizer = styled.div`
+  height: 100%;
+  // Make image larger to compensate for parallax motion
+  transform: scale(1.2);
+
   &:after {
     content: "";
     position: absolute;
@@ -195,12 +247,6 @@ const FeaturedImageWrapper = styled.div`
     mix-blend-mode: darken;
     pointer-events: none;
   }
-`
-
-const FeaturedImageResizer = styled.div`
-  height: 100%;
-  // Make image larger to compensate for parallax motion
-  transform: scale(1.2);
 `
 
 const FeaturedImageLoader = styled(ImageLoader)`

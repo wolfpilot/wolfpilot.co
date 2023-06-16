@@ -21,6 +21,10 @@ export const meta: Meta = {
   image: {
     src: HeroImage,
     alt: "Top-down view of a terraced field used in farming",
+    credits: {
+      label: "Photo by Siamak Djamei",
+      url: "https://unsplash.com/photos/BTv0K50c_4M",
+    },
   },
 }
 
@@ -37,6 +41,10 @@ const statement: Statement = {
   featuredImg: {
     src: StatementFeaturedImage,
     alt: "Person holding organic soil in their hands",
+    credits: {
+      label: "@Gabriel Jimenez",
+      url: "https://unsplash.com/photos/jin4W1HqgL4",
+    },
   },
   heading: "Some random facts about this project",
   copy: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
