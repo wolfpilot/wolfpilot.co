@@ -135,6 +135,7 @@ export const base = css`
     // Gradients
     --g-primary-diagonal: ${gradients.primaryDiagonal};
     --g-secondary-diagonal: ${gradients.secondaryDiagonal};
+    --g-neutral-radial: ${gradients.neutralRadial};
   }
 
   /* Custom text highlighting */
@@ -154,6 +155,11 @@ export const base = css`
 
   body {
     ${textStyles.copy};
+    position: relative;
+    // Fallback for Safari
+    overflow: visible;
+    // Used for positioning Scroll to Top button
+    overflow: clip;
     font-family: var(--font-primary);
     color: var(--c-black);
     background: var(--c-pageColor);
@@ -220,6 +226,10 @@ export const base = css`
   img {
     max-width: 100%;
     margin-bottom: 0;
+  }
+
+  video {
+    cursor: pointer;
   }
 
   .${DISABLE_SCROLL_CLASSNAME} {

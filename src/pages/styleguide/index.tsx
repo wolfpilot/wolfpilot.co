@@ -1,7 +1,7 @@
 import Image from "next/image"
 
 // Assets
-import LogoSVG from "public/images/svg/logo.svg"
+import LogoSVG from "public/media/svg/logo.svg"
 
 // Styles
 import * as S from "@styles/pages/styleguide"

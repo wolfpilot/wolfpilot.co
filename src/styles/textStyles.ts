@@ -16,8 +16,20 @@ export const textStyles = {
     line-height: 1.5;
   `,
   copyL: css`
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1.5;
+
+    ${mq.from.S`
+      font-size: 20px;
+    `}
+
+    ${mq.from.M`
+      font-size: 22px;
+    `}
+
+    ${mq.from.L`
+      font-size: 24px;
+    `}
   `,
   headingL: css`
     font-size: 48px;
@@ -37,7 +49,7 @@ export const textStyles = {
   `,
   headingM: css`
     font-size: 32px;
-    line-height: 1.15;
+    line-height: 1.25;
 
     ${mq.from.S`
       font-size: 40px;
@@ -53,7 +65,7 @@ export const textStyles = {
   `,
   headingS: css`
     font-size: 20px;
-    line-height: 1.15;
+    line-height: 1.5;
 
     ${mq.from.S`
       font-size: 22px;
@@ -70,6 +82,7 @@ export const textStyles = {
   hyperlink: css`
     color: var(--c-accent2);
 
+    &:hover,
     &:focus {
       outline: none;
       text-decoration: underline;

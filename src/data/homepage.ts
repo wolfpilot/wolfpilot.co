@@ -1,6 +1,6 @@
 // Assets
-import HeroImageSrc from "/public/images/graphics/wolf.png"
-import AboutFeaturedImageSrc from "/public/images/photos/homepage-about-featured.jpg"
+import HeroImageSrc from "/public/media/graphics/wolf.png"
+import AboutFeaturedImageSrc from "/public/media/photos/homepage-about-featured.jpg"
 
 // Types
 import { ShowcaseItem } from "@components/showcase/types"
@@ -83,7 +83,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "",
-          url: "/case-studies/retrocade",
+          url: "/cases/retrocade",
         },
         {
           label: "Codepen",
@@ -163,7 +163,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "",
-          url: "/case-studies/cawr",
+          url: "/cases/cawr",
         },
       ],
     },

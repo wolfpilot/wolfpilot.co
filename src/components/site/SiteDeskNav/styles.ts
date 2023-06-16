@@ -63,6 +63,7 @@ export const NavItemLink = styled(Link)`
   text-transform: lowercase;
   transition: color ${duration.medium}s ${ease.cubic};
 
+  &:focus,
   &:hover {
     color: var(--c-accent1);
   }
