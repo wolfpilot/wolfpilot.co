@@ -32,7 +32,10 @@ export const meta: Meta = {
 const summary: Summary = {
   heading:
     "An adventure through the magical world of CSS design & keyframe animations",
-  html: `<p>Retrocade is an ambitious ever-growing experiment set out to create a functional, semi-realistic audio system in HTML, CSS and JavaScript only.</p>`,
+  html: `<p>Retrocade is an ambitious ever-growing experiment set out to create a functional, semi-realistic audio system in HTML, CSS and JavaScript only.
+  
+  Demo on <a href="https://codepen.io/wolfpilot/pen/EyKzqW" target="_blank" rel="noopener noreferrer">Codepen</a>.
+  </p>`,
 }
 
 const statement: Statement = {
