@@ -4,6 +4,10 @@ import { motion } from "framer-motion"
 // Styles
 import { zIndexes } from "@styles/zIndexes"
 
+export const Wrapper = styled.div``
+
+export const Content = styled(motion.div)``
+
 export const Cover = styled(motion.div)`
   position: fixed;
   z-index: ${zIndexes.pageTransitionUI};

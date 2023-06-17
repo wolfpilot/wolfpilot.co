@@ -1,6 +1,6 @@
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 
 // Utils
 import { disableScroll } from "@utils/domHelper"
@@ -40,11 +40,10 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
       mode="wait"
       onExitComplete={handleAnimComplete}
     >
-      <S.Cover key={`cover-${pathname}`} {...coverAnimProps} />
-
-      <motion.div key={`page-${pathname}`} {...contentAnimProps}>
-        {children}
-      </motion.div>
+      <S.Wrapper key={`page-${pathname}`}>
+        <S.Cover {...coverAnimProps} />
+        <S.Content {...contentAnimProps}>{children}</S.Content>
+      </S.Wrapper>
     </AnimatePresence>
   )
 }
