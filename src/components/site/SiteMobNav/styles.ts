@@ -140,10 +140,13 @@ export const NavContent = styled.div<{ $isOpen: boolean }>`
       ? `
         visibility: visible;
         opacity: 1;
-    `
+        `
       : `
         visibility: hidden;
         opacity: 0;
+        transition:
+          visibility ${duration.medium}s ${ease.cubic} ${duration.medium}s,
+          opacity ${duration.medium}s ${ease.cubic} ${duration.medium}s;
     `}
 `
 

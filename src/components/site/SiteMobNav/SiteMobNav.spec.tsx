@@ -49,9 +49,7 @@ describe("SiteMobNav", () => {
     Object.keys(routes).forEach((key) => {
       const { label } = routes[key]
 
-      expect(
-        screen.queryByRole("link", { name: label })
-      ).not.toBeInTheDocument()
+      expect(screen.queryByRole("link", { name: label })).not.toBeVisible()
     })
 
     // Fire ze interaction!
