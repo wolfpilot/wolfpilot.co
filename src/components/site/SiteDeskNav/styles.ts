@@ -1,4 +1,3 @@
-import Link from "next/link"
 import styled from "styled-components"
 
 // Styles
@@ -10,6 +9,7 @@ import { textStyles } from "@styles/textStyles"
 // Components
 import ContainerComponent from "@components/layout/Container/Container"
 import LogoComponent from "@components/logo/Logo"
+import InternalLink from "@components/generic/InternalLink"
 
 export const Wrapper = styled.nav`
   display: none;
@@ -24,7 +24,7 @@ export const Container = styled(ContainerComponent)`
   height: 100%;
 `
 
-export const LogoLink = styled(Link)`
+export const LogoLink = styled(InternalLink)`
   display: block;
 `
 
@@ -57,7 +57,7 @@ export const NavList = styled.ul`
   height: 100%;
 `
 
-export const NavItemLink = styled(Link)`
+export const NavItemLink = styled(InternalLink)`
   ${textStyles.navLinkDesk};
   color: var(--c-neutral3);
   text-transform: lowercase;

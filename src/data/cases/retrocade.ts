@@ -61,7 +61,7 @@ export const content: Content = [
       subheading: "(are made of this)",
       html: `<p>And indeed they are.
       
-      I based my concept on the <a class="hyperlink" href="http://www.thevintageknob.org/akai-GX-747.html" target="_blank" rel="noopener noreferrer">Akai GX-747</a> and on the memories of my father's <a href="http://www.thevintageknob.org/grundig-TS1000.html" target="_blank" rel="noopener noreferrer">Grundig TS1000</a>. I felt that this mixture of old and new made a perfectly pleasant and balanced layout. Influenced by Google's currently trending material design, the concept went through quite a few iterations and many moments of self-doubt. Am I adding too many buttons? Is it supposed to be three-head or four-head? Should it even have a stop button or just pause? You get the gist of it.</p>`,
+      I based my concept on the <a href="http://www.thevintageknob.org/akai-GX-747.html" target="_blank" rel="noopener noreferrer">Akai GX-747</a> and on the memories of my father's <a href="http://www.thevintageknob.org/grundig-TS1000.html" target="_blank" rel="noopener noreferrer">Grundig TS1000</a>. I felt that this mixture of old and new made a perfectly pleasant and balanced layout. Influenced by Google's currently trending material design, the concept went through quite a few iterations and many moments of self-doubt. Am I adding too many buttons? Is it supposed to be three-head or four-head? Should it even have a stop button or just pause? You get the gist of it.</p>`,
     },
   },
   {

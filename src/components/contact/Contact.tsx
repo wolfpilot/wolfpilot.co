@@ -6,6 +6,7 @@ import * as S from "./styles"
 
 // Components
 import Container from "@components/layout/Container/Container"
+import ExternalLink from "@components/generic/ExternalLink"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 
@@ -21,36 +22,15 @@ const Contact: React.FC<Props> = () => (
       </Text>
 
       <Text>
-        <S.EmailLink
-          href={social.email.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          howl@wolfpilot.co
-        </S.EmailLink>
+        <S.EmailLink href={social.email.url}>howl@wolfpilot.co</S.EmailLink>
       </Text>
 
       <Text>
         or find me on{" "}
-        <a href={social.github.url} target="_blank" rel="noopener noreferrer">
-          github
-        </a>{" "}
-        /{" "}
-        <a href={social.codepen.url} target="_blank" rel="noopener noreferrer">
-          codepen
-        </a>{" "}
-        /{" "}
-        <a
-          href={social.deviantart.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          deviantart
-        </a>{" "}
-        /{" "}
-        <a href={social.linkedin.url} target="_blank" rel="noopener noreferrer">
-          linkedin
-        </a>
+        <ExternalLink href={social.github.url}>github</ExternalLink> /{" "}
+        <ExternalLink href={social.codepen.url}>codepen</ExternalLink> /{" "}
+        <ExternalLink href={social.deviantart.url}>deviantart</ExternalLink> /{" "}
+        <ExternalLink href={social.linkedin.url}>linkedin</ExternalLink>
       </Text>
     </Container>
   </S.Wrapper>

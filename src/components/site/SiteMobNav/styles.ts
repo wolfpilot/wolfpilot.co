@@ -1,4 +1,3 @@
-import Link from "next/link"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 
@@ -10,6 +9,7 @@ import { textStyles } from "@styles/textStyles"
 import { ease, duration } from "@styles/animation"
 
 // Components
+import InternalLink from "@components/generic/InternalLink"
 import LogoComponent from "@components/logo/Logo"
 
 export const Wrapper = styled.nav`
@@ -20,7 +20,7 @@ export const Wrapper = styled.nav`
   `}
 `
 
-export const LogoLink = styled(Link)`
+export const LogoLink = styled(InternalLink)`
   display: block;
 `
 
@@ -176,7 +176,7 @@ export const NavItem = styled(motion.li)`
   }
 `
 
-export const NavItemLink = styled(Link)`
+export const NavItemLink = styled(InternalLink)`
   ${textStyles.navLinkMob};
   color: var(--c-white);
   transition: color ${duration.medium}s ${ease.cubic};

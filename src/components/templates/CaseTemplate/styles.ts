@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Image from "next/image"
 import styled from "styled-components"
 
@@ -9,6 +8,8 @@ import { duration, ease } from "@styles/animation"
 
 // Components
 import Container from "@components/layout/Container/Container"
+import ExternalLink from "@components/generic/ExternalLink"
+import InternalLink from "@components/generic/InternalLink"
 import Text from "@components/generic/Text"
 import Tooltip from "@components/generic/Tooltip"
 
@@ -33,7 +34,7 @@ export const HeroImageCredits = styled(Tooltip)`
   display: block;
 `
 
-export const HeroImageCreditsLink = styled.a`
+export const HeroImageCreditsLink = styled(ExternalLink)`
   position: absolute;
   right: var(--spacing-default);
   bottom: var(--spacing-default);
@@ -109,7 +110,7 @@ export const HeroInfoText = styled.div`
   ${textStyles.copy};
 `
 
-export const HeroInfoLink = styled(Link)`
+export const HeroInfoLink = styled(InternalLink)`
   ${textStyles.copy};
   ${textStyles.hyperlink};
 `
@@ -225,7 +226,7 @@ export const FooterNavLinkWrapper = styled.div`
   }
 `
 
-export const FooterNavLink = styled(Link)`
+export const FooterNavLink = styled(InternalLink)`
   ${textStyles.headingS};
   color: var(--c-accent3);
   text-align: center;

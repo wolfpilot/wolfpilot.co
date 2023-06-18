@@ -10,6 +10,7 @@ import { weights } from "@styles/typography"
 import { duration, ease } from "@styles/animation"
 
 // Components
+import ExternalLink from "@components/generic/ExternalLink"
 import Text from "@components/generic/Text"
 
 export const Wrapper = styled.div`
@@ -139,7 +140,7 @@ export const ItemToggleBtn = styled.button`
   }
 `
 
-export const ItemCompanyLink = styled.a`
+export const ItemCompanyLink = styled(ExternalLink)`
   ${textStyles.hyperlink};
   ${textStyles.copyS};
 

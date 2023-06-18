@@ -1,4 +1,3 @@
-import NextLink from "next/link"
 import NextImage from "next/image"
 import styled, { css } from "styled-components"
 import { motion } from "framer-motion"
@@ -13,6 +12,8 @@ import { btnResetStyles } from "@styles/button"
 
 // Components
 import ContainerComponent from "@components/layout/Container/Container"
+import ExternalLink from "@components/generic/ExternalLink"
+import InternalLink from "@components/generic/InternalLink"
 import Tooltip from "@components/generic/Tooltip"
 import IconComponent from "@components/icons/Icon"
 
@@ -168,11 +169,11 @@ export const ControlZoomBtn = styled.button`
   ${sharedControlStyles};
 `
 
-export const ControlExternalLink = styled.a`
+export const ControlExternalLink = styled(ExternalLink)`
   ${sharedControlStyles};
 `
 
-export const ControlInternalLink = styled(NextLink)`
+export const ControlInternalLink = styled(InternalLink)`
   ${sharedControlStyles};
 `
 

@@ -102,11 +102,7 @@ const CaseLayout: React.FC<PageData> = ({
             />
 
             {image.credits?.label && image.credits?.url && (
-              <S.HeroImageCreditsLink
-                href={image.credits.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <S.HeroImageCreditsLink href={image.credits.url}>
                 <S.HeroImageCredits>{image.credits.label}</S.HeroImageCredits>
               </S.HeroImageCreditsLink>
             )}
