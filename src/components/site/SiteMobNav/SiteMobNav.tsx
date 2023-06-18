@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 
 // Constants
@@ -23,12 +24,14 @@ export interface Props {}
 const SiteMobNav: React.FC<Props> = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const windowSize = useWindowSize()
+  const pathname = usePathname()
 
   const animProps = {
     list: getListAnimProps(isOpen),
     social: getSocialAnimProps(isOpen),
   }
 
+  // Handlers
   const toggle = (newState: boolean) => {
     setIsOpen(newState)
     disableScroll(document.documentElement, newState)
@@ -37,6 +40,17 @@ const SiteMobNav: React.FC<Props> = () => {
   const handleOnToggle = () => {
     toggle(!isOpen)
   }
+
+  const handleOnLinkClick = () => {
+    toggle(false)
+  }
+
+  // Hooks
+
+  // Close on route change
+  useEffect(() => {
+    toggle(false)
+  }, [pathname])
 
   // Close on ESC
   useEffect(() => {
@@ -61,7 +75,7 @@ const SiteMobNav: React.FC<Props> = () => {
   return (
     <S.Wrapper>
       <S.NavBar>
-        <S.LogoLink href="/" aria-label="Homepage">
+        <S.LogoLink href="/" aria-label="Homepage" onClick={handleOnLinkClick}>
           <S.Logo $isOpen={isOpen} id="mob" />
         </S.LogoLink>
 
@@ -86,7 +100,9 @@ const SiteMobNav: React.FC<Props> = () => {
 
               return (
                 <S.NavItem key={label} variants={itemVariants}>
-                  <S.NavItemLink href={url}>{label}</S.NavItemLink>
+                  <S.NavItemLink href={url} onClick={handleOnLinkClick}>
+                    {label}
+                  </S.NavItemLink>
                 </S.NavItem>
               )
             })}
