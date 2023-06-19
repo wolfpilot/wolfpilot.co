@@ -61,6 +61,15 @@ const scrollToTop = () => {
   }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
 }
 
+const scrollToElement = (id: string) => {
+  setTimeout(() => {
+    const elem = document.getElementById(id)
+    const elemOffset = elem?.offsetTop
+
+    window.scrollTo({ left: 0, top: elemOffset })
+  }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
+}
+
 const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
   const pathname = usePathname()
 
@@ -116,7 +125,9 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
 
       // Handle clicking on an internal link
       if (type === "REGULAR_NAVIGATION") {
-        scrollToTop()
+        const target = newUrl.split("#")[1]
+
+        target ? scrollToElement(target) : scrollToTop()
       }
     },
   })
