@@ -77,7 +77,6 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
   const handleAnimComplete = () => {
     setTimeout(() => {
       disableScroll(document.documentElement, false)
-      disableScroll(document.body, false)
     }, SCROLL_JUMP_DELAY)
   }
 
@@ -112,8 +111,9 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
 
       saveScrollPos(oldUrl)
 
-      disableScroll(document.documentElement, true)
-      disableScroll(document.body, true)
+      setTimeout(() => {
+        disableScroll(document.documentElement, true)
+      }, SCROLL_JUMP_DELAY)
     },
     onRouteChangeComplete: ({ type, newUrl, oldUrl }) => {
       if (newUrl === oldUrl) return
