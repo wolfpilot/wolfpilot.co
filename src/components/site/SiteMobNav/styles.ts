@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { mq } from "@styles/utils/mediaQueries"
 import { listResetStyles } from "@styles/list"
 import { zIndexes } from "@styles/zIndexes"
+import { colors } from "@styles/colors"
 import { textStyles } from "@styles/textStyles"
 import { ease, duration } from "@styles/animation"
 
@@ -14,6 +15,7 @@ import LogoComponent from "@components/logo/Logo"
 
 export const Wrapper = styled.nav`
   height: 100%;
+  pointer-events: all;
 
   ${mq.from.M`
     display: none;
@@ -49,7 +51,32 @@ export const SocialDescription = styled.div`
   color: var(--c-white);
 `
 
-export const NavBar = styled.div`
+/**
+ * Separate decorative element so that the logo and nav toggle can stay on top
+ */
+export const Backdrop = styled.div<{
+  $isOpen: boolean
+  $hasScrolledDown: boolean
+}>`
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: ${colors.white}d9;
+  border-bottom: 1px solid var(--c-neutral3);
+  backdrop-filter: blur(6px);
+  transition: transform ${duration.medium}s ${ease.cubic};
+
+  ${({ $isOpen, $hasScrolledDown }) =>
+    !$isOpen && $hasScrolledDown && `transform: translateY(-100%);`}
+`
+
+export const NavBar = styled.div<{
+  $isOpen: boolean
+  $hasScrolledDown: boolean
+}>`
   position: relative;
   z-index: ${zIndexes.siteNav};
   display: flex;
@@ -57,6 +84,11 @@ export const NavBar = styled.div`
   justify-content: space-between;
   height: var(--site-header-height);
   padding: var(--spacing-default);
+  max-height: var(--site-header-height);
+  transition: transform ${duration.medium}s ${ease.cubic};
+
+  ${({ $isOpen, $hasScrolledDown }) =>
+    !$isOpen && $hasScrolledDown && `transform: translateY(-100%);`}
 `
 
 export const ToggleLine = styled.span<{ $isOpen: boolean }>`

@@ -4,11 +4,16 @@ import { render, screen } from "@testing-library/react"
 import { routes } from "@constants/routes"
 
 // Components
-import SiteDeskNav from "./SiteDeskNav"
+import SiteDeskNav, { Props } from "./SiteDeskNav"
+
+// Setup
+const mockProps: Props = {
+  scrollYOffset: null,
+}
 
 describe("SiteDeskNav", () => {
   it("renders correctly", () => {
-    render(<SiteDeskNav />)
+    render(<SiteDeskNav {...mockProps} />)
 
     // Check that the logo link is being rendered
     expect(screen.getByRole("link", { name: "Homepage" })).toHaveAttribute(

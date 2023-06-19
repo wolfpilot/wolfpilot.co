@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 
+// Types
+import { DirectionEnum } from "@ts/global"
+
 // Constants
 import { routes } from "@constants/routes"
 
@@ -19,10 +22,13 @@ import SocialLinks from "@components/generic/SocialLinks"
 // Animation
 import { getListAnimProps, itemVariants, getSocialAnimProps } from "./animation"
 
-export interface Props {}
+export interface Props {
+  scrollYDirection: DirectionEnum | null
+}
 
-const SiteMobNav: React.FC<Props> = () => {
+const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+
   const windowSize = useWindowSize()
   const pathname = usePathname()
 
@@ -30,6 +36,11 @@ const SiteMobNav: React.FC<Props> = () => {
     list: getListAnimProps(isOpen),
     social: getSocialAnimProps(isOpen),
   }
+
+  // prettier-ignore
+  const hasScrolledDown = scrollYDirection === null
+    ? false
+    : scrollYDirection === DirectionEnum.Down
 
   // Handlers
   const toggle = (newState: boolean) => {
@@ -74,7 +85,9 @@ const SiteMobNav: React.FC<Props> = () => {
 
   return (
     <S.Wrapper>
-      <S.NavBar>
+      <S.Backdrop $isOpen={isOpen} $hasScrolledDown={hasScrolledDown} />
+
+      <S.NavBar $isOpen={isOpen} $hasScrolledDown={hasScrolledDown}>
         <S.LogoLink href="/" aria-label="Homepage" onClick={handleOnLinkClick}>
           <S.Logo $isOpen={isOpen} id="mob" />
         </S.LogoLink>

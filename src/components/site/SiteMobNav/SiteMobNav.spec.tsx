@@ -10,7 +10,12 @@ import { breakpoints } from "@styles/utils/mediaQueries"
 import { updateWindowSize } from "@utils/hooks/useWindowSize.spec"
 
 // Components
-import SiteMobNav from "./SiteMobNav"
+import SiteMobNav, { Props } from "./SiteMobNav"
+
+// Setup
+const mockProps: Props = {
+  scrollYDirection: null,
+}
 
 describe("SiteMobNav", () => {
   it("renders correctly", () => {
@@ -18,7 +23,7 @@ describe("SiteMobNav", () => {
       width: breakpoints.S,
     })
 
-    render(<SiteMobNav />)
+    render(<SiteMobNav {...mockProps} />)
 
     // Check that the logo link is being rendered
     expect(screen.getByRole("link", { name: "Homepage" })).toHaveAttribute(
@@ -39,7 +44,7 @@ describe("SiteMobNav", () => {
       width: breakpoints.S,
     })
 
-    render(<SiteMobNav />)
+    render(<SiteMobNav {...mockProps} />)
 
     const toggleButton = screen.getByRole("button", {
       name: "Toggle mobile navigation",
