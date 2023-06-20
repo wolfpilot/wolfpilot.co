@@ -236,4 +236,32 @@ export const base = css`
   .${DISABLE_SCROLL_CLASSNAME} {
     overflow: hidden;
   }
+
+  /**
+   * Customize Chrome scrollbar to look similar to MacOS
+   */
+  ::-webkit-scrollbar {
+    background-color: var(--c-white);
+    width: 16px;
+    height: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--c-white);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--c-neutral2);
+    border-radius: 16px;
+    border: 4px solid var(--c-white);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--c-neutral1);
+    border: 4px solid var(--c-white);
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
 `

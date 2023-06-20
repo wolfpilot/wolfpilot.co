@@ -134,8 +134,8 @@ export const Details = styled(motion.div)`
 export const Controls = styled.div`
   position: absolute;
   z-index: 1;
-  top: var(--spacing-default);
-  right: var(--spacing-default);
+  top: calc(1.5 * var(--spacing-default));
+  right: calc(2 * var(--spacing-default));
   display: flex;
   flex-direction: column;
   opacity: 0.5;
@@ -180,7 +180,7 @@ export const ControlInternalLink = styled(InternalLink)`
 export const Navigation = styled.div`
   position: absolute;
   z-index: 1;
-  bottom: var(--spacing-default);
+  bottom: calc(1.5 * var(--spacing-default));
   left: 50%;
   display: flex;
   justify-content: center;
