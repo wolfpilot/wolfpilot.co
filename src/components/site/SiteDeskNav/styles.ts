@@ -80,15 +80,18 @@ export const NavList = styled.ul`
 `
 
 export const NavItemLink = styled(InternalLink)<{
+  $isActive: boolean
   $hasPassedThreshold: boolean
 }>`
   ${textStyles.navLinkDesk};
 
   display: block;
-  color: var(--c-textNav);
   text-transform: lowercase;
   transition: color ${duration.medium}s ${ease.cubic},
     transform ${duration.medium}s ${ease.cubic};
+
+  color: ${({ $isActive }) =>
+    $isActive ? "var(--c-accent1)" : "var(--c-textNav)"};
 
   ${({ $hasPassedThreshold }) =>
     $hasPassedThreshold &&
@@ -128,7 +131,7 @@ export const NavItemGroup = styled.div`
         margin-left: auto;
 
         ${NavItemLink} {
-          color: var(--c-accent2);
+          color: var(--c-accent1);
 
           &:hover {
             color: var(--c-black);
