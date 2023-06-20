@@ -99,7 +99,7 @@ export const NavItemLink = styled(InternalLink)<{
   &:hover,
   &:focus-visible {
     outline: none;
-    color: var(--c-accent1);
+    color: var(--c-accent2);
   }
 
   &:focus-visible {
