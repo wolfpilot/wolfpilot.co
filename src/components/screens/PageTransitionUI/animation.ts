@@ -12,12 +12,17 @@ export const ANIM_EASE = ease.framer.cubic
 export const coverAnimProps: AnimationProps = {
   initial: {
     opacity: 1,
+    visibility: "visible",
   },
   animate: {
     opacity: 0,
+    transitionEnd: {
+      visibility: "hidden",
+    },
   },
   exit: {
     opacity: 1,
+    visibility: "visible",
   },
   transition: {
     duration: ANIM_COVER_DURATION,
