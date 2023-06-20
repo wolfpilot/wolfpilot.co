@@ -64,10 +64,21 @@ export const Backdrop = styled.div<{
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: ${colors.white}d9;
+  background-color: var(--c-white);
   border-bottom: 1px solid var(--c-neutral3);
-  backdrop-filter: blur(6px);
   transition: transform ${duration.medium}s ${ease.cubic};
+
+  /**
+   * !: backdrop-filter: blur on Chromium has quite a bug/glitch
+   * !: with no known work-arounds.
+   *
+   * For more info, see:
+   * https://bugs.chromium.org/p/chromium/issues/detail?id=986206
+   */
+  @supports (backdrop-filter: blur(12px)) {
+    background-color: ${colors.white}99;
+    backdrop-filter: blur(6px);
+  }
 
   ${({ $isOpen, $hasScrolledDown }) =>
     !$isOpen && $hasScrolledDown && `transform: translateY(-100%);`}

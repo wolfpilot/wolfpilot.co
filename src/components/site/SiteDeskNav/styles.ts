@@ -22,11 +22,23 @@ export const Wrapper = styled.nav<{
     display: block;
     height: var(--site-header-height);
     max-height: var(--site-header-height);
-    background-color: ${colors.white}99;
+    background-color: var(--c-white);
     border-bottom: 1px solid var(--c-neutral3);
     backdrop-filter: blur(6px);
     pointer-events: all;
     transition: max-height ${duration.medium}s ${ease.cubic};
+    
+    /**
+     * !: backdrop-filter: blur on Chromium has quite a bug/glitch
+     * !: with no known work-arounds.
+     *
+     * For more info, see:
+     * https://bugs.chromium.org/p/chromium/issues/detail?id=986206
+     */
+    @supports (backdrop-filter: blur(12px)) {
+      background-color: ${colors.white}99;
+      backdrop-filter: blur(6px);
+    }
 
     ${({ $hasPassedThreshold }: { $hasPassedThreshold: boolean }) =>
       $hasPassedThreshold && `max-height: 50px;`}
