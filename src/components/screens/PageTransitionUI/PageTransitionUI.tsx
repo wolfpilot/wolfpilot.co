@@ -75,6 +75,7 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
 
   // Handlers
   const handleAnimComplete = () => {
+    // Wait for the scroll position to be updated first
     setTimeout(() => {
       disableScroll(document.documentElement, false)
     }, SCROLL_JUMP_DELAY)
@@ -110,10 +111,7 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
       if (newUrl === oldUrl) return
 
       saveScrollPos(oldUrl)
-
-      setTimeout(() => {
-        disableScroll(document.documentElement, true)
-      }, SCROLL_JUMP_DELAY)
+      disableScroll(document.documentElement, true)
     },
     onRouteChangeComplete: ({ type, newUrl, oldUrl }) => {
       if (newUrl === oldUrl) return
