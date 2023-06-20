@@ -10,6 +10,7 @@ import { mq } from "@styles/utils/mediaQueries"
 import { duration, ease } from "@styles/animation"
 
 // Components
+import ExternalLink from "./ExternalLink"
 import Text from "@components/generic/Text"
 import Tooltip from "@components/generic/Tooltip"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
@@ -97,11 +98,7 @@ const Card: React.FC<Props> = ({
             </FeaturedImageResizer>
 
             {featuredImg.credits?.label && featuredImg.credits?.url && (
-              <ImageCreditsLink
-                href={featuredImg.credits.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <ImageCreditsLink href={featuredImg.credits.url}>
                 <ImageCredits>{featuredImg.credits.label}</ImageCredits>
               </ImageCreditsLink>
             )}
@@ -189,7 +186,7 @@ const ImageCredits = styled(Tooltip)`
   display: block;
 `
 
-const ImageCreditsLink = styled.a`
+const ImageCreditsLink = styled(ExternalLink)`
   position: absolute;
   right: var(--spacing-default);
   bottom: var(--spacing-default);

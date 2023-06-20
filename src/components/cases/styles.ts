@@ -1,4 +1,3 @@
-import Link from "next/link"
 import styled, { css } from "styled-components"
 import { motion } from "framer-motion"
 
@@ -10,6 +9,7 @@ import { textStyles } from "@styles/textStyles"
 import { duration, ease } from "@styles/animation"
 
 // Components
+import InternalLink from "@components/generic/InternalLink"
 import Heading from "@components/generic/Heading"
 
 export const Wrapper = styled.div``
@@ -106,7 +106,7 @@ const sharedCtaStyles = css`
   }
 `
 
-export const ItemLink = styled(Link)`
+export const ItemLink = styled(InternalLink)`
   ${sharedCtaStyles};
 `
 

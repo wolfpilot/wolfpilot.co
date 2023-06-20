@@ -2,13 +2,13 @@
 import { Routes } from "@ts/routes"
 
 export const routes: Routes = {
-  work: {
-    label: "Work",
-    url: "/#work",
-  },
   about: {
     label: "About",
     url: "/#about",
+  },
+  work: {
+    label: "Work",
+    url: "/#work",
   },
   cases: {
     label: "Cases",

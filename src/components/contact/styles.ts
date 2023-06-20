@@ -3,6 +3,9 @@ import styled from "styled-components"
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
 
+// Components
+import ExternalLink from "@components/generic/ExternalLink"
+
 export const Wrapper = styled.div`
   padding-top: calc(2 * var(--spacing-block));
   padding-bottom: calc(2 * var(--spacing-block));
@@ -11,7 +14,7 @@ export const Wrapper = styled.div`
   text-align: center;
 `
 
-export const EmailLink = styled.a`
+export const EmailLink = styled(ExternalLink)`
   margin-bottom: var(--spacing-default);
 
   font-size: 28px;

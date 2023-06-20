@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Link from "next/link"
 
 // Types
 import { Route } from "@ts/routes"
@@ -14,6 +13,8 @@ import * as S from "./styles"
 import { mq } from "@styles/utils/mediaQueries"
 
 // Components
+import ExternalLink from "@components/generic/ExternalLink"
+import InternalLink from "@components/generic/InternalLink"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 import ImageLoader from "@components/loaders/ImageLoader/ImageLoader"
@@ -29,14 +30,11 @@ const renderLinkText = (link: Route) => {
 
   return link.type === "external" ? (
     <>
-      View on{" "}
-      <a href={link.url} target="_blank" rel="noopener noreferrer">
-        {getDomain(link.url)}
-      </a>
+      View on <ExternalLink href={link.url}>{getDomain(link.url)}</ExternalLink>
     </>
   ) : (
     <>
-      Go to <Link href={link.url}>case study</Link>
+      Go to <InternalLink href={link.url}>case study</InternalLink>
     </>
   )
 }

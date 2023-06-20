@@ -5,13 +5,14 @@ import styled from "styled-components"
 import { duration, ease } from "@styles/animation"
 
 // Components
+import ExternalLink from "@components/generic/ExternalLink"
 import Tooltip from "@components/generic/Tooltip"
 
 export const ImageCredits = styled(Tooltip)`
   display: block;
 `
 
-export const ImageCreditsLink = styled.a`
+export const ImageCreditsLink = styled(ExternalLink)`
   position: absolute;
   right: var(--spacing-default);
   bottom: var(--spacing-default);

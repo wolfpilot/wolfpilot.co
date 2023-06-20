@@ -127,6 +127,7 @@ export const base = css`
     --c-accent2: ${colors.accent2};
     --c-accent3: ${colors.accent3};
     --c-cursor: ${colors.cursor};
+    --c-textNav: ${colors.textNav};
     --c-textHighlight: ${colors.textHighlight};
     --c-gridBgColor: ${colors.gridBgColor};
     --c-gridColumnBgColor: ${colors.gridColumnBgColor};

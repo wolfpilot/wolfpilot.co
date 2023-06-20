@@ -9,8 +9,12 @@ export const Wrapper = styled.header`
   top: 0;
   right: 0;
   left: 0;
-  height: var(--site-header-height);
-  background: var(--c-pageColor);
-  border-top: 3px solid var(--c-accent1);
-  border-bottom: 1px solid var(--c-neutral3);
+
+  /**
+   * Events are restored in the individual Nav components.
+   *
+   * We're only blocking them here so that when the header hides on mobile,
+   * it doesn't block any of the interactions underneath.
+   */
+  pointer-events: none;
 `

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 
@@ -6,21 +5,24 @@ import { motion } from "framer-motion"
 import { mq } from "@styles/utils/mediaQueries"
 import { listResetStyles } from "@styles/list"
 import { zIndexes } from "@styles/zIndexes"
+import { colors } from "@styles/colors"
 import { textStyles } from "@styles/textStyles"
 import { ease, duration } from "@styles/animation"
 
 // Components
+import InternalLink from "@components/generic/InternalLink"
 import LogoComponent from "@components/logo/Logo"
 
 export const Wrapper = styled.nav`
   height: 100%;
+  pointer-events: all;
 
   ${mq.from.M`
     display: none;
   `}
 `
 
-export const LogoLink = styled(Link)`
+export const LogoLink = styled(InternalLink)`
   display: block;
 `
 
@@ -49,7 +51,43 @@ export const SocialDescription = styled.div`
   color: var(--c-white);
 `
 
-export const NavBar = styled.div`
+/**
+ * Separate decorative element so that the logo and nav toggle can stay on top
+ */
+export const Backdrop = styled.div<{
+  $isOpen: boolean
+  $hasScrolledDown: boolean
+}>`
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--c-white);
+  border-bottom: 1px solid var(--c-neutral3);
+  transition: transform ${duration.medium}s ${ease.cubic};
+
+  /**
+   * !: backdrop-filter: blur on Chromium has quite a bug/glitch
+   * !: with no known work-arounds.
+   *
+   * For more info, see:
+   * https://bugs.chromium.org/p/chromium/issues/detail?id=986206
+   */
+  @supports (backdrop-filter: blur(12px)) {
+    background-color: ${colors.white}99;
+    backdrop-filter: blur(6px);
+  }
+
+  ${({ $isOpen, $hasScrolledDown }) =>
+    !$isOpen && $hasScrolledDown && `transform: translateY(-100%);`}
+`
+
+export const NavBar = styled.div<{
+  $isOpen: boolean
+  $hasScrolledDown: boolean
+}>`
   position: relative;
   z-index: ${zIndexes.siteNav};
   display: flex;
@@ -57,6 +95,11 @@ export const NavBar = styled.div`
   justify-content: space-between;
   height: var(--site-header-height);
   padding: var(--spacing-default);
+  max-height: var(--site-header-height);
+  transition: transform ${duration.medium}s ${ease.cubic};
+
+  ${({ $isOpen, $hasScrolledDown }) =>
+    !$isOpen && $hasScrolledDown && `transform: translateY(-100%);`}
 `
 
 export const ToggleLine = styled.span<{ $isOpen: boolean }>`
@@ -140,10 +183,13 @@ export const NavContent = styled.div<{ $isOpen: boolean }>`
       ? `
         visibility: visible;
         opacity: 1;
-    `
+        `
       : `
         visibility: hidden;
         opacity: 0;
+        transition:
+          visibility ${duration.medium}s ${ease.cubic} ${duration.medium}s,
+          opacity ${duration.medium}s ${ease.cubic} ${duration.medium}s;
     `}
 `
 
@@ -176,7 +222,7 @@ export const NavItem = styled(motion.li)`
   }
 `
 
-export const NavItemLink = styled(Link)`
+export const NavItemLink = styled(InternalLink)`
   ${textStyles.navLinkMob};
   color: var(--c-white);
   transition: color ${duration.medium}s ${ease.cubic};

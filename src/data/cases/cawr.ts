@@ -34,7 +34,7 @@ const summary: Summary = {
     
     In order to counteract climate and environmental change, loss of biodiversity, natural and man-made disasters and other destabilising factors, CAWR is continually seeking to expand its international team of researchers, becoming the largest centre in the world to do trans-disciplinary research on the links between agroecology and sustainable food systems, water management, and community and socio-ecological resilience.
     
-    I was approached by the Executive Director, <a class="hyperlink" href="https://pureportal.coventry.ac.uk/en/persons/michel-pimbert" target="_blank" rel="noopener noreferrer">Dr. Michel Pimbert</a>, to design CAWR's Communication and Publications web platform, emphasising in particular their internal working paper series, videos and animations, book series and other multimedia publications.</p>`,
+    I was approached by the Executive Director, <a href="https://pureportal.coventry.ac.uk/en/persons/michel-pimbert" target="_blank" rel="noopener noreferrer">Dr. Michel Pimbert</a>, to design CAWR's Communication and Publications web platform, emphasising in particular their internal working paper series, videos and animations, book series and other multimedia publications.</p>`,
 }
 
 const statement: Statement = {

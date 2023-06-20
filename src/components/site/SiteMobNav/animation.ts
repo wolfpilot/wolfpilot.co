@@ -9,17 +9,17 @@ import { duration } from "@styles/animation"
 // List
 const listVariants: Variants = {
   hidden: {
-    visibility: "hidden",
+    opacity: 0,
     transition: {
+      when: "afterChildren",
       staggerChildren: 0,
       staggerDirection: -1,
     },
   },
   visible: {
-    visibility: "visible",
+    opacity: 1,
     transition: {
       when: "beforeChildren",
-      delay: duration.medium,
       staggerChildren: duration.veryFast,
     },
   },
@@ -47,12 +47,10 @@ export const itemVariants: Variants = {
 // Social
 const getSocialVariants: Variants = {
   hidden: {
-    visibility: "hidden",
     opacity: 0,
     y: 16,
   },
   visible: {
-    visibility: "visible",
     opacity: 1,
     y: 0,
     transition: {

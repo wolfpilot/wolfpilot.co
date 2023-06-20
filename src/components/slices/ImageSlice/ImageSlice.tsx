@@ -60,11 +60,7 @@ const ImageSlice: React.FC<Props> = ({
       />
 
       {credits?.label && credits?.url && (
-        <S.ImageCreditsLink
-          href={credits.url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <S.ImageCreditsLink href={credits.url}>
           <S.ImageCredits>{credits.label}</S.ImageCredits>
         </S.ImageCreditsLink>
       )}

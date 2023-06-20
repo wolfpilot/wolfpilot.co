@@ -6,9 +6,11 @@ import { mq } from "@styles/utils/mediaQueries"
 import { listResetStyles } from "@styles/list"
 import { btnResetStyles } from "@styles/button"
 import { textStyles } from "@styles/textStyles"
+import { weights } from "@styles/typography"
 import { duration, ease } from "@styles/animation"
 
 // Components
+import ExternalLink from "@components/generic/ExternalLink"
 import Text from "@components/generic/Text"
 
 export const Wrapper = styled.div`
@@ -31,13 +33,17 @@ export const Controls = styled.div`
 
 export const ControlToggleAll = styled.button`
   ${btnResetStyles};
-  color: var(--c-neutral1);
+  color: var(--c-accent2);
   line-height: 1.5;
   transition: color ${duration.medium}s ${ease.cubic};
 
-  &:focus,
-  &:hover {
-    color: var(--c-accent2);
+  &:hover,
+  &:focus-visible {
+    color: var(--c-black);
+  }
+
+  &:focus-visible {
+    font-weight: ${weights.semibold};
   }
 `
 
@@ -134,7 +140,7 @@ export const ItemToggleBtn = styled.button`
   }
 `
 
-export const ItemCompanyLink = styled.a`
+export const ItemCompanyLink = styled(ExternalLink)`
   ${textStyles.hyperlink};
   ${textStyles.copyS};
 

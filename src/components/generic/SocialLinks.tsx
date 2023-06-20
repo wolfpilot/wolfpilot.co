@@ -1,4 +1,3 @@
-import Link from "next/link"
 import styled from "styled-components"
 
 // Constants
@@ -9,6 +8,7 @@ import { listResetStyles } from "@styles/list"
 import { duration, ease } from "@styles/animation"
 
 // Components
+import ExternalLink from "./ExternalLink"
 import Icon from "@components/icons/Icon"
 
 export type Option = "light" | "dark"
@@ -28,13 +28,7 @@ const Social: React.FC<Props> = ({ className, option }) => (
 
         return (
           <SocialItem key={label}>
-            <SocialItemLink
-              option={option}
-              href={url}
-              aria-label={label}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <SocialItemLink option={option} href={url} aria-label={label}>
               <SocialItemLinkIcon type={label.toLowerCase()} option={option} />
             </SocialItemLink>
           </SocialItem>
@@ -64,7 +58,7 @@ const SocialItemLinkIcon = styled(Icon)<{ option: Option }>`
   transition: stroke ${duration.medium}s ${ease.cubic};
 `
 
-const SocialItemLink = styled(Link)<{ option: Option }>`
+const SocialItemLink = styled(ExternalLink)<{ option: Option }>`
   display: block;
   padding: calc(var(--spacing-default) / 2);
   line-height: 0;

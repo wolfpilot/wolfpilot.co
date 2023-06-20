@@ -90,11 +90,7 @@ const Timeline: React.FC<Props> = ({ items }) => {
                 </S.ItemToggleBtn>
 
                 {company.url ? (
-                  <S.ItemCompanyLink
-                    href={company.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <S.ItemCompanyLink href={company.url}>
                     @ {company.label}
                   </S.ItemCompanyLink>
                 ) : (

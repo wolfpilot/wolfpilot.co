@@ -390,11 +390,7 @@ const ShowcaseModal: React.FC = () => {
                   {data.links?.map((link, index) => (
                     <Fragment key={index}>
                       {link.type === "external" ? (
-                        <S.ControlExternalLink
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
+                        <S.ControlExternalLink href={link.url}>
                           <S.ControlTooltip>
                             View on {getDomain(link.url)}
                           </S.ControlTooltip>

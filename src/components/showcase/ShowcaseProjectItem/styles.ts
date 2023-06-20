@@ -116,7 +116,7 @@ export const ContentWrapper = styled.div<{
     $linksAmount > 1 &&
     `
     min-height: calc(
-      45px
+      55px
       + 2 * var(--spacing-default)
       + ${$linksAmount * 24}px)
     ;

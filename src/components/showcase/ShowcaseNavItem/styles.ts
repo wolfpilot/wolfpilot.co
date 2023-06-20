@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
+import { weights } from "@styles/typography"
 import { duration, ease } from "@styles/animation"
 
 export const Wrapper = styled.li`
@@ -32,14 +33,16 @@ export const Button = styled.button<{ $isActive: boolean }>`
   border: none;
   background: none;
   color: ${({ $isActive }) =>
-    $isActive ? "var(--c-accent2)" : "var(--c-neutral1)"};
+    $isActive ? "var(--c-accent2)" : "var(--c-neutral2)"};
   transition: color ${duration.medium}s ${ease.cubic};
 
-  &:focus {
-    color: var(--c-black);
+  &:hover,
+  &:focus-visible {
+    color: ${({ $isActive }) =>
+      $isActive ? "var(--c-accent2)" : " var(--c-black)"};
   }
 
-  &:hover {
-    color: var(--c-accent2);
+  &:focus-visible {
+    font-weight: ${weights.semibold};
   }
 `
