@@ -14,7 +14,6 @@ export const Cover = styled(motion.div)`
   bottom: 0;
   left: 0;
   background-color: var(--c-white);
-  pointer-events: none;
 `
 
 export const Swiper = styled(motion.div)`
@@ -26,7 +25,6 @@ export const Swiper = styled(motion.div)`
   left: 0;
   background: var(--g-primary-diagonal);
   transform-origin: top center;
-  pointer-events: none;
 `
 
 export const Content = styled(motion.div)``
