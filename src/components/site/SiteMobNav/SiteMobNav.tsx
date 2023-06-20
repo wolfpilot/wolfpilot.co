@@ -60,7 +60,9 @@ const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
 
   // Close on route change
   useEffect(() => {
-    toggle(false)
+    // NOTE: Let PageTransitionUI deal with the scroll-lock
+
+    setIsOpen(false)
   }, [pathname])
 
   // Close on ESC
