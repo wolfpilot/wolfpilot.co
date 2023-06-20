@@ -14,6 +14,17 @@ import { textStyles } from "@styles/textStyles"
 import Heading from "@components/generic/Heading"
 
 export const Section = styled.section`
+  /**
+   * Offset the header height so that we scroll just below it on # navigation
+   */
+  &::before {
+    content: "";
+    display: block;
+    height: var(--site-header-height);
+    margin-top: calc(-1 * var(--site-header-height));
+    visibility: hidden;
+  }
+
   &:not(:last-child) {
     margin-bottom: var(--spacing-section);
   }
