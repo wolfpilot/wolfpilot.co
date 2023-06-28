@@ -43,6 +43,6 @@ export const Button = styled.button<{ $isActive: boolean }>`
   }
 
   &:focus-visible {
-    font-weight: ${weights.semibold};
+    font-weight: ${weights.bold};
   }
 `

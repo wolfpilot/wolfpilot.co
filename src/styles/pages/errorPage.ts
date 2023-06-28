@@ -17,7 +17,7 @@ export const Heading = styled(HeadingComponent)`
   color: var(--c-accent1);
   color: var(--c-neutral3);
   font-size: 50vw;
-  font-weight: ${weights.semibold};
+  font-weight: ${weights.bold};
   line-height: 1;
 
   ${mq.from.XL`
