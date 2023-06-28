@@ -15,19 +15,11 @@ import {
   spacing,
 } from "@styles/layout"
 import { colors, gradients } from "@styles/colors"
-import { fonts, weights } from "@styles/typography"
+import { weights } from "@styles/typography"
 import { textStyles } from "./textStyles"
 import { sizes } from "@styles/sizes"
 
 export const base = css`
-  @font-face {
-    font-family: "Chillax";
-    font-weight: ${weights.normal};
-    font-display: block;
-    src: url("/fonts/chillax-regular.woff2") format("woff2"),
-      url("/fonts/chillax-regular.woff") format("woff");
-  }
-
   :root {
     // Layout
     --max-content-width: ${MAX_CONTENT_WIDTH};
@@ -110,9 +102,6 @@ export const base = css`
         ) / var(--grid-columns)
       );
     `}
-      
-    // Typography
-    --font-primary: ${fonts.primary};
 
     // Colors
     --c-black: ${colors.black};
@@ -161,19 +150,8 @@ export const base = css`
     overflow: visible;
     // Used for positioning Scroll to Top button
     overflow: clip;
-    font-family: var(--font-primary);
     color: var(--c-black);
     background: var(--c-pageColor);
-  }
-
-  /**
-   * Force wrapper to extend to at least one full screen height and thus the footer
-   * always appears to be sticking to the bottom.
-   */
-  #__next {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
   }
 
   h1,
