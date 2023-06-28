@@ -7,6 +7,7 @@ import { mq } from "@styles/utils/mediaQueries"
 import SocialLinksComponent from "@components/generic/SocialLinks"
 
 export const Wrapper = styled.footer`
+  flex: 0 0 auto;
   padding: var(--spacing-default) 0;
 `
 
