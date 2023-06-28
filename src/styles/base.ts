@@ -166,6 +166,16 @@ export const base = css`
     background: var(--c-pageColor);
   }
 
+  /**
+   * Force wrapper to extend to at least one full screen height and thus the footer
+   * always appears to be sticking to the bottom.
+   */
+  #__next {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
   h1,
   h2,
   h3,

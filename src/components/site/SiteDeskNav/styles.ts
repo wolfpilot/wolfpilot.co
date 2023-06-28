@@ -115,7 +115,7 @@ export const NavItemLink = styled(InternalLink)<{
   }
 
   &:focus-visible {
-    font-weight: ${weights.semibold};
+    font-weight: ${weights.bold};
   }
 `
 

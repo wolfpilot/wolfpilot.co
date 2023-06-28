@@ -43,7 +43,7 @@ export const ControlToggleAll = styled.button`
   }
 
   &:focus-visible {
-    font-weight: ${weights.semibold};
+    font-weight: ${weights.bold};
   }
 `
 
