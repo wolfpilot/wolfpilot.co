@@ -351,7 +351,7 @@ const ShowcaseModal: React.FC = () => {
                           {...animProps.imgScroller}
                         >
                           <S.Image
-                            ref={(ref) => {
+                            ref={(ref: HTMLImageElement | null) => {
                               imgRefArray.current[activeItemIndex || 0] = ref
                             }}
                             src={data.image.src}
