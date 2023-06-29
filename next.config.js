@@ -1,7 +1,7 @@
 // next.config.js
 /** @type {import('next').NextConfig} */
 
-const nextConfig = {
+const config = {
   reactStrictMode: true,
   compiler: {
     // Enables the styled-components SWC transform
@@ -15,4 +15,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+module.exports = config

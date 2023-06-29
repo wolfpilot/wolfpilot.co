@@ -1,0 +1,13 @@
+# *
+User-agent: *
+Disallow: /*.json$
+Disallow: /*_buildManifest.js$
+Disallow: /*_middlewareManifest.js$
+Disallow: /*_ssgManifest.js$
+Disallow: /*.js$
+
+# Host
+Host: https://www.wolfpilot.co
+
+# Sitemaps
+Sitemap: https://www.wolfpilot.co/sitemap.xml
