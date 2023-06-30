@@ -14,6 +14,8 @@ const video1Src = `/media/cases/retrocade/video-1`
 export const meta: Meta = {
   id: "retrocade",
   title: "RetroCade",
+  description:
+    "Personal project replicating an 80's reel-to-reel tape recorder exclusively in code",
   tagline: "Boogie like it's the '80s",
   category: "personal",
   date: new Date("2016/06/14"),

@@ -1,4 +1,5 @@
 import { NextPage } from "next"
+import { NextSeo } from "next-seo"
 
 // Styles
 import * as S from "@styles/pages/errorPage"
@@ -7,8 +8,14 @@ import * as S from "@styles/pages/errorPage"
 import Container from "@components/layout/Container/Container"
 import InternalLink from "@components/generic/InternalLink"
 
-const Error404Page: NextPage = () => {
-  return (
+// Setup
+const META_TITLE = "Error 404"
+const META_DESCRIPTION = "Page not found"
+
+const Error404Page: NextPage = () => (
+  <>
+    <NextSeo title={META_TITLE} description={META_DESCRIPTION} />
+
     <S.Wrapper>
       <Container>
         <S.Heading level="h1">404</S.Heading>
@@ -19,7 +26,7 @@ const Error404Page: NextPage = () => {
         </S.Text>
       </Container>
     </S.Wrapper>
-  )
-}
+  </>
+)
 
 export default Error404Page

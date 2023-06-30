@@ -1,5 +1,9 @@
 import type { AppProps } from "next/app"
+import { DefaultSeo } from "next-seo"
 import styled from "styled-components"
+
+// Config
+import { defaultMeta } from "@config/seo.config"
 
 // Utils
 import { AppProvider } from "@utils/context/AppContext"
@@ -28,6 +32,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
 
   return (
     <Wrapper className={fontPrimary.variable}>
+      <DefaultSeo {...defaultMeta} />
       <GlobalStyle />
       <DOMManager />
 

@@ -2,6 +2,7 @@ import fs from "fs"
 import path from "path"
 import sizeOf from "image-size"
 import { ImageProps } from "next/image"
+import { NextSeo } from "next-seo"
 
 // Types
 import { NextPage, GetStaticProps } from "next"
@@ -29,11 +30,18 @@ export interface Props {
   pageData: any
 }
 
+// Setup
+const META_TITLE = "Homepage"
+const META_DESCRIPTION =
+  "Creative front-end developer, concept artist & illustrator"
+
 const HomePage: NextPage<Props> = ({ pageData }) => {
   if (!pageData) return null
 
   return (
     <>
+      <NextSeo title={META_TITLE} description={META_DESCRIPTION} />
+
       {pageData.about && (
         <S.Section id="about">
           <Container>

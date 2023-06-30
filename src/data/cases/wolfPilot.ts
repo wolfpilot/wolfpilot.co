@@ -11,6 +11,7 @@ import { Meta, Summary, Statement, Content, PageData } from "./"
 export const meta: Meta = {
   id: "wolf-pilot",
   title: "Wolf Pilot",
+  description: "Analysing the making of my portfolio website from 2017",
   tagline: "Behind the scenes",
   category: "personal",
   date: new Date("2017/04/14"),
