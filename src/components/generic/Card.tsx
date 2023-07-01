@@ -2,7 +2,7 @@ import { useState, useRef } from "react"
 import Image, { ImageProps } from "next/image"
 import { sanitize } from "isomorphic-dompurify"
 import styled from "styled-components"
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion"
+import { motion, useScroll, useTransform } from "framer-motion"
 
 // Styles
 import { fixBorderRadiusOverflow } from "@styles/vendor/safari"
@@ -27,13 +27,6 @@ export interface Props {
   backgroundImg?: ImageProps
 }
 
-// Setup
-const PARALLAX_SCROLL_DISTANCE = -10
-
-// Map total percentage scrolled from -10% to 10%
-const useParallax = (value: MotionValue<number>, distance: number) =>
-  useTransform(value, [0, 1], [`${-distance}%`, `${distance}%`])
-
 const Card: React.FC<Props> = ({
   featuredImg,
   heading,
@@ -47,8 +40,11 @@ const Card: React.FC<Props> = ({
   const wrapperRef = useRef(null)
 
   // Parallax
-  const { scrollYProgress } = useScroll({ target: wrapperRef })
-  const y = useParallax(scrollYProgress, PARALLAX_SCROLL_DISTANCE)
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ["start end", "end start"],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
 
   if (!featuredImg || !heading || !copy) return null
 
@@ -65,9 +61,9 @@ const Card: React.FC<Props> = ({
   const hasBgImg = !!(backgroundImg?.src && backgroundImg?.alt)
 
   return (
-    <Wrapper $hasBgImage={hasBgImg}>
+    <Wrapper ref={wrapperRef} $hasBgImage={hasBgImg}>
       {hasBgImg && (
-        <BackgroundImageWrapper>
+        <BackgroundImageWrapper style={{ y }}>
           <BackgroundImage
             src={backgroundImg.src}
             sizes={`
@@ -83,19 +79,16 @@ const Card: React.FC<Props> = ({
 
       <MediaWrapper>
         {hasFtImg && (
-          <FeaturedImageWrapper ref={wrapperRef}>
-            <FeaturedImageResizer>
-              <FeaturedImage
-                src={featuredImg.src}
-                sizes={`
-                  (min-width: ${mq.breakpoints.M}px) 33vw,
-                  100vw,
-                `}
-                alt={featuredImg.alt}
-                style={{ y }}
-                onLoadingComplete={handleFeaturedImgLoadingComplete}
-              />
-            </FeaturedImageResizer>
+          <FeaturedImageWrapper>
+            <FeaturedImage
+              src={featuredImg.src}
+              sizes={`
+                (min-width: ${mq.breakpoints.M}px) 33vw,
+                100vw,
+              `}
+              alt={featuredImg.alt}
+              onLoadingComplete={handleFeaturedImgLoadingComplete}
+            />
 
             {featuredImg.credits?.label && featuredImg.credits?.url && (
               <ImageCreditsLink href={featuredImg.credits.url}>
@@ -135,7 +128,7 @@ const Wrapper = styled.div<{ $hasBgImage: boolean }>`
   `}
 `
 
-const BackgroundImageWrapper = styled.div`
+const BackgroundImageWrapper = styled(motion.div)`
   display: none;
 
   ${mq.from.M`
@@ -221,18 +214,6 @@ const FeaturedImageWrapper = styled.div`
     width: calc(3 * var(--grid-column-size) + 2 * var(--grid-gutter-size));
   `}
 
-  &:hover {
-    ${ImageCreditsLink} {
-      opacity: 1;
-    }
-  }
-`
-
-const FeaturedImageResizer = styled.div`
-  height: 100%;
-  // Make image larger to compensate for parallax motion
-  transform: scale(1.2);
-
   &:after {
     content: "";
     position: absolute;
@@ -244,13 +225,19 @@ const FeaturedImageResizer = styled.div`
     mix-blend-mode: darken;
     pointer-events: none;
   }
+
+  &:hover {
+    ${ImageCreditsLink} {
+      opacity: 1;
+    }
+  }
 `
 
 const FeaturedImageLoader = styled(ImageLoader)`
   background-color: var(--c-black);
 `
 
-const FeaturedImage = styled(motion(Image))`
+const FeaturedImage = styled(Image)`
   display: block;
   width: 100%;
   height: 100%;
