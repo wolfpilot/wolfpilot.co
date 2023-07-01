@@ -1,11 +1,15 @@
 /** @type {import('next-sitemap').IConfig} */
 
-console.log(
-  "process.env.NEXT_PUBLIC_SITE_URL",
-  process.env.NEXT_PUBLIC_SITE_URL
-)
+const ENV = process.env.NEXT_PUBLIC_VERCEL_ENV
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL
+/**
+ * For dynamic preview URLs use Vercel's own env vars,
+ * otherwise default to the ones defined locally.
+ */
+const SITE_URL =
+  ENV === "preview"
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : process.env.NEXT_PUBLIC_SITE_URL
 
 // Optimise crawling by not fetching SSG meta files
 const NEXT_SSG_FILES = [

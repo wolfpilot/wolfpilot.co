@@ -13,6 +13,8 @@ import { Meta, Summary, Statement, Content, PageData } from "./"
 export const meta: Meta = {
   id: "cawr",
   title: "CAWR",
+  description:
+    "Client work for the Centre for Agroecology, Water and Resilience, Coventry, UK",
   tagline: "Centre for Agroecology, Water and Resilience",
   category: "commercial",
   date: new Date("2015/05/17"),

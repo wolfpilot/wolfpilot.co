@@ -23,6 +23,7 @@ export type CaseType = "personal" | "commercial" | "agency"
 export interface Meta {
   id: string
   title: string
+  description: string
   tagline: string
   category: CaseType
   date: Date
