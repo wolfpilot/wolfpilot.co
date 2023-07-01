@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { motion } from "framer-motion"
 import styled from "styled-components"
 
 // Styles
@@ -62,6 +63,16 @@ export const HeroImageWrapper = styled.div`
       opacity: 1;
     }
   }
+`
+
+export const HeroImageOverlay = styled(motion.div)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to bottom, transparent, var(--c-neutral5));
+  pointer-events: none;
 `
 
 export const HeroImage = styled(Image)`

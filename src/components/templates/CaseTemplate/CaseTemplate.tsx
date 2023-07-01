@@ -1,5 +1,6 @@
 import { NextSeo } from "next-seo"
-import { Fragment, useState } from "react"
+import { Fragment, useState, useRef } from "react"
+import { useScroll } from "framer-motion"
 
 // Types
 import { PageData } from "@data/cases"
@@ -36,6 +37,14 @@ const CaseLayout: React.FC<PageData> = ({
 
   const [isHeroImgLoaded, setIsHeroImgLoaded] = useState<boolean>(false)
   const [isFooterImgLoaded, setIsFooterImgLoaded] = useState<boolean>(false)
+
+  const heroImageRef = useRef<HTMLImageElement | null>(null)
+
+  // Used to "fade out" the hero image on scroll
+  const { scrollYProgress } = useScroll({
+    target: heroImageRef,
+    offset: ["start start", "end start"],
+  })
 
   if (
     !title ||
@@ -95,13 +104,15 @@ const CaseLayout: React.FC<PageData> = ({
              * https://github.com/vercel/next.js/discussions/25393
              */}
             <S.HeroImageWrapper>
+              <S.HeroImageOverlay style={{ opacity: scrollYProgress }} />
               <S.HeroImage
+                ref={heroImageRef}
                 src={image.src}
                 sizes={`
-              (min-width: ${mq.breakpoints.S}px) 100vw,
-              (min-width: ${mq.breakpoints.XS}px) 150vw,
-              200vw,
-              `}
+                  (min-width: ${mq.breakpoints.S}px) 100vw,
+                  (min-width: ${mq.breakpoints.XS}px) 150vw,
+                  200vw,
+                `}
                 alt={image.alt}
                 priority
                 onLoadingComplete={handleHeroImgLoadingComplete}
