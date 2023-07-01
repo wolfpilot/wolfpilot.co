@@ -50,7 +50,7 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
                 {pageData.about.hero.img && (
                   <S.HeroImageWrapper>
                     <S.HeroBackdrop>
-                      <S.HeroImage {...pageData.about.hero.img} />
+                      <S.HeroImage {...pageData.about.hero.img} priority />
                     </S.HeroBackdrop>
                   </S.HeroImageWrapper>
                 )}
