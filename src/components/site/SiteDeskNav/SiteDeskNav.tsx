@@ -42,7 +42,7 @@ const SiteDeskNav: React.FC<Props> = ({ scrollYOffset }) => {
     <S.Wrapper $hasPassedThreshold={hasPassedThreshold}>
       <S.NavBar>
         <S.Container>
-          <S.NavList>
+          <S.NavContent>
             <S.NavItemGroup>
               {generateNavItems(leftItemsGroup, hasPassedThreshold)}
             </S.NavItemGroup>
@@ -60,7 +60,7 @@ const SiteDeskNav: React.FC<Props> = ({ scrollYOffset }) => {
             <S.NavItemGroup>
               {generateNavItems(rightItemsGroup, hasPassedThreshold)}
             </S.NavItemGroup>
-          </S.NavList>
+          </S.NavContent>
         </S.Container>
       </S.NavBar>
     </S.Wrapper>

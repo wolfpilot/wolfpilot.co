@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
-import { listResetStyles } from "@styles/list"
 import { ease, duration } from "@styles/animation"
 import { colors } from "@styles/colors"
 import { weights } from "@styles/typography"
@@ -82,12 +81,10 @@ export const NavBar = styled.div`
   height: 100%;
 `
 
-export const NavList = styled.ul`
-  ${listResetStyles};
+export const NavContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   height: 100%;
 `
 
@@ -119,7 +116,7 @@ export const NavItemLink = styled(InternalLink)<{
   }
 `
 
-export const NavItem = styled.li`
+export const NavItem = styled.div`
   margin: 0 20px;
 `
 

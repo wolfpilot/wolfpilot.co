@@ -503,6 +503,7 @@ export const data = {
       featuredImg: {
         src: AboutFeaturedImageSrc,
         alt: "Photo of Razvan Negrea",
+        priority: true,
       },
       heading: `My name is <em>Razvan Negrea</em>.`,
       copy: `I'm a creative frontend developer, concept artist and illustrator, which is fancy talk for saying that I enjoy making things, moving things especially.

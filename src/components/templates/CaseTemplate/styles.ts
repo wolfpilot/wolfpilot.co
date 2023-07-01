@@ -184,6 +184,12 @@ export const Footer = styled.footer`
 `
 
 export const FooterImageWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
   &::after {
     content: "";
     position: absolute;
