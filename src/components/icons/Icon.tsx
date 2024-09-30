@@ -1,5 +1,5 @@
 // Types
-import { IconTypesEnum, Icon } from "@ts/icons"
+import { IconTypes, Icon } from "@ts/icons"
 
 // SVGs
 import Logo from "./Logo"
@@ -24,38 +24,38 @@ import LinkedIn from "./LinkedIn"
 const Icon: React.FC<Icon> = ({ type, ...props }) => {
   switch (type) {
     // Generic
-    case IconTypesEnum.Logo:
+    case IconTypes.Logo:
       return <Logo {...props} />
-    case IconTypesEnum.LinkExternal:
+    case IconTypes.LinkExternal:
       return <LinkExternal {...props} />
-    case IconTypesEnum.LinkInternal:
+    case IconTypes.LinkInternal:
       return <LinkInternal {...props} />
     // Interaction
-    case IconTypesEnum.Arrow:
+    case IconTypes.Arrow:
       return <Arrow {...props} />
-    case IconTypesEnum.Play:
+    case IconTypes.Play:
       return <Play {...props} />
-    case IconTypesEnum.Prev:
+    case IconTypes.Prev:
       return <Prev {...props} />
-    case IconTypesEnum.Next:
+    case IconTypes.Next:
       return <Next {...props} />
-    case IconTypesEnum.Close:
+    case IconTypes.Close:
       return <Close {...props} />
-    case IconTypesEnum.Expand:
+    case IconTypes.Expand:
       return <Expand {...props} />
-    case IconTypesEnum.Collapse:
+    case IconTypes.Collapse:
       return <Collapse {...props} />
     // Info
-    case IconTypesEnum.Email:
+    case IconTypes.Email:
       return <Email {...props} />
     // Social
-    case IconTypesEnum.Codepen:
+    case IconTypes.Codepen:
       return <Codepen {...props} />
-    case IconTypesEnum.DeviantArt:
+    case IconTypes.DeviantArt:
       return <DeviantArt {...props} />
-    case IconTypesEnum.Github:
+    case IconTypes.Github:
       return <Github {...props} />
-    case IconTypesEnum.LinkedIn:
+    case IconTypes.LinkedIn:
       return <LinkedIn {...props} />
     default:
       throw new Error(`Icon type ${type} not found.`)

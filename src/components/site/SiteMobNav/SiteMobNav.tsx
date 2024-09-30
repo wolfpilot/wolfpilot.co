@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 
 // Types
-import { DirectionEnum } from "@ts/global"
+import { Directions } from "@ts/global"
 
 // Constants
 import { routes } from "@constants/routes"
@@ -23,7 +23,7 @@ import SocialLinks from "@components/generic/SocialLinks"
 import { getListAnimProps, itemVariants, getSocialAnimProps } from "./animation"
 
 export interface Props {
-  scrollYDirection: DirectionEnum | null
+  scrollYDirection: Directions | null
 }
 
 const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
@@ -40,7 +40,7 @@ const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
   // prettier-ignore
   const hasScrolledDown = scrollYDirection === null
     ? false
-    : scrollYDirection === DirectionEnum.Down
+    : scrollYDirection === Directions.Down
 
   // Handlers
   const toggle = (newState: boolean) => {

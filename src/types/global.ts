@@ -1,4 +1,4 @@
-export enum DirectionEnum {
+export enum Directions {
   Up = "up",
   Down = "down",
   Left = "left",

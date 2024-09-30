@@ -1,4 +1,4 @@
-export enum IconTypesEnum {
+export enum IconTypes {
   // Generic
   Logo = "logo",
   LinkExternal = "linkExternal",

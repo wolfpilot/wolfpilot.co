@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react"
 
 // Types
-import { DirectionEnum } from "@ts/global"
+import { Directions } from "@ts/global"
 
 // Utils
 import { isClient } from "@utils/domHelper"
@@ -12,8 +12,8 @@ export interface ScrollOffset {
 }
 
 export interface Direction {
-  x: DirectionEnum | null
-  y: DirectionEnum | null
+  x: Directions | null
+  y: Directions | null
 }
 
 export type UseScroll = () => {
@@ -47,13 +47,13 @@ export const getScrollDirection = (
   const newXDirection =
     newOffset.x === oldOffset.x
       ? null
-      : newOffset.x > oldOffset.x ? DirectionEnum.Right : DirectionEnum.Left
+      : newOffset.x > oldOffset.x ? Directions.Right : Directions.Left
 
   // prettier-ignore
   const newYDirection =
     newOffset.y === oldOffset.y
       ? null
-      : newOffset.y > oldOffset.y ? DirectionEnum.Down : DirectionEnum.Up
+      : newOffset.y > oldOffset.y ? Directions.Down : Directions.Up
 
   return {
     x: newXDirection,
@@ -113,13 +113,13 @@ export const useScrollYOffset = (): number | null => {
   return offset.y
 }
 
-export const useScrollXDirection = (): DirectionEnum | null => {
+export const useScrollXDirection = (): Directions | null => {
   const { direction } = useScroll()
 
   return direction.x
 }
 
-export const useScrollYDirection = (): DirectionEnum | null => {
+export const useScrollYDirection = (): Directions | null => {
   const { direction } = useScroll()
 
   return direction.y
