@@ -208,10 +208,10 @@ const CaseLayout: React.FC<PageData> = ({
           <S.FooterNavContainer>
             <S.FooterNav>
               <S.FooterNavLinkWrapper>
-                {prevCase?.label && prevCase?.url && (
+                {prevCase?.label && prevCase?.href && (
                   <>
                     <S.FooterNavLinkText>Previous</S.FooterNavLinkText>
-                    <S.FooterNavLink href={prevCase.url}>
+                    <S.FooterNavLink href={prevCase.href}>
                       {prevCase.label}
                     </S.FooterNavLink>
                   </>
@@ -224,10 +224,10 @@ const CaseLayout: React.FC<PageData> = ({
               </S.FooterCaseCurrent>
 
               <S.FooterNavLinkWrapper>
-                {nextCase?.label && nextCase?.url && (
+                {nextCase?.label && nextCase?.href && (
                   <>
                     <S.FooterNavLinkText>Next</S.FooterNavLinkText>
-                    <S.FooterNavLink href={nextCase.url}>
+                    <S.FooterNavLink href={nextCase.href}>
                       {nextCase.label}
                     </S.FooterNavLink>
                   </>

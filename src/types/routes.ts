@@ -1,8 +1,7 @@
 export type RouteType = "internal" | "external"
 
-export interface Route {
+export interface Route extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   label: string
-  url: string
   type?: RouteType
 }
 

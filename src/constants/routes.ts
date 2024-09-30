@@ -4,26 +4,26 @@ import { Routes } from "@ts/routes"
 export const routes: Routes = {
   about: {
     label: "About",
-    url: "/#about",
+    href: "/#about",
   },
   work: {
     label: "Work",
-    url: "/#work",
+    href: "/#work",
   },
   cases: {
     label: "Cases",
-    url: "/#cases",
+    href: "/#cases",
   },
   experience: {
     label: "Experience",
-    url: "/#experience",
+    href: "/#experience",
   },
   contact: {
     label: "Contact",
-    url: "/#contact",
+    href: "/#contact",
   },
   resume: {
     label: "Résumé",
-    url: "/resume.pdf",
+    href: "/resume.pdf",
   },
 }

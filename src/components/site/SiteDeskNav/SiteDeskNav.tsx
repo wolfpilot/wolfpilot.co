@@ -19,12 +19,12 @@ const leftItemsGroup = [routes.about, routes.work, routes.cases]
 const rightItemsGroup = [routes.experience, routes.contact, routes.resume]
 
 const generateNavItems = (routesGroup: Route[], hasPassedThreshold: boolean) =>
-  routesGroup.map(({ label, url }) => {
-    if (!label || !url) return null
+  routesGroup.map(({ label, href }) => {
+    if (!label || !href) return null
 
     return (
       <S.NavItem key={label}>
-        <S.NavItemLink href={url} $hasPassedThreshold={hasPassedThreshold}>
+        <S.NavItemLink href={href} $hasPassedThreshold={hasPassedThreshold}>
           {label}
         </S.NavItemLink>
       </S.NavItem>

@@ -12,7 +12,7 @@ export const mockItems: ShowcaseItem[] = [
     links: [
       {
         label: "Github",
-        url: "https://github.com/wolfpilot/up-n-running-gulp-boilerplate",
+        href: "https://github.com/wolfpilot/up-n-running-gulp-boilerplate",
         type: "external",
       },
     ],
@@ -39,7 +39,7 @@ export const mockItems: ShowcaseItem[] = [
     links: [
       {
         label: "DeviantArt",
-        url: "https://n-deed.deviantart.com/art/Forever-Darkness-Book-Cover-332757595",
+        href: "https://n-deed.deviantart.com/art/Forever-Darkness-Book-Cover-332757595",
         type: "external",
       },
     ],
@@ -65,7 +65,7 @@ export const mockItems: ShowcaseItem[] = [
     links: [
       {
         label: "DeviantArt",
-        url: "https://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
+        href: "https://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
         type: "external",
       },
     ],
@@ -92,7 +92,7 @@ export const mockItems: ShowcaseItem[] = [
     links: [
       {
         label: "DeviantArt",
-        url: "https://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
+        href: "https://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
         type: "external",
       },
     ],

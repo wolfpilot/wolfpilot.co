@@ -26,15 +26,16 @@ export interface Props {
 
 // Helpers
 const renderLinkText = (link: Route) => {
-  if (!link || !link.type || !link.url) return null
+  if (!link || !link.type || !link.href) return null
 
   return link.type === "external" ? (
     <>
-      View on <ExternalLink href={link.url}>{getDomain(link.url)}</ExternalLink>
+      View on{" "}
+      <ExternalLink href={link.href}>{getDomain(link.href)}</ExternalLink>
     </>
   ) : (
     <>
-      Go to <InternalLink href={link.url}>case study</InternalLink>
+      Go to <InternalLink href={link.href}>case study</InternalLink>
     </>
   )
 }

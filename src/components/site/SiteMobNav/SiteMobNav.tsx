@@ -109,13 +109,13 @@ const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
         <S.NavContentInner>
           <S.NavList {...animProps.list}>
             {Object.keys(routes).map((key) => {
-              const { label, url } = routes[key]
+              const { label, href } = routes[key]
 
-              if (!label || !url) return null
+              if (!label || !href) return null
 
               return (
                 <S.NavItem key={label} variants={itemVariants}>
-                  <S.NavItemLink href={url} onClick={handleOnLinkClick}>
+                  <S.NavItemLink href={href} onClick={handleOnLinkClick}>
                     {label}
                   </S.NavItemLink>
                 </S.NavItem>

@@ -22,15 +22,15 @@ const Contact: React.FC<Props> = () => (
       </Text>
 
       <Text>
-        <S.EmailLink href={social.email.url}>howl@wolfpilot.co</S.EmailLink>
+        <S.EmailLink href={social.email.href}>howl@wolfpilot.co</S.EmailLink>
       </Text>
 
       <Text>
         or find me on{" "}
-        <ExternalLink href={social.github.url}>github</ExternalLink> /{" "}
-        <ExternalLink href={social.codepen.url}>codepen</ExternalLink> /{" "}
-        <ExternalLink href={social.deviantart.url}>deviantart</ExternalLink> /{" "}
-        <ExternalLink href={social.linkedin.url}>linkedin</ExternalLink>
+        <ExternalLink href={social.github.href}>github</ExternalLink> /{" "}
+        <ExternalLink href={social.codepen.href}>codepen</ExternalLink> /{" "}
+        <ExternalLink href={social.deviantart.href}>deviantart</ExternalLink> /{" "}
+        <ExternalLink href={social.linkedin.href}>linkedin</ExternalLink>
       </Text>
     </Container>
   </S.Wrapper>
