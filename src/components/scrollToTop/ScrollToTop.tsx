@@ -1,9 +1,7 @@
 // Styles
 import * as S from "./styles"
 
-export interface Props {}
-
-const ScrollToTop: React.FC<Props> = () => {
+const ScrollToTop: React.FC = () => {
   const handleBtnClick = () => {
     window.scrollTo({
       top: 0,

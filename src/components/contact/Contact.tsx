@@ -10,9 +10,7 @@ import ExternalLink from "@components/generic/ExternalLink"
 import Heading from "@components/generic/Heading"
 import Text from "@components/generic/Text"
 
-export interface Props {}
-
-const Contact: React.FC<Props> = () => (
+const Contact: React.FC = () => (
   <S.Wrapper>
     <Container>
       <Heading level="h3">Get in touch</Heading>
