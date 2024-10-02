@@ -39,7 +39,7 @@ const FigureSlice: React.FC<Props> = ({ className, src, alt, caption }) => {
               100vw,
             `}
             alt={alt}
-            onLoadingComplete={handleLoadingComplete}
+            onLoad={handleLoadingComplete}
           />
           <S.Caption>{caption}</S.Caption>
           <S.ImageLoader isLoaded={isLoaded} />

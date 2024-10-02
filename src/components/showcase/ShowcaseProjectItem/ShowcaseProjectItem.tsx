@@ -88,7 +88,7 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
             width={thumb.width}
             height={thumb.height}
             alt={thumb.alt || ""}
-            onLoadingComplete={handleImgLoadingComplete}
+            onLoad={handleImgLoadingComplete}
             $isLoaded={isImgLoaded}
           />
 

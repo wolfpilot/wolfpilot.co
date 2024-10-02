@@ -115,7 +115,7 @@ const CaseLayout: React.FC<PageData> = ({
                 `}
                 alt={image.alt}
                 priority
-                onLoadingComplete={handleHeroImgLoadingComplete}
+                onLoad={handleHeroImgLoadingComplete}
               />
 
               {image.credits?.label && image.credits?.url && (
@@ -200,7 +200,7 @@ const CaseLayout: React.FC<PageData> = ({
               alt={image.alt}
               fill
               priority
-              onLoadingComplete={handleFooterImgLoadingComplete}
+              onLoad={handleFooterImgLoadingComplete}
               $isLoaded={isFooterImgLoaded}
             />
           </S.FooterImageWrapper>

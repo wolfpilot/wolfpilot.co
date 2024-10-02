@@ -55,7 +55,7 @@ const ImageSlice: React.FC<Props> = ({
           }
         `}
         alt={alt}
-        onLoadingComplete={handleLoadingComplete}
+        onLoad={handleLoadingComplete}
         $isLoaded={isLoaded}
       />
 

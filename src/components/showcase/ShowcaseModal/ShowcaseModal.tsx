@@ -360,7 +360,7 @@ const ShowcaseModal: React.FC = () => {
                             alt={data.image.alt}
                             $isImgMax={isImgMax}
                             $imgFillAxis={imgFillAxis}
-                            onLoadingComplete={handleImgLoadingComplete}
+                            onLoad={handleImgLoadingComplete}
                             onClick={handleZoomImgClick}
                           />
                         </S.ImageScroller>
