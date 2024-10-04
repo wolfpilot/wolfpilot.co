@@ -49,41 +49,27 @@ describe("Showcase", () => {
     await userEvent.click(
       screen.getByRole("button", { name: /web development 1/i })
     )
-
-    await waitFor(() => {
-      checkForActiveItems("web development")
-    })
+    await waitFor(() => checkForActiveItems("web development"))
 
     // Change the active tag
     await userEvent.click(screen.getByRole("button", { name: /web design 0/i }))
-
-    await waitFor(() => {
-      checkForActiveItems("web design")
-    })
+    await waitFor(() => checkForActiveItems("web design"))
 
     // Change the active tag
     await userEvent.click(
       screen.getByRole("button", { name: /concept art 0/i })
     )
-
-    await waitFor(() => {
-      checkForActiveItems("concept art")
-    })
+    await waitFor(() => checkForActiveItems("concept art"))
 
     // Change the active tag
     await userEvent.click(
       screen.getByRole("button", { name: /illustration 3/i })
     )
-
-    await waitFor(() => {
-      checkForActiveItems("illustration")
-    })
-
-    // Check that Featured projects are shown by default
-    checkForActiveItems("featured")
+    await waitFor(() => checkForActiveItems("illustration"))
 
     // Change the active tag
     await userEvent.click(screen.getByRole("button", { name: /featured 4/i }))
+    await waitFor(() => checkForActiveItems("featured"))
   })
 
   it("opens the modal when clicking on a project's image", async () => {
@@ -105,7 +91,6 @@ describe("Showcase", () => {
     await userEvent.click(
       screen.getByRole("button", { name: /illustration 3/i })
     )
-
     await waitFor(() => {
       checkForActiveItems("illustration")
     })
