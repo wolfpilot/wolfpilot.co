@@ -1,9 +1,4 @@
-import {
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
 // Data
@@ -166,9 +161,10 @@ describe("ShowcaseModal", () => {
 
     // Click to see the next project
     await userEvent.click(nextBtn)
-
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole("img", { name: mockItems[0].image.alt })
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("img", { name: mockItems[0].image.alt })
+      ).not.toBeInTheDocument()
     )
 
     // Check that the next content is shown
@@ -178,14 +174,18 @@ describe("ShowcaseModal", () => {
 
     // Click to see the previous project
     await userEvent.click(prevBtn)
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole("img", { name: mockItems[1].image.alt })
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("img", { name: mockItems[1].image.alt })
+      ).not.toBeInTheDocument()
     )
 
     // Click to see the previous project
     await userEvent.click(prevBtn)
-    await waitForElementToBeRemoved(() =>
-      screen.queryByRole("img", { name: mockItems[0].image.alt })
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("img", { name: mockItems[0].image.alt })
+      ).not.toBeInTheDocument()
     )
 
     // Check that the content has looped around to the last item
