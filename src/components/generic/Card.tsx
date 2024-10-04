@@ -70,7 +70,7 @@ const Card: React.FC<Props> = ({
               (min-width: ${mq.breakpoints.M}px) 66vw
             `}
             alt={backgroundImg.alt}
-            onLoadingComplete={handleBackgroundImgLoadingComplete}
+            onLoad={handleBackgroundImgLoadingComplete}
           />
 
           <BackgroundImageLoader isLoaded={isBackgroundImgLoaded} />
@@ -87,7 +87,7 @@ const Card: React.FC<Props> = ({
                 100vw,
               `}
               alt={featuredImg.alt}
-              onLoadingComplete={handleFeaturedImgLoadingComplete}
+              onLoad={handleFeaturedImgLoadingComplete}
             />
 
             {featuredImg.credits?.label && featuredImg.credits?.url && (

@@ -1,5 +1,5 @@
 // Types
-import { IconTypes, Icon } from "@ts/icons"
+import { IconTypes, Icon as Props } from "@ts/icons"
 
 // SVGs
 import Logo from "./Logo"
@@ -21,7 +21,7 @@ import DeviantArt from "./DeviantArt"
 import Github from "./Github"
 import LinkedIn from "./LinkedIn"
 
-const Icon: React.FC<Icon> = ({ type, ...props }) => {
+const Icon: React.FC<Props> = ({ type, ...props }) => {
   switch (type) {
     // Generic
     case IconTypes.Logo:

@@ -58,14 +58,14 @@ describe("Cases", () => {
     const toggleBtn = screen.getByRole("button")
 
     // Show all cases
-    userEvent.click(toggleBtn)
+    await userEvent.click(toggleBtn)
 
     await waitFor(() =>
       screen.findByRole("link", { name: /04 Some random stuff personal/ })
     )
 
     // Show less cases
-    userEvent.click(toggleBtn)
+    await userEvent.click(toggleBtn)
 
     await waitForElementToBeRemoved(() =>
       screen.queryByRole("link", { name: /04 Some random stuff personal/ })
