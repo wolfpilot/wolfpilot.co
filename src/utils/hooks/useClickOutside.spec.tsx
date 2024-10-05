@@ -19,7 +19,7 @@ describe("useClickOutside", () => {
     render(<MockComponent />)
     renderHook(() => useClickOutside(ref, mockCb))
 
-    userEvent.click(screen.getByTestId("wrapper"))
+    await userEvent.click(screen.getByTestId("wrapper"))
 
     await waitFor(() => expect(mockCb).toBeCalledTimes(1))
   })
@@ -37,7 +37,7 @@ describe("useClickOutside", () => {
     render(<MockComponent />)
     renderHook(() => useClickOutside(ref, mockCb))
 
-    userEvent.click(screen.getByTestId("target"))
+    await userEvent.click(screen.getByTestId("target"))
 
     await waitFor(() => expect(mockCb).not.toBeCalled())
   })

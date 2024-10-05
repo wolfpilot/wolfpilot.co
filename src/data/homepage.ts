@@ -28,7 +28,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "Github",
-          url: "https://github.com/wolfpilot/up-n-running-gulp-boilerplate",
+          href: "https://github.com/wolfpilot/up-n-running-gulp-boilerplate",
         },
       ],
     },
@@ -42,7 +42,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Forever-Darkness-Book-Cover-332757595",
+          href: "https://n-deed.deviantart.com/art/Forever-Darkness-Book-Cover-332757595",
         },
       ],
     },
@@ -56,7 +56,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "Github",
-          url: "https://github.com/wolfpilot/ColourMe",
+          href: "https://github.com/wolfpilot/ColourMe",
         },
       ],
     },
@@ -70,7 +70,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "Github",
-          url: "https://github.com/wolfpilot/music-box",
+          href: "https://github.com/wolfpilot/music-box",
         },
       ],
     },
@@ -83,11 +83,11 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "",
-          url: "/cases/retrocade",
+          href: "/cases/retrocade",
         },
         {
           label: "Codepen",
-          url: "https://codepen.io/wolfpilot/pen/5a00949b8ade2d0010989e454dfe654f/",
+          href: "https://codepen.io/wolfpilot/pen/5a00949b8ade2d0010989e454dfe654f/",
         },
       ],
     },
@@ -100,7 +100,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
+          href: "https://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
         },
       ],
     },
@@ -114,7 +114,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
+          href: "https://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
         },
       ],
     },
@@ -127,7 +127,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Vandal-396333301",
+          href: "https://n-deed.deviantart.com/art/Vandal-396333301",
         },
       ],
     },
@@ -141,7 +141,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "Codepen",
-          url: "https://codepen.io/wolfpilot/full/NrqemV/",
+          href: "https://codepen.io/wolfpilot/full/NrqemV/",
         },
       ],
     },
@@ -163,7 +163,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "",
-          url: "/cases/cawr",
+          href: "/cases/cawr",
         },
       ],
     },
@@ -177,7 +177,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Orc-Shield-323026962",
+          href: "https://n-deed.deviantart.com/art/Orc-Shield-323026962",
         },
       ],
     },
@@ -190,7 +190,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Silhouettes-479116661",
+          href: "https://n-deed.deviantart.com/art/Silhouettes-479116661",
         },
       ],
     },
@@ -204,7 +204,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Commission-Othor-Warrior-300991233",
+          href: "https://n-deed.deviantart.com/art/Commission-Othor-Warrior-300991233",
         },
       ],
     },
@@ -218,7 +218,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Commission-The-Tulh-300322013",
+          href: "https://n-deed.deviantart.com/art/Commission-The-Tulh-300322013",
         },
       ],
     },
@@ -231,7 +231,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Corporate-Ghost-Recon-289478028",
+          href: "https://n-deed.deviantart.com/art/Corporate-Ghost-Recon-289478028",
         },
       ],
     },
@@ -244,7 +244,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Grim-Reaper-Commission-334034630",
+          href: "https://n-deed.deviantart.com/art/Grim-Reaper-Commission-334034630",
         },
       ],
     },
@@ -258,7 +258,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/The-Floating-City-290472146",
+          href: "https://n-deed.deviantart.com/art/The-Floating-City-290472146",
         },
       ],
     },
@@ -272,7 +272,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Nomad-Warrior-288896159",
+          href: "https://n-deed.deviantart.com/art/Nomad-Warrior-288896159",
         },
       ],
     },
@@ -285,7 +285,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/TH-50-SPECTRE-Sniper-Rifle-332046473",
+          href: "https://n-deed.deviantart.com/art/TH-50-SPECTRE-Sniper-Rifle-332046473",
         },
       ],
     },
@@ -299,7 +299,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Samurai-I-264578714",
+          href: "https://n-deed.deviantart.com/art/Samurai-I-264578714",
         },
       ],
     },
@@ -312,7 +312,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Red-Fury-265161473",
+          href: "https://n-deed.deviantart.com/art/Red-Fury-265161473",
         },
       ],
     },
@@ -332,7 +332,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Steampunk-Pirate-480076759",
+          href: "https://n-deed.deviantart.com/art/Steampunk-Pirate-480076759",
         },
       ],
     },
@@ -345,7 +345,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Hello-There-Old-Friend-292403819",
+          href: "https://n-deed.deviantart.com/art/Hello-There-Old-Friend-292403819",
         },
       ],
     },
@@ -359,7 +359,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       links: [
         {
           label: "DeviantArt",
-          url: "https://n-deed.deviantart.com/art/Toucan-Study-419654587",
+          href: "https://n-deed.deviantart.com/art/Toucan-Study-419654587",
         },
       ],
     },

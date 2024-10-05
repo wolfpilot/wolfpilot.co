@@ -157,11 +157,11 @@ export const getStaticProps: GetStaticProps = async () => {
     if (!item.links?.length) return []
 
     return item.links.map((link) => {
-      if (!link.url) return link
+      if (!link.href) return link
 
       return {
         ...link,
-        type: getLinkType(link.url),
+        type: getLinkType(link.href),
       }
     })
   }

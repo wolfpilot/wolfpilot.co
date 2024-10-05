@@ -3,23 +3,23 @@ import { Routes } from "@ts/routes"
 
 export const social: Routes = {
   email: {
-    url: "mailto:howl@wolfpilot.co",
+    href: "mailto:howl@wolfpilot.co",
     label: "Email",
   },
   github: {
-    url: "https://github.com/wolfpilot",
+    href: "https://github.com/wolfpilot",
     label: "Github",
   },
   codepen: {
-    url: "https://codepen.io/wolfpilot",
+    href: "https://codepen.io/wolfpilot",
     label: "Codepen",
   },
   deviantart: {
-    url: "https://www.deviantart.com/n-deed",
+    href: "https://www.deviantart.com/n-deed",
     label: "DeviantArt",
   },
   linkedin: {
-    url: "https://www.linkedin.com/in/razvannegrea/",
+    href: "https://www.linkedin.com/in/razvannegrea/",
     label: "LinkedIn",
   },
 }

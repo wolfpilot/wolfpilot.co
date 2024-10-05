@@ -92,7 +92,8 @@ export const ItemIndicator = styled.div`
 export const ItemTrack = styled.div<{ $isHighlighted: boolean }>`
   width: 2px;
   height: 100%;
-  transition: background-color ${duration.medium}s ${ease.cubic},
+  transition:
+    background-color ${duration.medium}s ${ease.cubic},
     opacity ${duration.medium}s ${ease.cubic};
 
   ${({ $isHighlighted }) =>
@@ -114,7 +115,8 @@ export const ItemBullet = styled.div<{
   ${textStyles.copyL};
   color: ${({ $isHighlighted }) =>
     $isHighlighted ? "var(--c-accent1)" : "var(--c-neutral3)"};
-  transition: color ${duration.medium}s ${ease.cubic},
+  transition:
+    color ${duration.medium}s ${ease.cubic},
     transform ${duration.medium}s ${ease.cubic};
 
   ${({ $isActive }) =>

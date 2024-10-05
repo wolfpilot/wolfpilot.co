@@ -109,39 +109,42 @@ const dataChronoArray = dataArray.sort(
 )
 
 // Loop through array and add extra properties
-export const data = dataChronoArray.reduce((acc, val, index) => {
-  // Skip if first item
-  const prevIndex = index === 0 ? null : index - 1
+export const data = dataChronoArray.reduce(
+  (acc, val, index) => {
+    // Skip if first item
+    const prevIndex = index === 0 ? null : index - 1
 
-  // Skip if last item
-  const nextIndex = index === dataChronoArray.length - 1 ? null : index + 1
+    // Skip if last item
+    const nextIndex = index === dataChronoArray.length - 1 ? null : index + 1
 
-  const prevCaseData =
-    prevIndex === null
-      ? null
-      : {
-          label: dataChronoArray[prevIndex].meta.title,
-          url: `/cases/${dataChronoArray[prevIndex].meta.id}`,
-        }
+    const prevCaseData =
+      prevIndex === null
+        ? null
+        : {
+            label: dataChronoArray[prevIndex].meta.title,
+            url: `/cases/${dataChronoArray[prevIndex].meta.id}`,
+          }
 
-  const nextCaseData =
-    nextIndex === null
-      ? null
-      : {
-          label: dataChronoArray[nextIndex].meta.title,
-          url: `/cases/${dataChronoArray[nextIndex].meta.id}`,
-        }
+    const nextCaseData =
+      nextIndex === null
+        ? null
+        : {
+            label: dataChronoArray[nextIndex].meta.title,
+            url: `/cases/${dataChronoArray[nextIndex].meta.id}`,
+          }
 
-  const newPageData: PageData = {
-    ...val,
-    meta: {
-      ...val.meta,
-      ...(prevCaseData !== null && { prevCase: prevCaseData }),
-      ...(nextCaseData !== null && { nextCase: nextCaseData }),
-    },
-  }
+    const newPageData: PageData = {
+      ...val,
+      meta: {
+        ...val.meta,
+        ...(prevCaseData !== null && { prevCase: prevCaseData }),
+        ...(nextCaseData !== null && { nextCase: nextCaseData }),
+      },
+    }
 
-  acc[dashToCamel(val.meta.id)] = newPageData
+    acc[dashToCamel(val.meta.id)] = newPageData
 
-  return acc
-}, {} as Record<string, PageData>)
+    return acc
+  },
+  {} as Record<string, PageData>
+)

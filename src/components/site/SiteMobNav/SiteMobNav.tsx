@@ -3,7 +3,7 @@ import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 
 // Types
-import { DirectionEnum } from "@ts/global"
+import { Directions } from "@ts/global"
 
 // Constants
 import { routes } from "@constants/routes"
@@ -23,7 +23,7 @@ import SocialLinks from "@components/generic/SocialLinks"
 import { getListAnimProps, itemVariants, getSocialAnimProps } from "./animation"
 
 export interface Props {
-  scrollYDirection: DirectionEnum | null
+  scrollYDirection: Directions | null
 }
 
 const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
@@ -40,7 +40,7 @@ const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
   // prettier-ignore
   const hasScrolledDown = scrollYDirection === null
     ? false
-    : scrollYDirection === DirectionEnum.Down
+    : scrollYDirection === Directions.Down
 
   // Handlers
   const toggle = (newState: boolean) => {
@@ -109,13 +109,13 @@ const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
         <S.NavContentInner>
           <S.NavList {...animProps.list}>
             {Object.keys(routes).map((key) => {
-              const { label, url } = routes[key]
+              const { label, href } = routes[key]
 
-              if (!label || !url) return null
+              if (!label || !href) return null
 
               return (
                 <S.NavItem key={label} variants={itemVariants}>
-                  <S.NavItemLink href={url} onClick={handleOnLinkClick}>
+                  <S.NavItemLink href={href} onClick={handleOnLinkClick}>
                     {label}
                   </S.NavItemLink>
                 </S.NavItem>

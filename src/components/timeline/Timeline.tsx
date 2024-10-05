@@ -89,8 +89,8 @@ const Timeline: React.FC<Props> = ({ items }) => {
                   {position}
                 </S.ItemToggleBtn>
 
-                {company.url ? (
-                  <S.ItemCompanyLink href={company.url}>
+                {company.href ? (
+                  <S.ItemCompanyLink href={company.href}>
                     @ {company.label}
                   </S.ItemCompanyLink>
                 ) : (

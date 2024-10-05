@@ -360,7 +360,7 @@ const ShowcaseModal: React.FC = () => {
                             alt={data.image.alt}
                             $isImgMax={isImgMax}
                             $imgFillAxis={imgFillAxis}
-                            onLoadingComplete={handleImgLoadingComplete}
+                            onLoad={handleImgLoadingComplete}
                             onClick={handleZoomImgClick}
                           />
                         </S.ImageScroller>
@@ -387,23 +387,29 @@ const ShowcaseModal: React.FC = () => {
                     )}
                   </S.ControlZoomBtn>
 
-                  {data.links?.map((link, index) => (
-                    <Fragment key={index}>
-                      {link.type === "external" ? (
-                        <S.ControlExternalLink href={link.url}>
-                          <S.ControlTooltip>
-                            View on {getDomain(link.url)}
-                          </S.ControlTooltip>
-                          <S.Icon type="linkExternal" />
-                        </S.ControlExternalLink>
-                      ) : (
-                        <S.ControlInternalLink href={link.url}>
-                          <S.ControlTooltip>Go to case study</S.ControlTooltip>
-                          <S.Icon type="linkInternal" />
-                        </S.ControlInternalLink>
-                      )}
-                    </Fragment>
-                  ))}
+                  {data.links?.map((link, index) => {
+                    if (!link.href) return null
+
+                    return (
+                      <Fragment key={index}>
+                        {link.type === "external" ? (
+                          <S.ControlExternalLink href={link.href}>
+                            <S.ControlTooltip>
+                              View on {getDomain(link.href)}
+                            </S.ControlTooltip>
+                            <S.Icon type="linkExternal" />
+                          </S.ControlExternalLink>
+                        ) : (
+                          <S.ControlInternalLink href={link.href}>
+                            <S.ControlTooltip>
+                              Go to case study
+                            </S.ControlTooltip>
+                            <S.Icon type="linkInternal" />
+                          </S.ControlInternalLink>
+                        )}
+                      </Fragment>
+                    )
+                  })}
                 </S.Controls>
 
                 <S.Navigation>

@@ -75,7 +75,8 @@ export const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
 `
 
 export const ContentPrimary = styled.div`
-  transition: visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
+  transition:
+    visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
     opacity ${duration.slow}s ${ease.cubic} ${duration.medium}s,
     transform ${duration.slow}s ${ease.cubic} ${duration.medium}s;
 `
@@ -88,7 +89,8 @@ export const ContentSecondary = styled.div`
   opacity: 0;
   color: var(--c-neutral4);
   transform: translateY(-20px);
-  transition: visibility ${duration.slow}s ${ease.cubic},
+  transition:
+    visibility ${duration.slow}s ${ease.cubic},
     opacity ${duration.slow}s ${ease.cubic},
     transform ${duration.slow}s ${ease.cubic};
 
@@ -148,7 +150,8 @@ export const ContentWrapper = styled.div<{
       visibility: hidden;
       opacity: 0;
       transform: translateY(20px);
-      transition: visibility ${duration.slow}s ${ease.cubic},
+      transition:
+        visibility ${duration.slow}s ${ease.cubic},
         opacity ${duration.slow}s ${ease.cubic},
         transform ${duration.slow}s ${ease.cubic};
     }
@@ -157,7 +160,8 @@ export const ContentWrapper = styled.div<{
       visibility: visible;
       opacity: 1;
       transform: translateY(0);
-      transition: visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
+      transition:
+        visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
         opacity ${duration.slow}s ${ease.cubic} ${duration.medium}s,
         transform ${duration.slow}s ${ease.cubic} ${duration.medium}s;
     }
@@ -217,7 +221,8 @@ export const Wrapper = styled.li`
       visibility: hidden;
       opacity: 0;
       transform: translateY(20px);
-      transition: visibility ${duration.slow}s ${ease.cubic},
+      transition:
+        visibility ${duration.slow}s ${ease.cubic},
         opacity ${duration.slow}s ${ease.cubic},
         transform ${duration.slow}s ${ease.cubic};
     }
@@ -226,7 +231,8 @@ export const Wrapper = styled.li`
       visibility: visible;
       opacity: 1;
       transform: translateY(0);
-      transition: visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
+      transition:
+        visibility ${duration.slow}s ${ease.cubic} ${duration.medium}s,
         opacity ${duration.slow}s ${ease.cubic} ${duration.medium}s,
         transform ${duration.slow}s ${ease.cubic} ${duration.medium}s;
     }

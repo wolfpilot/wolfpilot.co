@@ -22,13 +22,13 @@ const Social: React.FC<Props> = ({ className, option }) => (
   <Wrapper className={className}>
     <SocialList>
       {Object.keys(social).map((key) => {
-        const { label, url } = social[key]
+        const { label, href } = social[key]
 
-        if (!label || !url) return null
+        if (!label || !href) return null
 
         return (
           <SocialItem key={label}>
-            <SocialItemLink option={option} href={url} aria-label={label}>
+            <SocialItemLink option={option} href={href} aria-label={label}>
               <SocialItemLinkIcon type={label.toLowerCase()} option={option} />
             </SocialItemLink>
           </SocialItem>

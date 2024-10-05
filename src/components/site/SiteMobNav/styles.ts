@@ -108,7 +108,8 @@ export const ToggleLine = styled.span<{ $isOpen: boolean }>`
   border-radius: 2px;
   background-color: ${({ $isOpen }) =>
     $isOpen ? `var(--c-white)` : `var(--c-accent1)`};
-  transition: background-color ${duration.medium}s ${ease.default},
+  transition:
+    background-color ${duration.medium}s ${ease.default},
     transform ${duration.medium}s ${ease.default};
 `
 
@@ -175,7 +176,8 @@ export const NavContent = styled.div<{ $isOpen: boolean }>`
   bottom: 0;
   padding: var(--grid-gutter-size);
   background-color: var(--c-pageColor);
-  transition: visibility ${duration.medium}s ${ease.cubic},
+  transition:
+    visibility ${duration.medium}s ${ease.cubic},
     opacity ${duration.medium}s ${ease.cubic};
 
   ${({ $isOpen }) =>

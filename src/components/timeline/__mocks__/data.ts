@@ -5,7 +5,7 @@ export const mockItems: TimelineItem[] = [
     position: "Senior Front-End Developer",
     company: {
       label: "Jungle Minds",
-      url: "https://www.jungleminds.com/",
+      href: "https://www.jungleminds.com/",
     },
     date: {
       start: "Jul 2019",
@@ -22,7 +22,7 @@ export const mockItems: TimelineItem[] = [
     position: "Senior Front-End Developer",
     company: {
       label: "Mirabeau",
-      url: "https://www.mirabeau.nl/",
+      href: "https://www.mirabeau.nl/",
     },
     date: {
       start: "Jan 2019",
@@ -35,7 +35,7 @@ export const mockItems: TimelineItem[] = [
     position: "Front-End Developer",
     company: {
       label: "Mirabeau",
-      url: "https://www.mirabeau.nl/",
+      href: "https://www.mirabeau.nl/",
     },
     date: {
       start: "Aug 2017",
@@ -49,7 +49,7 @@ export const mockItems: TimelineItem[] = [
     position: "Front-End Developer",
     company: {
       label: "Propeller Communications",
-      url: "https://www.propeller.co.uk/",
+      href: "https://www.propeller.co.uk/",
     },
     date: {
       start: "Jul 2015",
