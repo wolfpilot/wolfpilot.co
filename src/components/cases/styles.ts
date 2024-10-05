@@ -32,7 +32,8 @@ export const ItemNumber = styled.div`
     visibility: hidden;
     opacity: 0;
     transform: translateX(10px);
-    transition: visibility ${duration.medium}s ${ease.cubic},
+    transition:
+      visibility ${duration.medium}s ${ease.cubic},
       opacity ${duration.medium}s ${ease.cubic},
       transform ${duration.medium}s ${ease.cubic};
   }
@@ -76,7 +77,8 @@ const sharedCtaStyles = css`
   padding-bottom: var(--spacing-default);
   color: var(--c-neutral2);
   filter: hue-rotate(-270deg);
-  transition: color ${duration.slow}s ${ease.cubic},
+  transition:
+    color ${duration.slow}s ${ease.cubic},
     filter ${duration.slow}s ${ease.cubic};
 
   &:hover,
@@ -90,8 +92,8 @@ const sharedCtaStyles = css`
         visibility: visible;
         opacity: 1;
         transform: translateX(0);
-        transition: visibility ${duration.medium}s ${ease.cubic}
-            ${duration.fast}s,
+        transition:
+          visibility ${duration.medium}s ${ease.cubic} ${duration.fast}s,
           opacity ${duration.medium}s ${ease.cubic} ${duration.fast}s,
           transform ${duration.medium}s ${ease.cubic} ${duration.fast}s;
       }

@@ -96,7 +96,8 @@ export const NavItemLink = styled(InternalLink)<{
   display: block;
   color: var(--c-textNav);
   text-transform: lowercase;
-  transition: color ${duration.medium}s ${ease.cubic},
+  transition:
+    color ${duration.medium}s ${ease.cubic},
     transform ${duration.medium}s ${ease.cubic};
 
   ${({ $hasPassedThreshold }) =>

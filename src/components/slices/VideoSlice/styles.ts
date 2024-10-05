@@ -24,7 +24,8 @@ export const Placeholder = styled(NextImage)<{ $isVideoInit: boolean }>`
   width: 100%;
   height: auto;
   object-fit: cover;
-  transition: visibility ${duration.medium}s ${ease.cubic},
+  transition:
+    visibility ${duration.medium}s ${ease.cubic},
     opacity ${duration.medium}s ${ease.cubic};
 
   ${({ $isVideoInit }) =>
@@ -71,7 +72,8 @@ export const OverlayBtn = styled.button<{ $isVideoInit: boolean }>`
   align-items: center;
   // Fixes Firefox issue where the element collapses into itself
   width: 100%;
-  transition: visibility ${duration.medium}s ${ease.cubic},
+  transition:
+    visibility ${duration.medium}s ${ease.cubic},
     opacity ${duration.medium}s ${ease.cubic};
 
   ${({ $isVideoInit }) =>

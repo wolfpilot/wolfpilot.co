@@ -155,7 +155,8 @@ export const ControlTooltip = styled(Tooltip)`
     visibility: hidden;
     opacity: 0;
     transform: translateY(-50%);
-    transition: visibility ${duration.medium}s ${ease.cubic},
+    transition:
+      visibility ${duration.medium}s ${ease.cubic},
       opacity ${duration.medium}s ${ease.cubic},
       padding ${duration.medium}s ${ease.cubic};
   }
@@ -210,7 +211,8 @@ export const NavigationTooltip = styled(Tooltip)`
     visibility: hidden;
     opacity: 0;
     transform: translate(-50%, 0);
-    transition: visibility ${duration.medium}s ${ease.cubic},
+    transition:
+      visibility ${duration.medium}s ${ease.cubic},
       opacity ${duration.medium}s ${ease.cubic},
       transform ${duration.medium}s ${ease.cubic};
   }
