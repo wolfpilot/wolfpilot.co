@@ -20,9 +20,9 @@ const ImageLoader: React.FC<Props> = ({
   <S.Wrapper
     className={className}
     $isLoaded={isLoaded}
-    duration={duration}
-    ease={ease}
-    delay={delay}
+    $duration={duration}
+    $ease={ease}
+    $delay={delay}
   />
 )
 

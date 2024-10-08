@@ -2,9 +2,9 @@ import styled from "styled-components"
 
 export const Wrapper = styled.div<{
   $isLoaded: boolean
-  duration: number
-  ease: string
-  delay: number
+  $duration: number
+  $ease: string
+  $delay: number
 }>`
   position: absolute;
   z-index: 1;
@@ -15,6 +15,6 @@ export const Wrapper = styled.div<{
   background-color: var(--c-neutral4);
   transform: ${({ $isLoaded }) =>
     $isLoaded ? "translateY(100%)" : "translateY(0)"};
-  ${({ duration, ease, delay }) =>
-    duration && `transition: transform ${duration}s ${ease} ${delay}s;`}
+  ${({ $duration, $ease, $delay }) =>
+    $duration && `transition: transform ${$duration}s ${$ease} ${$delay}s;`}
 `
