@@ -120,7 +120,7 @@ And some ideas I had initially for the splash screen animation.
 
 ### Page Transitions
 
-While the transitions between pages is not anything spectacular, I found that "wiping" away the content only to reveal the new one from underneath gives a break from the amount of information, colours and effects seen previously. Think of it as a break, a moment of rest in between musical acts or a calm scene following 20 minutes of non-stop action in your favourite movie.
+While the transitions between pages are not anything spectacular, I found that "wiping" away the content only to reveal the new one from underneath gives a break from the amount of information, colours and effects seen previously. Think of it as a break, a moment of rest in between musical acts or a calm scene following 20 minutes of non-stop action in your favourite movie.
 
 When everything is busy, nothing stands out. An interruption in the rhythm makes a great impact.
 
