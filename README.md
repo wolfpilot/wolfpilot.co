@@ -112,9 +112,7 @@ This also creates an initial impression of the branding whose elements can later
 
 Below is a recording of the logo animation at 25% speed.
 
-<video width="100%" height="auto" controls autoplay loop muted>
-  <source src="./docs/videos/logo-animation-slowmo.mp4" type="video/mp4">
-</video>
+https://github.com/user-attachments/assets/4afafbcf-4169-4bbf-a155-6c32934d811f
 
 And some ideas I had initially for the splash screen animation.
 
