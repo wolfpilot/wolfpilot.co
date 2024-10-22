@@ -105,7 +105,7 @@ const dataArray: PageData[] = [
 
 // Sort from new to old
 const dataChronoArray = dataArray.sort(
-  (a, b) => a.meta.date.getTime() - b.meta.date.getTime()
+  (a, b) => b.meta.date.getTime() - a.meta.date.getTime()
 )
 
 // Loop through array and add extra properties
@@ -122,7 +122,7 @@ export const data = dataChronoArray.reduce(
         ? null
         : {
             label: dataChronoArray[prevIndex].meta.title,
-            url: `/cases/${dataChronoArray[prevIndex].meta.id}`,
+            href: `/cases/${dataChronoArray[prevIndex].meta.id}`,
           }
 
     const nextCaseData =
@@ -130,7 +130,7 @@ export const data = dataChronoArray.reduce(
         ? null
         : {
             label: dataChronoArray[nextIndex].meta.title,
-            url: `/cases/${dataChronoArray[nextIndex].meta.id}`,
+            href: `/cases/${dataChronoArray[nextIndex].meta.id}`,
           }
 
     const newPageData: PageData = {
