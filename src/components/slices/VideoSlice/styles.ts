@@ -12,7 +12,13 @@ export const Wrapper = styled.div<{ $fullWidth: boolean }>`
   position: relative;
   width: 100%;
   margin: 0 auto;
-  ${({ $fullWidth }) => !$fullWidth && `max-width: var(--max-content-width);`}
+  ${({ $fullWidth }) =>
+    !$fullWidth &&
+    `
+      display: flex;
+      justify-content: center;
+      max-width: var(--max-content-width);
+    `}
 
   &:not(:last-child) {
     margin-bottom: var(--spacing-block);
@@ -21,7 +27,6 @@ export const Wrapper = styled.div<{ $fullWidth: boolean }>`
 
 export const Placeholder = styled(NextImage)<{ $isVideoInit: boolean }>`
   display: block;
-  width: 100%;
   height: auto;
   object-fit: cover;
   transition:
