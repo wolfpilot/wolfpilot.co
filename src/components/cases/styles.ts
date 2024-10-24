@@ -39,8 +39,8 @@ export const ItemNumber = styled.div`
   }
 `
 
-export const ItemTitle = styled(Heading)`
-  ${textStyles.headingM};
+export const ItemTitle = styled(Heading)<{ isToggle?: boolean }>`
+  ${({ isToggle }) => (isToggle ? textStyles.headingS : textStyles.headingM)};
   margin-bottom: 0;
 
   ${mq.from.S`
