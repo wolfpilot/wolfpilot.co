@@ -86,20 +86,20 @@ const Timeline: React.FC<Props> = ({ items }) => {
                   disabled={showAll}
                   onClick={() => handleToggleBtnClick(index)}
                 >
-                  {position}
+                  <S.ItemPosition>{position}</S.ItemPosition>
+
+                  {company.href ? (
+                    <S.ItemCompanyLink href={company.href}>
+                      @ {company.label}
+                    </S.ItemCompanyLink>
+                  ) : (
+                    <S.ItemCompanyName>— {company.label}</S.ItemCompanyName>
+                  )}
+
+                  <S.ItemDate>
+                    {item.date.start} - {item.date.end}
+                  </S.ItemDate>
                 </S.ItemToggleBtn>
-
-                {company.href ? (
-                  <S.ItemCompanyLink href={company.href}>
-                    @ {company.label}
-                  </S.ItemCompanyLink>
-                ) : (
-                  <S.ItemCompanyName>— {company.label}</S.ItemCompanyName>
-                )}
-
-                <S.ItemDate>
-                  {item.date.start} - {item.date.end}
-                </S.ItemDate>
 
                 <S.ItemDetails {...itemAnimProps} $isActive={isActive}>
                   <S.ItemDescription>{item.description}</S.ItemDescription>
