@@ -181,6 +181,13 @@ export const ContentWrapper = styled.div<{
 
 export const Links = styled.ul`
   ${listResetStyles};
+
+  a {
+    &:focus-within,
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
 
 export const Wrapper = styled.li`
