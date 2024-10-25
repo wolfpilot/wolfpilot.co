@@ -125,6 +125,7 @@ export const base = css`
     // Gradients
     --g-primary-diagonal: ${gradients.primaryDiagonal};
     --g-secondary-diagonal: ${gradients.secondaryDiagonal};
+    --g-tertiary-diagonal: ${gradients.tertiaryDiagonal};
     --g-neutral-radial: ${gradients.neutralRadial};
   }
 
