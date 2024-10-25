@@ -479,7 +479,7 @@ const timelineItemsData = [
     position: "Individual Retail Trader",
     company: {
       label: "Self-Employed",
-      url: "",
+      href: "",
     },
     date: {
       start: "Jan 2021",
@@ -496,7 +496,7 @@ const timelineItemsData = [
     position: "Senior Front-End Developer",
     company: {
       label: "Jungle Minds",
-      url: "https://www.jungleminds.com/",
+      href: "https://www.jungleminds.com/",
     },
     date: {
       start: "Jul 2019",
@@ -513,7 +513,7 @@ const timelineItemsData = [
     position: "Senior Front-End Developer",
     company: {
       label: "Mirabeau",
-      url: "https://www.mirabeau.nl/",
+      href: "https://www.mirabeau.nl/",
     },
     date: {
       start: "Jan 2019",
@@ -526,7 +526,7 @@ const timelineItemsData = [
     position: "Front-End Developer",
     company: {
       label: "Mirabeau",
-      url: "https://www.mirabeau.nl/",
+      href: "https://www.mirabeau.nl/",
     },
     date: {
       start: "Aug 2017",
@@ -540,7 +540,7 @@ const timelineItemsData = [
     position: "Front-End Developer",
     company: {
       label: "Propeller Communications",
-      url: "https://www.propeller.co.uk/",
+      href: "https://www.propeller.co.uk/",
     },
     date: {
       start: "Jul 2015",
@@ -554,7 +554,7 @@ const timelineItemsData = [
     position: "Web Designer & Developer",
     company: {
       label: "Freelance",
-      url: "",
+      href: "",
     },
     date: {
       start: "Jun 2013",
@@ -566,7 +566,7 @@ const timelineItemsData = [
     position: "Concept Artist & Illustrator",
     company: {
       label: "Freelance",
-      url: "",
+      href: "",
     },
     date: {
       start: "May 2012",

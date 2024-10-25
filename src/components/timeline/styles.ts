@@ -129,17 +129,23 @@ export const ItemBullet = styled.div<{
 
 export const ItemToggleBtn = styled.button`
   ${btnResetStyles};
-  ${textStyles.copy};
+  width: 100%;
   text-align: left;
-
-  ${mq.from.XS`
-    ${textStyles.copyL};
-  `}
+  line-height: normal;
 
   &[disabled] {
     color: var(--c-black);
     cursor: initial;
   }
+`
+
+export const ItemPosition = styled(Text)`
+  ${textStyles.copy};
+  margin-bottom: 0;
+
+  ${mq.from.XS`
+    ${textStyles.copyL};
+  `}
 `
 
 export const ItemCompanyLink = styled(ExternalLink)`
@@ -152,10 +158,12 @@ export const ItemCompanyLink = styled(ExternalLink)`
 `
 
 export const ItemCompanyName = styled(Text)`
+  ${textStyles.copy};
   margin-bottom: 0;
 `
 
 export const ItemDate = styled(Text)`
+  ${textStyles.copy};
   margin-bottom: 0;
 `
 
