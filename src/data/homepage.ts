@@ -19,16 +19,67 @@ export interface ShowcaseDataRaw {
 const showcaseDataRaw: ShowcaseDataRaw = {
   items: [
     {
-      id: "up-n-running",
-      name: "Up n' running",
+      id: "galactic-adventures-client",
+      name: "Galactic Adventures Client",
       tagline:
-        "Simple boilerplate initially created as an alternative for its slightly older cousin, Grunt.",
-      tags: ["featured", "web development"],
-      alt: "Illustration of a plastic cup with a straw in it next to some text.",
+        "Pick a destination, anywhere in this Universe you can think of, and go!",
+      tags: ["featured", "web development", "web design"],
+      alt: "Astronaut in suit walking across the surface of Mars.",
       links: [
         {
           label: "Github",
-          href: "https://github.com/wolfpilot/up-n-running-gulp-boilerplate",
+          href: "https://github.com/wolfpilot/galactic-adventures-client",
+        },
+        {
+          label: "Render",
+          href: "https://wolfpilot-galactic-adventures-client.onrender.com/",
+        },
+      ],
+    },
+    {
+      id: "galactic-adventures-server",
+      name: "Galactic Adventures Server",
+      tagline: "Back-end counterpart for the GA app.",
+      tags: ["featured", "web development"],
+      alt: "Code screenshot of a Back-End response.",
+      links: [
+        {
+          label: "Github",
+          href: "https://github.com/wolfpilot/galactic-adventures-server",
+        },
+      ],
+    },
+    {
+      id: "planet-blue-plc",
+      name: "Planet Blue PLC",
+      tagline: "Demo app for fictional sustainable energy provider.",
+      tags: ["featured", "web development", "web design"],
+      alt: "Logo showing a circle filled with wavey lines and text saying Planet Blue.",
+      links: [
+        {
+          label: "Github",
+          href: "https://github.com/wolfpilot/planet-blue-plc",
+        },
+        {
+          label: "Vercel",
+          href: "https://planet-blue-plc.vercel.app/",
+        },
+      ],
+    },
+    {
+      id: "boids",
+      name: "Boids",
+      tagline: "Artificial life simulation using JS Canvas.",
+      tags: ["featured", "web development"],
+      alt: "Screenshot of multiple coloured blobs simulating flocking behaviour.",
+      links: [
+        {
+          label: "Github",
+          href: "https://github.com/wolfpilot/boids",
+        },
+        {
+          label: "Github",
+          href: "https://wolfpilot.github.io/boids/",
         },
       ],
     },
@@ -61,16 +112,29 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "music-box",
-      name: "Music B[]X",
-      tagline:
-        "A React + Redux music player app based on Facebook's ever so popular create-react-app tool.",
-      tags: ["featured", "web development"],
-      alt: "An album preview showing the track list and the artwork at the top.",
+      id: "vandal",
+      name: "Vandal",
+      tagline: "The dream rat rod.",
+      tags: ["featured", "illustration"],
+      alt: "Rusted hot rod sitting in front of a sunset and a palm tree.",
       links: [
         {
-          label: "Github",
-          href: "https://github.com/wolfpilot/music-box",
+          label: "DeviantArt",
+          href: "https://n-deed.deviantart.com/art/Vandal-396333301",
+        },
+      ],
+    },
+    {
+      id: "welcome-to-my-world",
+      name: "Welcome to my world",
+      tagline:
+        "Started as an exploration of vertical momentum, ended up planning my first house on the side of a mountain.",
+      tags: ["featured", "illustration"],
+      alt: "A young man resting on a tree admires a distant waterfall. 30 meters above, there is a small, rustic house on the cliffside.",
+      links: [
+        {
+          label: "DeviantArt",
+          href: "https://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
         },
       ],
     },
@@ -92,46 +156,46 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "machina-inferni",
-      name: "MACHINA INFERNI",
-      tagline: "Who doesn't love mechs?",
-      tags: ["featured", "illustration"],
-      alt: "Half destroyed mecha on an alien moon. It's weilding a smoking gatling gun.",
+      id: "demotivator-rest-api",
+      name: "Demotivator REST API",
+      tagline: "Feeling motivated? Stop it, now's not the time.",
+      tags: ["featured", "web development"],
+      alt: "Demotivational funny quotes.",
       links: [
         {
-          label: "DeviantArt",
-          href: "https://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
+          label: "Github",
+          href: "https://github.com/wolfpilot/demotivator-rest-api",
         },
       ],
     },
     {
-      id: "welcome-to-my-world",
-      name: "Welcome to my world",
+      id: "music-box",
+      name: "Music B[]X",
       tagline:
-        "Started as an exploration of vertical momentum, ended up planning my first house on the side of a mountain.",
-      tags: ["featured", "illustration"],
-      alt: "A young man resting on a tree admires a distant waterfall. 30 meters above, there is a small, rustic house on the cliffside.",
+        "A React + Redux music player app based on Facebook's ever so popular create-react-app tool.",
+      tags: ["web development"],
+      alt: "An album preview showing the track list and the artwork at the top.",
       links: [
         {
-          label: "DeviantArt",
-          href: "https://n-deed.deviantart.com/art/Welcome-To-My-World-254089985",
+          label: "Github",
+          href: "https://github.com/wolfpilot/music-box",
         },
       ],
     },
     {
-      id: "vandal",
-      name: "Vandal",
-      tagline: "The dream rat rod.",
-      tags: ["featured", "illustration"],
-      alt: "Rusted hot rod sitting in front of a sunset and a palm tree.",
+      id: "up-n-running",
+      name: "Up n' running",
+      tagline:
+        "Simple boilerplate initially created as an alternative for its slightly older cousin, Grunt.",
+      tags: ["web development"],
+      alt: "Illustration of a plastic cup with a straw in it next to some text.",
       links: [
         {
-          label: "DeviantArt",
-          href: "https://n-deed.deviantart.com/art/Vandal-396333301",
+          label: "Github",
+          href: "https://github.com/wolfpilot/up-n-running-gulp-boilerplate",
         },
       ],
     },
-
     {
       id: "phone-concept",
       name: "Phone concept",
@@ -322,6 +386,19 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       tagline: "Elegance with a sharp edge.",
       tags: ["concept art"],
       alt: "Curved bladed weapon with a round Ruby encrusted into its handle.",
+    },
+    {
+      id: "machina-inferni",
+      name: "MACHINA INFERNI",
+      tagline: "Who doesn't love mechs?",
+      tags: ["illustration"],
+      alt: "Half destroyed mecha on an alien moon. It's weilding a smoking gatling gun.",
+      links: [
+        {
+          label: "DeviantArt",
+          href: "https://n-deed.deviantart.com/art/M-A-C-H-I-N-A-I-N-F-E-R-N-I-303870376",
+        },
+      ],
     },
     {
       id: "steampunk-pirate",
