@@ -16,7 +16,6 @@ const pseudoHoverStyles = css`
   bottom: 0;
   left: 0;
   background: var(--g-secondary-diagonal);
-  mix-blend-mode: exclusion;
   transform: scaleY(0);
   transform-origin: top center;
   pointer-events: none;
@@ -42,6 +41,7 @@ export const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   // Decorative pseudo-element shown on item hover
   &::after {
     ${pseudoHoverStyles};
+    mix-blend-mode: exclusion;
   }
 `
 
@@ -172,6 +172,7 @@ export const ContentWrapper = styled.div<{
   // Decorative pseudo-element shown on item hover
   &::before {
     ${pseudoHoverStyles};
+    mix-blend-mode: difference;
   }
 
   &:focus {
