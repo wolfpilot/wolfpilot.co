@@ -92,7 +92,7 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
             $isLoaded={isImgLoaded}
           />
 
-          <ImageLoader isLoaded={isImgLoaded} />
+          <ImageLoader isLoaded={isImgLoaded} delay={0.15} />
         </S.ThumbnailBtn>
       </S.ThumbnailWrapper>
 
