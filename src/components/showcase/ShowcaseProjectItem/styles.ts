@@ -26,7 +26,6 @@ const pseudoHoverStyles = css`
 // Main styles
 export const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
   position: relative;
-  overflow: hidden;
   background: none;
   outline: none;
   border: none;
@@ -47,6 +46,8 @@ export const ThumbnailWrapper = styled.div<{ $isLoaded: boolean }>`
 `
 
 export const ThumbnailBtn = styled.button`
+  position: relative;
+  overflow: hidden;
   display: block;
   width: 100%;
   height: 100%;
@@ -103,6 +104,7 @@ export const ContentWrapper = styled.div<{
   $isLoaded: boolean
   $linksAmount: number
 }>`
+  overflow: hidden;
   padding: var(--spacing-default);
 
   /**
@@ -184,7 +186,6 @@ export const Links = styled.ul`
 export const Wrapper = styled.li`
   ${fixBorderRadiusOverflow}
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: var(--c-neutral4);
@@ -195,6 +196,7 @@ export const Wrapper = styled.li`
   border-left-style: solid;
   border-right-style: solid;
   border-radius: var(--border-radius-sml);
+  break-inside: avoid;
 
   ${mq.from.M`
     border: none;
