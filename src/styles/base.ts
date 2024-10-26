@@ -144,6 +144,10 @@ export const base = css`
     font-smooth: never;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     ${textStyles.copy};
     position: relative;
