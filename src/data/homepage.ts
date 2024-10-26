@@ -169,6 +169,23 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
+      id: "jungle-minds",
+      name: "Jungle Minds",
+      tagline: "Experience JM's new website in all its glory!",
+      tags: ["web development"],
+      alt: "Jungle Minds logo spelled out of geometrical shape.",
+      links: [
+        {
+          label: "",
+          href: "/cases/jungle-minds",
+        },
+        {
+          label: "Jungle Minds",
+          href: "https://www.jungleminds.com/",
+        },
+      ],
+    },
+    {
       id: "music-box",
       name: "Music B[]X",
       tagline:
