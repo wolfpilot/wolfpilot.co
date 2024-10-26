@@ -42,7 +42,7 @@ const Timeline: React.FC<Props> = ({ items }) => {
     <S.Wrapper>
       <S.Controls>
         <S.ControlToggleAll type="button" onClick={handleToggleAllClick}>
-          {showAll ? "hide all" : "show all"}
+          {showAll ? "show less" : "show all"}
         </S.ControlToggleAll>
       </S.Controls>
 

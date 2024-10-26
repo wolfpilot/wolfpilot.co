@@ -80,8 +80,8 @@ const Cases: React.FC<Props> = ({ items }) => {
                 {showAll ? "-" : "+"}
                 {hiddenItemsAmount}
               </S.ItemNumber>
-              <S.ItemTitle level="h3">
-                View {showAll ? "less" : "all"}
+              <S.ItemTitle level="h3" isToggle>
+                {showAll ? "Show less" : "Show all"}
               </S.ItemTitle>
             </S.ItemBtn>
           </S.Item>

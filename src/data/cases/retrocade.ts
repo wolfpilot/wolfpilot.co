@@ -34,7 +34,7 @@ export const meta: Meta = {
 const summary: Summary = {
   heading:
     "An adventure through the magical world of CSS design & keyframe animations",
-  html: `<p>Retrocade is an ambitious ever-growing experiment set out to create a functional, semi-realistic audio system in HTML, CSS and JavaScript only.
+  html: `<p>Retrocade is an ambitious experiment set out to create a functional, semi-realistic audio system in HTML, CSS and JavaScript only.
   
   Demo on <a href="https://codepen.io/wolfpilot/pen/EyKzqW" target="_blank" rel="noopener noreferrer">Codepen</a>.
   </p>`,
@@ -49,10 +49,12 @@ const statement: Statement = {
       url: "https://unsplash.com/photos/RZwbk4Kc2xg",
     },
   },
-  heading: "The future is watching",
-  copy: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-
-  Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis.`,
+  heading: "Pushing the limits",
+  copy: `As much as CSS can be obtuse at times and we like to joke about it, it can also be leveraged to accomplish absolutely stunning visuals. Take a look on Codepen. Every day a couple of small, nifty projects come up that blow everyone's minds.
+  
+  Paintings in CSS? Done. 3D in 2D? Done. Entire forms without a shred of Javascript? That's also a thing. The possibilities are truly endless.
+  
+  Why not, then, replicate a more or less functional R2R recorder using (mostly) CSS?`,
 }
 
 export const content: Content = [
@@ -94,10 +96,11 @@ export const content: Content = [
     },
   },
   {
-    type: "image",
+    type: "figure",
     data: {
       src: Image2,
       alt: "Lower part of a reel-to-reel tape recorder generated in CSS only",
+      caption: "Close-up details",
     },
   },
   {

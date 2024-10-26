@@ -11,7 +11,7 @@ export interface Props {
 }
 
 const TextBlockSlice: React.FC<Props> = ({ heading, subheading, html }) => {
-  if (!(heading && subheading && html)) return null
+  if (!(heading || subheading) && !html) return null
 
   return (
     <S.Wrapper>

@@ -35,8 +35,10 @@ const summary: Summary = {
   html: `<p>Part of Coventry University, the Centre for Agroecology, Water and Resilience conducts research aimed at developing more resilient food and water systems throughout the world.
     
     In order to counteract climate and environmental change, loss of biodiversity, natural and man-made disasters and other destabilising factors, CAWR is continually seeking to expand its international team of researchers, becoming the largest centre in the world to do trans-disciplinary research on the links between agroecology and sustainable food systems, water management, and community and socio-ecological resilience.
+  
+    I was approached by the Executive Director, <a href="https://pureportal.coventry.ac.uk/en/persons/michel-pimbert" target="_blank" rel="noopener noreferrer">Dr. Michel Pimbert</a>, to design CAWR's Communication and Publications web platform, emphasising in particular their internal working paper series, videos and animations, books and other multimedia publications.
     
-    I was approached by the Executive Director, <a href="https://pureportal.coventry.ac.uk/en/persons/michel-pimbert" target="_blank" rel="noopener noreferrer">Dr. Michel Pimbert</a>, to design CAWR's Communication and Publications web platform, emphasising in particular their internal working paper series, videos and animations, book series and other multimedia publications.</p>`,
+    For an introduction to CAWR's work, please see the official <a href="https://www.coventry.ac.uk/globalassets/media/global/08-new-research-section/cawr/cawr-brochure-6.pdf" target="_blank" rel="noopener noreferrer">brochure</a>.</p>`,
 }
 
 const statement: Statement = {
@@ -48,10 +50,10 @@ const statement: Statement = {
       url: "https://unsplash.com/photos/jin4W1HqgL4",
     },
   },
-  heading: "Some random facts about this project",
-  copy: `Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+  heading: "Agroecology in a nutshell",
+  copy: `Agroecology is a farming approach that works with nature to create healthy and sustainable food systems. It avoids chemicals like pesticides and synthetic fertilizers. Instead, it uses natural methods like planting different crops together, rotating crops, and using compost to improve the soil. This includes planting different crops together, rotating crops each season, and using natural compost to improve soil health. The idea is to see farms as living ecosystems where plants, animals, and people work together to maintain balance.
 
-  Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis.`,
+  Agroecology also supports food sovereignty, meaning that farmers and local communities have more control over their food and resources. It promotes fair food distribution and helps small farmers protect their land. Overall, agroecology is a way to tackle big challenges like climate change and hunger while creating a more sustainable future.`,
 }
 
 const content: Content = [
