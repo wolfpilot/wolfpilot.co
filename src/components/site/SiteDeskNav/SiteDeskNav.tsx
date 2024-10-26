@@ -16,7 +16,7 @@ export interface Props {
 const SCROLL_THRESHOLD = parseInt(sizes.siteHeaderSize.desk, 10)
 
 const leftItemsGroup = [routes.about, routes.work, routes.cases]
-const rightItemsGroup = [routes.experience, routes.contact, routes.resume]
+const rightItemsGroup = [routes.experience, routes.contact]
 
 const generateNavItems = (routesGroup: Route[], hasPassedThreshold: boolean) =>
   routesGroup.map(({ label, href }) => {
@@ -59,6 +59,15 @@ const SiteDeskNav: React.FC<Props> = ({ scrollYOffset }) => {
 
             <S.NavItemGroup>
               {generateNavItems(rightItemsGroup, hasPassedThreshold)}
+
+              <S.NavItem>
+                <S.NavItemResumeLink
+                  href={routes.resume.href}
+                  $hasPassedThreshold={hasPassedThreshold}
+                >
+                  {routes.resume.label}
+                </S.NavItemResumeLink>
+              </S.NavItem>
             </S.NavItemGroup>
           </S.NavContent>
         </S.Container>
