@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { motion } from "framer-motion"
 
 // Styles
@@ -11,8 +11,21 @@ import { ease, duration } from "@styles/animation"
 
 // Components
 import InternalLink from "@components/generic/InternalLink"
+import ExternalLink from "@components/generic/ExternalLink"
 import LogoComponent from "@components/logo/Logo"
 
+// Shared styles
+const sharedNavItemLinkStyles = css`
+  ${textStyles.navLinkMob};
+  color: var(--c-white);
+  transition: color ${duration.medium}s ${ease.cubic};
+
+  &:hover {
+    color: var(--c-black);
+  }
+`
+
+// Main styles
 export const Wrapper = styled.nav`
   height: 100%;
   pointer-events: all;
@@ -225,11 +238,9 @@ export const NavItem = styled(motion.li)`
 `
 
 export const NavItemLink = styled(InternalLink)`
-  ${textStyles.navLinkMob};
-  color: var(--c-white);
-  transition: color ${duration.medium}s ${ease.cubic};
+  ${sharedNavItemLinkStyles};
+`
 
-  &:hover {
-    color: var(--c-black);
-  }
+export const NavItemLinkResume = styled(ExternalLink)`
+  ${sharedNavItemLinkStyles};
 `

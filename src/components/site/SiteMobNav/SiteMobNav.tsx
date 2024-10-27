@@ -26,6 +26,15 @@ export interface Props {
   scrollYDirection: Directions | null
 }
 
+// Setup
+const navLinks = [
+  routes.about,
+  routes.work,
+  routes.cases,
+  routes.experience,
+  routes.contact,
+]
+
 const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -108,8 +117,8 @@ const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
       <S.NavContent $isOpen={isOpen}>
         <S.NavContentInner>
           <S.NavList {...animProps.list}>
-            {Object.keys(routes).map((key) => {
-              const { label, href } = routes[key]
+            {navLinks.map((item) => {
+              const { label, href } = item
 
               if (!label || !href) return null
 
@@ -121,6 +130,12 @@ const SiteMobNav: React.FC<Props> = ({ scrollYDirection }) => {
                 </S.NavItem>
               )
             })}
+
+            <S.NavItem variants={itemVariants}>
+              <S.NavItemLinkResume href={routes.resume.href}>
+                {routes.resume.label}
+              </S.NavItemLinkResume>
+            </S.NavItem>
           </S.NavList>
 
           <motion.div {...animProps.social}>

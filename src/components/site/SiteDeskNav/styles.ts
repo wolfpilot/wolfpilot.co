@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -11,6 +11,36 @@ import { textStyles } from "@styles/textStyles"
 import ContainerComponent from "@components/layout/Container/Container"
 import LogoComponent from "@components/logo/Logo"
 import InternalLink from "@components/generic/InternalLink"
+import ExternalLink from "@components/generic/ExternalLink"
+
+export const sharedNavItemLinkStyles = css<{
+  $hasPassedThreshold: boolean
+}>`
+  ${textStyles.navLinkDesk};
+
+  display: block;
+  color: var(--c-textNav);
+  text-transform: lowercase;
+  transition:
+    color ${duration.medium}s ${ease.cubic},
+    transform ${duration.medium}s ${ease.cubic};
+
+  ${({ $hasPassedThreshold }) =>
+    $hasPassedThreshold &&
+    `
+    transform: scale(0.85);
+  `}
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    color: var(--c-accent2);
+  }
+
+  &:focus-visible {
+    font-weight: ${weights.bold};
+  }
+`
 
 export const Wrapper = styled.nav<{
   $hasPassedThreshold: boolean
@@ -91,29 +121,17 @@ export const NavContent = styled.div`
 export const NavItemLink = styled(InternalLink)<{
   $hasPassedThreshold: boolean
 }>`
-  ${textStyles.navLinkDesk};
+  ${sharedNavItemLinkStyles};
+`
 
-  display: block;
-  color: var(--c-textNav);
-  text-transform: lowercase;
-  transition:
-    color ${duration.medium}s ${ease.cubic},
-    transform ${duration.medium}s ${ease.cubic};
+export const NavItemResumeLink = styled(ExternalLink)<{
+  $hasPassedThreshold: boolean
+}>`
+  ${sharedNavItemLinkStyles};
+  color: var(--c-accent2);
 
-  ${({ $hasPassedThreshold }) =>
-    $hasPassedThreshold &&
-    `
-    transform: scale(0.85);
-  `}
-
-  &:hover,
-  &:focus-visible {
-    outline: none;
-    color: var(--c-accent2);
-  }
-
-  &:focus-visible {
-    font-weight: ${weights.bold};
+  &:hover {
+    color: var(--c-black);
   }
 `
 
@@ -136,14 +154,6 @@ export const NavItemGroup = styled.div`
     ${NavItem} {
       &:last-of-type {
         margin-left: auto;
-
-        ${NavItemLink} {
-          color: var(--c-accent2);
-
-          &:hover {
-            color: var(--c-black);
-          }
-        }
       }
     }
   }

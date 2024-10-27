@@ -24,6 +24,6 @@ export const routes: Routes = {
   },
   resume: {
     label: "Résumé",
-    href: "/resume.pdf",
+    href: "/docs/razvan-negrea-cv.pdf",
   },
 }
