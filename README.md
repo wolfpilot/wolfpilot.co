@@ -135,8 +135,8 @@ On the more functional side, page transitions also allow data fetching or layout
 ### Installation
 
 ```bash
-$ git clone https://github.com/wolfpilot/wolfpilot.github.io.git
-$ cd wolfpilot.github.io
+$ git clone https://github.com/wolfpilot/wolfpilot.co.git
+$ cd wolfpilot.co
 $ yarn
 ```
 
