@@ -50,6 +50,40 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
+      id: "boids",
+      name: "Boids",
+      tagline: "Artificial life simulation using JS Canvas.",
+      tags: ["featured", "web development"],
+      alt: "Screenshot of multiple coloured blobs simulating flocking behaviour.",
+      links: [
+        {
+          label: "Github",
+          href: "https://github.com/wolfpilot/boids",
+        },
+        {
+          label: "Github",
+          href: "https://wolfpilot.github.io/boids/",
+        },
+      ],
+    },
+    {
+      id: "tom-holkenborg",
+      name: "Tom Holkenborg",
+      tagline: "Holywood film score composer, DJ, producer and engineer.",
+      tags: ["featured", "web development"],
+      alt: "Tom Holkenborg sitting on a chair in the middle of the desert, playing a piano.",
+      links: [
+        {
+          label: "",
+          href: "/cases/tom-holkenborg",
+        },
+        {
+          label: "tomholkenborg",
+          href: "https://tomholkenborg.com/",
+        },
+      ],
+    },
+    {
       id: "planet-blue-plc",
       name: "Planet Blue PLC",
       tagline: "Demo app for fictional sustainable energy provider.",
@@ -67,19 +101,15 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "boids",
-      name: "Boids",
-      tagline: "Artificial life simulation using JS Canvas.",
-      tags: ["featured", "web development"],
-      alt: "Screenshot of multiple coloured blobs simulating flocking behaviour.",
+      id: "demotivator-rest-api",
+      name: "Demotivator REST API",
+      tagline: "Feeling motivated? Stop it, now's not the time.",
+      tags: ["web development"],
+      alt: "Demotivational funny quotes.",
       links: [
         {
           label: "Github",
-          href: "https://github.com/wolfpilot/boids",
-        },
-        {
-          label: "Github",
-          href: "https://wolfpilot.github.io/boids/",
+          href: "https://github.com/wolfpilot/demotivator-rest-api",
         },
       ],
     },
@@ -156,23 +186,10 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "demotivator-rest-api",
-      name: "Demotivator REST API",
-      tagline: "Feeling motivated? Stop it, now's not the time.",
-      tags: ["featured", "web development"],
-      alt: "Demotivational funny quotes.",
-      links: [
-        {
-          label: "Github",
-          href: "https://github.com/wolfpilot/demotivator-rest-api",
-        },
-      ],
-    },
-    {
       id: "jungle-minds",
       name: "Jungle Minds",
       tagline: "Experience JM's new website in all its glory!",
-      tags: ["web development"],
+      tags: ["featured", "web development"],
       alt: "Jungle Minds logo spelled out of geometrical shape.",
       links: [
         {
