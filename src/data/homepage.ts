@@ -69,7 +69,7 @@ const showcaseDataRaw: ShowcaseDataRaw = {
     {
       id: "tom-holkenborg",
       name: "Tom Holkenborg",
-      tagline: "Holywood film score composer, DJ, producer and engineer.",
+      tagline: "Hollywood film score composer, DJ, producer and engineer.",
       tags: ["featured", "web development"],
       alt: "Tom Holkenborg sitting on a chair in the middle of the desert, playing a piano.",
       links: [

@@ -82,7 +82,7 @@ const content: Content = [
       Tom's new website is as an umbrella where each section is its own sub-brand, which resulted in some very clever routing and theming (not to mention headaches).</p>
       
       <ul>
-        <li>Blue. The current persona, or the Holywood film composer.</li>
+        <li>Blue. The current persona, or the Hollywood film composer.</li>
         <li>Black. The DJ of the past, early career and discography.</li>
         <li>Red. The altruist, providing free lessons and insights to any willing to learn.</li>
         <li>White. The teacher, training new generations of aspiring musicians.</li>
