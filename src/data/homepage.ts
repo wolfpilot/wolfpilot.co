@@ -617,9 +617,9 @@ export const data = {
         priority: true,
       },
       heading: `My name is <em>Razvan Negrea</em>.`,
-      copy: `I'm a creative frontend developer, concept artist and illustrator, which is fancy talk for saying that I enjoy making things, moving things especially.
+      copy: `I'm a creative Full-Stack Developer, Concept Artist and Illustrator, which is fancy talk for saying that I enjoy making things, moving things especially.
   
-      Creative frontend developer, designer, concept artist & illustrator, music aficionado, occasional self-proclaimed chef and a general nut for colours. Originally from Romania, the land of vampires, Dracula and other such myths, I now live in the lovely city of Amsterdam, NL, where I sip tea every couple of minutes and judge people on the Internet when I get the chance for it.`,
+       I am a musician at heart, occasional self-proclaimed chef and a general nut for colours. Originally hailing from Romania, the land of vampires, Dracula and other such myths, I now live in the lovely city of Utrecht, NL, where I sip tea every couple of minutes and judge people on the Internet when I get the chance for it.`,
     },
   },
   work: {
@@ -630,7 +630,7 @@ export const data = {
   caseStudies: {
     heading: "Case Studies",
     description:
-      "See what goes in the mind of ze creator. A collection of ramblings behind works of all sorts",
+      "A collection of insights and ramblings behind works of all sorts",
     cases: casesData,
   },
   experience: {
