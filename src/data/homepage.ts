@@ -493,7 +493,7 @@ export const casesData: CasesProps = {
 
 const timelineItemsData = [
   {
-    position: "Individual Retail Trader",
+    position: "Independent Financial Trader",
     company: {
       label: "Self-Employed",
       href: "",
@@ -502,12 +502,11 @@ const timelineItemsData = [
       start: "Jan 2021",
       end: "Present",
     },
-    description: `• Trading spot and derivative contracts in Forex, Stocks and Cryptocurrencies.
-    • Managing risk on a per trade basis
-    • Journalling strategies, wins and losses, emotions
-    • Researching projects, IPOs, ICOs
-    • Interacting with DeFi (staking, smart contracts, LPs)
-    • Developing custom indicators and automated strategies`,
+    description: `• Automation and scripting, coding private algorithms, indicators and strategies using TradingView's native language, Pine Script.
+    • Interpreting complex financial data, identifying actionable patterns and making data-driven decisions.
+    • Strategic thinking and planning of long-term trading goals.
+    • Risk assessment during uncertain market conditions. In practice, this often means maintaining a level-head under immense pressure where any mistake could undo months of work.
+    • Executing high-stakes, time-sensitive decisions under tight deadlines.`,
   },
   {
     position: "Senior Front-End Developer",
