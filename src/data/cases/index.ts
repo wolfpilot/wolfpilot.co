@@ -10,6 +10,7 @@ import { Props as TextBlockProps } from "@components/slices/TextBlockSlice/TextB
 import { Props as CodeProps } from "@components/slices/CodeSlice/CodeSlice"
 
 // Data
+import { pageData as tomHolkenborgPageData } from "./tomHolkenborg"
 import { pageData as jungleMindsPageData } from "./jungleMinds"
 import { pageData as cawrPageData } from "./cawr"
 import { pageData as retrocadePageData } from "./retrocade"
@@ -99,6 +100,7 @@ export interface PageData {
 
 // Compile a list of all data
 const dataArray: PageData[] = [
+  tomHolkenborgPageData,
   jungleMindsPageData,
   cawrPageData,
   retrocadePageData,

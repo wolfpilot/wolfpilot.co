@@ -50,6 +50,40 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
+      id: "boids",
+      name: "Boids",
+      tagline: "Artificial life simulation using JS Canvas.",
+      tags: ["featured", "web development"],
+      alt: "Screenshot of multiple coloured blobs simulating flocking behaviour.",
+      links: [
+        {
+          label: "Github",
+          href: "https://github.com/wolfpilot/boids",
+        },
+        {
+          label: "Github",
+          href: "https://wolfpilot.github.io/boids/",
+        },
+      ],
+    },
+    {
+      id: "tom-holkenborg",
+      name: "Tom Holkenborg",
+      tagline: "Holywood film score composer, DJ, producer and engineer.",
+      tags: ["featured", "web development"],
+      alt: "Tom Holkenborg sitting on a chair in the middle of the desert, playing a piano.",
+      links: [
+        {
+          label: "",
+          href: "/cases/tom-holkenborg",
+        },
+        {
+          label: "tomholkenborg",
+          href: "https://tomholkenborg.com/",
+        },
+      ],
+    },
+    {
       id: "planet-blue-plc",
       name: "Planet Blue PLC",
       tagline: "Demo app for fictional sustainable energy provider.",
@@ -67,19 +101,15 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "boids",
-      name: "Boids",
-      tagline: "Artificial life simulation using JS Canvas.",
-      tags: ["featured", "web development"],
-      alt: "Screenshot of multiple coloured blobs simulating flocking behaviour.",
+      id: "demotivator-rest-api",
+      name: "Demotivator REST API",
+      tagline: "Feeling motivated? Stop it, now's not the time.",
+      tags: ["web development"],
+      alt: "Demotivational funny quotes.",
       links: [
         {
           label: "Github",
-          href: "https://github.com/wolfpilot/boids",
-        },
-        {
-          label: "Github",
-          href: "https://wolfpilot.github.io/boids/",
+          href: "https://github.com/wolfpilot/demotivator-rest-api",
         },
       ],
     },
@@ -156,23 +186,10 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "demotivator-rest-api",
-      name: "Demotivator REST API",
-      tagline: "Feeling motivated? Stop it, now's not the time.",
-      tags: ["featured", "web development"],
-      alt: "Demotivational funny quotes.",
-      links: [
-        {
-          label: "Github",
-          href: "https://github.com/wolfpilot/demotivator-rest-api",
-        },
-      ],
-    },
-    {
       id: "jungle-minds",
       name: "Jungle Minds",
       tagline: "Experience JM's new website in all its glory!",
-      tags: ["web development"],
+      tags: ["featured", "web development"],
       alt: "Jungle Minds logo spelled out of geometrical shape.",
       links: [
         {
@@ -600,9 +617,9 @@ export const data = {
         priority: true,
       },
       heading: `My name is <em>Razvan Negrea</em>.`,
-      copy: `I'm a creative frontend developer, concept artist and illustrator, which is fancy talk for saying that I enjoy making things, moving things especially.
+      copy: `I'm a creative Full-Stack Developer, Concept Artist and Illustrator, which is fancy talk for saying that I enjoy making things, moving things especially.
   
-      Creative frontend developer, designer, concept artist & illustrator, music aficionado, occasional self-proclaimed chef and a general nut for colours. Originally from Romania, the land of vampires, Dracula and other such myths, I now live in the lovely city of Amsterdam, NL, where I sip tea every couple of minutes and judge people on the Internet when I get the chance for it.`,
+       I am a musician at heart, occasional self-proclaimed chef and a general nut for colours. Originally hailing from Romania, the land of vampires, Dracula and other such myths, I now live in the lovely city of Utrecht, NL, where I sip tea every couple of minutes and judge people on the Internet when I get the chance for it.`,
     },
   },
   work: {
@@ -613,7 +630,7 @@ export const data = {
   caseStudies: {
     heading: "Case Studies",
     description:
-      "See what goes in the mind of ze creator. A collection of ramblings behind works of all sorts",
+      "A collection of insights and ramblings behind works of all sorts",
     cases: casesData,
   },
   experience: {

@@ -18,6 +18,7 @@ export interface Props {
     alt: string
   }
   fullWidth?: boolean
+  muted?: boolean
 }
 
 const VideoSlice: React.FC<Props> = ({
@@ -25,6 +26,7 @@ const VideoSlice: React.FC<Props> = ({
   video,
   placeholder,
   fullWidth = false,
+  muted = true,
 }) => {
   const [isVideoInit, setIsVideoInit] = useState<boolean>(false)
 
@@ -68,7 +70,7 @@ const VideoSlice: React.FC<Props> = ({
       <S.Video
         ref={videoRef}
         loop
-        muted
+        muted={muted}
         preload="none"
         aria-label={video.label}
       >
