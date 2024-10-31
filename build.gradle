@@ -1,0 +1,26 @@
+plugins {
+  id "com.github.node-gradle.node" version "7.1.0"
+}
+
+node {
+    version = '20.14.0'
+    yarnVersion = '1.22.22'
+    download = true
+}
+
+task yarnInstall(type: YarnTask) {
+    args = ['install']
+}
+
+task testCoverage(type: YarnTask, dependsOn: yarnInstall) {
+    args = ['run', 'test:coverage']
+}
+
+task buildPrd(type: YarnTask, dependsOn: yarnInstall) {
+    args = ['run', 'build']
+}
+
+task build {
+    dependsOn yarnInstall, testCoverage, buildPrd
+    buildScan.tag "frontend-engineer"
+}
