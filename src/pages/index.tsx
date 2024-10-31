@@ -33,7 +33,7 @@ export interface Props {
 // Setup
 const META_TITLE = "Homepage"
 const META_DESCRIPTION =
-  "Creative front-end developer, concept artist & illustrator"
+  "Creative Full-Stack Developer, Concept Artist & Illustrator"
 
 const HomePage: NextPage<Props> = ({ pageData }) => {
   if (!pageData) return null
