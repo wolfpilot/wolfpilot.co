@@ -39,9 +39,9 @@ const showcaseDataRaw: ShowcaseDataRaw = {
     {
       id: "galactic-adventures-server",
       name: "Galactic Adventures Server",
-      tagline: "Back-end counterpart for the GA app.",
+      tagline: "Backend counterpart for the GA app.",
       tags: ["featured", "web development"],
-      alt: "Code screenshot of a Back-End response.",
+      alt: "Code screenshot of a Backend response.",
       links: [
         {
           label: "Github",
@@ -493,67 +493,89 @@ export const casesData: CasesProps = {
 
 const timelineItemsData = [
   {
+    position: "Senior Fullstack Engineer",
+    company: {
+      label: "Katanox",
+      href: "https://www.katanox.com/",
+    },
+    date: {
+      start: "Feb 2025",
+      end: "Present",
+    },
+    description: `• Reduced UI cold-load times from 12.7s -> 2.1s, bundle sizes from 15MB -> 1.7MB and
+CI/CD times by up to 76%.
+• Migrated the authentication & authorisation flow from Laravel Sanctum/Fortify to
+Kotlin and Keycloak, moving towards a unified SSO solution across all platforms.
+• Rebuilt the Booking Engine in Kotlin, including availability search, booking creation,
+reservation editing and cancellation.
+• Improved Frontend engineering standards across the Nx monorepo, enforcing type
+checking, linting, unit/E2E testing and automated security audits through CI and
+pre-commit workflows.
+• Set up shared infra tooling such as MSW API mocking, automated Keycloak theme
+releases, reusable CI workflows.
+• Contributing across the stack to architectural decisions, code quality, security,
+observability and development practices`,
+  },
+  {
     position: "Independent Financial Trader",
     company: {
-      label: "Self-Employed",
+      label: "Selfemployed",
       href: "",
     },
     date: {
-      start: "Jan 2021",
-      end: "Present",
+      start: "Jan 2022",
+      end: "Jan 2025",
     },
-    description: `• Automation and scripting, coding private algorithms, indicators and strategies using TradingView's native language, Pine Script.
-    • Interpreting complex financial data, identifying actionable patterns and making data-driven decisions.
-    • Strategic thinking and planning of long-term trading goals.
-    • Risk assessment during uncertain market conditions. In practice, this often means maintaining a level-head under immense pressure where any mistake could undo months of work.
-    • Executing high-stakes, time-sensitive decisions under tight deadlines.`,
+    description: `• Automation and scripting, building private algorithms, indicators and strategies using TradingView's native language, Pine Script.
+    • Interacting with wallets, dApps, CEX and DEX for staking, swapping and trading spot, derivatives and equities.
+    • Interpreting complex financial data, identifying actionable patterns and making data-driven decisions.`,
   },
   {
-    position: "Senior Front-End Developer",
+    position: "Senior Frontend Developer",
     company: {
       label: "Jungle Minds",
       href: "https://www.jungleminds.com/",
     },
     date: {
       start: "Jul 2019",
-      end: "Jan 2021",
+      end: "Jan 2022",
     },
-    description: `• Tech Lead for clients such as Tom Holkenborg, Leading Courses (BETA), Rouze and PON Automotive.
+    description: `• Tech Lead for various clients including Tom Holkenborg, Leading Courses (BETA), Rouze and PON Automotive.
     • Rebuilt Jungle Minds’ new portfolio website.
     • Responsible for security audits (XSS, CSRF, privacy leaks, dependency vulnerabilities, pentesting).
     • Responsible for performance audits (Lighthouse reports, optimising bundle size and assets, FPS, repainting, memleaks).
-    • Coaching team members.
-    • Defining code review standards, merging strategies and conventions.`,
+    • Coaching team members, defining code review standards, merging strategies and conventions.`,
   },
   {
-    position: "Senior Front-End Developer",
+    position: "Senior Frontend Developer",
     company: {
-      label: "Mirabeau",
-      href: "https://www.mirabeau.nl/",
+      label: "Mirabeau (a Cognizant Digital Business)",
+      href: "https://www.cognizant.com/",
     },
     date: {
       start: "Jan 2019",
       end: "Jun 2019",
     },
-    description: `• Lead Front-End Developer in charge of building user dashboard for employment mediator Brunel International. Tech stack comprised of React and GraphQL and full integration with Sitecore via JSS services.
+    description: `• Lead Frontend Developer in charge of building user dashboard for employment mediator Brunel International. Tech stack comprised of React and GraphQL and full integration with Sitecore via JSS services.
     • Additional responsibilities included mentoring colleagues, performing weekly code reviews and holding cross-team workshops.`,
   },
   {
-    position: "Front-End Developer",
+    position: "Frontend Developer",
     company: {
-      label: "Mirabeau",
-      href: "https://www.mirabeau.nl/",
+      label: "Mirabeau (a Cognizant Digital Business)",
+      href: "https://www.cognizant.com/",
     },
     date: {
       start: "Aug 2017",
       end: "Jun 2019",
     },
     description: `• Built the new applicant flow for Brunel International. I was tasked with setting up the project, implementing custom form validation throughout, tracking user behaviour and last, but not least, making things pretty.
-    • Reviewed applicants and carried out job interviews.
-    • Contributed regularly to Mirabeau’s open-source boilerplate repo.`,
+    • Merged multiple internal projects into new monorepo structure (using Yarn Workspaces and Lerna for automated scripting).
+    • Contributed regularly to Mirabeau’s open-source boilerplate repo.
+    • Reviewed applicants and carried out job interviews.`,
   },
   {
-    position: "Front-End Developer",
+    position: "Frontend Developer",
     company: {
       label: "Propeller Communications",
       href: "https://www.propeller.co.uk/",
@@ -562,9 +584,8 @@ const timelineItemsData = [
       start: "Jul 2015",
       end: "Jul 2017",
     },
-    description: `• Flexible Front-End role where I occasionally got to wear the almighty full-stack hat. I built websites in FuelPHP and WordPress, while also managing a few multi-site templates for hospitality clients.
-    • Workflow included automation via Gulp, BEM methodology using
-    SASS and version control through Git.`,
+    description: `• Flexible Frontend role where I occasionally got to wear the almighty Fullstack hat. I built websites in FuelPHP and WordPress, while also managing a few multi-site templates for hospitality clients.
+    • Workflow included automation via Gulp, BEM methodology using SASS and version control through Git.`,
   },
   {
     position: "Web Designer & Developer",
@@ -576,7 +597,7 @@ const timelineItemsData = [
       start: "Jun 2013",
       end: "Jul 2015",
     },
-    description: `Responsible for project planning with clients, negotiating contracts, developing wireframes, mock-ups and high-end designs, as well as coding and maintaining websites.`,
+    description: `Responsible for project planning with clients, negotiating contracts, developing wireframes, mock-ups and highend designs, as well as coding and maintaining websites.`,
   },
   {
     position: "Concept Artist & Illustrator",
@@ -616,7 +637,7 @@ export const data = {
         priority: true,
       },
       heading: `My name is <em>Razvan Negrea</em>.`,
-      copy: `I'm a creative Full-Stack Developer, Concept Artist and Illustrator, which is fancy talk for saying that I enjoy making things, moving things especially.
+      copy: `I'm a creative Fullstack Developer, Concept Artist and Illustrator, which is fancy talk for saying that I enjoy making things, moving things especially.
   
        I am a musician at heart, occasional self-proclaimed chef and a general nut for colours. Originally hailing from Romania, the land of vampires, Dracula and other such myths, I now live in the lovely city of Utrecht, NL, where I sip tea every couple of minutes and judge people on the Internet when I get the chance for it.`,
     },

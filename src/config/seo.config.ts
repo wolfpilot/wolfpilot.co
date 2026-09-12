@@ -14,7 +14,7 @@ const SITE_URL =
 
 const DEFAULT_META_TITLE = "Wolf Pilot"
 const DEFAULT_META_DESCRIPTION =
-  "Creative Full-Stack Developer, Concept Artist & Illustrator"
+  "Creative Fullstack Developer, Concept Artist & Illustrator"
 
 export const defaultMeta: NextSeoProps = {
   title: DEFAULT_META_TITLE,
