@@ -18,16 +18,15 @@ describe("Timeline", () => {
 
     // Check that the first item is visible by default
     expect(
-      screen.getByText(
-        "Tech Lead for clients such as Tom Holkenborg, Leading Courses (BETA), Rouze and PON Automotive",
-        { exact: false }
-      )
+      screen.getByText("Reduced UI cold-load times from 12.7s -> 2.1s", {
+        exact: false,
+      })
     ).toBeVisible()
 
     // Check that other items are hidden by default
     expect(
       screen.getByText(
-        "Lead Front-End Developer in charge of building user dashboard for employment mediator Brunel International.",
+        "Lead Frontend Developer in charge of building user dashboard for employment mediator Brunel International.",
         { exact: false }
       )
     ).not.toBeVisible()

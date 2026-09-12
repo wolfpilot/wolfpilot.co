@@ -150,11 +150,5 @@ export const NavItemGroup = styled.div`
 
   &:last-of-type {
     justify-content: flex-start;
-
-    ${NavItem} {
-      &:last-of-type {
-        margin-left: auto;
-      }
-    }
   }
 `
