@@ -25,6 +25,8 @@ import Showcase from "@components/showcase/Showcase"
 import Cases from "@components/cases/Cases"
 import Timeline from "@components/timeline/Timeline"
 import Contact from "@components/contact/Contact"
+import { routes } from "@constants/routes"
+import ExternalLink from "@components/generic/ExternalLink"
 
 export interface Props {
   pageData: any
@@ -124,7 +126,17 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
               )}
 
               {pageData.experience.description && (
-                <Text>{pageData.experience.description}</Text>
+                <Text>
+                  <span>{pageData.experience.description}</span>
+                  <span>
+                    {" "}
+                    (looking for my{" "}
+                    <ExternalLink href={routes.resume.href}>
+                      résumé
+                    </ExternalLink>
+                    ?)
+                  </span>
+                </Text>
               )}
             </S.SectionHeader>
 
