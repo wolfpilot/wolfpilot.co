@@ -2,7 +2,7 @@ import { useState, useRef } from "react"
 import Image, { ImageProps } from "next/image"
 import { sanitize } from "isomorphic-dompurify"
 import styled from "styled-components"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform } from "motion/react"
 
 // Styles
 import { fixBorderRadiusOverflow } from "@styles/vendor/safari"

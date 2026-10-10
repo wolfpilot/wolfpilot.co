@@ -1,12 +1,12 @@
-import { Variants, AnimationProps } from "framer-motion"
+import { Variants, MotionProps as AnimationProps } from "motion/react"
 
 // Styles
-import { duration, ease } from "@styles/animation"
+import { duration, easeFramer } from "@styles/animation"
 
 // Setup
 const ANIM_DURATION = duration.slow
 const ANIM_DELAY = duration.medium
-const ANIM_EASE = ease.framer.cubic
+const ANIM_EASE = easeFramer.cubic
 
 // Wrapper
 const wrapperVariants: Variants = {

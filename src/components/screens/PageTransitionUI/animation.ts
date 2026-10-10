@@ -1,13 +1,13 @@
-import { AnimationProps } from "framer-motion"
+import { MotionProps as AnimationProps } from "motion/react"
 
 // Styles
-import { ease } from "@styles/animation"
+import { easeFramer } from "@styles/animation"
 
 // Setup
 export const ANIM_COVER_DURATION = 0.5
 export const ANIM_SWIPER_DURATION = 1.5
 export const ANIM_DELAY = 0.5
-export const ANIM_EASE = ease.framer.cubic
+export const ANIM_EASE = easeFramer.cubic
 
 export const coverAnimProps: AnimationProps = {
   initial: {

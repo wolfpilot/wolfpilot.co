@@ -1,4 +1,4 @@
-import { Variants, AnimationProps } from "framer-motion"
+import { Variants, MotionProps as AnimationProps } from "motion/react"
 
 // Constants
 import { routes } from "@constants/routes"

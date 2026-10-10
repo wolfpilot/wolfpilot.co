@@ -1,4 +1,4 @@
-import { Variants, AnimationProps } from "framer-motion"
+import { Variants, MotionProps as AnimationProps } from "motion/react"
 
 // Styles
 import { duration } from "@styles/animation"
@@ -23,7 +23,9 @@ const listVariants: Variants = {
   },
 }
 
-export const getListAnimProps = (showAll: boolean): AnimationProps => ({
+export const getListAnimProps = (
+  showAll: boolean
+): Pick<AnimationProps, "variants" | "initial" | "animate" | "exit"> => ({
   variants: listVariants,
   initial: "hidden",
   animate: showAll ? "visible" : "hidden",

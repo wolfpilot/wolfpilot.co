@@ -28,9 +28,9 @@
   "dependencies": {
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.0",
-    "framer-motion": "^10.18.0",
     "image-size": "^1.1.1",
     "isomorphic-dompurify": "^2.16.0",
+    "motion": "14.1.0",
     "next": "16.4.0",
     "next-seo": "^6.6.0",
     "next-sitemap": "^4.2.3",

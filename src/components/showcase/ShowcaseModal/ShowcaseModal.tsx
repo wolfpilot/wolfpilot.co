@@ -1,5 +1,5 @@
 import { Fragment, useState, useEffect, useCallback, useRef } from "react"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "motion/react"
 
 // Utils
 import { useShowcaseState, useShowcaseDispatch } from "../Context"

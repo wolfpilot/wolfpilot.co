@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import styled from "styled-components"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "motion/react"
 
 // Types
 import { Tag, ShowcaseItem } from "./types"

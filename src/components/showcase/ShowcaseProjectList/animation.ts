@@ -1,4 +1,4 @@
-import { Variants, AnimationProps } from "framer-motion"
+import { Variants, MotionProps as AnimationProps } from "motion/react"
 
 const variants: Variants = {
   hidden: {

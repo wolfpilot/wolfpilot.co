@@ -1,6 +1,6 @@
 import NextImage from "next/image"
 import styled, { css } from "styled-components"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
 // Styles
 import { fixBorderRadiusOverflow } from "@styles/vendor/safari"

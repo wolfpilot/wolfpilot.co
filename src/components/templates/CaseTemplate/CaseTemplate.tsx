@@ -1,6 +1,6 @@
 import { NextSeo } from "next-seo"
 import { Fragment, useState, useRef } from "react"
-import { useScroll } from "framer-motion"
+import { useScroll } from "motion/react"
 
 // Types
 import { PageData } from "@data/cases"

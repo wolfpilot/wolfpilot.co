@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion } from "motion/react"
 
 // Types
 import { CaseType } from "@data/cases"

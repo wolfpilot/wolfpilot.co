@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app"
-import { MotionConfig } from "framer-motion"
+import { MotionConfig } from "motion/react"
 import { DefaultSeo } from "next-seo"
 import styled from "styled-components"
 
