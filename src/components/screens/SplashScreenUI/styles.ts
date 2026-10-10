@@ -93,6 +93,10 @@ export const Wrapper = styled.div`
   align-items: center;
   background-color: var(--c-pageColor);
 
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+
   animation-name: ${animFadeOut};
   animation-duration: ${EXIT_DURATION}s;
   animation-delay: ${ANIM_DURATION}s;

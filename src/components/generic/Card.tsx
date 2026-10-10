@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { fixBorderRadiusOverflow } from "@styles/vendor/safari"
 import { mq } from "@styles/utils/mediaQueries"
 import { duration, ease } from "@styles/animation"
+import { usePrefersReducedMotion } from "@utils/hooks/usePrefersReducedMotion"
 
 // Components
 import ExternalLink from "./ExternalLink"
@@ -38,6 +39,7 @@ const Card: React.FC<Props> = ({
     useState<boolean>(false)
 
   const wrapperRef = useRef(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   // Parallax
   const { scrollYProgress } = useScroll({
@@ -63,7 +65,7 @@ const Card: React.FC<Props> = ({
   return (
     <Wrapper ref={wrapperRef} $hasBgImage={hasBgImg}>
       {hasBgImg && (
-        <BackgroundImageWrapper style={{ y }}>
+        <BackgroundImageWrapper style={reducedMotion ? undefined : { y }}>
           <BackgroundImage
             src={backgroundImg.src}
             sizes={`
@@ -130,6 +132,10 @@ const Wrapper = styled.div<{ $hasBgImage: boolean }>`
 
 const BackgroundImageWrapper = styled(motion.div)`
   display: none;
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none !important;
+  }
 
   ${mq.from.M`
     ${fixBorderRadiusOverflow}

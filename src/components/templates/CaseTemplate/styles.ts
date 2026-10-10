@@ -73,6 +73,10 @@ export const HeroImageOverlay = styled(motion.div)`
   left: 0;
   background: linear-gradient(to bottom, transparent, var(--c-neutral5));
   pointer-events: none;
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 0 !important;
+  }
 `
 
 export const HeroImage = styled(Image)`

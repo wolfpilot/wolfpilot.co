@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app"
+import { MotionConfig } from "framer-motion"
 import { DefaultSeo } from "next-seo"
 import styled from "styled-components"
 
@@ -31,33 +32,35 @@ const App = ({ Component, pageProps, router }: AppProps) => {
   const isHomepage = router.pathname === "/"
 
   return (
-    <Wrapper className={fontPrimary.variable}>
-      <DefaultSeo {...defaultMeta} />
-      <GlobalStyle />
-      <DOMManager />
+    <MotionConfig reducedMotion="user">
+      <Wrapper className={fontPrimary.variable}>
+        <DefaultSeo {...defaultMeta} />
+        <GlobalStyle />
+        <DOMManager />
 
-      <AppProvider>
-        <DebugGrid />
+        <AppProvider>
+          <DebugGrid />
 
-        <SiteHeader />
+          <SiteHeader />
 
-        <PageProvider>
-          <PageWrapper>
-            {isHomepage ? (
-              <ShowcaseProvider>
-                <ShowcaseModal />
+          <PageProvider>
+            <PageWrapper>
+              {isHomepage ? (
+                <ShowcaseProvider>
+                  <ShowcaseModal />
 
+                  <Component key={router.pathname} {...pageProps} />
+                </ShowcaseProvider>
+              ) : (
                 <Component key={router.pathname} {...pageProps} />
-              </ShowcaseProvider>
-            ) : (
-              <Component key={router.pathname} {...pageProps} />
-            )}
-          </PageWrapper>
-        </PageProvider>
+              )}
+            </PageWrapper>
+          </PageProvider>
 
-        <SiteFooter />
-      </AppProvider>
-    </Wrapper>
+          <SiteFooter />
+        </AppProvider>
+      </Wrapper>
+    </MotionConfig>
   )
 }
 

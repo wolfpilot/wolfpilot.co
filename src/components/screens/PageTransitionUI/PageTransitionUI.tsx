@@ -1,9 +1,14 @@
 import { usePathname } from "next/navigation"
 import { useNextNavigationEvent } from "use-next-navigation-event"
 import { AnimatePresence } from "framer-motion"
+import { useEffect, useRef } from "react"
 
 // Utils
 import { disableScroll } from "@utils/domHelper"
+import {
+  prefersReducedMotion,
+  usePrefersReducedMotion,
+} from "@utils/hooks/usePrefersReducedMotion"
 
 // Styles
 import * as S from "./styles"
@@ -43,7 +48,7 @@ const saveScrollPos = (url: string) => {
   sessionStorage.setItem(`scrollPos:${url}`, JSON.stringify(scrollPosition))
 }
 
-const restoreScrollPos = (url: string) => {
+const restoreScrollPos = (url: string, delay: number) => {
   const json = sessionStorage.getItem(`scrollPos:${url}`)
 
   if (!json) return
@@ -52,34 +57,32 @@ const restoreScrollPos = (url: string) => {
 
   setTimeout(() => {
     window.scrollTo({ left: scrollPos.x, top: scrollPos.y })
-  }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
+  }, delay)
 }
 
-const scrollToTop = () => {
+const scrollToTop = (delay: number) => {
   setTimeout(() => {
     window.scrollTo({ left: 0, top: 0 })
-  }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
+  }, delay)
 }
 
-const scrollToElement = (id: string) => {
+const scrollToElement = (id: string, delay: number) => {
   setTimeout(() => {
     const elem = document.getElementById(id)
     const elemOffset = elem?.offsetTop
 
     window.scrollTo({ left: 0, top: elemOffset })
-  }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
+  }, delay)
 }
 
 const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
   const pathname = usePathname()
+  const reducedMotion = usePrefersReducedMotion()
+  const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Handlers
-  const handleAnimComplete = () => {
-    // Wait for the scroll position to be updated first
-    setTimeout(() => {
-      disableScroll(document.documentElement, false)
-    }, SCROLL_JUMP_DELAY)
-  }
+  useEffect(() => {
+    if (reducedMotion) disableScroll(document.documentElement, false)
+  }, [reducedMotion])
 
   // Hooks
 
@@ -110,32 +113,40 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
     onRouteChangeStart: ({ newUrl, oldUrl }) => {
       if (newUrl === oldUrl) return
 
+      if (unlockTimer.current) clearTimeout(unlockTimer.current)
       saveScrollPos(oldUrl)
-      disableScroll(document.documentElement, true)
+      disableScroll(document.documentElement, !prefersReducedMotion())
     },
     onRouteChangeComplete: ({ type, newUrl, oldUrl }) => {
       if (newUrl === oldUrl) return
 
+      const scrollDelay =
+        (prefersReducedMotion() ? 0 : TRANSITION_DELAY) + SCROLL_JUMP_DELAY
+
       // Handle clicking on the browser buttons
       if (type === "BACK_OR_FORWARD") {
-        restoreScrollPos(newUrl)
+        restoreScrollPos(newUrl, scrollDelay)
       }
 
       // Handle clicking on an internal link
       if (type === "REGULAR_NAVIGATION") {
         const target = newUrl.split("#")[1]
 
-        target ? scrollToElement(target) : scrollToTop()
+        target ? scrollToElement(target, scrollDelay) : scrollToTop(scrollDelay)
       }
+
+      // Release the lock after the new content and scroll position settle.
+      unlockTimer.current = setTimeout(() => {
+        disableScroll(document.documentElement, false)
+        unlockTimer.current = null
+      }, scrollDelay)
     },
   })
 
+  if (reducedMotion) return <>{children}</>
+
   return (
-    <AnimatePresence
-      initial={false}
-      mode="wait"
-      onExitComplete={handleAnimComplete}
-    >
+    <AnimatePresence initial={false} mode="wait">
       <S.Wrapper key={pathname}>
         <S.Cover {...coverAnimProps} />
         <S.Swiper {...swiperAnimProps} />
