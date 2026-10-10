@@ -2,6 +2,7 @@
 /** @type {import('next').NextConfig} */
 
 const config = {
+  agentRules: false,
   reactStrictMode: true,
   compiler: {
     // Enables the styled-components SWC transform
