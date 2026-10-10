@@ -130,6 +130,7 @@ On the more functional side, page transitions also allow data fetching or layout
 
 ### Requirements
 
+- [Node.js](https://nodejs.org/) 24 LTS
 - [pnpm](https://pnpm.io/) (built on v12.11.2)
 
 ### Installation
