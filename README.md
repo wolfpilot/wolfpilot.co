@@ -52,7 +52,7 @@ Nothing compares to the passion one has for a project of their own choice, and t
     - ESC to close
   - Gallery modal
     - ESC to close
-    - CTRL + <- / -> to go to prev/next slide
+    - Press keyboard <- / -> to go to prev/next slide
     - Click to zoom-in / out, scroll to pan around
   - Experience
     - Click to expand / collapse
