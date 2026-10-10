@@ -1,11 +1,14 @@
 import { usePathname } from "next/navigation"
 import { useNextNavigationEvent } from "use-next-navigation-event"
 import { AnimatePresence } from "framer-motion"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 // Utils
 import { disableScroll } from "@utils/domHelper"
-import { usePrefersReducedMotion } from "@utils/hooks/usePrefersReducedMotion"
+import {
+  prefersReducedMotion,
+  usePrefersReducedMotion,
+} from "@utils/hooks/usePrefersReducedMotion"
 
 // Styles
 import * as S from "./styles"
@@ -75,19 +78,11 @@ const scrollToElement = (id: string, delay: number) => {
 const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
   const pathname = usePathname()
   const reducedMotion = usePrefersReducedMotion()
-  const scrollDelay = (reducedMotion ? 0 : TRANSITION_DELAY) + SCROLL_JUMP_DELAY
+  const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     if (reducedMotion) disableScroll(document.documentElement, false)
   }, [reducedMotion])
-
-  // Handlers
-  const handleAnimComplete = () => {
-    // Wait for the scroll position to be updated first
-    setTimeout(() => {
-      disableScroll(document.documentElement, false)
-    }, SCROLL_JUMP_DELAY)
-  }
 
   // Hooks
 
@@ -118,11 +113,15 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
     onRouteChangeStart: ({ newUrl, oldUrl }) => {
       if (newUrl === oldUrl) return
 
+      if (unlockTimer.current) clearTimeout(unlockTimer.current)
       saveScrollPos(oldUrl)
-      if (!reducedMotion) disableScroll(document.documentElement, true)
+      disableScroll(document.documentElement, !prefersReducedMotion())
     },
     onRouteChangeComplete: ({ type, newUrl, oldUrl }) => {
       if (newUrl === oldUrl) return
+
+      const scrollDelay =
+        (prefersReducedMotion() ? 0 : TRANSITION_DELAY) + SCROLL_JUMP_DELAY
 
       // Handle clicking on the browser buttons
       if (type === "BACK_OR_FORWARD") {
@@ -135,17 +134,19 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
 
         target ? scrollToElement(target, scrollDelay) : scrollToTop(scrollDelay)
       }
+
+      // Release the lock after the new content and scroll position settle.
+      unlockTimer.current = setTimeout(() => {
+        disableScroll(document.documentElement, false)
+        unlockTimer.current = null
+      }, scrollDelay)
     },
   })
 
   if (reducedMotion) return <>{children}</>
 
   return (
-    <AnimatePresence
-      initial={false}
-      mode="wait"
-      onExitComplete={handleAnimComplete}
-    >
+    <AnimatePresence initial={false} mode="wait">
       <S.Wrapper key={pathname}>
         <S.Cover {...coverAnimProps} />
         <S.Swiper {...swiperAnimProps} />

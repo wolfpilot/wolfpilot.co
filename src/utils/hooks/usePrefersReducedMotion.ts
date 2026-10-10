@@ -11,8 +11,8 @@ const subscribe = (onChange: () => void) => {
   return () => media.removeEventListener("change", onChange)
 }
 
-const getSnapshot = () =>
+export const prefersReducedMotion = () =>
   typeof window.matchMedia === "function" && window.matchMedia(QUERY).matches
 
 export const usePrefersReducedMotion = () =>
-  useSyncExternalStore(subscribe, getSnapshot, () => false)
+  useSyncExternalStore(subscribe, prefersReducedMotion, () => false)
