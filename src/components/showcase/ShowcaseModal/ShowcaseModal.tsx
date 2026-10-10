@@ -286,13 +286,9 @@ const ShowcaseModal: React.FC = () => {
           toggle(false)
           break
         case "ArrowLeft":
-          if (!e.ctrlKey) return
-
           cycle(-1)
           break
         case "ArrowRight":
-          if (!e.ctrlKey) return
-
           cycle(1)
           break
       }
@@ -430,7 +426,7 @@ const ShowcaseModal: React.FC = () => {
                   </S.NavigationNextBtn>
 
                   <S.NavigationTooltip>
-                    Or press CTRL + ⇦ / ⇨
+                    Or hit arrows ⇦ / ⇨ on keyboard
                   </S.NavigationTooltip>
                 </S.Navigation>
               </S.Media>
