@@ -26,12 +26,11 @@ storybook-static
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+pnpm-debug.log*
 
-# yarn
-.yarn/
-.yarnrc.yml
+# pnpm
+.pnpm/
+.pnpm-store/
 
 # local env files
 .env*.local

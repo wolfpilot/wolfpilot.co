@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev\" \"yarn ts --watch\"",
+    "dev": "concurrently -n NEXT,TS -c magenta,cyan \"next dev\" \"pnpm ts --watch\"",
     "build": "next build",
-    "postbuild": "yarn generate:sitemap",
+    "postbuild": "pnpm generate:sitemap",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier ./src/**/*.{ts,tsx} --write",
     "ts": "tsc --noEmit --incremental --preserveWatchOutput --pretty",
-    "ts:watch": "yarn ts --watch",
+    "ts:watch": "pnpm ts --watch",
     "storybook": "storybook dev -p 6006 --ci",
     "build-storybook": "storybook build",
     "test": "jest --ci",
@@ -71,5 +71,5 @@
     "prettier": "3.3.3",
     "storybook": "8.3.5"
   },
-  "packageManager": "yarn@4.5.3"
+  "packageManager": "pnpm@12.11.2"
 }

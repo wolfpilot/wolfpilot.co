@@ -1,1 +1,1 @@
-npx lint-staged && yarn format && yarn ts && yarn test
+npx lint-staged && pnpm format && pnpm ts && pnpm test

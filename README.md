@@ -130,14 +130,14 @@ On the more functional side, page transitions also allow data fetching or layout
 
 ### Requirements
 
-- [Yarn](https://yarnpkg.com/) (built on v1.22.22)
+- [pnpm](https://pnpm.io/) (built on v12.11.2)
 
 ### Installation
 
 ```bash
 $ git clone https://github.com/wolfpilot/wolfpilot.co.git
 $ cd wolfpilot.co
-$ yarn
+$ pnpm install
 ```
 
 ### Steps
@@ -146,7 +146,7 @@ $ yarn
 # 1. Update your env config, see .env.sample for guidance.
 
 # 2. Run a local server instance
-$ yarn dev
+$ pnpm dev
 ```
 
 ## License
