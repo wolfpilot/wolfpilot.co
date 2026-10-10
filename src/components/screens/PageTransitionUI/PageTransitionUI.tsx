@@ -1,9 +1,11 @@
 import { usePathname } from "next/navigation"
 import { useNextNavigationEvent } from "use-next-navigation-event"
 import { AnimatePresence } from "framer-motion"
+import { useEffect } from "react"
 
 // Utils
 import { disableScroll } from "@utils/domHelper"
+import { usePrefersReducedMotion } from "@utils/hooks/usePrefersReducedMotion"
 
 // Styles
 import * as S from "./styles"
@@ -43,7 +45,7 @@ const saveScrollPos = (url: string) => {
   sessionStorage.setItem(`scrollPos:${url}`, JSON.stringify(scrollPosition))
 }
 
-const restoreScrollPos = (url: string) => {
+const restoreScrollPos = (url: string, delay: number) => {
   const json = sessionStorage.getItem(`scrollPos:${url}`)
 
   if (!json) return
@@ -52,26 +54,32 @@ const restoreScrollPos = (url: string) => {
 
   setTimeout(() => {
     window.scrollTo({ left: scrollPos.x, top: scrollPos.y })
-  }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
+  }, delay)
 }
 
-const scrollToTop = () => {
+const scrollToTop = (delay: number) => {
   setTimeout(() => {
     window.scrollTo({ left: 0, top: 0 })
-  }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
+  }, delay)
 }
 
-const scrollToElement = (id: string) => {
+const scrollToElement = (id: string, delay: number) => {
   setTimeout(() => {
     const elem = document.getElementById(id)
     const elemOffset = elem?.offsetTop
 
     window.scrollTo({ left: 0, top: elemOffset })
-  }, TRANSITION_DELAY + SCROLL_JUMP_DELAY)
+  }, delay)
 }
 
 const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
   const pathname = usePathname()
+  const reducedMotion = usePrefersReducedMotion()
+  const scrollDelay = (reducedMotion ? 0 : TRANSITION_DELAY) + SCROLL_JUMP_DELAY
+
+  useEffect(() => {
+    if (reducedMotion) disableScroll(document.documentElement, false)
+  }, [reducedMotion])
 
   // Handlers
   const handleAnimComplete = () => {
@@ -111,24 +119,26 @@ const PageTransitionUI: React.FC<Props> = ({ children }: Props) => {
       if (newUrl === oldUrl) return
 
       saveScrollPos(oldUrl)
-      disableScroll(document.documentElement, true)
+      if (!reducedMotion) disableScroll(document.documentElement, true)
     },
     onRouteChangeComplete: ({ type, newUrl, oldUrl }) => {
       if (newUrl === oldUrl) return
 
       // Handle clicking on the browser buttons
       if (type === "BACK_OR_FORWARD") {
-        restoreScrollPos(newUrl)
+        restoreScrollPos(newUrl, scrollDelay)
       }
 
       // Handle clicking on an internal link
       if (type === "REGULAR_NAVIGATION") {
         const target = newUrl.split("#")[1]
 
-        target ? scrollToElement(target) : scrollToTop()
+        target ? scrollToElement(target, scrollDelay) : scrollToTop(scrollDelay)
       }
     },
   })
+
+  if (reducedMotion) return <>{children}</>
 
   return (
     <AnimatePresence

@@ -8,8 +8,11 @@ import { zIndexes } from "@styles/zIndexes"
 export const CURSOR_RADIUS = 20
 
 export const Wrapper = styled.div`
-  // Only enable for hover capable devices, aka no touch
-  @media (hover: hover) and (pointer: fine) {
+  display: none;
+
+  // Only enable for precise hover devices without reduced motion.
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    display: block;
     position: fixed;
     z-index: ${zIndexes.customCursor};
     top: 0;

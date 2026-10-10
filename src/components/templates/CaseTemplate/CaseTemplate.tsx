@@ -8,6 +8,7 @@ import { PageData } from "@data/cases"
 // Styles
 import * as S from "./styles"
 import { mq } from "@styles/utils/mediaQueries"
+import { usePrefersReducedMotion } from "@utils/hooks/usePrefersReducedMotion"
 
 // Components
 import Container from "@components/layout/Container/Container"
@@ -39,6 +40,7 @@ const CaseLayout: React.FC<PageData> = ({
   const [isFooterImgLoaded, setIsFooterImgLoaded] = useState<boolean>(false)
 
   const heroImageRef = useRef<HTMLImageElement | null>(null)
+  const reducedMotion = usePrefersReducedMotion()
 
   // Used to "fade out" the hero image on scroll
   const { scrollYProgress } = useScroll({
@@ -104,7 +106,9 @@ const CaseLayout: React.FC<PageData> = ({
              * https://github.com/vercel/next.js/discussions/25393
              */}
             <S.HeroImageWrapper>
-              <S.HeroImageOverlay style={{ opacity: scrollYProgress }} />
+              <S.HeroImageOverlay
+                style={{ opacity: reducedMotion ? 0 : scrollYProgress }}
+              />
               <S.HeroImage
                 ref={heroImageRef}
                 src={image.src}

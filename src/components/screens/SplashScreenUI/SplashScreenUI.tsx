@@ -2,8 +2,8 @@ import { useEffect } from "react"
 
 // Utils
 import { usePageState, usePageDispatch } from "@utils/context/PageContext"
-import { delay } from "@utils/helper"
 import { disableScroll } from "@utils/domHelper"
+import { usePrefersReducedMotion } from "@utils/hooks/usePrefersReducedMotion"
 
 // Styles
 import * as S from "./styles"
@@ -14,27 +14,42 @@ import { TOTAL_DURATION } from "./animation"
 const SplashScreenUI: React.FC = () => {
   const pageState = usePageState()
   const pageDispatch = usePageDispatch()
+  const reducedMotion = usePrefersReducedMotion()
 
   // Handle animation cycle
   useEffect(() => {
-    const onAnimEnd = async () => {
-      await delay(TOTAL_DURATION * 1000)
+    if (pageState.hasSplashScreenPlayed) return
 
+    if (reducedMotion) {
       pageDispatch({
         type: "updateHasSplashScreenPlayed",
         payload: true,
       })
+      return
     }
 
-    onAnimEnd()
-  }, [pageDispatch])
+    const timer = setTimeout(() => {
+      pageDispatch({
+        type: "updateHasSplashScreenPlayed",
+        payload: true,
+      })
+    }, TOTAL_DURATION * 1000)
+
+    return () => clearTimeout(timer)
+  }, [pageDispatch, pageState.hasSplashScreenPlayed, reducedMotion])
 
   // Handle scroll lock
   useEffect(() => {
-    disableScroll(document.documentElement, !pageState.hasSplashScreenPlayed)
-  }, [pageState.hasSplashScreenPlayed])
+    const shouldLock =
+      !pageState.hasSplashScreenPlayed &&
+      !reducedMotion &&
+      !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
 
-  if (pageState.hasSplashScreenPlayed) return null
+    disableScroll(document.documentElement, shouldLock)
+    return () => disableScroll(document.documentElement, false)
+  }, [pageState.hasSplashScreenPlayed, reducedMotion])
+
+  if (pageState.hasSplashScreenPlayed || reducedMotion) return null
 
   return (
     <S.Wrapper>

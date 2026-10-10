@@ -14,6 +14,10 @@ export const Cover = styled(motion.div)`
   bottom: 0;
   left: 0;
   background-color: var(--c-white);
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
 `
 
 export const Swiper = styled(motion.div)`
@@ -25,6 +29,14 @@ export const Swiper = styled(motion.div)`
   left: 0;
   background: var(--g-primary-diagonal);
   transform-origin: top center;
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
 `
 
-export const Content = styled(motion.div)``
+export const Content = styled(motion.div)`
+  @media (prefers-reduced-motion: reduce) {
+    transform: none !important;
+  }
+`
