@@ -1,7 +1,8 @@
-import { Variants, MotionProps as AnimationProps } from "motion/react"
+import { Variants } from "motion/react"
 
 // Styles
 import { duration } from "@styles/animation"
+import { ListAnimProps } from "@ts/animation"
 
 // Setup
 const listVariants: Variants = {
@@ -23,9 +24,7 @@ const listVariants: Variants = {
   },
 }
 
-export const getListAnimProps = (
-  showAll: boolean
-): Pick<AnimationProps, "variants" | "initial" | "animate" | "exit"> => ({
+export const getListAnimProps = (showAll: boolean): ListAnimProps => ({
   variants: listVariants,
   initial: "hidden",
   animate: showAll ? "visible" : "hidden",

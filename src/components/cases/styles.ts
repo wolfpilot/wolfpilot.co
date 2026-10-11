@@ -14,7 +14,7 @@ import Heading from "@components/generic/Heading"
 
 export const Wrapper = styled.div``
 
-export const List = styled.ul`
+export const List = styled(motion.ul)`
   ${listResetStyles};
 `
 

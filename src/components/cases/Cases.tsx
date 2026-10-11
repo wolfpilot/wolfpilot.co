@@ -60,7 +60,7 @@ const Cases: React.FC<Props> = ({ items }) => {
 
   return (
     <S.Wrapper>
-      <S.List {...listAnimProps}>
+      <S.List {...getListAnimProps(true)}>
         {visibleItems.map((item, index) => renderItem(item, index))}
 
         <AnimatePresence>

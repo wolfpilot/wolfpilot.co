@@ -2,6 +2,7 @@ import {
   render,
   screen,
   waitForElementToBeRemoved,
+  within,
 } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
@@ -19,18 +20,17 @@ describe("Cases", () => {
 
     render(<Cases {...mockData} />)
 
-    expect(screen.getByRole("link", { name: /CAWR/i })).toHaveAttribute(
-      "href",
-      "/cases/cawr"
-    )
-    expect(screen.getByRole("link", { name: /RetroCade/i })).toHaveAttribute(
-      "href",
-      "/cases/retrocade"
-    )
-    expect(screen.getByRole("link", { name: /Wolf Pilot/i })).toHaveAttribute(
-      "href",
-      "/cases/wolf-pilot"
-    )
+    const list = screen.getByRole("list", { hidden: true })
+    expect(list).not.toHaveAttribute("variants")
+    expect(list).not.toHaveAttribute("initial")
+    expect(list).not.toHaveAttribute("animate")
+    expect(list).not.toHaveAttribute("exit")
+
+    const links = within(list).getAllByRole("link", { hidden: true })
+    expect(links).toHaveLength(3)
+    expect(links[0]).toHaveAttribute("href", "/cases/cawr")
+    expect(links[1]).toHaveAttribute("href", "/cases/retrocade")
+    expect(links[2]).toHaveAttribute("href", "/cases/wolf-pilot")
   })
 
   it("doesn't render if data is missing or incomplete", () => {
@@ -57,18 +57,18 @@ describe("Cases", () => {
 
     render(<Cases {...mockData} />)
 
-    const toggleBtn = screen.getByRole("button")
+    const toggleBtn = screen.getByRole("button", { hidden: true })
 
     // Show all cases
     await userEvent.click(toggleBtn)
 
-    await screen.findByRole("link", { name: /Some random stuff/i })
+    await screen.findByText("Some random stuff")
 
     // Show less cases
     await userEvent.click(toggleBtn)
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole("link", { name: /Some random stuff/i })
+      screen.queryByText("Some random stuff")
     )
   })
 })
