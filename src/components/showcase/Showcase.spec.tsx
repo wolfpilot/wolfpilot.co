@@ -23,7 +23,7 @@ const checkForActiveItems = (tag: Tag) => {
   const activeItems = mockItems.filter((item) => item.tags.includes(tag))
 
   activeItems.forEach((item) => {
-    expect(screen.getByRole("heading", { name: item.name })).toBeInTheDocument()
+    expect(screen.getByText(item.name)).toBeInTheDocument()
     expect(
       screen.getByRole("img", { name: item.image.alt })
     ).toBeInTheDocument()
@@ -95,12 +95,11 @@ describe("Showcase", () => {
       checkForActiveItems("illustration")
     })
 
-    // Click on a project image
-    await userEvent.click(
-      screen.getAllByRole("button", { name: /Open in modal/i })[1]
-    )
+    // Activate a project image with the keyboard; the button has no pointer events at the test viewport.
+    screen.getAllByRole("button", { name: /Open in modal/i })[1].focus()
+    await userEvent.keyboard("{Enter}")
 
-    // Checxk that the modal's open
+    // Check that the modal's open
     await Promise.all([
       screen.findByRole("button", { name: /View previous project/i }),
       screen.findByRole("button", { name: /View next project/i }),

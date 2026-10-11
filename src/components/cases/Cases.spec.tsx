@@ -1,7 +1,6 @@
 import {
   render,
   screen,
-  waitFor,
   waitForElementToBeRemoved,
 } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
@@ -20,15 +19,18 @@ describe("Cases", () => {
 
     render(<Cases {...mockData} />)
 
-    expect(
-      screen.getByRole("link", { name: /01 CAWR commercial/i })
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole("link", { name: /02 RetroCade personal/i })
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole("link", { name: /03 Wolf Pilot personal/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: /CAWR/i })).toHaveAttribute(
+      "href",
+      "/cases/cawr"
+    )
+    expect(screen.getByRole("link", { name: /RetroCade/i })).toHaveAttribute(
+      "href",
+      "/cases/retrocade"
+    )
+    expect(screen.getByRole("link", { name: /Wolf Pilot/i })).toHaveAttribute(
+      "href",
+      "/cases/wolf-pilot"
+    )
   })
 
   it("doesn't render if data is missing or incomplete", () => {
@@ -60,15 +62,13 @@ describe("Cases", () => {
     // Show all cases
     await userEvent.click(toggleBtn)
 
-    await waitFor(() =>
-      screen.findByRole("link", { name: /04 Some random stuff personal/ })
-    )
+    await screen.findByRole("link", { name: /Some random stuff/i })
 
     // Show less cases
     await userEvent.click(toggleBtn)
 
     await waitForElementToBeRemoved(() =>
-      screen.queryByRole("link", { name: /04 Some random stuff personal/ })
+      screen.queryByRole("link", { name: /Some random stuff/i })
     )
   })
 })

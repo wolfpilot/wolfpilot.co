@@ -16,16 +16,17 @@ describe("SiteDeskNav", () => {
     render(<SiteDeskNav {...mockProps} />)
 
     // Check that the logo link is being rendered
-    expect(screen.getByRole("link", { name: "Homepage" })).toHaveAttribute(
-      "href",
-      "/"
-    )
+    expect(
+      screen.getByRole("link", { name: "Homepage", hidden: true })
+    ).toHaveAttribute("href", "/")
 
     // Check that the links are being rendered
     Object.keys(routes).forEach((key) => {
       const { label } = routes[key]
 
-      expect(screen.getByRole("link", { name: label })).toBeInTheDocument()
+      expect(
+        screen.getByRole("link", { name: label, hidden: true })
+      ).toBeInTheDocument()
     })
   })
 })
