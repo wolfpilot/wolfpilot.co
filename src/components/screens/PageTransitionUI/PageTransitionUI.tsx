@@ -1,6 +1,6 @@
 import { usePathname } from "next/navigation"
 import { useNextNavigationEvent } from "use-next-navigation-event"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "motion/react"
 import { useEffect, useRef } from "react"
 
 // Utils

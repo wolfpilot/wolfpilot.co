@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen, fireEvent, waitFor } from "@testing-library/react"
 
 // Constants
 import { routes } from "@constants/routes"
@@ -54,17 +54,21 @@ describe("SiteMobNav", () => {
     Object.keys(routes).forEach((key) => {
       const { label } = routes[key]
 
-      expect(screen.queryByRole("link", { name: label })).not.toBeVisible()
+      expect(screen.getByText(label)).not.toBeVisible()
     })
 
     // Fire ze interaction!
     fireEvent.click(toggleButton)
 
     // Check that the links are now rendered as expected
-    await Promise.all(
-      Object.keys(routes).map((key) =>
-        screen.findByRole("link", { name: routes[key].label })
-      )
-    )
+    await waitFor(() => {
+      Object.keys(routes).forEach((key) => {
+        const { label, href } = routes[key]
+        const link = screen.getByRole("link", { name: label })
+
+        expect(link).toBeVisible()
+        expect(link).toHaveAttribute("href", href)
+      })
+    })
   })
 })

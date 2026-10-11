@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion } from "motion/react"
 
 // Types
 import { CaseType } from "@data/cases"
@@ -60,7 +60,7 @@ const Cases: React.FC<Props> = ({ items }) => {
 
   return (
     <S.Wrapper>
-      <S.List {...listAnimProps}>
+      <S.List {...getListAnimProps(true)}>
         {visibleItems.map((item, index) => renderItem(item, index))}
 
         <AnimatePresence>

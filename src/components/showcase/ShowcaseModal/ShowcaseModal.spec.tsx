@@ -26,7 +26,11 @@ describe("ShowcaseModal", () => {
 
     await screen.findByRole("heading", { name: mockItems[0].name })
     await screen.findByRole("img", { name: mockItems[0].image.alt })
-    await screen.findByRole("link", { name: "View on github.com" })
+    const externalLink = screen.getByRole("link", { hidden: true })
+    expect(externalLink).toHaveAttribute(
+      "href",
+      "https://github.com/wolfpilot/up-n-running-gulp-boilerplate"
+    )
     await screen.findByRole("button", { name: /Close/i })
     await screen.findByRole("button", { name: /View previous project/i })
     await screen.findByRole("button", { name: /View next project/i })

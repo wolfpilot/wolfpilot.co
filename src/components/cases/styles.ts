@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
 // Styles
 import { mq } from "@styles/utils/mediaQueries"
@@ -14,7 +14,7 @@ import Heading from "@components/generic/Heading"
 
 export const Wrapper = styled.div``
 
-export const List = styled.ul`
+export const List = styled(motion.ul)`
   ${listResetStyles};
 `
 

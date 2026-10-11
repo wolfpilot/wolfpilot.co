@@ -1,7 +1,8 @@
-import { Variants, AnimationProps } from "framer-motion"
+import { Variants } from "motion/react"
 
 // Styles
 import { duration } from "@styles/animation"
+import { ListAnimProps } from "@ts/animation"
 
 // Setup
 const listVariants: Variants = {
@@ -23,7 +24,7 @@ const listVariants: Variants = {
   },
 }
 
-export const getListAnimProps = (showAll: boolean): AnimationProps => ({
+export const getListAnimProps = (showAll: boolean): ListAnimProps => ({
   variants: listVariants,
   initial: "hidden",
   animate: showAll ? "visible" : "hidden",

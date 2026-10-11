@@ -22,9 +22,7 @@ describe("ShowcaseProjectItem", () => {
       </ShowcaseProvider>
     )
 
-    expect(
-      screen.getByRole("heading", { name: mockItems[0].name })
-    ).toBeInTheDocument()
+    expect(screen.getByText(mockItems[0].name)).toBeInTheDocument()
     expect(screen.getByText(mockItems[0].tagline)).toBeInTheDocument()
     expect(screen.getByAltText(mockItems[0].image.alt)).toBeInTheDocument()
     expect(

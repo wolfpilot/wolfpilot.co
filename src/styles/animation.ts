@@ -1,3 +1,4 @@
+import { Easing } from "motion"
 import { keyframes } from "styled-components"
 
 // Constants
@@ -5,11 +6,12 @@ export const ease = {
   default: "ease-in-out",
   cubic: "cubic-bezier(0.4, 0, 0.2, 1)",
   elastic: "cubic-bezier(0.68, -0.55, 0.27, 1.55)",
-  framer: {
-    default: "easeInOut",
-    cubic: [0.4, 0, 0.2, 1],
-    elastic: [0.68, -0.55, 0.27, 1.55],
-  },
+}
+
+export const easeFramer: Record<string, Easing> = {
+  default: "easeInOut",
+  cubic: [0.4, 0, 0.2, 1],
+  elastic: [0.68, -0.55, 0.27, 1.55],
 }
 
 export const duration = {

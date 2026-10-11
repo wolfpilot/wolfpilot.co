@@ -1,7 +1,7 @@
-import { Variants, AnimationProps } from "framer-motion"
+import { Variants, MotionProps as AnimationProps } from "motion/react"
 
 // Styles
-import { duration, ease } from "@styles/animation"
+import { duration, easeFramer } from "@styles/animation"
 
 const itemVariants: Variants = {
   hidden: {
@@ -9,7 +9,7 @@ const itemVariants: Variants = {
     opacity: 0,
     transition: {
       duration: duration.slow,
-      ease: ease.framer.cubic,
+      ease: easeFramer.cubic,
     },
     transitionEnd: {
       visibility: "hidden",
@@ -21,7 +21,7 @@ const itemVariants: Variants = {
     opacity: 1,
     transition: {
       duration: duration.slow,
-      ease: ease.framer.cubic,
+      ease: easeFramer.cubic,
     },
   },
 }
