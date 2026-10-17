@@ -7,7 +7,7 @@ import * as S from "./styles"
 const CustomCursor: React.FC = () => {
   const mouseCoords = useMousePosition()
 
-  if (!mouseCoords.x || !mouseCoords.y) return null
+  if (mouseCoords.x === null || mouseCoords.y === null) return null
 
   /**
    * * Note: Only possible by applying styles inline.

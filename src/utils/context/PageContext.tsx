@@ -26,9 +26,10 @@ export const pageReducer = (state: State, action: Action) => {
         hasSplashScreenPlayed: action.payload,
       }
     }
-    default:
-      // @ts-ignore next-line
-      throw new Error(`Unhandled action type: ${action.type}`)
+    default: {
+      const _exhaustive: never = action.type
+      throw new Error(`Unhandled action type: ${_exhaustive}`)
+    }
   }
 }
 

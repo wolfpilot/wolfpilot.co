@@ -7,6 +7,7 @@ import { NextSeo } from "next-seo"
 // Types
 import { NextPage, GetStaticProps } from "next"
 import { Route } from "@ts/routes"
+import { ShowcaseItem } from "@components/showcase/types"
 
 // Data
 import { data as rawData, ShowcaseItemRaw } from "@data/homepage"
@@ -28,8 +29,14 @@ import Contact from "@components/contact/Contact"
 import { routes } from "@constants/routes"
 import ExternalLink from "@components/generic/ExternalLink"
 
+type PageData = Omit<typeof rawData, "work"> & {
+  work: Omit<typeof rawData.work, "showcase"> & {
+    showcase: { items: ShowcaseItem[] }
+  }
+}
+
 export interface Props {
-  pageData: any
+  pageData: PageData
 }
 
 // Setup
@@ -38,114 +45,75 @@ const META_DESCRIPTION =
   "Creative Fullstack Developer, Concept Artist & Illustrator"
 
 const HomePage: NextPage<Props> = ({ pageData }) => {
-  if (!pageData) return null
-
   return (
     <>
       <NextSeo title={META_TITLE} description={META_DESCRIPTION} />
 
-      {pageData.about && (
-        <S.Section id="about">
-          <Container>
-            {pageData.about.hero && (
-              <S.Hero>
-                {pageData.about.hero.img && (
-                  <S.HeroImageWrapper>
-                    <S.HeroBackdrop>
-                      <S.HeroImage {...pageData.about.hero.img} priority />
-                    </S.HeroBackdrop>
-                  </S.HeroImageWrapper>
-                )}
+      <S.Section id="about">
+        <Container>
+          <S.Hero>
+            <S.HeroImageWrapper>
+              <S.HeroBackdrop>
+                <S.HeroImage {...pageData.about.hero.img} priority />
+              </S.HeroBackdrop>
+            </S.HeroImageWrapper>
 
-                {pageData.about.hero.title && (
-                  <S.HeroHeading level="h1">
-                    {pageData.about.hero.title}
-                  </S.HeroHeading>
-                )}
-                {pageData.about.hero.text && (
-                  <Text>{pageData.about.hero.text}</Text>
-                )}
-              </S.Hero>
-            )}
+            <S.HeroHeading level="h1">
+              {pageData.about.hero.title}
+            </S.HeroHeading>
+            <Text>{pageData.about.hero.text}</Text>
+          </S.Hero>
 
-            {pageData.about.card && <Card {...pageData.about.card} />}
-          </Container>
-        </S.Section>
-      )}
+          <Card {...pageData.about.card} />
+        </Container>
+      </S.Section>
 
-      {pageData.work && (
-        <S.Section id="work">
-          <Container>
-            <S.SectionHeader>
-              {pageData.work.heading && (
-                <S.SectionHeading level="h2">
-                  {pageData.work.heading}
-                </S.SectionHeading>
-              )}
+      <S.Section id="work">
+        <Container>
+          <S.SectionHeader>
+            <S.SectionHeading level="h2">
+              {pageData.work.heading}
+            </S.SectionHeading>
+            <Text>{pageData.work.description}</Text>
+          </S.SectionHeader>
 
-              {pageData.work.description && (
-                <Text>{pageData.work.description}</Text>
-              )}
-            </S.SectionHeader>
+          <Showcase {...pageData.work.showcase} />
+        </Container>
+      </S.Section>
 
-            {pageData.work.showcase && <Showcase {...pageData.work.showcase} />}
-          </Container>
-        </S.Section>
-      )}
+      <S.Section id="cases">
+        <Container>
+          <S.SectionHeader>
+            <S.SectionHeading level="h2">
+              {pageData.caseStudies.heading}
+            </S.SectionHeading>
+            <Text>{pageData.caseStudies.description}</Text>
+          </S.SectionHeader>
 
-      {pageData.caseStudies && (
-        <S.Section id="cases">
-          <Container>
-            <S.SectionHeader>
-              {pageData.caseStudies.heading && (
-                <S.SectionHeading level="h2">
-                  {pageData.caseStudies.heading}
-                </S.SectionHeading>
-              )}
+          <Cases {...pageData.caseStudies.cases} />
+        </Container>
+      </S.Section>
 
-              {pageData.caseStudies.description && (
-                <Text>{pageData.caseStudies.description}</Text>
-              )}
-            </S.SectionHeader>
+      <S.Section id="experience">
+        <Container>
+          <S.SectionHeader>
+            <S.SectionHeading level="h2">
+              {pageData.experience.heading}
+            </S.SectionHeading>
+            <Text>
+              <span>{pageData.experience.description}</span>
+              <span>
+                {" "}
+                (looking for my{" "}
+                <ExternalLink href={routes.resume.href}>résumé</ExternalLink>
+                ?)
+              </span>
+            </Text>
+          </S.SectionHeader>
 
-            {pageData.caseStudies.cases && (
-              <Cases {...pageData.caseStudies.cases} />
-            )}
-          </Container>
-        </S.Section>
-      )}
-
-      {pageData.experience && (
-        <S.Section id="experience">
-          <Container>
-            <S.SectionHeader>
-              {pageData.experience.heading && (
-                <S.SectionHeading level="h2">
-                  {pageData.experience.heading}
-                </S.SectionHeading>
-              )}
-
-              {pageData.experience.description && (
-                <Text>
-                  <span>{pageData.experience.description}</span>
-                  <span>
-                    {" "}
-                    (looking for my{" "}
-                    <ExternalLink href={routes.resume.href}>
-                      résumé
-                    </ExternalLink>
-                    ?)
-                  </span>
-                </Text>
-              )}
-            </S.SectionHeader>
-
-            {pageData.experience.timeline && (
-              <Timeline {...pageData.experience.timeline} />
-            )}
-          </Container>
-        </S.Section>
-      )}
+          <Timeline {...pageData.experience.timeline} />
+        </Container>
+      </S.Section>
 
       <S.Section id="contact">
         <Contact />
@@ -154,7 +122,7 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const baseShowcaseUrl = "/media/showcase"
 
   const publicPath = path.join(process.cwd(), "public")
@@ -190,9 +158,9 @@ export const getStaticProps: GetStaticProps = async () => {
       : `${item.id}/${item.id}.jpg`
 
     const src = `${baseShowcaseUrl}/${suffix}`
-    const path = `${baseShowcasePath}/${suffix}`
+    const imagePath = `${baseShowcasePath}/${suffix}`
 
-    const data = fs.readFileSync(path)
+    const data = fs.readFileSync(imagePath)
     const { width, height } = sizeOf(data)
 
     return {
@@ -203,12 +171,14 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
 
-  const parsedWorkItems = workData.showcase.items.map((item) => ({
-    ...item,
-    links: generateLinksData(item),
-    thumb: generateImageData(item, true),
-    image: generateImageData(item, false),
-  }))
+  const parsedWorkItems: ShowcaseItem[] = workData.showcase.items.map(
+    (item) => ({
+      ...item,
+      links: generateLinksData(item),
+      thumb: generateImageData(item, true),
+      image: generateImageData(item, false),
+    })
+  )
 
   return {
     props: {

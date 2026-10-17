@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { useSyncExternalStore } from "react"
 
 // Types
 import { Directions } from "@ts/global"
@@ -21,9 +21,18 @@ export type UseScroll = () => {
   direction: Direction
 }
 
+const serverSnapshot: ReturnType<UseScroll> = {
+  offset: { x: null, y: null },
+  direction: { x: null, y: null },
+}
+const subscribers = new Set<() => void>()
+let snapshot: ReturnType<UseScroll> = serverSnapshot
+let hasSnapshot = false
+let frame: number | null = null
+
 export const getScrollPosition = (): ScrollOffset => ({
-  x: isClient ? window.pageXOffset : null,
-  y: isClient ? window.pageYOffset : null,
+  x: isClient ? window.scrollX : null,
+  y: isClient ? window.scrollY : null,
 })
 
 export const getScrollDirection = (
@@ -31,7 +40,6 @@ export const getScrollDirection = (
   oldOffset: ScrollOffset
 ): Direction => {
   if (
-    !isClient ||
     newOffset.x === null ||
     newOffset.y === null ||
     oldOffset.x === null ||
@@ -61,45 +69,74 @@ export const getScrollDirection = (
   }
 }
 
-export const useScroll: UseScroll = () => {
-  const initialOffset = getScrollPosition()
-  const initialDirection = {
-    x: null,
-    y: null,
+const setInitialSnapshot = () => {
+  const offset = getScrollPosition()
+  if (
+    offset.x === snapshot.offset.x &&
+    offset.y === snapshot.offset.y &&
+    snapshot.direction.x === null &&
+    snapshot.direction.y === null
+  ) {
+    return
   }
 
-  const [offset, setOffset] = useState<ScrollOffset>(initialOffset)
-  const [direction, setDirection] = useState<Direction>(initialDirection)
+  snapshot = { offset, direction: { x: null, y: null } }
+  subscribers.forEach((notify) => notify())
+}
 
-  const rAF = useRef<number | null>(null)
+const updateSnapshot = () => {
+  const offset = getScrollPosition()
+  if (offset.x === snapshot.offset.x && offset.y === snapshot.offset.y) return
 
-  useEffect(() => {
-    if (!isClient) return
-
-    const handleScroll = () => {
-      if (rAF.current !== null) return
-
-      rAF.current = window.requestAnimationFrame(() => {
-        const newOffset = getScrollPosition()
-        const newScrollDirection = getScrollDirection(newOffset, offset)
-
-        setOffset(newOffset)
-        setDirection(newScrollDirection)
-
-        rAF.current = null
-      })
-    }
-
-    window.addEventListener("scroll", handleScroll)
-
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [offset])
-
-  return {
+  snapshot = {
     offset,
-    direction,
+    direction: getScrollDirection(offset, snapshot.offset),
+  }
+  subscribers.forEach((notify) => notify())
+}
+
+const getSnapshot = (): ReturnType<UseScroll> => {
+  if (!isClient) return serverSnapshot
+
+  // A new subscriber starts with the current offset and no direction.
+  if (!hasSnapshot || subscribers.size === 0) {
+    setInitialSnapshot()
+    hasSnapshot = true
+  }
+
+  return snapshot
+}
+
+const subscribe = (notify: () => void) => {
+  const isFirstSubscriber = subscribers.size === 0
+  subscribers.add(notify)
+  if (isFirstSubscriber) {
+    window.addEventListener("scroll", handleScroll)
+    // Catch a scroll between rendering and subscribing.
+    setInitialSnapshot()
+  }
+
+  return () => {
+    subscribers.delete(notify)
+    if (subscribers.size > 0) return
+
+    window.removeEventListener("scroll", handleScroll)
+    if (frame !== null) window.cancelAnimationFrame(frame)
+    frame = null
   }
 }
+
+const handleScroll = () => {
+  if (frame !== null) return
+
+  frame = window.requestAnimationFrame(() => {
+    frame = null
+    updateSnapshot()
+  })
+}
+
+export const useScroll: UseScroll = () =>
+  useSyncExternalStore(subscribe, getSnapshot, () => serverSnapshot)
 
 export const useScrollXOffset = (): number | null => {
   const { offset } = useScroll()

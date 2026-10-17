@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useSyncExternalStore } from "react"
 
 // Utils
 import { isClient } from "@utils/domHelper"
@@ -11,39 +11,68 @@ export interface WindowSize {
 export type GetWindowSize = () => WindowSize
 export type UseWindowSize = () => WindowSize
 
-export const getWindowSize: GetWindowSize = () => {
-  return {
-    width: isClient ? window.innerWidth : null,
-    height: isClient ? window.innerHeight : null,
-  }
+const serverSnapshot: WindowSize = { width: null, height: null }
+const subscribers = new Set<() => void>()
+let snapshot: WindowSize = serverSnapshot
+let hasSnapshot = false
+let frame: number | null = null
+
+export const getWindowSize: GetWindowSize = () => ({
+  width: isClient ? window.innerWidth : null,
+  height: isClient ? window.innerHeight : null,
+})
+
+const updateSnapshot = () => {
+  const next = getWindowSize()
+  if (next.width === snapshot.width && next.height === snapshot.height) return
+
+  snapshot = next
+  subscribers.forEach((notify) => notify())
 }
 
-export const useWindowSize: UseWindowSize = () => {
-  const rAF = useRef<number | null>(null)
+const getSnapshot = (): WindowSize => {
+  if (!isClient) return serverSnapshot
 
-  const initialSizes = getWindowSize()
-
-  const [windowSize, setWindowSize] = useState<WindowSize>(initialSizes)
-
-  const handleResize = () => {
-    if (rAF.current === null) {
-      rAF.current = window.requestAnimationFrame(() => {
-        const newSizes = getWindowSize()
-
-        setWindowSize(newSizes)
-
-        rAF.current = null
-      })
+  // Refresh when a store is first read or after all subscribers have left.
+  if (!hasSnapshot || subscribers.size === 0) {
+    const next = getWindowSize()
+    if (next.width !== snapshot.width || next.height !== snapshot.height) {
+      snapshot = next
     }
-    setWindowSize(getWindowSize())
+    hasSnapshot = true
   }
 
-  useEffect(() => {
-    if (!isClient) return
-
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [])
-
-  return windowSize
+  return snapshot
 }
+
+const subscribe = (notify: () => void) => {
+  subscribers.add(notify)
+
+  if (subscribers.size === 1) {
+    window.addEventListener("resize", handleResize)
+  }
+
+  // Catch a resize between rendering and subscribing.
+  updateSnapshot()
+
+  return () => {
+    subscribers.delete(notify)
+    if (subscribers.size > 0) return
+
+    window.removeEventListener("resize", handleResize)
+    if (frame !== null) window.cancelAnimationFrame(frame)
+    frame = null
+  }
+}
+
+const handleResize = () => {
+  if (frame !== null) return
+
+  frame = window.requestAnimationFrame(() => {
+    frame = null
+    updateSnapshot()
+  })
+}
+
+export const useWindowSize: UseWindowSize = () =>
+  useSyncExternalStore(subscribe, getSnapshot, () => serverSnapshot)
