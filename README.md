@@ -24,7 +24,7 @@ Nothing compares to the passion one has for a project of their own choice, and t
 
 - Homepage: [https://www.wolfpilot.co/](https://www.wolfpilot.co/)
 - Homepage w. debug grid: [https://www.wolfpilot.co/?debugGrid=true](https://www.wolfpilot.co/?debugGrid=true)
-- Case Study Example: [http://localhost:3000/cases/cawr](http://localhost:3000/cases/cawr)
+- Case Study Example: [https://www.wolfpilot.co/cases/tom-holkenborg](https://www.wolfpilot.co/cases/tom-holkenborg)
 - Styleguide: [https://www.wolfpilot.co/styleguide](https://www.wolfpilot.co/cases)
 
 ## Features (done)
