@@ -29,9 +29,10 @@ export const appReducer = (state: State, action: Action) => {
         showDebugGrid: action.payload,
       }
     }
-    default:
-      // @ts-ignore next-line
-      throw new Error(`Unhandled action type: ${action.type}`)
+    default: {
+      const _exhaustive: never = action.type
+      throw new Error(`Unhandled action type: ${_exhaustive}`)
+    }
   }
 }
 

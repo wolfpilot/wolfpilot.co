@@ -55,9 +55,10 @@ export const showcaseReducer = (state: State, action: Action) => {
         activeItemIndex: action.payload,
       }
     }
-    default:
-      // @ts-ignore next-line
-      throw new Error(`Unhandled action type: ${action.type}`)
+    default: {
+      const _exhaustive: never = action
+      throw new Error(`Unhandled action type: ${JSON.stringify(_exhaustive)}`)
+    }
   }
 }
 
