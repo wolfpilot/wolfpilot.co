@@ -398,6 +398,7 @@ const ShowcaseModal: React.FC = () => {
                                   ? data.image.src
                                   : undefined
                               }
+                              loop
                               preload="none"
                               muted
                               playsInline
