@@ -1,5 +1,5 @@
 import React from "react"
-import { sanitize } from "isomorphic-dompurify"
+import DOMPurify from "isomorphic-dompurify"
 import styled from "styled-components"
 
 interface IProps {
@@ -11,7 +11,7 @@ const RichText: React.FC<IProps> = ({ className, html }) => (
   <Wrapper
     className={className}
     dangerouslySetInnerHTML={{
-      __html: sanitize(html, { ADD_ATTR: ["target"] }),
+      __html: DOMPurify.sanitize(html, { ADD_ATTR: ["target"] }),
     }}
   />
 )
