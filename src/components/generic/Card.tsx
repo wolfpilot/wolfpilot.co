@@ -1,6 +1,6 @@
 import { useState, useRef } from "react"
 import Image, { ImageProps } from "next/image"
-import { sanitize } from "isomorphic-dompurify"
+import DOMPurify from "isomorphic-dompurify"
 import styled from "styled-components"
 import { motion, useScroll, useTransform } from "motion/react"
 
@@ -103,7 +103,9 @@ const Card: React.FC<Props> = ({
         )}
 
         <Content>
-          <Heading dangerouslySetInnerHTML={{ __html: sanitize(heading) }} />
+          <Heading
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(heading) }}
+          />
           <Text>{copy}</Text>
         </Content>
       </MediaWrapper>
