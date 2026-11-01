@@ -171,12 +171,32 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     }
   }
 
+  const generateThumbVideoData = (item: ShowcaseItemRaw) => {
+    const suffix = `${item.id}/${item.id}--thumb.mp4`
+    const videoPath = path.join(baseShowcasePath, suffix)
+
+    return fs.existsSync(videoPath)
+      ? { thumbVideo: `${baseShowcaseUrl}/${suffix}` }
+      : {}
+  }
+
+  const generateVideoData = (item: ShowcaseItemRaw) => {
+    const suffix = `${item.id}/${item.id}.mp4`
+    const videoPath = path.join(baseShowcasePath, suffix)
+
+    return fs.existsSync(videoPath)
+      ? { video: `${baseShowcaseUrl}/${suffix}` }
+      : {}
+  }
+
   const parsedWorkItems: ShowcaseItem[] = workData.showcase.items.map(
     (item) => ({
       ...item,
       links: generateLinksData(item),
       thumb: generateImageData(item, true),
+      ...generateThumbVideoData(item),
       image: generateImageData(item, false),
+      ...generateVideoData(item),
     })
   )
 

@@ -44,10 +44,13 @@ const ShowcaseModal: React.FC = () => {
     null
   )
   const [hasCycled, setHasCycled] = useState<boolean>(false)
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false)
+  const [hasVideoError, setHasVideoError] = useState<boolean>(false)
 
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const contentRef = useRef<HTMLDivElement | null>(null)
   const mediaRef = useRef<HTMLDivElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
 
   /**
    * TODO: Report bug to Framer Motion.
@@ -60,6 +63,7 @@ const ShowcaseModal: React.FC = () => {
    */
   const imgRefArray = useRef<HTMLImageElement[] | null[]>([])
   const activeImgRef = imgRefArray.current[activeItemIndex || 0]
+  const hasVideo = Boolean(data?.video && !hasVideoError)
 
   const animProps = {
     wrapper: getWrapperAnimProps(isOpen),
@@ -69,6 +73,18 @@ const ShowcaseModal: React.FC = () => {
   }
 
   // Utils
+  const resetVideo = useCallback(() => {
+    const video = videoRef.current
+
+    if (video) {
+      video.pause()
+      if (video.readyState > 0) video.currentTime = 0
+    }
+
+    setIsVideoPlaying(false)
+    setHasVideoError(false)
+  }, [])
+
   const toggle = useCallback(
     (value: boolean) => {
       setIsOpen(value)
@@ -77,6 +93,7 @@ const ShowcaseModal: React.FC = () => {
       if (value) {
         wrapperRef.current?.focus()
       } else {
+        resetVideo()
         setIsImgLoaded(false)
         setIsImgMax(false)
         setImgFillAxis(null)
@@ -89,7 +106,7 @@ const ShowcaseModal: React.FC = () => {
         })
       }
     },
-    [showcaseDispatch]
+    [resetVideo, showcaseDispatch]
   )
 
   const cycle = useCallback(
@@ -112,6 +129,7 @@ const ShowcaseModal: React.FC = () => {
       // Default to the provided index
       : targetIndex
 
+      resetVideo()
       setIsImgLoaded(false)
       setIsImgMax(false)
       setImgFillAxis(null)
@@ -123,7 +141,7 @@ const ShowcaseModal: React.FC = () => {
         payload: newIndex,
       })
     },
-    [activeItemIndex, activeItems, showcaseDispatch]
+    [activeItemIndex, activeItems, resetVideo, showcaseDispatch]
   )
 
   const zoomOut = () => {
@@ -142,6 +160,32 @@ const ShowcaseModal: React.FC = () => {
   // Handlers
   const handleImgLoadingComplete = () => {
     setIsImgLoaded(true)
+  }
+
+  const handleVideoPlayClick = () => {
+    const video = videoRef.current
+    if (!video) return
+
+    video.controls = true
+
+    try {
+      const playback = video.play()
+      setIsVideoPlaying(true)
+
+      void playback.catch(() => {
+        video.controls = false
+        setIsVideoPlaying(false)
+      })
+    } catch {
+      video.controls = false
+      setIsVideoPlaying(false)
+    }
+  }
+
+  const handleVideoError = () => {
+    videoRef.current?.pause()
+    setIsVideoPlaying(false)
+    setHasVideoError(true)
   }
 
   const handleCloseBtnClick = () => {
@@ -341,25 +385,64 @@ const ShowcaseModal: React.FC = () => {
                   data.image.alt && (
                     <S.ImageWrapper>
                       <AnimatePresence initial={false} mode="popLayout">
-                        <S.ImageScroller
-                          key={activeItemIndex || 0}
-                          $isImgMax={isImgMax}
-                          {...animProps.imgScroller}
-                        >
-                          <S.Image
-                            ref={(ref: HTMLImageElement | null) => {
-                              imgRefArray.current[activeItemIndex || 0] = ref
-                            }}
-                            src={data.image.src}
-                            width={data.image.width}
-                            height={data.image.height}
-                            alt={data.image.alt}
+                        {hasVideo ? (
+                          <S.VideoWrapper
+                            key={activeItemIndex || 0}
+                            {...animProps.imgScroller}
+                          >
+                            <S.Video
+                              ref={videoRef}
+                              src={data.video}
+                              poster={
+                                typeof data.image.src === "string"
+                                  ? data.image.src
+                                  : undefined
+                              }
+                              loop
+                              preload="none"
+                              muted
+                              playsInline
+                              controls={isVideoPlaying}
+                              aria-label={`${data.name} video`}
+                              onError={handleVideoError}
+                            />
+                            <S.VideoPoster
+                              src={data.image.src}
+                              width={data.image.width}
+                              height={data.image.height}
+                              alt={data.image.alt}
+                              $isPlaying={isVideoPlaying}
+                              onLoad={handleImgLoadingComplete}
+                            />
+                            <S.VideoPlayBtn
+                              aria-label={`Play ${data.name} video`}
+                              $isPlaying={isVideoPlaying}
+                              onClick={handleVideoPlayClick}
+                            >
+                              <S.PlayIcon type="play" />
+                            </S.VideoPlayBtn>
+                          </S.VideoWrapper>
+                        ) : (
+                          <S.ImageScroller
+                            key={activeItemIndex || 0}
                             $isImgMax={isImgMax}
-                            $imgFillAxis={imgFillAxis}
-                            onLoad={handleImgLoadingComplete}
-                            onClick={handleZoomImgClick}
-                          />
-                        </S.ImageScroller>
+                            {...animProps.imgScroller}
+                          >
+                            <S.Image
+                              ref={(ref: HTMLImageElement | null) => {
+                                imgRefArray.current[activeItemIndex || 0] = ref
+                              }}
+                              src={data.image.src}
+                              width={data.image.width}
+                              height={data.image.height}
+                              alt={data.image.alt}
+                              $isImgMax={isImgMax}
+                              $imgFillAxis={imgFillAxis}
+                              onLoad={handleImgLoadingComplete}
+                              onClick={handleZoomImgClick}
+                            />
+                          </S.ImageScroller>
+                        )}
                       </AnimatePresence>
                     </S.ImageWrapper>
                   )}
@@ -372,16 +455,18 @@ const ShowcaseModal: React.FC = () => {
                     <S.Icon type="close" />
                   </S.ControlCloseBtn>
 
-                  <S.ControlZoomBtn
-                    aria-label={isImgMax ? "Zoom out" : "Zoom in"}
-                    onClick={handleZoomBtnClick}
-                  >
-                    {isImgMax ? (
-                      <S.Icon type="collapse" />
-                    ) : (
-                      <S.Icon type="expand" />
-                    )}
-                  </S.ControlZoomBtn>
+                  {!hasVideo && (
+                    <S.ControlZoomBtn
+                      aria-label={isImgMax ? "Zoom out" : "Zoom in"}
+                      onClick={handleZoomBtnClick}
+                    >
+                      {isImgMax ? (
+                        <S.Icon type="collapse" />
+                      ) : (
+                        <S.Icon type="expand" />
+                      )}
+                    </S.ControlZoomBtn>
+                  )}
 
                   {data.links?.map((link, index) => {
                     if (!link.href) return null

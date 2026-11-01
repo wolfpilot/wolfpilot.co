@@ -10,7 +10,10 @@ import { Props as TimelineProps } from "@components/timeline/Timeline"
 // Data
 import { data as casePagesData } from "./cases"
 
-export type ShowcaseItemRaw = Omit<ShowcaseItem, "thumb" | "image">
+export type ShowcaseItemRaw = Omit<
+  ShowcaseItem,
+  "thumb" | "thumbVideo" | "image" | "video"
+>
 
 export interface ShowcaseDataRaw {
   items: ShowcaseItemRaw[]
@@ -50,19 +53,19 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "boids",
-      name: "Boids",
-      tagline: "Artificial life simulation using JS Canvas.",
-      tags: ["featured", "web development"],
-      alt: "Screenshot of multiple coloured blobs simulating flocking behaviour.",
+      id: "planet-blue-plc",
+      name: "Planet Blue PLC",
+      tagline: "Demo app for fictional sustainable energy provider.",
+      tags: ["featured", "web development", "web design"],
+      alt: "Logo showing a circle filled with wavey lines and text saying Planet Blue.",
       links: [
         {
           label: "Github",
-          href: "https://github.com/wolfpilot/boids",
+          href: "https://github.com/wolfpilot/planet-blue-plc",
         },
         {
-          label: "Github",
-          href: "https://wolfpilot.github.io/boids/",
+          label: "Vercel",
+          href: "https://planet-blue-plc.vercel.app/",
         },
       ],
     },
@@ -84,19 +87,19 @@ const showcaseDataRaw: ShowcaseDataRaw = {
       ],
     },
     {
-      id: "planet-blue-plc",
-      name: "Planet Blue PLC",
-      tagline: "Demo app for fictional sustainable energy provider.",
-      tags: ["featured", "web development", "web design"],
-      alt: "Logo showing a circle filled with wavey lines and text saying Planet Blue.",
+      id: "boids",
+      name: "Boids",
+      tagline: "Artificial life simulation using JS Canvas.",
+      tags: ["featured", "web development"],
+      alt: "Screenshot of multiple coloured blobs simulating flocking behaviour.",
       links: [
         {
           label: "Github",
-          href: "https://github.com/wolfpilot/planet-blue-plc",
+          href: "https://github.com/wolfpilot/boids",
         },
         {
-          label: "Vercel",
-          href: "https://planet-blue-plc.vercel.app/",
+          label: "Github",
+          href: "https://wolfpilot.github.io/boids/",
         },
       ],
     },
