@@ -1,19 +1,13 @@
 import React from "react"
-import DOMPurify from "isomorphic-dompurify"
 import styled from "styled-components"
 
 interface IProps {
   className?: string
-  html: string
+  children: React.ReactNode
 }
 
-const RichText: React.FC<IProps> = ({ className, html }) => (
-  <Wrapper
-    className={className}
-    dangerouslySetInnerHTML={{
-      __html: DOMPurify.sanitize(html, { ADD_ATTR: ["target"] }),
-    }}
-  />
+const RichText: React.FC<IProps> = ({ className, children }) => (
+  <Wrapper className={className}>{children}</Wrapper>
 )
 
 const Wrapper = styled.div`
