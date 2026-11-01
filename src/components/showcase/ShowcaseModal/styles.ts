@@ -240,6 +240,29 @@ export const NavigationNextBtn = styled.button<{ $showTooltip: boolean }>`
   }
 `
 
+export const VideoPlayBtn = styled.button<{ $isPlaying: boolean }>`
+  ${btnResetStyles};
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 72px;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+  visibility: ${({ $isPlaying }) => ($isPlaying ? "hidden" : "visible")};
+  cursor: pointer;
+  transition: opacity ${duration.fast}s ${ease.default};
+`
+
+export const PlayIcon = styled(IconComponent)`
+  fill: var(--c-white);
+  stroke: var(--c-neutral1);
+`
+
 export const Media = styled.div`
   position: relative;
   display: flex;
@@ -255,7 +278,8 @@ export const Media = styled.div`
     }
 
     ${Controls},
-    ${Navigation} {
+    ${Navigation},
+    ${VideoPlayBtn} {
       opacity: 1;
     }
   }
@@ -312,40 +336,6 @@ export const VideoPoster = styled(NextImage)<{ $isPlaying: boolean }>`
   height: 100%;
   object-fit: contain;
   visibility: ${({ $isPlaying }) => ($isPlaying ? "hidden" : "visible")};
-`
-
-export const PlayIcon = styled(IconComponent)`
-  fill: none;
-  stroke: var(--c-white);
-`
-
-export const VideoPlayBtn = styled.button<{ $isPlaying: boolean }>`
-  ${btnResetStyles};
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  visibility: ${({ $isPlaying }) => ($isPlaying ? "hidden" : "visible")};
-  cursor: pointer;
-
-  &::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    background-color: var(--c-black);
-    opacity: 0.2;
-  }
-
-  &:hover,
-  &:focus {
-    &::before {
-      opacity: 0.4;
-    }
-  }
 `
 
 export const ImageScroller = styled(motion.div)<{ $isImgMax: boolean }>`
