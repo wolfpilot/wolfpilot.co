@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 
 // Data
@@ -10,7 +10,15 @@ import { ShowcaseProvider, State as ContextState } from "../Context"
 // Components
 import ShowcaseModal from "./ShowcaseModal"
 
+const videoItem = {
+  ...mockItems[0],
+  video: "/media/showcase/up-n-running/up-n-running.mp4",
+}
+const videoItems = [videoItem, ...mockItems.slice(1)]
+
 describe("ShowcaseModal", () => {
+  afterEach(() => jest.restoreAllMocks())
+
   it("renders correctly", async () => {
     const mockContextState: ContextState = {
       activeTag: "featured",
@@ -138,6 +146,111 @@ describe("ShowcaseModal", () => {
         screen.queryByRole("button", { name: /Zoom out/i })
       ).not.toBeInTheDocument()
     )
+  })
+
+  it("shows a video poster and starts muted playback with controls only on click", async () => {
+    const play = jest
+      .spyOn(HTMLMediaElement.prototype, "play")
+      .mockResolvedValue(undefined)
+    const mockContextState: ContextState = {
+      activeTag: "featured",
+      activeItems: videoItems,
+      activeItemIndex: 0,
+    }
+
+    render(
+      <ShowcaseProvider initialState={mockContextState}>
+        <ShowcaseModal />
+      </ShowcaseProvider>
+    )
+
+    const video = screen.getByLabelText(`${videoItem.name} video`)
+    const playButton = screen.getByRole("button", {
+      name: `Play ${videoItem.name} video`,
+    })
+
+    expect(
+      screen.getByRole("img", { name: videoItem.image.alt })
+    ).toBeInTheDocument()
+    expect(video).toHaveAttribute("src", videoItem.video)
+    expect(video).toHaveAttribute("poster", videoItem.image.src as string)
+    expect(video).not.toHaveAttribute("autoplay")
+    expect(video).not.toHaveAttribute("loop")
+    expect(video).not.toHaveAttribute("controls")
+    expect((video as HTMLVideoElement).muted).toBe(true)
+    expect(play).not.toHaveBeenCalled()
+    expect(getComputedStyle(playButton).visibility).toBe("visible")
+    expect(screen.queryByRole("button", { name: "Zoom in" })).toBeNull()
+
+    await userEvent.click(playButton)
+
+    expect(play).toHaveBeenCalledTimes(1)
+    expect(video).toHaveAttribute("controls")
+    expect(getComputedStyle(playButton).visibility).toBe("hidden")
+  })
+
+  it("pauses video when changing projects or closing the modal", async () => {
+    jest.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined)
+    const pause = jest
+      .spyOn(HTMLMediaElement.prototype, "pause")
+      .mockImplementation(() => {})
+    const mockContextState: ContextState = {
+      activeTag: "featured",
+      activeItems: videoItems,
+      activeItemIndex: 0,
+    }
+
+    render(
+      <ShowcaseProvider initialState={mockContextState}>
+        <ShowcaseModal />
+      </ShowcaseProvider>
+    )
+
+    await userEvent.click(
+      screen.getByRole("button", { name: `Play ${videoItem.name} video` })
+    )
+    await userEvent.click(
+      screen.getByRole("button", { name: "View next project" })
+    )
+
+    expect(pause).toHaveBeenCalledTimes(1)
+    await screen.findByRole("heading", { name: mockItems[1].name })
+    expect(screen.getByRole("button", { name: "Zoom in" })).toBeInTheDocument()
+
+    await userEvent.click(
+      screen.getByRole("button", { name: "View previous project" })
+    )
+    await screen.findByRole("button", {
+      name: `Play ${videoItem.name} video`,
+    })
+    await userEvent.click(
+      screen.getByRole("button", { name: `Play ${videoItem.name} video` })
+    )
+    await userEvent.click(screen.getByRole("button", { name: "Close" }))
+
+    expect(pause).toHaveBeenCalledTimes(2)
+  })
+
+  it("falls back to the zoomable image when video loading fails", async () => {
+    jest.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {})
+    const mockContextState: ContextState = {
+      activeTag: "featured",
+      activeItems: videoItems,
+      activeItemIndex: 0,
+    }
+
+    render(
+      <ShowcaseProvider initialState={mockContextState}>
+        <ShowcaseModal />
+      </ShowcaseProvider>
+    )
+
+    fireEvent.error(screen.getByLabelText(`${videoItem.name} video`))
+
+    const zoomButton = await screen.findByRole("button", { name: "Zoom in" })
+    await userEvent.click(zoomButton)
+
+    expect(screen.getByRole("button", { name: "Zoom out" })).toBeInTheDocument()
   })
 
   it("navigates between projects when clicking the arrows", async () => {

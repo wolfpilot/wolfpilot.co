@@ -133,7 +133,7 @@ export const Details = styled(motion.div)`
 
 export const Controls = styled.div`
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: calc(1.5 * var(--spacing-default));
   right: calc(2 * var(--spacing-default));
   display: flex;
@@ -180,7 +180,7 @@ export const ControlInternalLink = styled(InternalLink)`
 
 export const Navigation = styled.div`
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   bottom: calc(1.5 * var(--spacing-default));
   left: 50%;
   display: flex;
@@ -288,6 +288,64 @@ export const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+`
+
+export const VideoWrapper = styled(motion.div)`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`
+
+export const Video = styled.video`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`
+
+export const VideoPoster = styled(NextImage)<{ $isPlaying: boolean }>`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  visibility: ${({ $isPlaying }) => ($isPlaying ? "hidden" : "visible")};
+`
+
+export const PlayIcon = styled(IconComponent)`
+  fill: none;
+  stroke: var(--c-white);
+`
+
+export const VideoPlayBtn = styled.button<{ $isPlaying: boolean }>`
+  ${btnResetStyles};
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  visibility: ${({ $isPlaying }) => ($isPlaying ? "hidden" : "visible")};
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-color: var(--c-black);
+    opacity: 0.2;
+  }
+
+  &:hover,
+  &:focus {
+    &::before {
+      opacity: 0.4;
+    }
+  }
 `
 
 export const ImageScroller = styled(motion.div)<{ $isImgMax: boolean }>`
