@@ -31,11 +31,25 @@ export const meta: Meta = {
 
 const summary: Summary = {
   heading: "An ambitiously bold rebranding process",
-  html: `<p>In 2019, <a href="https://www.jungleminds.com" target="_blank" rel="noopener noreferrer">Jungle Minds</a> planned a complete rebrand toward a modern, typography-oriented design that would leverage colours and contrast to make a bold first impression. This change extended to their social profiles, advertising videos and even redecorating the office to match the new geometrical wizardry.
+  content: (
+    <>
+      <p>
+        {`In 2019, `}
+        <a
+          href="https://www.jungleminds.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {`Jungle Minds`}
+        </a>
+        {` planned a complete rebrand toward a modern, typography-oriented design that would leverage colours and contrast to make a bold first impression. This change extended to their social profiles, advertising videos and even redecorating the office to match the new geometrical wizardry.
       
     I was fortunate to be the one to spearhead the project together with the UI/UX team.
     
-    Aside from building the website, I proposed, prototyped and implemented many of the animations that have been kept alive and well even years later, some of which I will showcase below.</p>`,
+    Aside from building the website, I proposed, prototyped and implemented many of the animations that have been kept alive and well even years later, some of which I will showcase below.`}
+      </p>
+    </>
+  ),
 }
 
 const statement: Statement = {
@@ -64,7 +78,10 @@ const content: Content = [
     data: {
       heading: "Motion",
       subheading: "Page transitions",
-      html: `<p>Anyone who knows me knows how much I love animation and anyone who's coded any kind of page transitions will tell you how difficult it is to get anything other than a simple fade in - fade out right.
+      content: (
+        <>
+          <p>
+            {`Anyone who knows me knows how much I love animation and anyone who's coded any kind of page transitions will tell you how difficult it is to get anything other than a simple fade in - fade out right.
       
       For our website, I wanted to come up with something special. As plenty of the new branding revolved around geometrical shapes, I set out to create a grid that could host any number of shapes, letters, images, anything that JS Canvas could handle which would become the crossover effect between pages.
 
@@ -76,10 +93,23 @@ const content: Content = [
 
       And so, as any nerd would do, I started writing a particle generator engine.
       
-      Put simply, the page is divided into a fixed number of horizontal cells, whereas vertically it is auto-filled to the bottom of the screen. Each particle has characteristics such as <code>shape</code>, <code>fade in/out</code>, <code>duration</code>, <code>fill</code>, <code>stroke</code> and last, but not least, a lifespan. At the end of each particle's life, they are deleted from the array to free up precious memory.
+      Put simply, the page is divided into a fixed number of horizontal cells, whereas vertically it is auto-filled to the bottom of the screen. Each particle has characteristics such as `}
+            <code>{`shape`}</code>
+            {`, `}
+            <code>{`fade in/out`}</code>
+            {`, `}
+            <code>{`duration`}</code>
+            {`, `}
+            <code>{`fill`}</code>
+            {`, `}
+            <code>{`stroke`}</code>
+            {` and last, but not least, a lifespan. At the end of each particle's life, they are deleted from the array to free up precious memory.
       
       Same as with any games engine, the Canvas is painted, cleared and painted again in a tick loop. The swipe effect runs through some Bezier curve easings to give it a more natural feeling. Finally, the entire canvas is scaled to the user's DPI settings as to maintain the correct proportions regardless of the screen size.
-      </p>`,
+      `}
+          </p>
+        </>
+      ),
     },
   },
   {
@@ -99,11 +129,21 @@ const content: Content = [
     type: "textBlock",
     data: {
       subheading: "Content",
-      html: `<p>All content is lazy-loaded shortly before getting into view.
+      content: (
+        <>
+          <p>
+            {`All content is lazy-loaded shortly before getting into view.
 
-      For the most part, this is done through what I like to call the "blinders" effect, where text and media slide in from what looks like invisible blocks. It's a neat little trick that can be achieved by setting the parent container to <code>overflow: hidden;</code> and pushing the block in via <code>translateY</code>.
+      For the most part, this is done through what I like to call the "blinders" effect, where text and media slide in from what looks like invisible blocks. It's a neat little trick that can be achieved by setting the parent container to `}
+            <code>{`overflow: hidden;`}</code>
+            {` and pushing the block in via `}
+            <code>{`translateY`}</code>
+            {`.
       
-      Again, the key here is consistency in both usage of said animation, but also the timings and easings.</p>`,
+      Again, the key here is consistency in both usage of said animation, but also the timings and easings.`}
+          </p>
+        </>
+      ),
     },
   },
   {

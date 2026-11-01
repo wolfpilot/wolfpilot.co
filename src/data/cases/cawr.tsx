@@ -32,13 +32,35 @@ export const meta: Meta = {
 
 const summary: Summary = {
   heading: "Clear, user-friendly and informative",
-  html: `<p>Part of Coventry University, the Centre for Agroecology, Water and Resilience conducts research aimed at developing more resilient food and water systems throughout the world.
+  content: (
+    <>
+      <p>
+        {`Part of Coventry University, the Centre for Agroecology, Water and Resilience conducts research aimed at developing more resilient food and water systems throughout the world.
     
     In order to counteract climate and environmental change, loss of biodiversity, natural and man-made disasters and other destabilising factors, CAWR is continually seeking to expand its international team of researchers, becoming the largest centre in the world to do trans-disciplinary research on the links between agroecology and sustainable food systems, water management, and community and socio-ecological resilience.
   
-    I was approached by the Executive Director, <a href="https://pureportal.coventry.ac.uk/en/persons/michel-pimbert" target="_blank" rel="noopener noreferrer">Dr. Michel Pimbert</a>, to design CAWR's Communication and Publications web platform, emphasising in particular their internal working paper series, videos and animations, books and other multimedia publications.
+    I was approached by the Executive Director, `}
+        <a
+          href="https://pureportal.coventry.ac.uk/en/persons/michel-pimbert"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {`Dr. Michel Pimbert`}
+        </a>
+        {`, to design CAWR's Communication and Publications web platform, emphasising in particular their internal working paper series, videos and animations, books and other multimedia publications.
     
-    For an introduction to CAWR's work, please see the official <a href="https://www.coventry.ac.uk/globalassets/media/global/08-new-research-section/cawr/cawr-brochure-6.pdf" target="_blank" rel="noopener noreferrer">brochure</a>.</p>`,
+    For an introduction to CAWR's work, please see the official `}
+        <a
+          href="https://www.coventry.ac.uk/globalassets/media/global/08-new-research-section/cawr/cawr-brochure-6.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {`brochure`}
+        </a>
+        {`.`}
+      </p>
+    </>
+  ),
 }
 
 const statement: Statement = {
@@ -69,11 +91,17 @@ const content: Content = [
     data: {
       heading: "Planning and research",
       subheading: "Taking one step at a time",
-      html: `<p>It would be a lie to say that I wasn't the least bit nervous - CAWR was set to become the largest, most important project I had ever worked on. Most of my fears, however, dissipated upon meeting Michel for the second time so that we could discuss the project a bit more in depth.
+      content: (
+        <>
+          <p>
+            {`It would be a lie to say that I wasn't the least bit nervous - CAWR was set to become the largest, most important project I had ever worked on. Most of my fears, however, dissipated upon meeting Michel for the second time so that we could discuss the project a bit more in depth.
       
       From the little amount of information I was given, I managed to gather a number of stylistic references, as well as prepare a list of tens and tens of points that we needed to touch on: what is the purpose of the site, is there an existing website I could take a look at, are there any brand guidelines or specific features that I would need to integrate, etc.
       
-      By the end of the project, we found the whole concept to have grown considerably: where before stood only a few rough ideas revolving around multimedia publications, now the website featured a book carousel showcasing CAWR's latest publications, a working papers browser with its own advanced search functionality, a fully customised video player and last, but not least, a geolocated interactive gallery used by researchers around the world to upload photographs taken at various hotspots and share them on the front-page.</p>`,
+      By the end of the project, we found the whole concept to have grown considerably: where before stood only a few rough ideas revolving around multimedia publications, now the website featured a book carousel showcasing CAWR's latest publications, a working papers browser with its own advanced search functionality, a fully customised video player and last, but not least, a geolocated interactive gallery used by researchers around the world to upload photographs taken at various hotspots and share them on the front-page.`}
+          </p>
+        </>
+      ),
     },
   },
   {

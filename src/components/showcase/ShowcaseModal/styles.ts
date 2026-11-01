@@ -244,14 +244,13 @@ export const VideoPlayBtn = styled.button<{ $isPlaying: boolean }>`
   ${btnResetStyles};
   position: absolute;
   z-index: 1;
-  top: 50%;
-  left: 50%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 72px;
-  transform: translate(-50%, -50%);
   opacity: 0.4;
   visibility: ${({ $isPlaying }) => ($isPlaying ? "hidden" : "visible")};
   cursor: pointer;
@@ -259,6 +258,8 @@ export const VideoPlayBtn = styled.button<{ $isPlaying: boolean }>`
 `
 
 export const PlayIcon = styled(IconComponent)`
+  width: 48px;
+  height: 72px;
   fill: var(--c-white);
   stroke: var(--c-neutral1);
 `

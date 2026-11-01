@@ -45,7 +45,7 @@ export interface Meta {
 
 export interface Summary {
   heading: string
-  html: string
+  content: React.ReactNode
 }
 
 export interface Statement extends CardProps {}
@@ -77,11 +77,7 @@ export interface CodeSlice {
 }
 
 export type SliceType =
-  | ImageSlice
-  | FigureSlice
-  | VideoSlice
-  | TextBlockSlice
-  | CodeSlice
+  ImageSlice | FigureSlice | VideoSlice | TextBlockSlice | CodeSlice
 
 export type Content = SliceType[]
 

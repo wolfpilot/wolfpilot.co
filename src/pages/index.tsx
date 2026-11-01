@@ -64,7 +64,14 @@ const HomePage: NextPage<Props> = ({ pageData }) => {
             <Text>{pageData.about.hero.text}</Text>
           </S.Hero>
 
-          <Card {...pageData.about.card} />
+          <Card
+            {...pageData.about.card}
+            heading={
+              <>
+                My name is <em>Razvan Negrea</em>.
+              </>
+            }
+          />
         </Container>
       </S.Section>
 

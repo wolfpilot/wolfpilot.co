@@ -175,7 +175,7 @@ describe("ShowcaseModal", () => {
     expect(video).toHaveAttribute("src", videoItem.video)
     expect(video).toHaveAttribute("poster", videoItem.image.src as string)
     expect(video).not.toHaveAttribute("autoplay")
-    expect(video).not.toHaveAttribute("loop")
+    expect(video).toHaveAttribute("loop")
     expect(video).not.toHaveAttribute("controls")
     expect((video as HTMLVideoElement).muted).toBe(true)
     expect(play).not.toHaveBeenCalled()

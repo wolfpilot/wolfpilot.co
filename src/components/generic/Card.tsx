@@ -1,6 +1,5 @@
 import { useState, useRef } from "react"
 import Image, { ImageProps } from "next/image"
-import DOMPurify from "isomorphic-dompurify"
 import styled from "styled-components"
 import { motion, useScroll, useTransform } from "motion/react"
 
@@ -23,7 +22,7 @@ export interface Props {
       url: string
     }
   }
-  heading: string
+  heading: React.ReactNode
   copy: string
   backgroundImg?: ImageProps
 }
@@ -103,9 +102,7 @@ const Card: React.FC<Props> = ({
         )}
 
         <Content>
-          <Heading
-            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(heading) }}
-          />
+          <Heading>{heading}</Heading>
           <Text>{copy}</Text>
         </Content>
       </MediaWrapper>

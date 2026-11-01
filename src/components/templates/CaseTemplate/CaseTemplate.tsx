@@ -55,7 +55,7 @@ const CaseLayout: React.FC<PageData> = ({
     !image?.src ||
     !image?.alt ||
     !summary?.heading ||
-    !summary?.html ||
+    !summary?.content ||
     !statement.featuredImg?.src ||
     !statement.featuredImg?.alt ||
     !statement?.heading ||
@@ -169,7 +169,7 @@ const CaseLayout: React.FC<PageData> = ({
               </S.SummaryHeadingWrapper>
 
               <S.SummaryRichTextWrapper>
-                <RichText html={summary.html} />
+                <RichText>{summary.content}</RichText>
               </S.SummaryRichTextWrapper>
             </S.SummaryContent>
           </Container>
