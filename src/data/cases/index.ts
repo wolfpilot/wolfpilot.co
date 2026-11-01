@@ -77,11 +77,7 @@ export interface CodeSlice {
 }
 
 export type SliceType =
-  | ImageSlice
-  | FigureSlice
-  | VideoSlice
-  | TextBlockSlice
-  | CodeSlice
+  ImageSlice | FigureSlice | VideoSlice | TextBlockSlice | CodeSlice
 
 export type Content = SliceType[]
 

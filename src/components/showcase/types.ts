@@ -3,11 +3,7 @@ import { ImageProps } from "next/image"
 import { Route } from "@ts/routes"
 
 export type Tag =
-  | "featured"
-  | "web development"
-  | "web design"
-  | "concept art"
-  | "illustration"
+  "featured" | "web development" | "web design" | "concept art" | "illustration"
 
 export interface ShowcaseItem {
   id: string
