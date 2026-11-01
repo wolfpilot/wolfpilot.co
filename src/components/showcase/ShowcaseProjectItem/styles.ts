@@ -66,13 +66,21 @@ export const ThumbnailBtn = styled.button`
   }
 `
 
-export const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
+const thumbnailMediaStyles = css<{ $isLoaded: boolean }>`
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
   transform: ${({ $isLoaded }) => ($isLoaded ? "scale(1)" : "scale(1.25)")};
   transition: transform ${duration.verySlow}s ${ease.cubic};
+`
+
+export const Thumbnail = styled(Image)<{ $isLoaded: boolean }>`
+  ${thumbnailMediaStyles}
+`
+
+export const ThumbnailVideo = styled.video<{ $isLoaded: boolean }>`
+  ${thumbnailMediaStyles}
 `
 
 export const ContentPrimary = styled.div`

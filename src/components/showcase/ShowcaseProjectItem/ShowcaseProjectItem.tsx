@@ -41,14 +41,15 @@ const renderLinkText = (link: Route) => {
 }
 
 const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
-  const [isImgLoaded, setIsImgLoaded] = useState<boolean>(false)
+  const [isMediaLoaded, setIsMediaLoaded] = useState<boolean>(false)
+  const [hasVideoError, setHasVideoError] = useState<boolean>(false)
 
   const showcaseDispatch = useShowcaseDispatch()
 
   // Early exit check
   if (!data) return null
 
-  const { name, tagline, thumb, links = [] } = data
+  const { name, tagline, thumb, thumbVideo, links = [] } = data
 
   // Ensure required data is present
   if (
@@ -63,8 +64,12 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
   }
 
   // Handlers
-  const handleImgLoadingComplete = () => {
-    setIsImgLoaded(true)
+  const handleMediaLoadingComplete = () => {
+    setIsMediaLoaded(true)
+  }
+
+  const handleVideoError = () => {
+    setHasVideoError(true)
   }
 
   const handleImgClick = () => {
@@ -76,29 +81,47 @@ const ShowcaseProjectItem: React.FC<Props> = ({ index, data }) => {
 
   return (
     <S.Wrapper>
-      <S.ThumbnailWrapper $isLoaded={isImgLoaded}>
+      <S.ThumbnailWrapper $isLoaded={isMediaLoaded}>
         <S.ThumbnailBtn aria-label="Open in modal" onClick={handleImgClick}>
-          <S.Thumbnail
-            src={thumb.src}
-            sizes={`
-          (min-width: ${mq.breakpoints.L}px) 456px,
-          (min-width: ${mq.breakpoints.M}px) 50vw,
-          100vw,
-          `}
-            width={thumb.width}
-            height={thumb.height}
-            alt={thumb.alt || ""}
-            onLoad={handleImgLoadingComplete}
-            $isLoaded={isImgLoaded}
-          />
+          {thumbVideo && !hasVideoError ? (
+            <S.ThumbnailVideo
+              data-testid="showcase-thumbnail-video"
+              src={thumbVideo}
+              width={Number(thumb.width)}
+              height={Number(thumb.height)}
+              poster={typeof thumb.src === "string" ? thumb.src : undefined}
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-hidden="true"
+              onLoadedData={handleMediaLoadingComplete}
+              onError={handleVideoError}
+              $isLoaded={isMediaLoaded}
+            />
+          ) : (
+            <S.Thumbnail
+              src={thumb.src}
+              sizes={`
+            (min-width: ${mq.breakpoints.L}px) 456px,
+            (min-width: ${mq.breakpoints.M}px) 50vw,
+            100vw,
+            `}
+              width={thumb.width}
+              height={thumb.height}
+              alt={thumb.alt || ""}
+              onLoad={handleMediaLoadingComplete}
+              $isLoaded={isMediaLoaded}
+            />
+          )}
 
-          <ImageLoader isLoaded={isImgLoaded} delay={0.15} />
+          <ImageLoader isLoaded={isMediaLoaded} delay={0.15} />
         </S.ThumbnailBtn>
       </S.ThumbnailWrapper>
 
       <S.ContentWrapper
         tabIndex={0}
-        $isLoaded={isImgLoaded}
+        $isLoaded={isMediaLoaded}
         $linksAmount={links.length}
       >
         <S.ContentPrimary>
