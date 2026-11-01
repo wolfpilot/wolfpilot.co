@@ -45,7 +45,7 @@ export interface Meta {
 
 export interface Summary {
   heading: string
-  html: string
+  content: React.ReactNode
 }
 
 export interface Statement extends CardProps {}

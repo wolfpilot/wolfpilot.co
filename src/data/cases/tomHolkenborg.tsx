@@ -38,11 +38,34 @@ export const meta: Meta = {
 
 const summary: Summary = {
   heading: "Composer, initiator, educator",
-  html: `<p><a href="https://www.imdb.com/name/nm0432725/" target="_blank" rel="noopener noreferrer">Tom Holkenborg</a>, known by his stage name as <em>Junkie XL</em>, is a Grammy-nominated, multi-platinum producer, musician, and composer. Drawing from his extensive background in electronic music and a passion for innovation, he's committed to transforming the landscape of film scoring.
+  content: (
+    <>
+      <p>
+        <a
+          href="https://www.imdb.com/name/nm0432725/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {`Tom Holkenborg`}
+        </a>
+        {`, known by his stage name as `}
+        <em>{`Junkie XL`}</em>
+        {`, is a Grammy-nominated, multi-platinum producer, musician, and composer. Drawing from his extensive background in electronic music and a passion for innovation, he's committed to transforming the landscape of film scoring.
 
     Given his diverse career, Tom needed to connect effectively with various audiences, including composers, producers, talents, and fans, using the appropriate tone and branding. The idea was to create an ecosystem that delivers a unified experience, enabling each audience to find the right pathway into Tom’s world through his distinct labels.
     
-    Check it out on <a href="https://tomholkenborg.com/" target="_blank" rel="noopener noreferrer">tomholkenborg.com</a>.</p>`,
+    Check it out on `}
+        <a
+          href="https://tomholkenborg.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {`tomholkenborg.com`}
+        </a>
+        {`.`}
+      </p>
+    </>
+  ),
 }
 
 const statement: Statement = {
@@ -77,16 +100,29 @@ const content: Content = [
     data: {
       heading: "A 4-in-1 Special",
       subheading: "Page in a page in a page...",
-      html: `<p>As anyone who's watched Inception knows, you can only dive so deep before going mad.
+      content: (
+        <>
+          <p>
+            {`As anyone who's watched Inception knows, you can only dive so deep before going mad.
       
-      Tom's new website is as an umbrella where each section is its own sub-brand, which resulted in some very clever routing and theming (not to mention headaches).</p>
-      
-      <ul>
-        <li>Blue. The current persona, or the Hollywood film composer.</li>
-        <li>Black. The DJ of the past, early career and discography.</li>
-        <li>Red. The altruist, providing free lessons and insights to any willing to learn.</li>
-        <li>White. The teacher, training new generations of aspiring musicians.</li>
-      </ul>`,
+      Tom's new website is as an umbrella where each section is its own sub-brand, which resulted in some very clever routing and theming (not to mention headaches).`}
+          </p>
+          <ul>
+            <li>
+              {`Blue. The current persona, or the Hollywood film composer.`}
+            </li>
+            <li>
+              {`Black. The DJ of the past, early career and discography.`}
+            </li>
+            <li>
+              {`Red. The altruist, providing free lessons and insights to any willing to learn.`}
+            </li>
+            <li>
+              {`White. The teacher, training new generations of aspiring musicians.`}
+            </li>
+          </ul>
+        </>
+      ),
     },
   },
   {
