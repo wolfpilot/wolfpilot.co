@@ -210,9 +210,6 @@ importers:
       image-size:
         specifier: ^2.0.4
         version: 2.0.4
-      isomorphic-dompurify:
-        specifier: ^2.36.0
-        version: 2.36.0(supports-color@8.1.1)
       motion:
         specifier: 14.9.0
         version: 14.9.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4943,12 +4940,6 @@ packages:
       }
     engines: { node: ">= 4" }
 
-  dompurify@3.4.17:
-    resolution:
-      {
-        integrity: sha512-B/pSlYVHQ58kqISD/yDjuJ1yfzI34m1gF4lAod2bwSRhiN4K5Cl3H8Af7hqB2PmTL911tdEudnnXn5FnhRoz0w==,
-      }
-
   domutils@2.8.0:
     resolution:
       {
@@ -6541,13 +6532,6 @@ packages:
         integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==,
       }
 
-  isomorphic-dompurify@2.36.0:
-    resolution:
-      {
-        integrity: sha512-E8YkGyPY3a/U5s0WOoc8Ok+3SWL/33yn2IHCoxCFLBUUPVy9WGa++akJZFxQCcJIhI+UvYhbrbnTIFQkHKZbgA==,
-      }
-    engines: { node: ">=20.19.5" }
-
   istanbul-lib-coverage@3.2.0:
     resolution:
       {
@@ -6870,18 +6854,6 @@ packages:
     engines: { node: ">=14" }
     peerDependencies:
       canvas: ^2.5.0
-    peerDependenciesMeta:
-      canvas:
-        optional: true
-
-  jsdom@28.1.0:
-    resolution:
-      {
-        integrity: sha512-0+MoQNYyr2rBHqO1xilltfDjV9G7ymYGlAUazgcDLQaUf8JDHbuGwsxN6U9qWaElZ4w1B2r7yEGIL3GdeW3Rug==,
-      }
-    engines: { node: ^20.19.0 || ^22.12.0 || >=24.0.0 }
-    peerDependencies:
-      canvas: ^3.0.0
     peerDependenciesMeta:
       canvas:
         optional: true
@@ -12977,10 +12949,6 @@ snapshots:
     dependencies:
       domelementtype: 2.3.0
 
-  dompurify@3.4.17:
-    optionalDependencies:
-      "@types/trusted-types": 2.0.7
-
   domutils@2.8.0:
     dependencies:
       dom-serializer: 1.4.1
@@ -14119,15 +14087,6 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  isomorphic-dompurify@2.36.0(supports-color@8.1.1):
-    dependencies:
-      dompurify: 3.4.17
-      jsdom: 28.1.0(supports-color@8.1.1)
-    transitivePeerDependencies:
-      - "@noble/hashes"
-      - canvas
-      - supports-color
-
   istanbul-lib-coverage@3.2.0: {}
 
   istanbul-lib-instrument@5.2.1(supports-color@8.1.1):
@@ -14558,33 +14517,6 @@ snapshots:
       - bufferutil
       - supports-color
       - utf-8-validate
-
-  jsdom@28.1.0(supports-color@8.1.1):
-    dependencies:
-      "@acemir/cssom": 0.9.32
-      "@asamuzakjp/dom-selector": 6.8.1
-      "@bramus/specificity": 2.4.3
-      "@exodus/bytes": 1.16.0
-      cssstyle: 6.2.0
-      data-urls: 7.0.0
-      decimal.js: 10.6.0
-      html-encoding-sniffer: 6.0.0
-      http-proxy-agent: 7.0.2(supports-color@8.1.1)
-      https-proxy-agent: 7.0.6(supports-color@8.1.1)
-      is-potential-custom-element-name: 1.0.1
-      parse5: 8.0.1
-      saxes: 6.0.0
-      symbol-tree: 3.2.4
-      tough-cookie: 6.0.2
-      undici: 7.30.1
-      w3c-xmlserializer: 5.0.0
-      webidl-conversions: 8.0.1
-      whatwg-mimetype: 5.0.0
-      whatwg-url: 16.0.1
-      xml-name-validator: 5.0.0
-    transitivePeerDependencies:
-      - "@noble/hashes"
-      - supports-color
 
   jsesc@3.0.2: {}
 
