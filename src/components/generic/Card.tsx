@@ -22,7 +22,7 @@ export interface Props {
       url: string
     }
   }
-  heading: string | { before: string; emphasis: string; after: string }
+  heading: React.ReactNode
   copy: string
   backgroundImg?: ImageProps
 }
@@ -102,17 +102,7 @@ const Card: React.FC<Props> = ({
         )}
 
         <Content>
-          <Heading>
-            {typeof heading === "string" ? (
-              heading
-            ) : (
-              <>
-                {heading.before}
-                <em>{heading.emphasis}</em>
-                {heading.after}
-              </>
-            )}
-          </Heading>
+          <Heading>{heading}</Heading>
           <Text>{copy}</Text>
         </Content>
       </MediaWrapper>
