@@ -23,4 +23,22 @@ describe("Showcase data", () => {
       "thumbVideo"
     )
   })
+
+  it("automatically includes modal videos when a matching file exists", async () => {
+    const result = await getStaticProps({} as GetStaticPropsContext)
+
+    if (!("props" in result)) {
+      throw new Error("Expected homepage props")
+    }
+
+    const { pageData } = await result.props
+    const items = pageData.work.showcase.items
+
+    expect(items.find((item) => item.id === "boids")?.video).toBe(
+      "/media/showcase/boids/boids.mp4"
+    )
+    expect(items.find((item) => item.id === "up-n-running")).not.toHaveProperty(
+      "video"
+    )
+  })
 })

@@ -12,7 +12,7 @@ import { data as casePagesData } from "./cases"
 
 export type ShowcaseItemRaw = Omit<
   ShowcaseItem,
-  "thumb" | "thumbVideo" | "image"
+  "thumb" | "thumbVideo" | "image" | "video"
 >
 
 export interface ShowcaseDataRaw {
