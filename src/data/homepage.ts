@@ -10,7 +10,10 @@ import { Props as TimelineProps } from "@components/timeline/Timeline"
 // Data
 import { data as casePagesData } from "./cases"
 
-export type ShowcaseItemRaw = Omit<ShowcaseItem, "thumb" | "image">
+export type ShowcaseItemRaw = Omit<
+  ShowcaseItem,
+  "thumb" | "thumbVideo" | "image"
+>
 
 export interface ShowcaseDataRaw {
   items: ShowcaseItemRaw[]

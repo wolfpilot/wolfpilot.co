@@ -15,6 +15,7 @@ export interface ShowcaseItem {
   tagline: string
   tags: Tag[]
   thumb: ImageProps
+  thumbVideo?: string
   image: ImageProps
   alt: string
   links?: Route[]
